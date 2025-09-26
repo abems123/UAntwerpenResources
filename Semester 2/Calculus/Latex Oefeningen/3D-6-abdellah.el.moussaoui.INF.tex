@@ -1,0 +1,56 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Abdellah El Moussaoui \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 3D nr. 6\\
+
+\medskip
+
+\normalsize
+
+$f\left(x\right) = \dfrac{2 - 3x}{x^2 - 3x + 2}$ \\
+
+$\dfrac{df}{dx} = \dfrac{-3\left(x^2-3x+2\right) - \left(2-3x\right)\left(2x-3\right)}{\left(x^2-3x+2\right)^2}$ \\
+
+$ = \dfrac{-3x^2 + 9x -6-\left(4x-6-6x^2+9x\right)}{\left(x^2-3x+2\right)^2}$ \\
+
+$ = \dfrac{3x^2 -4x}{\left(x^2-3x+2\right)^2}$ \\
+
+$ = \dfrac{x\left(3x - 4\right)}{\left(\left(x-1\right)\left(x-2\right)\right)^2}$ \\
+
+Kritieke punten:\\
+
+$x=0$, $x=\dfrac{4}{3}$, $x=1$, $x=2$ \\
+
+$f\left(0\right) = 1$ \\
+
+$f\left(\dfrac{4}{3}\right) = 9$ \\
+
+\begin{tabular}{c|ccccccccccc}
+        $x$     & $-\infty$ & $0$ & & $1$ & & $\dfrac{4}{3}$ &  & $2$ & $+\infty$\\ 
+        \hline
+        $f'(x)$ & $+$       & $0$ & $-$ & $|$ & $-$ & $0$ & $+$ & $|$ &  $+$ \\ 
+        \hline
+        $f(x)$ & $\nearrow$       & $1$ & $\searrow$ & $|$ & $\searrow$ & $9$ & $\nearrow$ & $|$ &  $\nearrow$ \\ 
+\end{tabular}\\
+
+Dus $f$ heeft een maximum in $\left(0,1\right)$, en een minimum in $\left(\dfrac{4}{3},9\right)$ \\
+
+$a = \dfrac{9 -1}{\dfrac{4}{3} - 0} = 6$ \\
+
+$y = 6x + b$ \\
+
+$1 = 0 + b \Leftrightarrow b = 1$ \\
+
+$\boxed{y = 6x + 1}$\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 
