@@ -1,0 +1,3 @@
+C:/Users/Abdellah/Desktop/Bachelor Informatica/Semester 2/Project Software Engineering/Project/2d-game-sfml/cmake-build-debug/CMakeFiles/project.dir
+C:/Users/Abdellah/Desktop/Bachelor Informatica/Semester 2/Project Software Engineering/Project/2d-game-sfml/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Abdellah/Desktop/Bachelor Informatica/Semester 2/Project Software Engineering/Project/2d-game-sfml/cmake-build-debug/CMakeFiles/rebuild_cache.dir

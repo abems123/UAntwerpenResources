@@ -1,0 +1,4 @@
+C:/Users/AbEms/Desktop/Bachelor Informatica/Semester 2/Project Software Engineering/Les 2/gtest-1.7.0/cmake-build-debug/CMakeFiles/gtest.dir
+C:/Users/AbEms/Desktop/Bachelor Informatica/Semester 2/Project Software Engineering/Les 2/gtest-1.7.0/cmake-build-debug/CMakeFiles/gtest_main.dir
+C:/Users/AbEms/Desktop/Bachelor Informatica/Semester 2/Project Software Engineering/Les 2/gtest-1.7.0/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/AbEms/Desktop/Bachelor Informatica/Semester 2/Project Software Engineering/Les 2/gtest-1.7.0/cmake-build-debug/CMakeFiles/rebuild_cache.dir
