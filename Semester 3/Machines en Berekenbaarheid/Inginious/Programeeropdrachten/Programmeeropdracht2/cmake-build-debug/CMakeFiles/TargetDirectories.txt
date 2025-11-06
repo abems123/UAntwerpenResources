@@ -1,0 +1,3 @@
+C:/Users/Abdellah/CLionProjects/SecondYearSubjects/MachinesEnBerekenbaarheid/Programmeeropdracht2/cmake-build-debug/CMakeFiles/Programmeeropdracht2.dir
+C:/Users/Abdellah/CLionProjects/SecondYearSubjects/MachinesEnBerekenbaarheid/Programmeeropdracht2/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Abdellah/CLionProjects/SecondYearSubjects/MachinesEnBerekenbaarheid/Programmeeropdracht2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
