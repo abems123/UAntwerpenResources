@@ -1,0 +1,1 @@
+/usr/bin/c++ -Wall -Wl,--dependency-file=CMakeFiles/hw.dir/link.d CMakeFiles/hw.dir/hello.cpp.o CMakeFiles/hw.dir/main.cpp.o -o hw

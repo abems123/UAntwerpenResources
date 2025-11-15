@@ -1,0 +1,8 @@
+{
+	"InstallScripts" : 
+	[
+		"/home/abdellah/Desktop/AP/Session0/build/cmake_install.cmake",
+		"/home/abdellah/Desktop/AP/Session0/build/src/cmake_install.cmake"
+	],
+	"Parallel" : false
+}
