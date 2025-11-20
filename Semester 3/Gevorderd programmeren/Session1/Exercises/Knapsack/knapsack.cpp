@@ -1,40 +1,33 @@
 #include <iostream>
 #include <string>
-#include <list>
-
+#include <vector>
 
 typedef std::pair<int, int> Item; // weight, value pairs
-typedef std::list<Item> ItemList;
+typedef std::vector<Item> ItemList;
 
-std::string inttobin(int i){
-  if (i == 0)
-    return "";
-  return inttobin(i/2) + std::to_string(i % 2);
-}
-
-int knapsack(int capacity, const ItemList& items){
+int knapsack(int i, const ItemList& items, const int capacity){
+  if (i < 0)
+    return 0;
   
-  int largest_total_value = 0;
-  Item item_with_ltv;
+  if (items[i].first > capacity)
+    return knapsack(i-1, items,capacity);
+  else{
+    int include = items[i].second + knapsack(i-1, items, capacity - items[i].first);
+    int exclude = knapsack(i-1,items,capacity);
 
-  for (int i = 0; i < capacity; i++)
-  {
-    string current_combination_bin = inttobin(i);
-    while (current_combination_bin.size() < capacity) {
-      current_combination_bin = "0" + current_combination_bin;
-    }
-
-    int total_weight = 0;
-    int total_value = 0;
-    for (int j = 0; j < capacity; j++){
-      if ()
-    }
-
+    return std::max(include, exclude);
   }
-  return 0;
 }
 
 int main()
 {
-  std::cout << inttobin(39);
+  ItemList items = {
+    Item{2, 12},   // weight 2, value 12
+    Item{1, 10},   // weight 1, value 10
+    Item{3, 20},   // weight 3, value 20
+    Item{2, 15},   // weight 2, value 15
+    Item{5, 90}    // weight 5, value 30
+  };
+  
+  std::cout << knapsack(4, items, 7) << std::endl;
 }
