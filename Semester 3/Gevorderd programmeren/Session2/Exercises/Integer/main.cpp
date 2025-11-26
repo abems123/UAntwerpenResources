@@ -1,6 +1,11 @@
 #include "Integer.h"
 #include <iostream>
 
+std::ostream &operator<<(std::ostream &out, const Integer &i) {
+  out << i.m_val;
+  return out;
+}
+
 int main() {
   // Test default constructor
   Integer a;
@@ -70,7 +75,7 @@ int main() {
   std::cout << "n-- = " << post_dec_n << ", n = " << n << std::endl;
   std::cout << "--n = " << pre_dec_n << ", n = " << n << std::endl;
 
-  // Test comparison operators
+  // // Test comparison operators
   Integer m1(10);
   Integer m2(5);
 
