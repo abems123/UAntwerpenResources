@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Polynomials.iml" filepath="$PROJECT_DIR$/.idea/Polynomials.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/SmartStorage.iml" filepath="$PROJECT_DIR$/.idea/SmartStorage.iml" />
     </modules>
   </component>
 </project>

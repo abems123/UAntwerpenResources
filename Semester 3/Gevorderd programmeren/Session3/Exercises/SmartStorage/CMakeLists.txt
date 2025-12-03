@@ -1,0 +1,3 @@
+CMAKE_MINIMUM_REQUIRED(VERSION 4.0.2)
+PROJECT(SmartStorage)
+ADD_EXECUTABLE(smart A.cpp B.cpp main.cpp)
