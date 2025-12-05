@@ -1,0 +1,131 @@
+-- Use PostgreSQL 13 https://www.db-fiddle.com/f/q1qUf5qBrRrhjWW4UN252y/3
+
+CREATE TABLE Author(
+  firstname VARCHAR(255),
+  surname VARCHAR(255),
+  birthdate DATE,
+  age_death INT,
+  PRIMARY KEY(firstname, surname)
+  );
+
+INSERT INTO Author(firstname, surname) VALUES ('jk','rowling');
+INSERT INTO Author(firstname, surname, birthdate) 
+VALUES 	('grr', 'martin', '1948-09-20'),
+	('john', 'green', '1977-08-24');
+INSERT INTO Author VALUES ('jrr', 'tolkien', '1892-01-03', 81);
+
+-- this produces an error because of PRIMARY KEY
+--INSERT INTO Author VALUES ('john', 'green', '1927-02-12', 89);
+
+----------------------------------------------------------------------------
+
+CREATE TABLE Book(
+  isbn CHAR(13),
+  title VARCHAR(255),
+  pages INT,
+  a_name VARCHAR(255) NOT NULL,
+  a_surname VARCHAR(255) NOT NULL,
+  FOREIGN KEY (a_name, a_surname)
+  REFERENCES Author(firstname,surname),
+  PRIMARY KEY (isbn)
+  );
+  
+INSERT INTO Book VALUES 
+('9780545010221', 'harry_potter', 250, 'jk', 'rowling'),
+('8601402233168', 'the_fault_in_our_stars', 300, 'john','green'),
+('9780007477159', 'a_song_of_ice_and_fire', 10000, 'grr', 'martin');
+
+--this produce an error because of NOT NULL
+--INSERT INTO Book(isbn, title, pages) VALUES ('9780544003415', 'the_lord_of_the_rings', 1200);
+
+--this produce an error because of FOREIGN KEY
+--INSERT INTO Book VALUES ('9780062073501', 'murder_on_the_orient_express', 150, 'agatha', 'christie');
+
+----------------------------------------------------------------------------
+
+CREATE TABLE Genre(
+  g_name VARCHAR(255) PRIMARY KEY,
+  description VARCHAR(255)
+  );
+  
+INSERT INTO Genre VALUES 
+('fantasy', 'it''s fantastic!'), 
+('children', 'safe for everybody');
+INSERT INTO Genre VALUES ('horror');
+
+CREATE TABLE Has_Genre(
+  b_isbn CHAR(13),
+  g_name VARCHAR(255),
+  FOREIGN KEY (b_isbn)
+  REFERENCES Book(isbn),
+  FOREIGN KEY (g_name) REFERENCES Genre(g_name),
+  PRIMARY KEY (b_isbn, g_name)
+  );
+
+INSERT INTO Has_Genre VALUES
+('9780545010221', 'children'), --harry potter has genre 'for childer'
+('9780545010221', 'fantasy'),  --harry potter has genre 'fantasy'
+('9780007477159', 'fantasy');  --a song of ice... has genre 'fantasy' 
+
+----------------------------------------------------------------------------
+CREATE TABLE Reader(
+  rid INT,
+  firstname VARCHAR(255) NOT NULL,
+  surname VARCHAR(255) NOT NULL,
+  favorite_b VARCHAR(255),
+  FOREIGN KEY (favorite_b) REFERENCES Book(isbn),
+  PRIMARY KEY (rid)
+  );
+  
+INSERT INTO Reader(rid, firstname, surname) VALUES (1, 'toon', 'calders');
+INSERT INTO Reader VALUES (2, 'marco', 'favier', '9780545010221'); 
+-- marco's favorite book is harry potter
+INSERT INTO Reader VALUES (3, 'jane', 'doe', '9780545010221');
+  
+----------------------------------------------------------------------------
+
+CREATE TABLE Lent_To(
+  rid INT NOT NULL ,
+  isbn CHAR(13) PRIMARY KEY,
+  borrowing_date DATE,
+  FOREIGN KEY (isbn) REFERENCES Book(isbn),
+  FOREIGN KEY (rid) REFERENCES Reader(rid)
+  );
+  
+INSERT INTO Lent_To VALUES
+(1, '8601402233168', '2020-09-01'), --marco has borrowed 'the fault...'
+(1, '9780007477159', '2020-09-01'); --marco has borrowed 'a song...'
+
+-- this produce an error because FOREIGN KEY is PRIMARY
+-- INSERT INTO Lent_To VALUES (2, '8601402233168', '2020-08-31'); --toon has borrowed the same book
+
+----------------------------------------------------------------------------
+  
+CREATE TABLE Delay(
+  original_date DATE ,
+  real_date DATE ,
+  rid INT ,
+  FOREIGN KEY (rid)
+  REFERENCES Reader(rid),
+  PRIMARY KEY (rid, real_date, original_date)
+  );
+  
+INSERT INTO Delay VALUES ('2019-08-30', '2020-08-30', 2);
+
+----------------------------------------------------------------------------
+
+CREATE TABLE Student(
+  rid INT ,
+  university VARCHAR(255),
+  badge_n INT NOT NULL,
+  FOREIGN KEY (rid)
+  REFERENCES Reader(rid),
+  PRIMARY KEY (rid)
+  );
+  
+INSERT INTO Student VALUES (1, 'uantwerpen', 123456); -- marco is a student
+INSERT INTO Student VALUES (3, 'uantwerpen', 654321);
+----------------------------------------------------------------------------
+
+UPDATE Reader SET favorite_b='8601402233168' WHERE rid=2;
+DELETE FROM Student WHERE university = 'uantwerpen' AND badge_n = 123456;
