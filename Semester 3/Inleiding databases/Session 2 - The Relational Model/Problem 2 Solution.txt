@@ -1,0 +1,42 @@
+-- Problem 2
+
+/* 1.Convert the ER model to the relation model: 
+CREATE TABLE for all entities, 
+CREATE TABLE for many-to-many relations, 
+and FOREIGN KEY attributes for 1-to-many relations  */
+
+CREATE TABLE Userr(Id INT PRIMARY KEY, 
+                 FirstName VARCHAR(255),
+                 LastName VARCHAR(255),
+                 Birthdate DATE);
+                 
+                 
+CREATE TABLE Message(Id1 INT PRIMARY KEY, 
+                     Id2 INT NOT NULL REFERENCES Userr(Id), 
+                     Body varchar(255), 
+                     Created_on DATE);
+                     
+                     
+CREATE TABLE File(Path VARCHAR(255) PRIMARY KEY, 
+                  M_Id INT NOT NULL REFERENCES Message(Id1));
+
+
+CREATE TABLE Premium(Id INT PRIMARY KEY REFERENCES Userr(ID),
+                     CCard varchar(255));
+
+CREATE TABLE Admin(Id INT PRIMARY KEY REFERENCES Userr(ID));
+
+CREATE TABLE Groupp(Name VARCHAR(255) PRIMARY KEY,
+                    A_id INT NOT REFERENCES Admin(Id));
+
+CREATE TABLE Likes(U_id INT REFERENCES Userr(Id),
+                   M_id INT REFERENCES Message(Id1),
+                   PRIMARY KEY(U_id, M_id));
+
+CREATE TABLE Friends(U_id1 INT REFERENCES Userr(Id),
+                     U_id2 INT REFERENCES Userr(Id),
+                     PRIMARY KEY(U_id1, U_id2));
+
+CREATE TABLE Member(U_id INT NOT NULL REFERENCES Userr(Id),
+                    G_name VARCHAR(255) REFERENCES Groupp(Name),
+                    PRIMARY KEY(U_id, G_name));

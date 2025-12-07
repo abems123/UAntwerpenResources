@@ -1,0 +1,65 @@
+group:Name of the group (imported from SQL)
+
+User = {
+	email:string, firstname:string, lastname:string , age
+	'len.feremans@uantwerpen.be', 'len', 'feremans', 37
+	'toon.calders@uantwerpen.be', 'toon', 'calders', 44
+	'koen.wouters@gmail.be', 'koen', 'wouter', 52
+	'peter.selie@uantwerpen.be', 'Peter', 'Selie', 20
+	'spin.azie@uantwerpen.be', 'Spin', 'Azie', 20
+	'potus@gov.us', 'Donald', 'Trump', 65
+}
+
+PremiumUser = {
+	email:string, cardnumber:string
+ 	'potus@gov.us', '000-123567-99'
+}
+
+Message = {
+	creator:string, created_on:date, body:string
+	'len.feremans@uantwerpen.be', 2018-10-11, '<b>hello</b> world!'
+	'len.feremans@uantwerpen.be', 2018-10-12, 'Creating a new Social Network schema!'
+	'peter.selie@uantwerpen.be', 2018-10-11, '--Database4Ever!'
+	'potus@gov.us', 2017-10-11, 'Make America great again!'
+	'toon.calders@uantwerpen.be', 2018-09-30, 'Our new article on algorithms for efficient top-k queries is published! '
+}
+
+FileAttachment = {
+	filename:string, m_creator:string, m_created_on:date
+	'logo_postgres.jpg', 'peter.selie@uantwerpen.be', 2018-10-11
+	'logo_oracle.jpg', 'peter.selie@uantwerpen.be', 2018-10-11
+}
+
+MyGroup = {
+	name:string, admin:string
+	'UAntwerpen', 'toon.calders@uantwerpen.be'
+	'Republicans', 'potus@gov.us'
+}
+
+Member = {
+	user_email:string, group_name:string
+	'toon.calders@uantwerpen.be', 'UAntwerpen'
+	'len.feremans@uantwerpen.be', 'UAntwerpen'
+	'peter.selie@uantwerpen.be', 'UAntwerpen'
+}
+
+Likes = {
+	liker_user_email:string, m_creator:string, m_created_on:date
+	'peter.selie@uantwerpen.be', 'len.feremans@uantwerpen.be',  2018-10-11
+	'toon.calders@uantwerpen.be', 'len.feremans@uantwerpen.be', 2018-10-11
+	'toon.calders@uantwerpen.be', 'len.feremans@uantwerpen.be', 2018-10-12
+	'len.feremans@uantwerpen.be', 'peter.selie@uantwerpen.be',  2018-10-11
+	'koen.wouters@gmail.be', 'peter.selie@uantwerpen.be', 2018-10-11
+  'len.feremans@uantwerpen.be', 'toon.calders@uantwerpen.be', 2018-09-30
+	'peter.selie@uantwerpen.be', 'toon.calders@uantwerpen.be', 2018-09-30
+}
+
+Friends = {
+	user1:string, user2:string, friends_on:date
+	'toon.calders@uantwerpen.be', 'len.feremans@uantwerpen.be', 2015-01-01
+	'toon.calders@uantwerpen.be', 'koen.wouters@gmail.be', 2016-07-13
+	'len.feremans@uantwerpen.be', 'peter.selie@uantwerpen.be', 2015-02-10
+	'toon.calders@uantwerpen.be', 'peter.selie@uantwerpen.be', 2015-09-03
+	'koen.wouters@gmail.be', 'potus@gov.us', 2018-08-02
+	'spin.azie@uantwerpen.be', 'peter.selie@uantwerpen.be', 2010-11-23
+}
