@@ -26,7 +26,7 @@ all\_pairs
 
 #### 6\.
 
-b\_pcs = (π model, price PC ⨝ π model σ maker='B' Product) 
+b\_pcs = (π model, price PC ⨝ π model σ maker='B' Product)
 
 b\_laptops = (π model, price Laptop ⨝ π model σ maker='B' Product)
 
@@ -75,4 +75,26 @@ pc2 = ρ hd2←hd (π hd PC)
 #### 13\.
 
 
+
+
+
+### Exercise 2
+
+#### 1\.
+
+User ⨝ ρemail←m\_creator(π m\_creator Likes)
+
+
+
+#### 3\.
+
+toon\_friends =  (π user2 σ user1='toon.calders@uantwerpen.be' Friends) ∪ (π user1 σ user2='toon.calders@uantwerpen.be' Friends)
+
+
+
+len\_friends =  (π user2 σ user1='len.feremans@uantwerpen.be' Friends) ∪ (π user1 σ user2='len.feremans@uantwerpen.be' Friends)
+
+
+
+toon\_friends ∩ len\_friends
 
