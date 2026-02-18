@@ -1,0 +1,38 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Stan Van Campenhout \\
+\noindent \large Studierichting:  Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 43.13\\
+
+\medskip
+
+\normalsize
+
+$ \displaystyle\int\dfrac{x^4+2x^3-12x^2+9}{x^3-3x+2}dx = \displaystyle\int\left(4x+2+\dfrac{-2x+5}{x^3-3x+2}\right) dx$\\
+
+$ = 2x^2+2x+\displaystyle\int\dfrac{-2x+5}{\left(x+2\right)\left(x-1\right)^2}dx $\\
+
+$ \rightarrow \dfrac{-2x+5}{\left(x+2\right)\left(x-1\right)^2} = \dfrac{A}{x+2} + \dfrac{B}{\left(x-1\right)^2} + \dfrac{C}{x-1} $\\
+
+$ \Rightarrow A = \dfrac{4+5}{\left(-2-1\right)^2} = \dfrac{9}{9} = 1 $\\
+
+$ \Rightarrow B = \dfrac{-2+5}{3} = 1 $\\
+
+$ \rightarrow \dfrac{-2x+5}{\left(x+2\right)\left(x-1\right)^2}-\dfrac{1}{\left(x-1\right)^2} = \dfrac{-3}{\left(x+2\right)\left(x-1\right)} $\\
+
+$ \Rightarrow C = \dfrac{-3}{3} = -1 $\\
+
+$ = 2x^2+2x+\displaystyle\int\dfrac{1}{x+2}dx + \displaystyle\int\dfrac{1}{\left(x-1\right)^2}dx - \displaystyle\int\dfrac{1}{x-1}dx $\\
+
+$ = 2x^2  +2x +\ln|x+2| - \dfrac{1}{x-1} - \ln|x-1| + c $\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

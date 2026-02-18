@@ -1,0 +1,50 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Raj Shah \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 54.1\\
+
+\medskip
+
+\normalsize
+
+$\displaystyle\int \cos^{-3} x dx = \displaystyle\int \dfrac{1}{\cos^3 x}dx$\\
+
+$ = \displaystyle\int \dfrac{\sin^2 x + \cos^2 x}{\cos^3 x} dx = \displaystyle\int \left(\dfrac{\sin^2 x}{\cos^3 x} + \dfrac{\cos^2 x}{\cos^3 x}\right) dx$\\
+
+$ = \displaystyle\int \dfrac{\sin x \cdot \sin x}{\cos^3 x}dx + \displaystyle\int \dfrac{1}{\cos x}dx$\\
+
+$ = \left(\sin x \cdot \dfrac{1}{2 \cos^2 x} - \displaystyle\int \dfrac{1}{2\cos^2 x} \cdot \cos x dx\right) + \displaystyle\int \dfrac{1}{\cos x}dx$\\
+
+$ = \dfrac{\sin x}{2\cos^2 x} - \dfrac{1}{2} \displaystyle\int \dfrac{\cos x}{\cos^2 x}dx + \displaystyle\int \dfrac{\cos x}{\cos^2 x} dx$\\
+
+$ = \dfrac{\sin x}{2\cos^2 x} - \dfrac{1}{2} \displaystyle\int \dfrac{\cos x}{1 - \sin^2 x}dx + \displaystyle\int \dfrac{\cos x}{1 - \sin^2 x}dx$\\
+
+Stel $\sin x = t$ dan $dt = \cos x dx \Leftrightarrow dx = \dfrac{dt}{\cos x}$\\
+
+$ = \dfrac{\sin x}{2\cos^2 x}- \dfrac{1}{2} \displaystyle\int \dfrac{dt}{1-t^2} +  \displaystyle\int \dfrac{dt}{1-t^2}$\\
+
+$ = \dfrac{\sin x}{2\cos^2 x} - \dfrac{1}{2}  \cdot \left(\dfrac{1}{2} \left(\ln |1 + t| - |1 - t| \right)\right) + \dfrac{1}{2} \cdot (\ln |1+t| - |1-t |) + c$\\
+
+$ = \dfrac{\sin x}{2\cos^2 x} -\dfrac{1}{4} \ln \left|\dfrac{1+t}{1-t}\right| + \dfrac{1}{2} \ln \left|\dfrac{1+t}{1-t}\right| + c$\\
+
+$ = \dfrac{\sin x}{2\cos^2 x} + \dfrac{1}{4}\ln \left|\dfrac{1+\sin x}{1-\sin x}\right| + c$
+
+
+
+
+
+
+
+
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

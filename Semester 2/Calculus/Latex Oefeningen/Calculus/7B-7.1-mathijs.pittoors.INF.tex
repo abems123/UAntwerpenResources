@@ -1,0 +1,39 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+\newcommand{\setr}{\mathbb{R}}
+\begin{document}
+  
+\noindent \large Auteur: Mathijs Pittoors \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 7B nr. 7.1\\
+
+\medskip
+
+\normalsize
+
+$f: \setr^2 \rightarrow \setr^2 : (x,y) \rightarrow (x^2-y^2,2xy)$\\
+
+$Df = \left(\begin{array}{cc}
+	2x & 2y\\
+	-2y & 2x
+\end{array}\right)$\\
+	
+$\det(Df) = (2x)(2x)-(-2y)(2y) = 4x^2 + 4y^2$\\
+
+$Df^{-1} = \dfrac{1}{4x^2+4y^2} \left(\begin{array}{cc}
+	2x & 2y\\
+	-2y & 2x
+\end{array}\right)$\\
+
+$$Df^{-1} = \left(\begin{array}{cc}
+	\dfrac{2x}{4x^2+4y^2} & \dfrac{2y}{4x^2+4y^2}\\
+	\dfrac{-2y}{4x^2+4y^2} & \dfrac{2x}{4x^2+4y^2}
+\end{array}\right)$$
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

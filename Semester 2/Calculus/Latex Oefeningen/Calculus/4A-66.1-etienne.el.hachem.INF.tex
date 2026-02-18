@@ -1,0 +1,32 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Etienne El Hachem \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 66.1\\
+
+\medskip
+
+\normalsize
+
+$\displaystyle\int\sqrt{x^2-1}dx \stackrel{\sqrt{x^2-1} = x + t}{=} \displaystyle\int\left(-\dfrac{t^2+1}{2t}+t\right)\cdot\left(-\dfrac{t^2-1}{2t^2}\right)dt $\\
+
+$ = \displaystyle\int-\dfrac{\left(t^2-1\right)^2}{4t^3}dt = -\dfrac{1}{4}\displaystyle\int\dfrac{t^4-2t^2+1}{t^3}dt $\\
+
+$ =  -\dfrac{1}{4}\left(\displaystyle\int tdt - \displaystyle\int\dfrac{2}{t}dt + \displaystyle\int\dfrac{1}{t^3}dt\right) $\\
+
+$ = -\dfrac{1}{4}\left(\dfrac{t^2}{2}-2\cdot\ln|t|-\dfrac{1}{2t^2}\right) + c $\\
+
+$ = -\dfrac{t^2}{8} + \dfrac{\ln|t|}{2} + \dfrac{1}{8t^2} + c $\\
+
+$ \stackrel{t = \sqrt{x^2-1} - x}{=}  -\dfrac{\left(\sqrt{x^2-1} - x\right)^2}{8} + \dfrac{\ln\left|\sqrt{x^2-1} - x\right|}{2} + \dfrac{1}{8\left(\sqrt{x^2-1} - x\right)^2} + c $\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

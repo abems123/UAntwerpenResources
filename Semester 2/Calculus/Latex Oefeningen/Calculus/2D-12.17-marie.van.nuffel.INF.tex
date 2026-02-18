@@ -1,0 +1,61 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+\usepackage{color}     
+
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\llim}{\lim\limits}
+\newcommand{\dint}{\displaystyle\int}
+
+\begin{document}
+  
+\noindent \large Auteur: Marie Van Nuffel \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 2D nr. 12.17\\
+
+\medskip
+
+\normalsize
+
+$\lim\limits_{x\rightarrow \infty}(\sqrt{4x^2+x}+\sqrt{9x^2-1}-5x)$\\
+
+opsplitsen:\\
+
+$\lim\limits_{x\rightarrow \infty}(\sqrt{4x^2+x}+\sqrt{9x^2-1}-5x)$ = $\lim\limits_{x\rightarrow \infty}(\sqrt{4x^2+x} -2x) + \lim\limits_{x\rightarrow \infty}(\sqrt{9x^2-1} -3x)$\\
+
+Eerste term:\\
+
+$\lim\limits_{x\rightarrow \infty}\left( \sqrt{4x^2+x}-2x\cdot \left(\dfrac{\sqrt{4x^2+x}+2x}{\sqrt{4x^2+x}+2x}\right)\right)$\\
+
+$= \lim\limits_{x\rightarrow \infty}\left( \dfrac{(\sqrt{4x^2+x}-2x)\cdot(\sqrt{4x^2+x}+2x)}{(\sqrt{4x^2+x}+2x)}\right)$
+
+$= \lim\limits_{x\rightarrow \infty}\left( \dfrac{4x^2+x-4x^2}{\sqrt{4x^2+x}+2x}\right)$\\
+
+$= \lim\limits_{x\rightarrow \infty}\left( \dfrac{x}{\sqrt{4x^2+x}+2x}\right)$\\
+
+$= \lim\limits_{x\rightarrow \infty}\left( \dfrac{1}{\sqrt{4+\dfrac{1}{x}}+2}\right)$\\
+
+$= \dfrac{1}{4}$\\
+
+Tweede term:\\
+
+$\lim\limits_{x\rightarrow \infty}\left( \sqrt{9x^2-1}-3x\cdot \left(\dfrac{\sqrt{9x^2-1}+3x}{\sqrt{9x^2-1}+3x}\right)\right)$\\
+
+$= \lim\limits_{x\rightarrow \infty}\left(\dfrac{(\sqrt{9x^2-1}-3x)\cdot(\sqrt{9x^2-1}+3x)}{(\sqrt{9x^2-1}+3x)}\right)$
+
+$= \lim\limits_{x\rightarrow \infty}\left(\dfrac{-1}{\sqrt{9x^2-1}+3x}\right)$\\
+
+$= \lim\limits_{x\rightarrow \infty}\left(\dfrac{-1}{x\sqrt{9-\dfrac{1}{x^2}}+3}\right)$\\
+
+$= \lim\limits_{x\rightarrow \infty}\left(\dfrac{-1}{x\cdot\sqrt{9}+3}\right)$\\
+
+$= 0$\\
+
+$\lim\limits_{x\rightarrow \infty}(\sqrt{4x^2+x}+\sqrt{9x^2-1-5x}) = \dfrac{1}{4} + 0 = \dfrac{1}{4}$\\
+
+\begin{thebibliography}{999}
+\end{thebibliography}
+\end{document} 

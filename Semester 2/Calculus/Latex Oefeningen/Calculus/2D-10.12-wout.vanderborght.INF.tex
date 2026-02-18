@@ -1,0 +1,54 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+\usepackage{cancel}
+
+% Command definities van frequent gebruikte commandos
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Bgsin}{\operatorname{Bgsin}}
+\newcommand{\Bgcos}{\operatorname{Bgcos}}
+\newcommand{\Bgtan}{\operatorname{Bgtan}}
+\newcommand{\cis}{\operatorname{cis}}
+\newcommand{\Limit}{\lim\limits_}
+
+\begin{document}
+  
+\noindent \large Auteur: Wout Vanderborght\\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 2D nr. 10.12\\
+
+\medskip
+
+\normalsize
+
+Bereken de volgende limiet: \\
+
+$ \Limit{x \rightarrow -\tfrac{1}{2}} \dfrac{-6x^2-x+1}{-10x^2-x+2} = \cancel{\dfrac{0}{0}} $ \\
+
+Teller ontbinden: \\
+
+\begin{tabular}{c|cc|c}
+    & $-6$ & $-1$ & $1$ \\
+    $\dfrac{-1}{2}$ & & $3$ & $-1$ \\ \hline
+    & $-6$ & $2$ & $0$
+\end{tabular} \\ 
+
+Noemer ontbinden: \\
+
+\begin{tabular}{c|cc|c}
+    & $-10$ & $-1$ & $2$ \\
+    $\dfrac{-1}{2}$ & & $5$ & $-2$ \\ \hline
+    & $-10$ & $4$ & $0$
+\end{tabular} \\ 
+
+$ \Leftrightarrow \Limit{x \rightarrow -\tfrac{1}{2}} \dfrac{\cancel{(2x+1)} (-6x+2)}{\cancel{(2x+1)} (-10x+4)} = \dfrac{5}{9} $ \\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

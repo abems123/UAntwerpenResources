@@ -1,0 +1,91 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\begin{document}
+  
+\noindent \large Auteur: Sadia Nazary \\ 
+\noindent \large Studierichting: Informatica \\ 
+\noindent \large Oefeningenreeks 2A nr. 10.2 \\
+
+\medskip
+
+\normalsize
+Bewijs \textbf{rechtstreeks} dat als de reële functies $f$, $g$ en $h$ continu zijn in $a \in \mathbb{R}$, dat dan ook de volgende functies continu zijn in $a$.\\
+
+$$ f \cdot g \cdot h $$
+
+\textbf{Veronderstel}: \\
+
+Als $f: I \subseteq \mathbb{R} \to \mathbb{R}$,  
+$g: J \subseteq \mathbb{R} \to \mathbb{R}$,  
+$h: K \subseteq \mathbb{R} \to \mathbb{R}$ continu zijn in $a \in I \cap J \cap K$, dan is $f \cdot g \cdot h: I \cap J \cap K \to \mathbb{R}$ gedefinieerd als:
+
+$$ x \mapsto f(x) \cdot g(x) \cdot h(x) $$
+
+\textbf{Bewijs (met $\varepsilon$-$\delta$-definitie)}: \\
+
+Aangezien $f$, $g$ en $h$ continu zijn in $a$, geldt per definitie:
+
+\begin{itemize}
+  \item Voor elke $\varepsilon_1 > 0$ bestaat er een $\delta_1 > 0$ zodat voor alle $x$ met $|x - a| < \delta_1$ geldt: $|f(x) - f(a)| < \varepsilon_1$.
+  \item Voor elke $\varepsilon_2 > 0$ bestaat er een $\delta_2 > 0$ zodat voor alle $x$ met $|x - a| < \delta_2$ geldt: $|g(x) - g(a)| < \varepsilon_2$.
+  \item Voor elke $\varepsilon_3 > 0$ bestaat er een $\delta_3 > 0$ zodat voor alle $x$ met $|x - a| < \delta_3$ geldt: $|h(x) - h(a)| < \varepsilon_3$.
+\end{itemize}
+
+Stel nu $\varepsilon > 0$ voor de functie $f \cdot g \cdot h$.\\
+
+We willen een $\delta > 0$ vinden zodat voor alle $x$ met $|x - a| < \delta$ geldt:
+
+\[
+|f(x)g(x)h(x) - f(a)g(a)h(a)| < \varepsilon
+\]
+
+We herschrijven dit verschil met de volgende identiteit:
+
+\[
+|fgh - f(a)g(a)h(a)| = |fgh - fgh(a) + fgh(a) - f(a)g(a)h(a)|
+\]
+
+Door gebruik te maken van de driehoekongelijkheid en passende herschikking kunnen we dit splitsen in:
+
+\[
+|fgh - f(a)g(a)h(a)| \leq |f(x) - f(a)||g(x)||h(x)| + |f(a)||g(x) - g(a)||h(x)| + |f(a)||g(a)||h(x) - h(a)|
+\]
+
+Omdat $f$, $g$, en $h$ continu zijn in $a$, zijn zij ook begrensd in een omgeving van $a$. Dus er bestaan constante grenzen \( M_f, M_g, M_h \) zodat:
+
+\[
+|f(x)| \leq M_f, \quad |g(x)| \leq M_g, \quad |h(x)| \leq M_h \text{ in een kleine omgeving rond } a.
+\]
+
+Kies nu:
+
+\[
+\delta = \min(\delta_1, \delta_2, \delta_3)
+\]
+
+en stel:
+
+\[
+\varepsilon_1 = \frac{\varepsilon}{3 M_g M_h}, \quad \varepsilon_2 = \frac{\varepsilon}{3 M_f M_h}, \quad \varepsilon_3 = \frac{\varepsilon}{3 M_f M_g}
+\]
+
+Dan volgt:
+
+\[
+|fgh - f(a)g(a)h(a)| < \varepsilon
+\]
+
+\textbf{Conclusie}: \\
+
+Volgens de definitie van continuïteit is de functie $f \cdot g \cdot h$ continu in $a$.
+
+\qed
+
+\begin{thebibliography}{99}
+
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,31 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Stan Van Campenhout \\
+\noindent \large Studierichting:  Informatica\\
+\noindent \large Oefeningenreeks 5A nr. 2.3\\
+
+\medskip
+
+\normalsize
+
+$ \displaystyle\int\limits_{-1}^2\left(x\cdot\lfloor x\rfloor\right) dx = \displaystyle\int\limits_{-1}^0\left(x\cdot\lfloor x\rfloor\right) dx 
++ \displaystyle\int\limits_0^1\left(x\cdot\lfloor x\rfloor\right) dx + \displaystyle\int\limits_1^2\left(x\cdot\lfloor x\rfloor\right) dx  $\\
+
+$ \displaystyle\int\limits_{-1}^0\left(x\cdot\lfloor x\rfloor\right) dx  = -\displaystyle\int\limits_{-1}^0xdx =-\left[\dfrac{x^2}{2}\right]_{-1}^0 = \dfrac{1}{2} $\\
+
+$ \displaystyle\int\limits_0^1\left(x\cdot\lfloor x\rfloor\right) dx = 0 \cdot \displaystyle\int\limits_0^1xdx = 0 $\\
+
+$ \displaystyle\int\limits_1^2\left(x\cdot\lfloor x\rfloor\right) dx = \displaystyle\int\limits_1^2xdx = \left[\dfrac{x^2}{2}\right]_1^2 = \dfrac{3}{2} $\\
+
+$ \Rightarrow \displaystyle\int\limits_{-1}^2\left(x\cdot\lfloor x\rfloor\right) dx = \dfrac{1}{2} + 0 + \dfrac{3}{2} = 2 $\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

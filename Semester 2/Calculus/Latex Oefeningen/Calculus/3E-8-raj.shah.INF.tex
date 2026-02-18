@@ -1,0 +1,83 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Raj Shah \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 3E nr. 8 \\
+
+\medskip
+
+\normalsize
+
+Bewijs dat in de verzameling ingeschreven rechthoeken in een vaste gegeven cirkel met straal r, het vierkant de unieke rechthoek is met maximale oppervlakte. \\
+
+Gevraagd : $A_{rechthoek} = A_{vierkant} $ \\ 
+
+Bewijs : diagonaal rechthoek = $\sqrt{a^2 + b^2}$\\
+
+\begin{itemize}
+
+	\item $ 2r =  \sqrt{a^2 + b^2}$\\
+
+	$\Leftrightarrow r = \dfrac{\sqrt{a^2 + b^2}}{2} \Leftrightarrow (2r)^2 = a^2 + b^2$\\
+
+	$\Leftrightarrow \left\{
+					\begin{array}{lll}
+					 \sqrt{4r^2 - b^2} = a\\
+					 \sqrt{4r^2 - a^2} = b
+					\end{array}
+				\right.$
+ 	\item $A_{rechthoek} = a \cdot b = \sqrt{4r^2 - b^2} \cdot b$\\
+	
+	\item $A'(b) = \sqrt{4r^2 - b^2} + \dfrac{1}{2} (4r^2 - b^2)^{-\tfrac{1}{2}}\cdot (0 -2b) \cdot b$\\
+	
+	$ = \sqrt{4r^2 - b^2} + \dfrac{(-2b)(b)}{2\sqrt{4r^2-b^2}}$\\
+	
+	$ = \sqrt{4r^2 - b^2} - \dfrac{b^2}{\sqrt{4r^2 - b^2}}$\\
+	
+	\item $A'(b) = 0 \Leftrightarrow \sqrt{4r^2 - b^2} = \dfrac{b^2}{\sqrt{4r^2 - b^2}}$\\
+	
+	$\Leftrightarrow 4r^2 - b^2 = b^2 \Leftrightarrow 4r^2 = 2b^2 \Leftrightarrow 2r^2 = b^2$\\
+	
+	$\Leftrightarrow \sqrt{2}r = b$\\
+	
+	$ \Rightarrow a = \sqrt{2}r \text{ dus } a = b \text{ en } a^2 = a \cdot b$\\
+	
+	\item $A''(b) = \dfrac{-b}{\sqrt{4r^2 - b^2}} - \left(\dfrac{2b\sqrt{4r^2-b^2} -(b^2)\cdot\left(\dfrac{-b}{\sqrt{4r^2-b^2}}\right)}{4r^2 - b^2}\right)$\\
+	
+	$ = \dfrac{-b}{\sqrt{4r^2 - b^2}} - \left(\dfrac{2b\sqrt{4r^2-b^2} + \dfrac{b^3}{\sqrt{4r^2-b^2}}}{4r^2 - b^2}\right)$\\
+	
+	$ = \dfrac{-b}{\sqrt{4r^2 - b^2}} - \dfrac{2b}{\sqrt{4r^2 - b^2}} - \dfrac{b^3}{\sqrt[3]{4r^2 - b^2}} $\\
+	
+	$ = \dfrac{-3b}{\sqrt{4r^2 - b^2}} - \dfrac{b^3}{\sqrt[3]{4r^2 - b^2}}$\\
+	
+	$ = \dfrac{-3b(4r^2 - b^2) - b^3}{\sqrt[3]{4r^2 - b^2}}$\\
+	
+	$ = \dfrac{-12br^2 + 2b^3}{\sqrt[3]{4r^2-b^2}} = \dfrac{-2b(6r^2 - b^2)}{\sqrt[3]{4r^2-b^2}}$\\
+	
+	\item $A''(\sqrt{2}r) = \dfrac{-2\sqrt{2}r(6r^2 - 2r^2)}{\sqrt[3]{4r^2 - 2r^2}}$\\
+	
+	$ = \dfrac{-12\sqrt{2}r^3 + 4\sqrt{2}r^3}{\sqrt[3]{2r^2}}$\\
+	
+	$ = \dfrac{-8\sqrt{2}r^3}{(2r^2)^{\tfrac{3}{2}}}$\\
+	
+	$ = \dfrac{-8\sqrt{2}r^3}{(8r^6)^{\tfrac{1}{2}}}$\\
+	
+	$ = \dfrac{-8\sqrt{2}r^3}{2\sqrt{2}r^3} = -4$\\
+	
+	$ \Rightarrow -4 < 0$ dus maximum\\
+	
+	 De rechthoek bereikt inderdaad zijn maximale oppervlakte wanneer het een vierkant is, ingeschreven in de cirkel met straal r.
+	
+	
+\end{itemize}
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

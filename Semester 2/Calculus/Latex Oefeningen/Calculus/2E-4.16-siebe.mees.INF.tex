@@ -1,0 +1,39 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+
+\begin{document}
+  
+\noindent \large Auteur: Siebe Mees \\
+\noindent \large Studierichting: Informatica \\
+\noindent \large Oefeningenreeks 2E nr. 4.16 \\
+
+\medskip
+
+\normalsize
+
+$ \lim\limits_{x \rightarrow \infty} \left(1+\dfrac{a}{x} + \dfrac{a}{x^2}\right)^x $ \\
+
+$ \lim\limits_{x \rightarrow \infty} \left(1+\dfrac{ax}{x^2} + \dfrac{a}{x^2}\right)^x $ \\
+
+$ \lim\limits_{x \rightarrow \infty} \left(1+\dfrac{ax+a}{x^2} \right)^x $ \\
+
+$ \lim\limits_{x \rightarrow \infty} \left(1+\dfrac{a(x+1)}{x^2} \right)^x $ \\
+
+Neem $ \dfrac{1}{k(x)} := \dfrac{a(x+1)}{x^2} \Rightarrow k(x) = \dfrac{x^2}{a(x+1)} $ \\
+
+$ \lim\limits_{x \rightarrow \infty} \left(1+\dfrac{1}{k(x)} \right)^x $ \\
+
+Omdat $ x = \dfrac{a(x+1)}{x^2} \cdot k(x) $ \\
+
+$ \lim\limits_{x \rightarrow \infty} \left[(1+\dfrac{1}{k(x)})^{k(x)} \right]^{\tfrac{a(x+1)}{x^2}\cdot x} $ \\
+
+$ = e^a $ \\
+
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

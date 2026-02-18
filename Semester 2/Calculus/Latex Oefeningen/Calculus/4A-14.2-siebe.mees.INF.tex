@@ -1,0 +1,47 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}    
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+
+
+\begin{document}
+  
+\noindent \large Auteur: Siebe Mees \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 14.2\\
+
+\medskip
+
+\normalsize
+
+$\displaystyle\int x \ln x dx $\\
+
+$ \left( \displaystyle\int u dv = uv - \displaystyle\int vdu \right) $\\
+
+$\left\{
+   \begin{array}{l}
+       u = \ln x\\
+       dv = x dx
+   \end{array}
+\right.
+\Rightarrow
+\left\{
+   \begin{array}{l}
+       du = \dfrac{1}{x} dx \\
+       v = \dfrac{1}{2}x^2
+   \end{array}
+\right.$
+
+$ = \ln x \cdot \dfrac{1}{2}x^2 - \displaystyle\int \dfrac{1}{2}x^2 \cdot \dfrac{1}{x} dx $\\
+
+$ = \dfrac{1}{2}x^2 \ln x - \dfrac{1}{2}\displaystyle\int x dx $\\
+
+$ = \dfrac{1}{2}x^2 \ln x - \dfrac{1}{4}x^2 + C $\\
+
+$ = \dfrac{x^2 \ln x}{2} - \dfrac{x^2}{4} + C $\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

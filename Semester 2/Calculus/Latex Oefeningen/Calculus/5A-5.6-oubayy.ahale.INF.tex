@@ -1,0 +1,48 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\newcommand{\dint}{\displaystyle\int}
+\newcommand{\llim}{\lim\limits}
+\newcommand{\Bgtan}{\operatorname{Bgtan}}
+
+\begin{document}
+  
+\noindent \large Auteur: Oubayy Ahale         \\
+\noindent \large Studierichting: Informatica  \\
+\noindent \large Oefeningenreeks 5A nr. 5.6   \\
+
+\medskip
+
+\normalsize
+
+Bereken de integraal:
+
+$\dint_{0}^{\tfrac{\pi}{2}} \sin^2(x) dx$\\
+
+$\dint_{0}^{\tfrac{\pi}{2}} \sin^2(x) dx = \dint_{0}^{\tfrac{\pi}{2}} \dfrac{1 - \cos(2x)}{2} dx = \dfrac{1}{2} \cdot \dint_{0}^{\tfrac{\pi}{2}} \left( 1 - \cos(2x) \right) dx$\\
+
+$= \dfrac{1}{2} \cdot \left[ x - \dfrac{\sin(2x)}{2} \right]_{0}^{\tfrac{\pi}{2}}$\\
+
+Voor $x = \dfrac{\pi}{2}$:\\
+
+$x - \dfrac{\sin(2x)}{2} = \dfrac{\pi}{2} - \dfrac{\sin(\pi)}{2} = \dfrac{\pi}{2} - 0 = \dfrac{\pi}{2}$\\
+
+Voor $x = 0$:\\
+
+$x - \dfrac{\sin(2x)}{2} = 0 - \dfrac{\sin(0)}{2} = 0$\\
+
+Dus:\\
+
+$\dfrac{1}{2} \cdot \left( \dfrac{\pi}{2} - 0 \right) = \dfrac{\pi}{4}$\\
+
+\textbf{Antwoord:} $\boxed{\dfrac{\pi}{4}}$\\
+
+\end{document}
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document}

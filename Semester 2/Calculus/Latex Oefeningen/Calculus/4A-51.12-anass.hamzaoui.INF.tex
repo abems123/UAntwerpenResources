@@ -1,0 +1,30 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{esint}
+
+\begin{document}
+  
+\noindent \large Auteur: Anass Hamzaoui \\
+\noindent \large Studierichting: Informatica \\
+\noindent \large Oefeningenreeks 4A nr. 51.12 \\
+
+\medskip
+
+\normalsize
+
+\begin{eqnarray*}
+    && \displaystyle\int \sin^3(x) \cos^2(x)  dx \\
+    && = \displaystyle\int \cos^2(x) \sin^2(x) \sin(x)  dx \\
+    && = - \displaystyle\int \cos^2(x) \sin^2(x)  d(\cos(x)) \\
+    && = - \displaystyle\int \cos^2(x) \left(1 - \cos^2(x)\right)  d(\cos(x)) \\
+    && = - \displaystyle\int \cos^2(x)  d(\cos(x)) + \displaystyle\int \cos^4(x)  d(\cos(x)) \\
+    && = \dfrac{\cos^5(x)}{5} - \dfrac{\cos^3(x)}{3} + c
+\end{eqnarray*}
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document}

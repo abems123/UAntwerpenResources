@@ -1,0 +1,58 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+ 
+\noindent \large Auteur: Victoria Mazur \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 3D nr. 7.1\\
+
+\medskip
+
+\normalsize
+
+$f(x) = x^x$ \\
+
+Logaritmische differentiatie: \\
+
+$\ln f(x) = \ln(x^x) = x \ln x$ \\
+
+$f(x) = e^{x \ln x}$ \\
+
+c: $(e^{g(x)})' = e^{g(x)} \cdot g'(x)$ \\
+
+$f'(x) = e^{x \ln x} \cdot (x \ln x)'$ \\
+
+Productregel: $(uv)' = u'v + uv'$ \\
+
+$(x \ln x)' = 1 \cdot \ln x + x \cdot \dfrac{1}{x} = \ln x + 1$ \\
+
+$= e^{x \ln x} \cdot (\ln x + 1)$ \\
+
+$= e^{x \ln x} \cdot (1 + \ln x) = 0$ \\
+
+$\Leftrightarrow e^{x \ln x} = 0 \vee \ln x = -1$ \\
+
+Aangezien $e^{x \ln x} > 0$ voor alle $x > 0$: \\
+
+$\Rightarrow \ln x = -1 \Leftrightarrow x = e^{-1} = \dfrac{1}{e}$ \\
+
+Tekenonderzoek: \\
+
+\begin{tabular}{ c| c c c c c }
+$x$ && &$\dfrac{1}{e}$ & & \\ 
+\hline
+$x^{x}\left(\ln x + 1\right)$ & $-$ &  &&  & $+$    \\
+\hline
+$x^{x}$  & $\searrow$ & &$\left(\dfrac{1}{e}\right)^{\tfrac{1}{e}}$& &$\nearrow$ 
+\end{tabular} \\
+
+$\Rightarrow$ minimum bij $x = e^{-1}$ met $f\left(e^{-1}\right) = \dfrac{1}{\sqrt{e}}$ \\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document}

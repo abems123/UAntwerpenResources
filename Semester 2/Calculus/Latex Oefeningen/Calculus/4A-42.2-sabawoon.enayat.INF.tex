@@ -1,0 +1,40 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Sabawoon Enayat \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 42.2 \\
+
+\newcommand{\dint}{\displaystyle\int}
+
+\medskip
+
+\normalsize
+
+Opgave: $I = \dint \dfrac{dx}{x^2 - 4}$\\
+
+$= \dint \dfrac{dx}{(x - 2)(x + 2)}$\\
+
+$\Rightarrow \dfrac{1}{(x - 2)(x + 2)} = \dfrac{A}{x - 2} + \dfrac{B}{x + 2}$\\
+
+$A = \left. \dfrac{1}{x + 2} \right|_{x=2} = \dfrac{1}{4}$\\
+
+$B = \left. \dfrac{1}{x - 2} \right|_{x=-2} = -\dfrac{1}{4}$\\
+
+$I = \dfrac{1}{4}\left(\dint \dfrac{dx}{x - 2} - \dint \dfrac{dx}{x + 2}\right)$\\
+
+$= \dfrac{1}{4}\left(\dint \dfrac{d(x - 2)}{x - 2} - \dint \dfrac{d(x + 2)}{x + 2}\right)$\\
+
+$= \dfrac{1}{4}\left(\ln |x - 2| - \ln |x + 2|\right) + c$\\
+
+$= \dfrac{1}{4} \ln \left|\dfrac{x - 2}{x + 2}\right| + c$\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

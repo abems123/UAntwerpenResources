@@ -1,0 +1,77 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+
+\begin{document}
+  
+\noindent \large Auteur: Niels Hertoghs \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 4A nr 18.4\\
+
+\medskip
+\normalsize
+
+$\displaystyle\int x^3\cos xdx$\\
+
+$
+\left\{
+\begin{array}{l}
+u = x^3 \\
+dv = \cos xdx
+\end{array}
+\right.
+\Rightarrow
+\left\{
+\begin{array}{l}
+du = 3x^2dx \\
+v = \sin x
+\end{array}
+\right.
+$\\
+
+$= x^3 \sin x - 3 \displaystyle\int x^2 \sin x dx$\\
+
+$
+\left\{
+\begin{array}{l}
+u = x^2 \\
+dv = \sin xdx
+\end{array}
+\right.
+\Rightarrow
+\left\{
+\begin{array}{l}
+du = 2xdx \\
+v = -\cos x
+\end{array}
+\right.
+$\\
+
+$= x^3\sin x + 3 x^2 \cos + 6 \displaystyle\int - \cos x dx$\\
+
+$
+\left\{
+\begin{array}{l}
+u = x \\
+dv = -\cos xdx
+\end{array}
+\right.
+\Rightarrow
+\left\{
+\begin{array}{l}
+du = xdx \\
+v = -\sin x
+\end{array}
+\right.
+$\\
+
+$= x^3 \sin x + 3 x^2 \cos x - 6x \sin x - 6 \displaystyle\int - \sin x dx$\\
+
+$= x^3 \sin x + 3 x^2 \cos x - 6x \sin x - 6 \cos x + C$\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

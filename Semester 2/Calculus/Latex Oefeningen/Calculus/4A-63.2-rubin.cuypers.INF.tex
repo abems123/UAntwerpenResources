@@ -1,0 +1,38 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\newcommand{\dint}{\displaystyle \int}
+\begin{document}
+  
+\noindent \large Auteur: Rubin Cuypers \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 63.2\\
+
+\medskip
+
+\normalsize
+
+$I=\dint \sqrt{\left(1+x^2\right)^3} dx$\\
+
+$\overset{x=\sinh t}{=} \dint \sqrt{\left(1+\sinh^2 t\right)^3 }\cosh t  dt =\dint \sqrt{\cosh^6t} \cosh t dt $\\
+
+$=\dint \cosh^4 t dt=\dint \left(\dfrac{1+\cosh 2t}{2}\right)^2dt=\dfrac{1}{4}\dint \left(1+2\cosh 2t + \cosh^22t\right) dt$\\
+
+$=\dfrac{t}{4} +\dfrac{1}{4}\sinh 2t +\dfrac{1}{8}\dint \cosh^2 2t d(2t) $\\ 
+
+$=\dfrac{t}{4} +\dfrac{1}{4}\sinh 2t + \dfrac{1}{8} \dint \dfrac{1+\cosh 4t}{2} d(2t)$\\
+
+$=\dfrac{t}{4} +\dfrac{1}{4}\sinh 2t + \dfrac{t}{8} +\dfrac{1}{32}\dint \cosh 4t d(4t) $\\
+
+$=\dfrac{t}{4} +\dfrac{1}{4}\sinh 2t + \dfrac{t}{8} +\dfrac{1}{32}\sinh 4t +C$\\
+
+$\overset{t=\operatorname{Bgsinh} x}{=} \dfrac{3\operatorname{Bgsinh} x}{8} + \dfrac{1}{4} \sinh \left(2\operatorname{Bgsinh} x\right) + \dfrac{1}{32} \sinh \left(4\operatorname{Bgsinh} x\right)  + C$\\
+
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

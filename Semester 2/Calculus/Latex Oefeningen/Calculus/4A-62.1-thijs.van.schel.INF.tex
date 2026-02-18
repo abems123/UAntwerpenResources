@@ -1,0 +1,38 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\newcommand{\dint}{\displaystyle\int}
+\newcommand{\Bgcosh}{\operatorname{Bgcosh}}
+
+\begin{document}
+  
+\noindent \large Auteur: Thijs Van Schel \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 62.1\\
+
+\medskip
+
+\normalsize
+
+$ \dint \sqrt{x^2-1}dx$\\
+
+$ x = \cosh(t)$, $t = \Bgcosh(x)$, $dx = \sinh dt$\\
+
+$ = \dint \sinh^2(t)dt$\\
+
+$ = \dfrac{1}{2} \cosh(t)\sinh(t) - \dfrac{1}{2}\dint dt$ + C\\
+
+$ = \dfrac{1}{2} \cosh(t)\sinh(t) - \dfrac{t}{2}$ + C\\
+
+$ = \dfrac{1}{2}x\sqrt{x^2-1} - \dfrac{1}{2}\Bgcosh(x)$ + C,
+want $\sinh(t) = \sqrt{\cosh^2(t) + 1}$\\
+
+$ = \dfrac{1}{2}x\sqrt{x^2-1} - \dfrac{1}{2} \ln|x+\sqrt{x^2-1}|$ + C\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

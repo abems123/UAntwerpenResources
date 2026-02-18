@@ -1,0 +1,74 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+\usepackage{color}     
+
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\llim}{\lim\limits}
+\newcommand{\dint}{\displaystyle\int}
+
+\begin{document}
+  
+\noindent \large Auteur: Anna Voronovska \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 6B nr. 12\\
+
+\medskip
+
+\normalsize
+
+$s_k=\dfrac{x_1+x_k}{2} \cdot k$\\
+
+$s_{k+1}=\dfrac{x_1+x_{k+1}}{2} \cdot (k+1)$\\
+
+$s_{k+2}=\dfrac{x_1+x_{k+2}}{2} \cdot (k+2)$\\	
+
+$s_k-2 \cdot s_{k+1} + s_{k+2}= \dfrac{k \cdot (x_1+x_k)}{2} - \dfrac{2 \cdot (k+1) (x_1+x_{k+1})}{2}+\dfrac{(k+2) \cdot (x_1+x_{k+2})}{2}= $\\
+
+$= \dfrac{kx_1+kx_k - (2k+2)(x_1+x_{k+1}) + kx_1 + kx_{k+2}+ 2x_1 + 2x_{k+2}}{2}=$\\
+
+$= \dfrac{kx_1+kx_k - (2kx_1 + 2kx_{k+1}+2x_1 + 2x_{k+1})+kx_1+kx_{k+2}+2x_1+2x_{k+2}}{2}=$\\
+
+$=\dfrac{2kx_1+kx_2-2kx_1-2kx_{k+1} -2x_1 -2x_{k+1} +kx_{k+2}+2x_1 +2x_{k+2}}{2}=$\\
+
+$=\dfrac{kx_k-2kx_{k+1}-2x_{k+1}+kx_{k+2}+2x_{k+2}}{2}=$\\
+
+$=\dfrac{kx_k-2x_{k+1}(k+1)+x_{k+2}(k+2)}{2}$\\
+
+Als:\\
+
+$x_k=x_{k-1}+v$\\
+
+$x_{k+1}=x_k+v$\\
+
+$x_{k+2}=x_k+2v$\\	
+
+Dan:\\
+
+$\dfrac{kx_k-2x_{k+1}(k+1)+x_{k+2}(k+2)}{2} =$\\
+
+$=\dfrac{k(x_{k-1}+v)-2(k+1)(x_k+v)+(k+2)(x_k+2v)}{2}$\\
+
+$=\dfrac{kx_{k-1}+kv-2(kx_k+kv+x_k+v)+(kx_k+2kv+2x_k+4v)}{2}=$\\
+
+$=\dfrac{kx_{k-1}+kv-2kx_k-2kv-2x_k-2v+kx_k+2kv+2x_k+4v}{2}=$\\
+
+$=\dfrac{kx_{k-1}-kx_k+kv+2v}{2}=$\\
+
+Als $x_k=x_{k-1}+v$, dan:\\
+
+$=\dfrac{kx_{k-1}-k(x_{k-1}+v)+2v+kv}{2}=$\\
+
+$=\dfrac{kx_{k-1}-kx_{k-1}-kv+kv+2v}{2}=$\\
+
+$=\dfrac{2v}{2}=v$\\
+
+								
+
+
+\begin{thebibliography}{999}
+\end{thebibliography}
+\end{document} 

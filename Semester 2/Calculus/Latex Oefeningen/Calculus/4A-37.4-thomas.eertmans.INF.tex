@@ -1,0 +1,37 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+\newcommand{\Bgtan}{\operatorname{Bgtan}}
+
+\begin{document}
+  
+\noindent \large Auteur: Thomas Eertmans \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 37.4\\
+
+\medskip
+
+\normalsize
+
+$\displaystyle\int \dfrac{5dx}{x^2-2x+5}$ \\
+
+$= 5\displaystyle\int\dfrac{dx\cdot\dfrac{1}{4}}{(x-1)^2+4}$ \\
+
+$= \dfrac{5}{4} \displaystyle\int\dfrac{dx}{\dfrac{1}{4}(x-1)^2+1}$ \\
+
+$= \dfrac{5}{4} \displaystyle\int\dfrac{dx}{\left(\dfrac{1}{2}(x-1)\right)^2+1}$ \\
+
+Stel $u = \dfrac{1}{2}(x-1)\Rightarrow du = \dfrac{dx}{2} \Leftrightarrow dx = 2du $\\
+
+$= \dfrac{5}{2}\displaystyle\int \dfrac{du}{u^2+1}$ \\
+
+$= \dfrac{5}{2} \Bgtan(u) + c$ \\
+
+$= \dfrac{5}{2}\Bgtan\left(\dfrac{1}{2}(x-1)\right) +c$
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

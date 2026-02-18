@@ -1,0 +1,39 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+
+\begin{document}
+
+\noindent \large Auteur: Karanjot Singh \\
+\noindent \large Studierichting: Informatica \\
+\noindent \large Oefeningenreeks 5B nr. 5.10 \\
+
+\normalsize
+
+Bereken de volgende bepaalde integraal, indien deze bestaat: \\
+
+$\displaystyle\int_{0}^{\tfrac{\pi}{2}} \dfrac{\sin x}{\sin x + \cos x} dx$ \\
+
+Substitutie: $u = \dfrac{\pi}{2} - x \Rightarrow du = -dx$ \\
+
+$\displaystyle\int_{0}^{\tfrac{\pi}{2}} \dfrac{\sin x}{\sin x + \cos x} dx = \displaystyle\int_{0}^{\tfrac{\pi}{2}} \dfrac{\cos u}{\sin u + \cos u} du$ \\
+
+Neem de twee integralen samen: \\
+
+$\displaystyle\int_{0}^{\tfrac{\pi}{2}} \dfrac{\sin x}{\sin x + \cos x} dx + \displaystyle\int_{0}^{\tfrac{\pi}{2}} \dfrac{\cos x}{\sin x + \cos x} dx = \displaystyle\int_{0}^{\tfrac{\pi}{2}} 1 dx$ \\
+
+$= \left[ x \right]_0^{\tfrac{\pi}{2}} = \dfrac{\pi}{2}$ \\
+
+Beide integralen zijn gelijk, dus: \\
+
+$\displaystyle\int_{0}^{\tfrac{\pi}{2}} \dfrac{\sin x}{\sin x + \cos x} dx = \dfrac{1}{2} \cdot \dfrac{\pi}{2} = \dfrac{\pi}{4}$ \\
+
+Dus, $\displaystyle\int_{0}^{\tfrac{\pi}{2}} \dfrac{\sin x}{\sin x + \cos x} dx = \dfrac{\pi}{4}$ \\
+
+\begin{thebibliography}{999}
+	%\bibitem{a} Referentie
+\end{thebibliography}
+
+\end{document}

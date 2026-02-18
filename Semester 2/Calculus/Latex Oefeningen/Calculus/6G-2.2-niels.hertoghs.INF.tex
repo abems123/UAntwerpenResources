@@ -1,0 +1,45 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Niels Hertoghs\\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 6G nr. 2.2\\
+
+\medskip
+
+\normalsize
+
+$f(x) = \sin (x) \rightarrow \sin (-x) = - \sin (x) \Rightarrow $ oneven \\
+
+dus $f = f_O (x) \Rightarrow \forall n \in \mathbb{N} : a_n = 0 $\\
+
+$\underline{n \not= 1}: f_n = \quad <f_O (x) | \sin(nx)> \quad = \dfrac{1}{\pi} \displaystyle \int_{-\pi}^{\pi} \sin (x) \cdot \sin(nx) dx$\\
+
+$ = \dfrac{1}{2\pi} \displaystyle \int_{-\pi}^{\pi} \cos (x - nx) \cdot \cos (x + nx)dx = \dfrac{1}{\pi} \displaystyle \int_{0}^{\pi} \cos (x - nx) \cdot \cos (x + nx)dx$\\
+
+$ = \dfrac{1}{\pi} \left[ \dfrac{\sin (x-xn)}{1 - n} - \dfrac{\sin (x+xn)}{1+n} \right]_0^\pi$\\
+
+$ = \dfrac{\sin (\pi-n\pi)}{\pi-n\pi} - \dfrac{\sin (\pi+n\pi)}{\pi+n\pi}$\\
+
+$\dfrac{\sin (\pi-n\pi)}{\pi-n\pi} \Rightarrow \pi-n\pi$ met $ n \not= 1$\\
+
+$\sin (\pi-n\pi) = 0$ voor alle $n$ uit de somatie $\Rightarrow$ bestaat niet\\
+
+$\underline{n = 1}: f_1 = \quad < \sin(x) | \sin(x)> \quad = \dfrac{2}{\pi} \displaystyle \int_0^\pi \sin^2(x)dx$\\
+
+$ = \dfrac{1}{\pi} \displaystyle \int_0^\pi \left(1-\cos(2x)\right)dx = \dfrac{1}{4} \left[x-\dfrac{\sin^2(x)}{2}\right]_0^\pi$\\
+
+$\Rightarrow$ fourierreeks voor $n = 1 \Rightarrow \sin(x)$\\
+
+$\Rightarrow \sin(x)$\\
+
+ 
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

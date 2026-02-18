@@ -1,0 +1,33 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Stan Van Campenhout \\
+\noindent \large Studierichting:  Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 61.4\\
+
+\medskip
+
+\normalsize
+
+$ \displaystyle\int\dfrac{1}{x^3\sqrt{x-1}}dx \stackrel{t = \sqrt{x-1}}{=} \displaystyle\int\dfrac{1}{\left(t^2+1\right)^3t}\cdot2tdt
+= 2\displaystyle\int\dfrac{1}{\left(t^2+1\right)^3}dt = I $\\
+
+$ \Rightarrow M_1 = \operatorname{Bgtan}t + c $\\
+
+$ \Rightarrow M_2 = \dfrac{1}{2}\operatorname{Bgtan}t+\dfrac{t}{2\left(t^2+1\right)} $\\
+
+$ \Rightarrow M_3 = \dfrac{3}{4}\left(\dfrac{1}{2}\operatorname{Bgtan}t+\dfrac{t}{2\left(t^2+1\right)}\right) + \dfrac{1}{4\left(t^2+1\right)^2} + c $\\
+
+$ I = \dfrac{3}{4}\operatorname{Bgtan}t + \dfrac{3t}{4\left(t^2+1\right)}+\dfrac{t}{2\left(t^2+1\right)^2} + c $\\
+
+$ \stackrel{t = \sqrt{x-1}}{=} \dfrac{3}{4}\operatorname{Bgtan}\sqrt{x-1} + \dfrac{3\sqrt{x-1}}{4x}+\dfrac{\sqrt{x-1}}{2x^2} + c $\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

@@ -1,0 +1,28 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Stan Van Campenhout \\
+\noindent \large Studierichting:  Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 19.5\\
+
+\medskip
+
+\normalsize
+
+$ I = \displaystyle\int e^{2x}\cos3xdx = \dfrac{1}{2}\displaystyle\int\cos3xd\left(e^{2x}\right) = \dfrac{e^{2x}}{2}\cos3x + \dfrac{3}{2}\displaystyle\int e^{2x}\sin3xdx $\\
+
+$ = \dfrac{e^{2x}}{2}\cos3x + \dfrac{3}{4}\displaystyle\int\sin3xd\left(e^{2x}\right) = \dfrac{e^{2x}}{2}\cos3x+\dfrac{3e^{2x}}{4}\sin3x - \dfrac{9}{4}I $\\
+
+$ \Rightarrow \dfrac{13}{4}I = \dfrac{e^{2x}}{2}\cos3x+\dfrac{3e^{2x}}{4}\sin3x+c $\\
+
+$ \Rightarrow I = \dfrac{2e^{2x}}{13}\cos3x+\dfrac{3e^{2x}}{13}\sin3x+c $\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

@@ -1,0 +1,64 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Sabawoon Enayat \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 45.1 \\
+
+\newcommand{\dint}{\displaystyle\int}
+\newcommand{\Bgtan}{\operatorname{Bgtan}}
+
+\medskip
+
+\normalsize
+
+Opgave: $I = \dint \dfrac{9x^2 - x + 2}{4x^5 + x^3} dx$\\
+
+$= \dint \dfrac{9x^2 - x + 2}{x^3 \cdot (4x^2 + 1)} dx$\\
+
+$\Rightarrow \dfrac{9x^2 - x + 2}{(4x^2 + 1) \cdot x^3} = \dfrac{Ax + B}{4x^2 + 1} + \dfrac{C}{x} + \dfrac{D}{x^2} + \dfrac{E}{x^3}$\\
+
+$\Rightarrow 4x^2 + 1 = 0 \Rightarrow x = \pm \dfrac{1}{2}i$\\
+
+$A\left(\dfrac{1}{2}\right) + B = \left. \dfrac{9x^2 - x + 2}{x^3} \right|_{x=\dfrac{1}{2}i} = \dfrac{9\left(\dfrac{1}{2}i\right)^2 - \left(\dfrac{1}{2}i\right) + 2}{\left(\dfrac{1}{2}i\right)^3}$\\
+
+$= \dfrac{-\dfrac{9}{4} - \dfrac{2}{4}i + \dfrac{8}{4}}{-\dfrac{1}{8}i} = \dfrac{\dfrac{1}{4} + \dfrac{2}{4}i}{\dfrac{1}{8}i} = \dfrac{8(1 + 2i)}{4i} = \dfrac{2 + 4i}{i} \dfrac{i}{i} = \dfrac{2i - 4}{-1} = 4 - 2i$\\
+
+$\Rightarrow \left\{
+	\begin{array}{lcr}
+		A\left(\dfrac{1}{2}i\right) & = & -2i \\
+		B & = & 4
+	\end{array}
+\right. \Rightarrow (A, B) = (-4, 4)$\\
+
+$E = \left. \dfrac{9x^2 - x + 2}{4x^2 + 1} \right|_{x = 0} = \dfrac{9\cdot 0 - 0 + 2}{4 \cdot 0 + 1} = 2$\\
+
+${\Rightarrow} \dfrac{9x^2 - x + 2}{(4x^2 + 1) \cdot x^3} - \dfrac{2}{x^3} = \dfrac{9x^2 - x + 2 - 8x^2 - 2}{(4x^2 + 1) \cdot x^3} = \dfrac{x^2 - x}{(4x^2 + 1) \cdot x^3} = \dfrac{x - 1}{(4x^2 + 1) \cdot x^2}$\\
+
+$\Rightarrow D = \left. \dfrac{x - 1}{4x^2 + 1} \right|_{x=0} = \dfrac{0 - 1}{4 \cdot 0 + 1} = -1$\\
+
+$\Rightarrow \dfrac{x - 1}{(4x^2 + 1) \cdot x^2} - \left(- \dfrac{1 \cdot (4x^2 + 1)}{x^2 \cdot (4x^2 + 1)}\right) = \dfrac{x - 1 + x^2 + 1}{x^2 \cdot (4x^2 + 1)} = \dfrac{x^2 + x}{x^2 \cdot (4x^2 + 1)}$\\
+
+$= \dfrac{x + 1}{x \cdot (4x^2 + 1)}$\\
+
+$\Rightarrow C = \left. \dfrac{x + 1}{4x^2 + 1}\right|_{x=0} = \dfrac{0 + 1}{4 \cdot 0 + 1} = 1$\\
+
+$I = \dint \dfrac{dx}{x} - \dint \dfrac{dx}{x^2} + 2\dint \dfrac{dx}{x^3} + \dint \dfrac{-4x + 4}{4x^2 + 1} dx$\\
+
+$\Rightarrow -4\dint \dfrac{x - 1}{4x^2 + 1}dx = -4 \left(\dint \dfrac{xdx}{4x^2 + 1} - \dint \dfrac{dx}{(2x)^2 + 1}\right) = -4 \left(\dfrac{1}{8}\dint \dfrac{d(4x^2 + 1)}{4x^2 + 1} - \dfrac{1}{2}\dint \dfrac{d(2x)}{(2x)^2 + 1}\right)$\\
+
+$= -\dfrac{1}{2}\ln |4x^2 + 1| + 2 \Bgtan (2x) + c$\\
+
+$\Rightarrow I = \ln |x| - \dfrac{x^{-1}}{-1} + 2\dfrac{x^{-2}}{-2} - \dfrac{1}{2} \ln (4x^2 + 1) + 2 \Bgtan (2x) + c$\\
+
+$= \ln |x| + \dfrac{1}{x} - \dfrac{1}{x^2} - \dfrac{1}{2} \ln (4x^2 + 1) + 2 \Bgtan (2x) + c$\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

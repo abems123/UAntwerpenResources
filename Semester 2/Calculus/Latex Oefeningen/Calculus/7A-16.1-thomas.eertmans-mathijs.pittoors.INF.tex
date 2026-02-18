@@ -1,0 +1,79 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\newcommand{\llim}{\lim\limits}
+% Partiële afgeleide macro 
+\newcommand{\pa}[1]{\dfrac{\partial f}{\partial #1}}
+
+\begin{document}
+  
+\noindent \large Auteur: Thomas Eertmans - Mathijs Pittoors \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 7A nr. 16.1\\
+
+\medskip
+
+\normalsize
+
+$f: \mathbb{R}^2 \to \mathbb{R}:
+f(x,y) = \left\{
+\begin{array}{ll}
+	\dfrac{xy}{\sqrt{x^2 + y^2}} & \text{als } (x,y) \neq (0,0) \\
+	0 & \text{als } (x,y) = (0,0)
+\end{array}
+\right.$\\
+
+\textbf{Partiële integratie op $(0,0)$?}\\
+
+\begin{eqnarray*}
+	\pa{x} (0,0) & = & \llim_{h \to 0} \dfrac{f(0+h,0)-f(0,0)}{h}\\
+		& = & \llim_{h \to 0} \dfrac{\dfrac{0}{\sqrt{h^2+0}}-0}{h}\\
+		& = & \llim_{h \to 0} \dfrac{0}{h^2} = 0\\
+	\pa{y} (0,0) & = & \llim_{h \to 0} \dfrac{f(0+h,0)-f(0,0)}{h}\\
+		& = & \llim_{h \to 0} \dfrac{\dfrac{0}{\sqrt{h^2+0}}-0}{h}\\
+		& = & \llim_{h \to 0} \dfrac{0}{h^2} = 0\\
+\end{eqnarray*}
+
+\textbf{Continuïteit op $(0,0)$?}\\
+
+$f(0,0) = 0$\\
+
+
+
+Neem $ x = r \cos\theta, y = r \sin \theta$\\
+
+$\llim_{(x,y) \to (0,0)} \dfrac{xy}{\sqrt{x^2+y^2}} = \llim_{r \to 0} \dfrac{r^2 \cos\theta\sin\theta}{\sqrt{r^2(\cos^2\theta+\sin^2\theta)}} = \llim_{r \to 0} \dfrac{r^2 \cos\theta \sin\theta}{|r|}$\\
+
+$\sqrt{x^2+y^2} \ge 0$ want is een afstand $ \Rightarrow \sqrt{r^2} = |r| = r$\\
+
+$\llim_{r \to 0} (r \cos\theta \sin\theta) = 0$\\
+
+
+
+\newpage
+
+\textbf{Afleidbaarheid op $(0,0)$?}\\
+
+Voor elke $h = (h_1, h_2)$\\
+
+\begin{eqnarray*}
+	Df((0,0), h) &=& \llim_{\lambda \to 0} \dfrac{f(0+\lambda h_1, 0+ \lambda h_2)-f(0,0)}{\lambda}\\
+	&=& \llim_{\lambda \to 0} \dfrac{\dfrac{\lambda h_1\lambda h_2}{\sqrt{(\lambda h_1)^2 + (\lambda h_2)^2}}-0}{\lambda}\\
+	&=& \llim_{\lambda \to 0} \dfrac{\lambda^2 h_1 h_2}{\lambda \sqrt{\lambda^2 h_1^2 + \lambda^2 h_2^2}}\\
+	&=& \llim_{\lambda \to 0} \dfrac{\lambda^2 h_1 h_2}{|\lambda|\lambda \sqrt{h_1^2 + h_2^2}}\\
+\end{eqnarray*}
+
+De linkerlimiet en rechterlimiet zijn niet gelijk $\Rightarrow f$ is niet afleidbaar\\
+
+\textbf{Differentieerbaarheid op $(0,0)$?}\\
+
+$\Rightarrow f$ is partieel afleidbaar, continu, maar niet afleidbaar in $(0,0)$\\
+
+$ \Rightarrow f$ \textbf{is niet differentieerbaar op $(0,0)$.}
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

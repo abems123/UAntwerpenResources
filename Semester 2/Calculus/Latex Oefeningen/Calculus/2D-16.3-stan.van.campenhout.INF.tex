@@ -1,0 +1,36 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Stan Van Campenhout \\
+\noindent \large Studierichting:  Informatica\\
+\noindent \large Oefeningenreeks 2D nr. 16.3\\
+
+\medskip
+
+\normalsize
+
+$ \lim\limits_{x \rightarrow \tfrac{\pi}{2}} \left(\dfrac{\cos x}{1 - \sin x} \right)
+= \lim\limits_{x \rightarrow \tfrac{\pi}{2}} \left(\dfrac{\cos x ( 1 + \sin x)}{(1 - \sin x)(1 + \sin x)} \right) 
+= \lim\limits_{x \rightarrow \tfrac{\pi}{2}} \left(\dfrac{\cos x + \sin x \cos x}{1 - \sin^2 x} \right) $\\
+
+\medskip
+
+
+$ = \lim\limits_{x \rightarrow \tfrac{\pi}{2}} \left(\dfrac{\cos x + \sin x \cos x}{\cos^2 x} \right)  
+=  \lim\limits_{x \rightarrow \tfrac{\pi}{2}} \left(\dfrac{1 + \sin x}{\cos x} \right) = \dfrac{2}{0} = \infty $\\
+
+Bekijk linker en rechter limiet \\
+
+$ \lim\limits_{x \rightarrow \tfrac{\pi}{2}-} \left(\dfrac{1 + \sin x}{\cos x} \right) = +\infty $\\
+
+$ \lim\limits_{x \rightarrow \tfrac{\pi}{2}+} \left(\dfrac{1 + \sin x}{\cos x} \right) = -\infty $\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

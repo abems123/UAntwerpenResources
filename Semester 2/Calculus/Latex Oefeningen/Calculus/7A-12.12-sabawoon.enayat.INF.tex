@@ -1,0 +1,32 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Sabawoon Enayat      \\
+\noindent \large Studierichting: Informatica  \\
+\noindent \large Oefeningenreeks 7A nr. 12.12 \\
+
+\newcommand{\llim}{\lim\limits}
+
+\medskip
+
+\normalsize
+
+Opgave: $f(x, y, z) = e^{xyz}$ in $a(4, 0, -3)$ in de richting $h(0, 1, -1)$\\
+
+$Df(a, h) = \llim_{\lambda \to 0} \dfrac{f(a + \lambda h) - f(a)}{\lambda} = \llim_{\lambda \to 0} \dfrac{f((4, 0, -3) + \lambda (0, 1, -1)) - f(4, 0, -3)}{\lambda}$\\
+
+$= \llim_{\lambda \to 0} \dfrac{e^{-4\lambda(3+\lambda)} - e^{4 \cdot 0 \cdot (-3)}}{\lambda} = \llim_{\lambda \to 0} \dfrac{e^{-12\lambda - 4\lambda^2} - 1}{\lambda} \overset{H}{=} \llim_{\lambda \to 0} \dfrac{(-12 - 4\lambda)e^{-12\lambda - 4\lambda^2}}{1}$\\
+
+$= \llim_{\lambda \to 0} (-12e^{-12\lambda - 4\lambda^2} - 4\lambda e^{-12\lambda - 4\lambda^2}) = -12\llim_{\lambda \to 0} (e^{-12\lambda - 4\lambda^2}) - 4\llim_{\lambda \to 0} (\lambda e^{-12\lambda - 4\lambda^2})$\\
+
+$= -12$\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

@@ -1,0 +1,30 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Etienne El Hachem \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 3B nr. 1.14\\
+
+\medskip
+
+\normalsize
+
+Opgave: $f(x) = \sec \dfrac{1}{x} = \left(cos \dfrac{1}{x}\right)^{-1}$
+
+\begin{eqnarray*}
+f'(x) &=& \dfrac{\sin \dfrac{1}{x}}{{\cos \dfrac{1}{x}}^2} \cdot -\dfrac{1}{x^2} \\
+			&=& -\dfrac{\tan\dfrac{1}{x}\cdot\sec\dfrac{1}{x}}{x^2} \\
+f''(x) &=& \dfrac{(\sec^2\dfrac{1}{x}\cdot\dfrac{1}{x^2}\cdot\sec\dfrac{1}{x}+\tan\dfrac{1}{x}\cdot\dfrac{\tan\dfrac{1}{x}\cdot\sec\dfrac{1}{x}}{x^2})\cdot x^2 - \tan\dfrac{1}{x}\cdot\sec\dfrac{1}{x}\cdot 2x}{x^4} \\
+			 &=& \dfrac{\sec^3\dfrac{1}{x}+\tan^2\dfrac{1}{x}\cdot\sec\dfrac{1}{x} - \tan\dfrac{1}{x}\cdot\sec\dfrac{1}{x}\cdot 2x}{x^4} \\
+			 &=& \dfrac{\sec\dfrac{1}{x}\left(\sec^2\dfrac{1}{x}+\tan^2\dfrac{1}{x}-\tan\dfrac{1}{x}\cdot 2x\right)}{x^4}
+\end{eqnarray*}
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

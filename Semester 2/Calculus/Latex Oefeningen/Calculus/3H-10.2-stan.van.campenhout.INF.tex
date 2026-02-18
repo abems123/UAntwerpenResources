@@ -1,0 +1,49 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Stan Van Campenhout \\
+\noindent \large Studierichting:  Informatica\\
+\noindent \large Oefeningenreeks 3H nr. 10.2\\
+
+\medskip
+
+\normalsize
+
+$ r = \sin\dfrac{\theta}{2} $\\
+
+$ \operatorname{dom} = \mathbb{R} $\\
+
+$ p = 4\pi $\\
+
+$ \rightarrow \operatorname{BD} = [0 , 4\pi] $\\
+
+$ r = 0 \Leftrightarrow \sin\dfrac{\theta}{2} = 0 \Leftrightarrow \dfrac{\theta}{2} = k\pi \Leftrightarrow \theta = 2k\pi,  \forall k \in \mathbb{Z} $\\
+
+$ \rightarrow \left\{0, 2\pi, 4\pi\right\} $\\
+
+$ r' = 0 \Leftrightarrow \cos\dfrac{\theta}{2} = 0 \Leftrightarrow \dfrac{\theta}{2} = \dfrac{\pi}{2} + k\pi \Leftrightarrow \theta = \pi + 2k\pi,  \forall k \in \mathbb{Z} $\\
+
+$ \rightarrow \left\{\pi, 3\pi\right\} $\\
+
+\begin{tabular}{ l | c c c c c c c c r }	
+  $\theta$ &$0$ & &$\pi$ & &$2\pi$ & &$3\pi$ & &$4\pi$\\ \hline
+  $r$ &$0$ &$+$ &$+$ &$+$ &$0$ &$-$ &$-$ &$-$ &$0$\\
+  $r'$ &$+$ &$+$ &$0$ &$-$ &$-$ &$-$ &$0$ &$+$ &$+$\\ \hline
+  $r$ &$\nearrow$ &$\nearrow$ &$M$ &$\searrow$ &$\searrow$ &$\searrow$ &$m$ &$\nearrow$ &$\nearrow$\\
+    & & &$1$ & & & &$-1$ & &\\
+\end{tabular}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=7cm]{3H-10.2-stan.van.campenhout.INF.png}
+\end{figure}
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

@@ -1,0 +1,52 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Victoria Mazur \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 7E nr. 1.3\\
+
+\medskip
+
+\normalsize
+
+$f(x, y) = y^2 + x^2 y + x^4$ \\
+
+$\dfrac{\partial f}{\partial x} = 2xy + 4x^3 = 0 \Rightarrow 2x(y + 2x^2) = 0$ \\
+
+$\Rightarrow x = 0$ of $y = -2x^2$ \\
+
+$\dfrac{\partial f}{\partial y} = 2y + x^2 = 0 \Rightarrow y = -\dfrac{x^2}{2}$ \\
+
+Stel $x = 0$, dan uit tweede vergelijking: $y = 0$ \\
+
+Stel $y = -2x^2$, dan uit tweede vergelijking: $-2x^2 = -\dfrac{x^2}{2}$ \\
+
+$\Rightarrow 4x^2 = x^2 \Rightarrow 3x^2 = 0 \Rightarrow x = 0$ \\
+
+Dus kritiek punt: $(0, 0)$ \\
+
+$\Delta(x, y) = \left|
+\begin{array}{cc}
+2y + 12x^2 & 2x \\
+2x & 2
+\end{array}
+\right| = (2y + 12x^2)(2) - (2x)^2 = 4y + 24x^2 - 4x^2 = 4y + 20x^2$ \\
+
+$\Delta(0, 0) = 0 \Rightarrow$ test onbepaald \\
+
+We onderzoeken de functie verder: \\
+
+$f(x, y) = \dfrac{3x^4}{4} + \left(y + \dfrac{x^2}{2}\right)^2 \geq 0$ \\
+
+$f(x, y) \geq 0$ en $f(0, 0) = 0 \Rightarrow$ minimum \\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document}
+```

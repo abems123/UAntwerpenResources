@@ -1,0 +1,54 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+
+\begin{document}
+  
+\noindent \large Auteur: Anass Hamzaoui \\
+\noindent \large Studierichting: Informatica \\
+\noindent \large Oefeningenreeks 4A nr. 15.11 \\
+
+\medskip
+
+\normalsize
+
+$\displaystyle\int x^2 \cosh x  dx = x^2 \sinh x - 2 \displaystyle\int x \sinh x  dx$ \\
+
+$\left\{
+\begin{array}{l}
+    u = x^2 \\
+    dv = \cosh x  dx \\
+\end{array}
+\right. 
+\Rightarrow
+\left\{
+\begin{array}{l}
+    du = 2x  dx \\
+    v = \sinh x \\
+\end{array}
+\right.$ \\
+
+$\left\{
+\begin{array}{l}
+    u = x \\
+    dv = \sinh x  dx \\
+\end{array}
+\right. 
+\Rightarrow
+\left\{
+\begin{array}{l}
+    du = dx \\
+    v = \cosh x \\
+\end{array}
+\right.$ \\
+
+$= x^2 \sinh x - 2x \cosh x + 2 \displaystyle\int \cosh x  dx$ \\
+
+$= x^2 \sinh x - 2x \cosh x + 2 \sinh x + c$ \\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document}

@@ -1,0 +1,49 @@
+    \documentclass[a4paper]{article}
+    \usepackage{amsfonts}
+    \usepackage{amsmath}
+    \usepackage{amssymb}
+    \usepackage{graphicx}
+    
+    \newcommand{\dint}{\displaystyle\int}
+    \newcommand{\llim}{\lim\limits}
+    \newcommand{\Bgtan}{\operatorname{Bgtan}}
+    
+    \begin{document}
+    
+    \noindent \large Auteur: Oubayy Ahale       \\
+    \noindent \large Studierichting: Informatica\\
+    \noindent \large Oefeningenreeks 6E nr. 8.1 \\
+    
+    \medskip
+    
+    \normalsize
+    
+    $ \sin(x) = \displaystyle\sum\limits_{k=0}^{\infty} (-1)^{k} \frac{x^{2k+1}}{(2k+1)!}$\\
+
+    Restterm (Lagrange):\\
+
+    $ R_{2n+1}(x) = \dfrac{x^{2n+2} \sin^{(2n+2)}c}{(2n+2)!}, -|x|<c<|x| $\\
+
+    Voor $x=-0.7$ geldt\\
+
+    $ |R_{2n+1}(-0.7)| \le \dfrac{0.7^{2n+2}}{(2n+2)!} $ (omdat $|\sin^{(k)}c| \le 1$ ) \\
+
+    Kies $n=4$ zodat\\
+
+    $ |R_{9}(-0.7)| \le \dfrac{0.7^{10}}{10!}<10^{-7} $\\
+
+    Daarmee\\
+
+    $ \sin(-0.7) \approx \displaystyle\sum_{k=0}^{4} (-1)^{k} \dfrac{(-0.7)^{2k+1}}{(2k+1)!} $\\
+
+    $ = -0.7 - \dfrac{(-0.7)^{3}}{3!} + \dfrac{(-0.7)^{5}}{5!} - \dfrac{(-0.7)^{7}}{7!} + \dfrac{(-0.7)^{9}}{9!} $\\
+
+    $ \approx -0.644217688$\\
+
+    (eerste 7 decimalen gegarandeerd juist)\\
+    
+    \begin{thebibliography}{999}
+    %\bibitem{a} Referentie
+    \end{thebibliography}
+    \end{document}
+    

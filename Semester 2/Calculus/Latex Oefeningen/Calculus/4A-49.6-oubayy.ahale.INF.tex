@@ -1,0 +1,47 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\newcommand{\dint}{\displaystyle\int}
+\newcommand{\llim}{\lim\limits}
+
+\begin{document}
+  
+\noindent \large Auteur: Oubayy Ahale          \\
+\noindent \large Studierichting: Informatica   \\
+\noindent \large Oefeningenreeks 4A nr. 49.6   \\
+
+\medskip
+
+\normalsize 
+
+$ I = \dint \dfrac{dx}{2 \sec x + 3 \tan x} $\\
+
+$ = \dint \dfrac{dx}{2 \dfrac{1}{\cos x} + 3 \dfrac{\sin x}{\cos x}} $\\
+
+
+
+$ = \dint \dfrac{dx}{\dfrac{2 + 3 \sin x}{\cos x}} $\\
+
+
+
+$ = \dint \dfrac{\cos x}{2+3 \sin x} dx $\\
+
+Stel $ t = 2+3 \sin x $\\
+
+$ \Rightarrow dt = 3 \cos x \cdot dx           $\\
+
+$ \Leftrightarrow dx = \dfrac{dt}{3 \cos x}    $\\
+
+$ \Rightarrow I = \dint \dfrac{dt}{3t}         $\\
+
+$ = \dfrac{1}{3} \cdot \ln{\left|t\right|} + c $\\
+
+$ = \dfrac{1}{3} \cdot \ln{\left|2+3 \sin x\right|} + c $\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

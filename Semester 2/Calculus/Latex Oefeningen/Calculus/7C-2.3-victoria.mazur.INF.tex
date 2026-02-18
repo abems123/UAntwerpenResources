@@ -1,0 +1,44 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Victoria Mazur \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 7C nr. 2.3\\
+
+\medskip
+
+\normalsize
+
+$f(x, y) = e^{(x-2y)^2} = e^{x^2-4xy+4y^2}$ \\
+
+Kettenregel: $(e^{g(x,y)})' = e^{g(x,y)} \cdot g'$ \\
+
+$\dfrac{\partial f}{\partial x} = e^{x^2-4xy+4y^2} \cdot (2x - 4y^2)$ \\
+
+$\dfrac{\partial f}{\partial y} = e^{x^2-4xy+4y^2} \cdot (-8xy + 16y^3)$ \\
+
+Productregel: $(uv)' = u'v + uv'$ \\
+
+$\dfrac{\partial^2 f}{\partial x^2} = e^{x^2-4xy+4y^2} \cdot (2x - 4y^2)^2 + e^{x^2-4xy+4y^2} \cdot 2$ \\
+
+$= e^{x^2-4xy+4y^2} \cdot (2 + (2x - 4y^2)^2)$ \\
+
+$\dfrac{\partial^2 f}{\partial y^2} = e^{x^2-4xy+4y^2} \cdot (-8xy + 16y^3) \cdot (-8xy + 16y^3) + e^{x^2-4xy+4y^2} \cdot (-8x + 48y^2)$ \\
+
+$= e^{x^2-4xy+4y^2} \cdot [(-8xy + 16y^3)^2 + (-8x + 48y^2)]$ \\
+
+$= e^{x^2-4xy+4y^2} \cdot ((-8xy + 16y^3)^2 + (-8 + 48y^2))$ \\
+
+$\dfrac{\partial^2 f}{\partial x \partial y} = e^{x^2-4xy+4y^2} \cdot (2x - 4y^2) \cdot (-8xy + 16y^3) + e^{x^2-4xy+4y^2} \cdot (-8y)$ \\
+
+$\dfrac{\partial^2 f}{\partial x \partial y} = \dfrac{\partial^2 f}{\partial y \partial x} = e^{x^2-4xy+4y^2} \cdot ((2x - 4y^2) \cdot (-8xy + 16y^3) - 8y)$ \\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document}

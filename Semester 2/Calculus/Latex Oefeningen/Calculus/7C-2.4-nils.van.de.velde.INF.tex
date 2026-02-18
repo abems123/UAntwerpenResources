@@ -1,0 +1,43 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+\usepackage{color}     
+
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\llim}{\lim\limits}
+\newcommand{\dint}{\displaystyle\int}
+\newcommand{\lsum}{\displaystyle\sum\limits}
+
+\begin{document}
+  
+\noindent \large Auteur: Nils Van de Velde \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 7C nr. 2.4\\
+
+\medskip
+
+\normalsize
+
+$f:\R^3 \rightarrow \R:(x,y,z) \rightarrow \dfrac{xy}{x^2+y^2+1}-yz$\\
+
+$Df = \left(
+\begin{array}{ccc}
+\dfrac{-x^2y+y^3+y}{(x^2+y^2+1)^2} & \dfrac{x^3-xy^2+x}{(x^2+y^2+1)^2}-z & -y 
+\end{array}
+\right)$\\
+
+$D^2f = \left(
+\begin{array}{ccc}
+	\dfrac{2x^3y-6xy^3-6xy}{(x^2+y^2+1)^3} & \dfrac{-x^4+6x^2y^2-y^4+1}{(x^2+y^2+1)^3} & 0 \\
+	\dfrac{-x^4+6x^2y^2-y^4+1}{(x^2+y^2+1)^3} & \dfrac{2x^3y-6xy^3-6xy}{(x^2+y^2+1)^3} & -1 \\
+	0 & -1 & 0
+\end{array}
+\right)$\\
+
+\begin{thebibliography}{999}
+%\bibitem{a}
+\end{thebibliography}
+\end{document} 

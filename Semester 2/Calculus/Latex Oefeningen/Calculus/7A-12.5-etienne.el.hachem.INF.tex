@@ -1,0 +1,32 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+\usepackage[landscape]{geometry}
+
+
+\begin{document}
+  
+\noindent \large Auteur: Etienne El Hachem \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 7A nr. 12.5 \\
+
+\medskip
+
+\normalsize
+
+$ \lim\limits_{\lambda \rightarrow 0} \dfrac{f\left(\left(\dfrac{\pi}{3}, \dfrac{-2\pi}{3}\right) + \lambda\left(4,-3\right)\right) - f\left(\dfrac{\pi}{3}, \dfrac{-2\pi}{3}\right)}{\lambda} $\\
+
+$ = \lim\limits_{\lambda \rightarrow 0} \dfrac{f\left(\dfrac{\pi}{3} + 4\lambda, \dfrac{-2\pi}{3}-3\lambda\right) - f\left(\dfrac{\pi}{3}, \dfrac{-2\pi}{3}\right)}{\lambda} $\\
+
+$ = \lim\limits_{\lambda \rightarrow 0}\dfrac{\sin\left(\dfrac{\pi}{3} + 4\lambda\right)\cdot\cos\left(\dfrac{-2\pi}{3}-3\lambda\right) - \sin\dfrac{\pi}{3}\cdot\cos \dfrac{-2\pi}{3}}{\lambda} $\\
+
+$ = \lim\limits_{\lambda \rightarrow 0} \dfrac{-\left(-\sqrt{3}\cdot4\sin(4\lambda)+4\cdot\cos(4\lambda)\right)\left(\cos(3\lambda)+\sqrt{3}\sin(3\lambda)\right) + \left(-3\sin(3\lambda) + 3\sqrt{3}\cos(3\lambda)\right)\left(\sqrt{3}\cos(4\lambda)+\sin(4\lambda)\right)}{4} $\\
+
+$ = -\dfrac{13}{4} $\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

@@ -1,0 +1,39 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}  
+\usepackage{cancel}
+
+\newcommand{\degree}{^{\circ}}
+\newcommand{\cis}{\operatorname{cis}}
+\newcommand{\Bgsin}{\operatorname{Bgsin}}
+\newcommand{\Bgcos}{\operatorname{Bgcos}}
+\newcommand{\Bgtan}{\operatorname{Bgtan}}
+\newcommand{\limit}{\lim\limits}
+\newcommand{\summation}{\displaystyle\sum}
+\newcommand{\dom}{\operatorname{dom}}
+\newcommand{\Int}{\displaystyle\int}
+
+\begin{document}
+  
+\noindent \large Auteur: Rune Suy \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 25.13\\
+
+\medskip
+
+\normalsize
+
+$\Int \dfrac{3x-1}{x+7}dx$\\
+
+$= \Int \dfrac{3x+21-22}{x+7}dx = \Int \dfrac{3(x+7)}{(x+7)}dx - 22 \Int \dfrac{1}{x+7}dx$\\
+
+$=3x + c - 22 \Int \dfrac{1}{y}dy$ met $y=x+7 \Rightarrow dy=1dx$ \\
+
+$= 3x - 22 \ln |x+7| + c$\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

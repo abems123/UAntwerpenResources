@@ -1,0 +1,48 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}    
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+
+
+\begin{document}
+  
+\noindent \large Auteur: Siebe Mees \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 3D nr. 7.2\\
+
+\medskip
+
+\normalsize
+
+$ f(x) = e^x \cdot \sin x $ \\
+
+$* f'(x) = \dfrac{d}{dx} \left[ e^x \right] \cdot \sin x + e^x \dfrac{d}{dx} \left[ \sin x \right] $ \\
+
+$ = e^x \cdot \sin x + e^x \cdot \cos x $ \\
+
+$ = e^x (\sin x+ \cos x) $ \\
+
+$ * f'(x) = 0 $ \\
+
+$ \Rightarrow e^x (\sin x+ \cos x)  = 0 $ \\
+
+$ \Rightarrow \sin x+ \cos x  = 0 $ \\
+
+$ \Rightarrow \sin x = -\cos x $ \\
+
+$ \Rightarrow \tan x = -1 $ \\
+
+$ \rightarrow x = -\dfrac{\pi}{4} + n\pi, n \in \mathbb{Z} $ \\
+
+\begin{tabular}{c|ccccccc}
+$x$      &             & $-\dfrac{\pi}{4}$ &             & $\dfrac{3\pi}{4}$ &             & $\dfrac{7\pi}{4}$ &             \\ \hline
+$f'(x)$  & $-$         & $0$               & $+$         & $0$               & $-$         & $0$               & $+$         \\
+$f(x)$   & $\searrow$  & $m$           & $\nearrow$  & $M$          & $\searrow$  & $m$           & $\nearrow$  
+\end{tabular}
+
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

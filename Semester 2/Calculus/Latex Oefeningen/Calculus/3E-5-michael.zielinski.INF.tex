@@ -1,0 +1,56 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts,amsmath,amssymb,graphicx}
+
+\begin{document}
+
+\noindent \large Auteur: Michael Zielinski \\
+
+\noindent \large Studierichting: Informatica\\
+
+\noindent \large Oefeningenreeks 3E nr. 5 \\
+
+\normalsize
+
+\section*{Oplossing}
+
+Stel het punt onder de Multanova als oorsprong en laat $x$ de afstand van de wagen tot die oorsprong zijn,\\
+met $v=\dfrac{dx}{dt}$ de lineaire snelheid. \\
+
+Omdat $\tan\theta = \dfrac{x}{20}$ geldt\\
+
+$\theta = \operatorname{Bgtan}\left(\dfrac{x}{20}\right)$ \\
+
+Differentieer naar de tijd:\\
+
+$\omega = \dfrac{d\theta}{dt}
+= \dfrac{d}{dx}\operatorname{Bgtan}\left(\dfrac{x}{20}\right)\dfrac{dx}{dt}
+= \dfrac{20}{x^{2}+400}v$ \\
+
+Hieruit volgt\\
+
+$v = \dfrac{x^{2}+400}{20}\omega$ \\
+
+Invullen van $x=15\ \mathrm{m}$ en $\omega=1,28\ \mathrm{s^{-1}}$ geeft\\
+
+$$
+v = \dfrac{15^{2}+400}{20}\cdot 1,28
+= \dfrac{225+400}{20}\cdot 1,28
+= 31,25\cdot 1,28
+= 40\ \mathrm{m/s}
+$$
+
+Omzetten naar km/u:\\
+
+$$
+v = 40\cdot 3,6 = 144\ \mathrm{km/u}
+$$
+
+Dit is $144 - 120 = 24\ \mathrm{km/u}$ boven de toegelaten snelheid\\
+
+en dus een zware overtreding. \\
+
+\begin{thebibliography}{9}
+% \bibitem{ref} Referentie
+\end{thebibliography}
+
+\end{document} 

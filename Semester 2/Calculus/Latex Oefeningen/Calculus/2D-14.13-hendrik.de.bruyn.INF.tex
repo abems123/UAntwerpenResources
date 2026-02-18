@@ -1,0 +1,36 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Hendrik De Bruyn \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 2D nr. 14.13\\
+
+\medskip
+
+\normalsize
+
+\textbf{Opgave:} Bereken de limiet $\lim\limits_{x \rightarrow 0} \dfrac{2(1-\cos x)}{x^2}$. \\
+
+\textbf{Oplossing:} \\
+
+$\begin{array}{rcl}
+\lim\limits_{x \rightarrow 0} \dfrac{2(1-\cos x)}{x^2}
+&\overset{x = 2y}{=}& \lim\limits_{y \rightarrow 0} \dfrac{2(1-\cos 2y)}{4y^2} \\
+&=& \lim\limits_{y \rightarrow 0} \dfrac{4\dfrac{1-\cos 2y}{2}}{4y^2} \\
+&=& \lim\limits_{y \rightarrow 0} \dfrac{4\sin^2 y}{4y^2} \\
+&=& \lim\limits_{y \rightarrow 0} \dfrac{\sin^2 y}{y^2} \\
+&=& \left(\lim\limits_{y \rightarrow 0} \dfrac{\sin y}{y}\right)^2 \\
+&=& (1)^2 \\
+&=& 1 \\
+\end{array}
+$
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

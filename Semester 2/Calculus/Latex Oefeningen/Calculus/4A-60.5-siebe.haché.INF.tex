@@ -1,0 +1,41 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+\usepackage{color}     
+
+
+\begin{document}
+  
+\noindent \large Auteur: Siebe Haché \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 60.5\\
+
+\medskip
+
+\normalsize
+
+$ \displaystyle\int \dfrac{\sqrt{x}}{\sqrt[4]{x}- 1} dx \stackrel{x= t^4}{=} \displaystyle\int \dfrac{4t^5}{t - 1} dt
+\stackrel{u = t - 1}{=} 4\displaystyle\int \dfrac{(u + 1)^5}{u}du $\\
+
+$ = 4 \displaystyle\int \dfrac{u^5 + 5u^4 + 10u^3 + 10u^2 + 5u + 1}{u} du $\\							
+
+$ = 4 \displaystyle\int \left( u^4 + 5u^3 + 10u^2 + 10u + 5 + \dfrac{1}{u} \right) du $\\
+
+$ =  4 \left(\displaystyle\int u^4 du +  \displaystyle\int 5u^3 du +  \displaystyle\int 10u^2 du +  \displaystyle\int 10u du +  \displaystyle\int 5 du +  \displaystyle\int \dfrac{1}{u} du\right) $\\
+
+$ = \dfrac{4u^5}{5} + \dfrac{20u^4}{4} + \dfrac{40u^3}{3}+ \dfrac{40u^2}{2} + 20u + 4\ln| u | + c $\\
+
+$  \stackrel{u = t - 1}{=} \dfrac{4 \left(t - 1\right)^5}{5} + \dfrac{20 \left(t - 1\right)^4}{4} + \dfrac{40 \left(t - 1\right)^3}{3}+ \dfrac{40 \left(t - 1\right)^2}{2} + 20\left(t - 1\right) + $\\
+
+$ 4\ln| (t - 1) | + c $\\
+
+$  \stackrel{t = \sqrt[4]{x}}{=} \dfrac{4\left(\sqrt[4]{x} - 1\right)^5}{5} + \dfrac{20 \left(\sqrt[4]{x}- 1\right)^4}{4} + \dfrac{40 \left(\sqrt[4]{x} - 1\right)^3}{3}+ \dfrac{40 \left(\sqrt[4]{x} - 1\right)^2}{2} + $\\ 
+
+$ 20 \left(\sqrt[4]{x} - 1\right) + 4\ln|  \left(\sqrt[4]{x} - 1\right) | + c $\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

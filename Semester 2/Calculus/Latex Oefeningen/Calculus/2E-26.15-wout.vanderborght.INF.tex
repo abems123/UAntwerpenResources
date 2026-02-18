@@ -1,0 +1,52 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+\usepackage{cancel}
+
+% Command definities van frequent gebruikte commandos
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Bgsin}{\operatorname{Bgsin}}
+\newcommand{\Bgcos}{\operatorname{Bgcos}}
+\newcommand{\Bgtan}{\operatorname{Bgtan}}
+\newcommand{\cis}{\operatorname{cis}}
+\newcommand{\Limit}{\lim\limits_}
+
+\begin{document}
+  
+\noindent \large Auteur: Wout Vanderborght\\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 2E nr. 26.15\\
+
+\medskip
+
+\normalsize
+
+Los de volgende logaritmische vergelijking op: \\
+
+$ \dfrac{2}{\log_5 x} + \log_{\sqrt{x}} 3 = 2 $ \\
+
+$ \Leftrightarrow \dfrac{2 + \log_5 x \cdot \log_{\sqrt{x}} 3}{\log_5 x} = 2 $ \\
+
+$ \Leftrightarrow 2 + \log_5 x \cdot \log_{\sqrt{x}} 3 = 2 \cdot \log_5 x $ \\
+
+$ \Leftrightarrow 2 + \log_5 x \cdot \dfrac{\log_5 3}{\log_5 \sqrt{x}} = 2 \cdot \log_5 x $ \\
+
+$ \Leftrightarrow 2 + 2 \cdot \cancel{\log_5 x} \cdot \dfrac{\log_5 3}{\cancel{\log_5 x}} = 2 \cdot \log_5 x $ \\
+
+$ \Leftrightarrow 1 + \log_5 3 = \log_5 x $ \\
+
+$ \Leftrightarrow \log_5 5 + \log_5 3 = \log_5 x $ \\
+
+$ \Leftrightarrow \log_5 15 = \log_5 x $ \\
+
+$ \Leftrightarrow x = 15 $ \\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

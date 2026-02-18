@@ -1,0 +1,57 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}  
+\usepackage{cancel}
+
+\newcommand{\degree}{^{\circ}}
+\newcommand{\cis}{\operatorname{cis}}
+\newcommand{\Bgsin}{\operatorname{Bgsin}}
+\newcommand{\Bgcos}{\operatorname{Bgcos}}
+\newcommand{\Bgtan}{\operatorname{Bgtan}}
+\newcommand{\limit}{\lim\limits}
+
+\begin{document}
+  
+\noindent \large Auteur: Rune Suy \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 2E nr. 26.23\\
+
+\medskip
+
+\normalsize
+
+Los de volgende logaritmische vergelijking op: \\
+
+$\log_{x+3}x \cdot \log_{10}x + \log_{10}x - \log_{x+3}x = 0$\\
+
+$\Leftrightarrow \log_{x+3} x \cdot \log_{10}x = \log_{x+3}x - \log_{10}x$\\
+
+$\Leftrightarrow \log_{10}x = \dfrac{\log_{x+3}x - \log_{10}x}{\log_{x+3}} = 1 - \dfrac{\log_{10}x}{\log_{x+3}x} = 1 - \dfrac{\log_{10}x}{\dfrac{\log_{10}x}{\log_{10}(x+3)}}$\\
+
+Geval 1:  $x \neq 1$\\
+
+$log_{10}x = 1 - \dfrac{\cancel{\log_{10}x}}{\dfrac{\cancel{\log_{10}x}}{\log_{10}(x+3)}} = 1 - \log_{10}(x+3)$\\
+
+$\Leftrightarrow \log_{10}(x \cdot (x+3)) = 1$\\
+
+$\Leftrightarrow 10 = x^2 + 3x$\\
+
+$\Leftrightarrow x^2 + x - 10 = 0$\\
+
+$D = 49 = 7^2$\\
+
+$x_1 = \dfrac{-3-7}{2} = \cancel{-5}$\\
+
+$x_2 = \dfrac{-3+7}{2} = 2$\\
+
+Geval 2: $x=1$\\
+
+$\log_{x+3}1 \cdot \log_{10}1 + \log_{10}1 - \log_{x+3}1 = 0$\\
+$$ V = \{2, 1\}$$
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

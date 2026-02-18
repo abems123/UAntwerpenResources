@@ -1,0 +1,65 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+
+\noindent \large Auteur: Niels Hertoghs \\
+\noindent \large Studierichting:  Informatica\\
+\noindent \large Oefeningenreeks 5A nr. 11.2\\
+
+\medskip
+
+\normalsize
+
+
+$I = \displaystyle\int_{1}^{2} x^2  \cosh (x) \cdot dx $\\
+
+$\left\{
+    \begin{array}{l}
+        u = x^2 \\
+        dv = \cosh (x) \cdot dx
+    \end{array}
+\right .
+\Rightarrow
+\left\{
+    \begin{array}{l}
+        du =  2x \cdot dx \\
+        v = \sinh (x)
+    \end{array}
+\right .$\\
+
+$\Rightarrow I =  \left[ x^2 \sinh (x) \right]_{1}^{2} - 2 \displaystyle\int_{1}^{2}x  \sinh (x) \cdot dx $\\
+
+$\left\{
+    \begin{array}{l}
+        u = x \\
+        dv = \sinh (x) \cdot dx
+    \end{array}
+\right .
+\Rightarrow
+\left\{
+    \begin{array}{l}
+        du = dx \\
+        v = - \cosh (x)
+    \end{array}
+\right .$\\
+
+$\Rightarrow I =  \left[ x^2 \sinh (x) \right]_{1}^{2} - 2 \left [ x \cosh (x) - \sinh (x) \right ]_1^2$\\
+
+$\Rightarrow I =  \left[ x^2 \sinh (x) - 2 x \cosh (x) + 2 \sinh (x) \right ]_1^2$\\
+
+$= 6 \sinh (2) - 4 \cosh (2) - 3 \sinh (1) + 2 \cosh (1)$\\\
+
+
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 
+
+
+
+

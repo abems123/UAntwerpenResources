@@ -1,0 +1,48 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\newcommand{\dint}{\displaystyle\int}
+\newcommand{\llim}{\lim\limits}
+\newcommand{\Bgtan}{\operatorname{Bgtan}}
+
+\begin{document}
+  
+\noindent \large Auteur: Oubayy Ahale         \\
+\noindent \large Studierichting: Informatica  \\
+\noindent \large Oefeningenreeks 5A nr. 9.1   \\
+
+\medskip
+
+\normalsize
+
+Bereken de volgende bepaalde integraal door substitutie:\\
+
+$ \dint\limits_{0}^{1} (1 - x^2) \cdot x^{\tfrac{1}{3}} dx$ \\
+
+$ u = x^2 \Rightarrow du = 2x dx \Rightarrow dx = \dfrac{du}{2x} $\\
+
+$ = \dint\limits_{0}^{1} (1 - u) \cdot u^{\tfrac{1}{6}} \cdot \dfrac{du}{2\sqrt{u}} $\\
+
+$ = \dint\limits_{0}^{1} (1 - u) \cdot u^{\tfrac{1}{6}} \cdot \dfrac{1}{2 \cdot u^{\tfrac{1}{2}}} du $\\
+
+$ = \dfrac{1}{2} \cdot \dint\limits_{0}^{1} (1 - u) \cdot u^{\tfrac{-1}{3}} du $\\
+
+$ = \dfrac{1}{2} \cdot \left( \dint\limits_{0}^{1} u^{\tfrac{-1}{3}} du - \dint\limits_{0}^{1} u^{\tfrac{2}{3}} du \right) $\\
+
+
+$ \dint\limits_{0}^{1} u^{\tfrac{-1}{3}} du = \left[ \dfrac{u^{\tfrac{2}{3}}}{\dfrac{2}{3}} \right]_{0}^{1} = \dfrac{3}{2} $\\
+
+$ \dint\limits_{0}^{1} u^{\tfrac{2}{3}} du = \left[ \dfrac{u^{\tfrac{5}{3}}}{\dfrac{5}{3}} \right]_{0}^{1} = \dfrac{3}{5} $\\
+
+$\dfrac{1}{2} \cdot \left( \dfrac{3}{2} - \dfrac{3}{5} \right) = \dfrac{1}{2} \cdot \left( \dfrac{15 - 6}{10} \right) = \dfrac{9}{20}$\\
+
+\textbf{Antwoord:} $\boxed{\dfrac{9}{20}}$\\
+\end{document}
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

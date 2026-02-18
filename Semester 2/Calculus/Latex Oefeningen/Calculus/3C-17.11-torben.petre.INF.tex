@@ -1,0 +1,36 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\newcommand{\Bgtan}{\operatorname{Bgtan}}
+
+\begin{document}
+  
+\noindent \large Auteur: Torben Petré \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 3C nr. 17.11\\
+
+\medskip
+
+\normalsize
+
+Bereken de volgende limiet met de regel van de l'Hôpital $\lim\limits_{x \rightarrow \tfrac{\pi}{2}} \dfrac{\tan \dfrac{x}{2} - 1}{\cos x}$\\
+
+$\overset{H}{=} \lim\limits_{x \rightarrow \tfrac{\pi}{2}} \dfrac{\dfrac{1}{\cos^2\dfrac{x}{2}} \cdot \dfrac{1}{2}}{-\sin x}$\\
+
+$ =\lim\limits_{x \rightarrow \tfrac{\pi}{2}} \dfrac{1}{-\sin x \cdot \cos^2 \dfrac{x}{2} \cdot 2}$\\
+
+$ =\lim\limits_{x \rightarrow \tfrac{\pi}{2}} \dfrac{1}{-\sin \dfrac{\pi}{2} \cdot \cos^2 \dfrac{\pi}{4} \cdot 2}$\\
+
+$ =\lim\limits_{x \rightarrow \tfrac{\pi}{2}} -\dfrac{1}{\left(\dfrac{\sqrt{2}}{2}\right)^2 \cdot 2}$\\
+
+$ =\lim\limits_{x \rightarrow \tfrac{\pi}{2}} -\dfrac{1}{\dfrac{2}{4} \cdot 2}$\\
+
+$ =-1$
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

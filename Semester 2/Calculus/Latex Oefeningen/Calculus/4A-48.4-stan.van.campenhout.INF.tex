@@ -1,0 +1,36 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Stan Van Campenhout \\
+\noindent \large Studierichting:  Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 48.4\\
+
+\medskip
+
+\normalsize
+
+$ \displaystyle\int\ln\left(\dfrac{x^2}{x^2-1}\right)dx = x\ln\left(\dfrac{x^2}{x^2-1}\right) - \displaystyle\int xd\left(\ln\left(\dfrac{x^2}{x^2-1}\right)\right)$\\
+
+$ =  x\ln\left(\dfrac{x^2}{x^2-1}\right) - \displaystyle\int x\cdot\dfrac{x^2-1}{x^2}\cdot\dfrac{\left(x^2-1\right)2x-x^2\cdot2x}{\left(x^2-1\right)^2}dx $\\
+
+$ =  x\ln\left(\dfrac{x^2}{x^2-1}\right) - \displaystyle\int\dfrac{-2}{x^2-1}dx =  x\ln\left(\dfrac{x^2}{x^2-1}\right) +2\displaystyle\int\dfrac{1}{\left(x-1\right)\left(x+1\right)}dx $\\
+
+$ \rightarrow \dfrac{1}{\left(x-1\right)\left(x+1\right)} = \dfrac{A}{x-1}+\dfrac{B}{x+1} $\\
+
+$ \Rightarrow A = \dfrac{1}{1+1} = \dfrac{1}{2} $\\
+
+$ \Rightarrow B = \dfrac{1}{-1-1} = -\dfrac{1}{2} $\\
+
+$ =  x\ln\left(\dfrac{x^2}{x^2-1}\right) + \displaystyle\int\dfrac{1}{x-1}dx-\displaystyle\int\dfrac{1}{x+1}dx $\\
+
+$ =  x\ln\left(\dfrac{x^2}{x^2-1}\right) + \ln|x-1| - \ln|x+1| + c $\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

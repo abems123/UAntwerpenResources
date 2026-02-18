@@ -1,0 +1,36 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Sabawoon Enayat \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 51.11 \\
+
+\newcommand{\dint}{\displaystyle\int}
+
+\medskip
+
+\normalsize
+
+Opgave: $I = \dint \left(\sin^2 x \cos^3 x\right) dx$\\
+
+$= \dint \left(\sin^2 x \cos^2 x \cos x\right) dx$\\
+
+$= \dint \left(\sin^2 x \cos^2 x\right) d(\sin x)$\\
+
+$= \dint \left(\sin^2 x \left(1 - \sin^2 x\right)\right) d(\sin x)$\\
+
+$\Rightarrow t = \sin x$\\
+
+$I = \dint t^2 \left(1 - t^2\right) dt = \dint \left(t^2 - t^4\right) dt = \dint t^2 dt - \dint t^4 dt$\\
+
+$= \dfrac{t^3}{3} - \dfrac{t^5}{5} + c = \dfrac{\sin^3 x}{3} - \dfrac{\sin^5 x}{5} + c$\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

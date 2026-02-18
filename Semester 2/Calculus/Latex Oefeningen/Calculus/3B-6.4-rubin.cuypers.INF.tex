@@ -1,0 +1,42 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+\usepackage{cancel}
+\begin{document}
+  
+
+\noindent \large Auteur: Rubin Cuypers \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 3B nr. 6.4\\
+
+\medskip
+
+\normalsize
+
+$\forall n \in \mathbb{N}:f_n:\mathbb{R}\rightarrow\mathbb{R}:x\rightarrow \left\{
+\begin{array}{l}
+x^n\sin\dfrac{1}{x} $ als $ x \neq 0 \\
+0 $ als $ x=0
+\end{array}
+\right.$\\
+
+bewijs dat $ f_3 $ continu differentieerbaar is en $f_3' $ niet differentieerbaar is in $0$\\
+
+$f_3' = \lim\limits_{h\rightarrow0} \dfrac{f(h)}{h}=\lim\limits_{h\rightarrow0} h^2 \sin \dfrac{1}{h}=0$\\
+
+$\forall x \neq 0 : f_3'(x)=3x^2\sin\dfrac{1}{x} - x \cos\dfrac{1}{x} $\\
+
+$\lim\limits_{h\rightarrow0} f_3'(h)=\lim\limits_{h\rightarrow0} 3h^2\sin\dfrac{1}{h} -h\cos\dfrac{1}{h}=0$\\
+
+$\lim\limits_{h\rightarrow0} f_3'(h)=f_3'(0)\Rightarrow f_3 $ is continu differentieerbaar \\
+
+$f_3''(0)=\lim\limits_{h\rightarrow0}\dfrac{f_3'(h)-\cancel{f_3'(0)}}{h}=\lim\limits_{h\rightarrow0}\dfrac{3h^{\cancel{2}}\sin\dfrac{1}{h}-\cancel{h} \cos \dfrac{1}{h}}{\cancel{h}}$\\
+
+$\lim\limits_{h\rightarrow0} \cos\dfrac{1}{h}$ gaat niet naar 0 dus $f_3'$ is niet differentieerbaar in 0 \\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

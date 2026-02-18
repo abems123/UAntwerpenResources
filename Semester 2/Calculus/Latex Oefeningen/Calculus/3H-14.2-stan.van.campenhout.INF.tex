@@ -1,0 +1,64 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Stan Van Campenhout \\
+\noindent \large Studierichting:  Informatica\\
+\noindent \large Oefeningenreeks 3H nr. 14.2\\
+
+\medskip
+
+\normalsize
+
+$ r = \cos2\theta $\\
+
+$ \operatorname{dom} = \mathbb{R} $\\
+
+$ p = \pi $\\
+
+$ \rightarrow \operatorname{BD} = [0 , \pi] $\\
+
+$ r = 0 \Leftrightarrow \cos2\theta = 0 \Leftrightarrow2\theta = \dfrac{\pi}{2} + k\pi \Leftrightarrow \theta = \dfrac{\pi}{4} + k\dfrac{\pi}{2},  \forall k \in \mathbb{Z} $\\
+
+$ \rightarrow \left\{ \dfrac{\pi}{4}, \dfrac{3\pi}{4}\right\} $\\
+
+$ r' = 0 \Leftrightarrow -\sin2\theta = 0 \Leftrightarrow 2\theta = k\pi \Leftrightarrow \theta =  k\dfrac{\pi}{2},  \forall k \in \mathbb{Z} $\\
+
+$ \rightarrow \left\{0, \dfrac{\pi}{2}, \pi\right\} $\\
+
+\begin{tabular}{ l | c c c c c c c c r }	
+  $\theta$ &$0$ & &$\dfrac{\pi}{4}$ & &$\dfrac{\pi}{2}$ & &$\dfrac{3\pi}{2}$ & &$\pi$\\ \hline
+  $r$ &$+$ &$+$ &$0$ &$-$ &$-$ &$-$ &$0$ &$+$ &$+$\\
+  $r'$ &$0$ &$-$ &$-$ &$-$ &$0$ &$+$ &$+$ &$+$ &$0$\\ \hline
+  $r$ &$M$ &$\searrow$ &$\searrow$ &$\searrow$ &$m$ &$\nearrow$ &$\nearrow$ &$\nearrow$ &$M$\\
+    &$1$ & & & &$-1$ & & & &$1$\\
+\end{tabular}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=7cm]{3H-14.2-stan.van.campenhout.INF.png}
+\end{figure}
+
+Aangezien we weten dat de nulwaarden van de kwadratische functie niet\\
+
+zullen verandere kunnen we concluderen dat: \\
+
+$ \sin2\theta \rightarrow$ ligt op de as, $ \cos2\theta \rightarrow$ ligt schuin van de as\\
+
+ook weten we dat $\forall r \in [0, 1] : r \geq r^2 $\\
+
+en dus dat de kwadratische functies dichter bij de assen zullen liggen\\
+
+$\rightarrow$ \begin{tabular}{ l | r }	
+  A &C \\ \hline
+  B &D \\
+\end{tabular}
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

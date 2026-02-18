@@ -1,0 +1,34 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Stan Van Campenhout \\
+\noindent \large Studierichting:  Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 63.3\\
+
+\medskip
+
+\normalsize
+
+$ \displaystyle\int\sqrt{\left(1-x^2\right)^3}dx \stackrel{x = \cos t}{=} -\displaystyle\int\sqrt{\left(1-\cos^2 t\right)^3}\cdot\sin tdt 
+= -\displaystyle\int\sin^3t\cdot\sin tdt $\\
+
+$ -\displaystyle\int\dfrac{\left(1-\cos 2t\right)^2}{4}dt = -\dfrac{1}{4}\displaystyle\int dt +\dfrac{1}{2}\displaystyle\int\cos 2tdt - \dfrac{1}{4}\displaystyle\int\cos^2tdt $\\
+
+$ = -\dfrac{1}{4}t +\dfrac{1}{4}\sin 2t - \dfrac{1}{4}\displaystyle\int\cos^2tdt = -\dfrac{1}{4}t +\dfrac{1}{4}\sin 2t - \dfrac{1}{4}\displaystyle\int\dfrac{1+\cos 4t}{2}tdt $\\
+
+$ = -\dfrac{1}{4}t +\dfrac{1}{4}\sin 2t - \dfrac{1}{8}t - \dfrac{1}{8}\displaystyle\int\cos 4tdt $\\
+
+$ = -\dfrac{1}{4}t +\dfrac{1}{4}\sin 2t - \dfrac{1}{8}t - \dfrac{1}{32}\sin 4t + c $\\
+
+$ \stackrel{t = \operatorname{Bgcos}x}{=} 
+-\dfrac{3}{8}\operatorname{Bgcos}x +\dfrac{1}{4}\sin \left(2\operatorname{Bgcos}x\right) - \dfrac{1}{32}\sin\left(4\operatorname{Bgcos}x\right) + c $\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

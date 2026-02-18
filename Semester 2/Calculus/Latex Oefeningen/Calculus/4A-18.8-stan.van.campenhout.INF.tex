@@ -1,0 +1,33 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Stan Van Campenhout \\
+\noindent \large Studierichting:  Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 18.8\\
+
+\medskip
+
+\normalsize
+
+$ \displaystyle\int x \sin^2 x dx = \displaystyle\int x \cdot \dfrac{1 - \cos 2x}{2} dx
+= \dfrac{1}{2}\displaystyle\int x - x\cos 2x dx $\\
+
+$ = \dfrac{1}{2}\displaystyle\int x dx - \dfrac{1}{2}\displaystyle\int x\cos 2x dx 
+= \dfrac{x^2}{4} - \dfrac{1}{4}\displaystyle\int x\cos 2x d\left(2x\right) $\\
+
+$ = \dfrac{x^2}{4} - \dfrac{1}{4}\displaystyle\int x d\left(\sin 2x\right) 
+= \dfrac{x^2}{4} - \dfrac{1}{4}x\sin 2x + \dfrac{1}{4}\displaystyle\int \sin2x dx $\\
+
+$ = \dfrac{x^2}{4} - \dfrac{1}{4}x\sin 2x + \dfrac{1}{8}\displaystyle\int \sin2x d\left(2x\right) $\\
+
+$  = \dfrac{x^2}{4} - \dfrac{1}{4}x\sin 2x - \dfrac{1}{8}\cos2x +c $\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

@@ -1,0 +1,61 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+
+\noindent \large Auteur: Anna Voronovska \\
+\noindent \large Studierichting: Informatica \\
+\noindent \large Oefeningenreeks 1C nr. 31.2 \\
+
+\bigskip 
+
+\normalsize
+Gegeven:\\
+ 
+$ (-1 + i)^{10} $\\
+
+\textbf{$z = -1 + i$ in poolvorm:}\\
+
+De modulus:\\
+
+$ r = \sqrt{(-1)^2 + 1^2} = \sqrt{1 + 1} = \sqrt{2} $\\
+
+Het argument:\\
+
+$ \tan \alpha = \dfrac{1}{-1} = -1 $;
+$ \alpha = \dfrac{3\pi}{4} $\\
+
+Dus de poolvorm is:\\
+
+$\left( \sqrt{2} \operatorname{cis} \left(\dfrac{3\pi}{4}\right) \right)$\\
+
+
+\textbf{Stelling van de Moivre:}\\
+
+$\left(\sqrt{2} \operatorname{cis} \left(\dfrac{3\pi}{4}\right) \right)^{10} =
+\left(\sqrt{2}\right)^{10} \operatorname{cis} \left(10 \cdot \dfrac{3\pi}{4} \right) =
+32 \operatorname{cis} \left(\dfrac{30\pi}{4}\right) = 32 \operatorname{cis} \left(\dfrac{15\pi}{2}\right)$
+
+Omdat argumenten herhalen na $ 2\pi $:\\
+
+$ \dfrac{15\pi}{2} \mod 2\pi  = \dfrac{\pi}{2} $\\
+
+Dus:\\
+
+$ (-1 + i)^{10} = 32 \operatorname{cis} \left(\dfrac{\pi}{2}\right) $\\
+
+Omdat $ \operatorname{cis} \left(\dfrac{\pi}{2}\right) = \operatorname{cis} 90^\circ = i $, krijgen wij:
+$ (-1 + i)^{10} = 32i $\\
+
+\textbf{Antwoord:}\\
+
+$ (-1 + i)^{10} = 32i $\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+
+\end{document}

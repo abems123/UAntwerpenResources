@@ -1,0 +1,26 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Stan Van Campenhout \\
+\noindent \large Studierichting:  Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 31.15\\
+
+\medskip
+
+\normalsize
+
+$ \displaystyle\int \dfrac{1}{\sqrt{x}-1} dx \stackrel{x = t^2}{=} \displaystyle\int \dfrac{1}{\sqrt{t^2}-1} d\left(t^2\right) 
+= 2\displaystyle\int \dfrac{t}{t - 1}dt =  2\displaystyle\int \dfrac{t - 1 + 1}{t - 1}dt$\\
+
+$ = 2\displaystyle\int dt + 2\displaystyle\int\dfrac{1}{t - 1}d\left(t - 1\right) 
+= 2t + 2\ln|t - 1| + c  \stackrel{t = \sqrt{x}}{=} 2\sqrt{x} + 2\ln|\sqrt{x} - 1| + c $\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

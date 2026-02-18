@@ -1,0 +1,36 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Victoria Mazur \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 40.9\\
+
+\medskip
+
+\normalsize
+
+$ \displaystyle\int \dfrac{dx}{\sqrt{5-2x^2}} $ \\
+
+$ = \displaystyle\int \dfrac{dx}{\sqrt{(\sqrt{5})^2 - (\sqrt{2}x)^2}} $ \\
+
+Stel $\sqrt{2}x = y \Rightarrow \sqrt{2}dx = dy \Leftrightarrow dx = \dfrac{dy}{\sqrt{2}}$ \\
+
+$ I = \dfrac{1}{\sqrt{2}} \displaystyle\int \dfrac{dy}{\sqrt{(\sqrt{5})^2 - y^2}} $ \\
+
+$ = \dfrac{1}{\sqrt{2}} \displaystyle\int \dfrac{dy}{\sqrt{5 - y^2}} $ \\
+
+$ = \dfrac{1}{\sqrt{2}} \cdot \dfrac{\operatorname{Bgsin}\left(\dfrac{y}{\sqrt{5}}\right)}{1} + C $ \\
+
+$ = \dfrac{\operatorname{Bgsin}\left(\dfrac{y}{\sqrt{5}}\right)}{\sqrt{2}} + C $ \\
+
+$ = \dfrac{\operatorname{Bgsin}\left(\dfrac{\sqrt{2}x}{\sqrt{5}}\right)}{\sqrt{2}} + C $ \\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document}

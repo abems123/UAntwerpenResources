@@ -1,0 +1,37 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Sabawoon Enayat \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 8.11 \\
+
+\newcommand{\dint}{\displaystyle\int}
+
+\medskip
+
+\normalsize
+
+Opgave: $\dint \dfrac{dx}{\tan (3x + 5)}$\\
+
+$\Rightarrow t = 3x + 5$, $t' = 3$, $dt = t'dx \Rightarrow dx = \dfrac{dt}{3}$\\
+
+$= \dint \dfrac{dt}{3\tan t} = \dfrac{1}{3}\dint \dfrac{1}{\dfrac{\sin t}{\cos t}} dt = \dfrac{1}{3}\dint \dfrac{\cos t}{\sin t} dt$\\
+
+$\Rightarrow u = \sin (t)$, $u' = \cos (t)$, $du = u'dt = \cos (t) dt \Rightarrow dt = \dfrac{dt}{u'}$\\
+
+$\Rightarrow \dfrac{\cos t}{\sin t} \dfrac{1}{\cos t} = \dfrac{1}{\sin t} = \dfrac{1}{u}$\\
+
+$= \dfrac{1}{3} \dint \dfrac{1}{u} du = \dfrac{1}{3} \ln\left(|u|\right) + c$\\
+
+$= \dfrac{1}{3} \ln\left(|\sin t|\right) + c = \dfrac{1}{3} \ln\left(|\sin (3x + 5)|\right) + c$\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 
+

@@ -1,0 +1,51 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Michael Zielisnki\\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 6G nr.\ 2.4\\
+
+\medskip
+
+\normalsize
+
+$ f(x) = x^2 $\\
+
+$ a_n = \left< f | \cos(nx) \right>$\\
+
+$= \dfrac{1}{\pi}\displaystyle\int_{-\pi}^{\pi}x^2\cos(nx)dx$\\
+
+$= \dfrac{2}{\pi}\displaystyle\int_{0}^{\pi}x^2\cos(nx)dx$\\
+
+$= \dfrac{2}{\pi}\left[ \dfrac{x^2\sin(nx)}{n} + \dfrac{2x\cos(nx)}{n^2} - \dfrac{2\sin(nx)}{n^3} \right]_0^\pi$\\
+
+$= \dfrac{2}{\pi}\cdot\dfrac{2\pi(-1)^n}{n^2}$\\
+
+$= \dfrac{4(-1)^n}{n^2} $\\
+
+$ b_n = \left< f | \sin(nx) \right>
+  = \dfrac{1}{\pi}\displaystyle\int_{-\pi}^{\pi}x^2\sin(nx)dx
+  = 0 $\\
+
+$ a_0 = \left< f | 1 \right>
+  = \dfrac{1}{\pi}\displaystyle\int_{-\pi}^{\pi}x^2dx
+  = \dfrac{2}{\pi}\displaystyle\int_{0}^{\pi}x^2dx
+  = \dfrac{2}{\pi}\left[ \dfrac{x^3}{3} \right]_0^\pi
+  = \dfrac{2\pi^2}{3} $\\
+
+$ \Rightarrow \widehat{f}(x)
+  = \dfrac{a_0}{2}
+  + \sum\limits_{n=1}^{\infty}\left(a_n\cos(nx)+b_n\sin(nx)\right)
+  = \dfrac{\pi^2}{3}
+  + 4\sum\limits_{n=1}^{\infty}\dfrac{(-1)^n}{n^2}\cos(nx) $\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,36 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Jeremi Lorek\\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 2E nr. 4.21\\
+
+\medskip
+\normalsize
+
+$\lim\limits_{x \to \infty} \left( \dfrac{x^2 - 2}{x^2 - 1} \right)^{2x^2 + x + 1}$  \\
+
+$= \lim\limits_{x \to \infty} \left( \dfrac{x^2 - 1 - 1}{x^2 - 1} \right)^{2x^2 + x + 1}$  \\
+
+$= \lim\limits_{x \to \infty} \left( 1 - \dfrac{1}{x^2 - 1} \right)^{2x^2 + x + 1}$  \\
+
+$= \lim\limits_{x \to \infty} \left( \left( 1 + \dfrac{-1}{x^2 - 1} \right)^{\tfrac{x^2 - 1}{-1} \cdot \tfrac{-1}{x^2 - 1}} \right)^{2x^2 + x + 1}$  \\
+
+$= e^{\lim\limits_{x \to \infty} \tfrac{-(2x^2 + x + 1)}{x^2 - 1}}$  \\
+
+$= e^{\lim\limits_{x \to \infty} \tfrac{-2x^2}{x^2}} $ \\
+
+$= e^{-2} $ \\
+
+$= \dfrac{1}{e^2}$  \\
+
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

@@ -1,0 +1,48 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Dara van Engelen\\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 2E nr. 26.5\\
+
+\medskip
+
+\normalsize
+
+$1 + \left(\log _{x-1} x\right)^{-1} = \left(\log _{2x+3} x\right)^{-1} + \log _x x \cdot \left(\log _2 x \right) $\\
+
+$\Leftrightarrow 1 + \dfrac{1}{\log _{x-1} x}  = \dfrac{1}{\log _{2x+3} x} + \dfrac{\log _{2x+3} 2}{\log _{2x+3} x}$\\
+
+$\Leftrightarrow 1 + \dfrac{1}{\log _{x-1} x} = \dfrac{1 + \log _{2x+3} 2 }{\log _{2x+3} x}$\\
+
+$\Leftrightarrow 1 + \dfrac{\log _{2x+3} (x-1)}{\log _{2x+3} x} = \dfrac{1 + \log _{2x+3} 2 }{\log _{2x+3} x}$\\
+
+$\Leftrightarrow 1 = \dfrac{1 - \log _{2x+3} (x-1) + \log _{2x+3} 2}{\log _{2x+3} x}$\\
+
+$\Leftrightarrow 1 = \dfrac{\log _{2x+3} (2x+3) - \log _{2x+3} (x-1) + \log _{2x+3} 2}{\log _{2x+3} x} $\\
+
+$\Leftrightarrow 1 = \dfrac{\log _{4x+6} (2x+3) - \log _{2x+3} (x-1)}{\log _{2x+3} x}$\\
+
+$\Leftrightarrow \log _{2x+3} x = \log _{2x+3} \left(\dfrac{4x+6}{x-1}\right)$\\
+
+$\Leftrightarrow x = \left(2x+3\right)^{\log _{2x+3} \left(\dfrac{4x+6}{x-1}\right)}$\\
+
+$\Leftrightarrow x = \dfrac{4x+6}{x-1}$\\
+
+$\Leftrightarrow x(x-1) = 4x+6 \Leftrightarrow x^2 -5x -6 = 0$\\
+
+$D = 25 - 4\cdot1\cdot(-6) = 49$\\
+
+$x_1 = \dfrac{5+7}{2} = 6$\\
+
+$x_2 = \dfrac{5-7}{2} = -1$ Kan niet want logaritme van negatief getal kan niet\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

@@ -1,0 +1,32 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+\newcommand{\intt}{\displaystyle\int}
+\newcommand{\Bgtan}{\operatorname{Bgtan}}
+
+\begin{document}
+  
+\noindent \large Auteur: Mathijs Pittoors \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 36.14\\
+
+\medskip
+
+\normalsize
+
+$\intt \dfrac{4dx}{2x^2+7} = \dfrac{4}{7} \intt \dfrac{dx}{\left(\sqrt{\dfrac{2}{7}} x\right)^2+1}$\\
+
+Neem $u = \sqrt{\dfrac{2}{7}} x$\\
+
+$du = \sqrt{\dfrac{2}{7}} dx \Rightarrow dx = \sqrt{\dfrac{7}{2}} du$\\
+
+Dan $\intt \dfrac{4dx}{2x^2+7} = \dfrac{4 \sqrt{7}}{7 \sqrt{2}} \intt \dfrac{du}{u^2+1}$\\
+
+$= \dfrac{2 \sqrt{14}}{7} \Bgtan \left( \sqrt{\dfrac{2}{7}}x \right) + c$ met $c \in \mathbb{R}$
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

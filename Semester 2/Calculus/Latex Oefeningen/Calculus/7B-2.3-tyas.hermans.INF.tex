@@ -1,0 +1,52 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+\newcommand{\dint}{\displaystyle\int}
+\begin{document}
+  
+\noindent \large Auteur: Tyas Hermans \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 7B nr. 2.3\\
+
+\medskip
+
+\normalsize
+
+$w = \sqrt{u^2+v^2+z^2}, u = 3e^t\sin s, v = 3e^t\cos s, z = 4e^t$\\
+
+$\dfrac{\partial w}{\partial s} =\left(
+\begin{array}{ccc}
+\dfrac{u}{\sqrt{u^2+v^2+z^2}} & \dfrac{v}{\sqrt{u^2+v^2+z^2}} & \dfrac{z}{\sqrt{u^2+v^2+z^2}}
+\end{array}
+\right) \cdot \left(
+\begin{array}{ccc}
+3e^t\cos s\\
+-3e^t\sin s\\
+0\\
+\end{array}
+\right)$ \\
+
+$\dfrac{\partial w}{\partial s} = \dfrac{0}{\sqrt{u^2+v^2+z^2}} = 0$\\
+
+$\dfrac{\partial w}{\partial t} =\left(
+\begin{array}{ccc}
+\dfrac{u}{\sqrt{u^2+v^2+z^2}} & \dfrac{v}{\sqrt{u^2+v^2+z^2}} & \dfrac{z}{\sqrt{u^2+v^2+z^2}}
+\end{array}
+\right) \cdot \left(
+\begin{array}{ccc}
+3e^t\sin s\\
+3e^t\cos s\\
+4e^t\\
+\end{array}
+\right)$ \\
+
+$\dfrac{\partial w}{\partial t} = \dfrac{25e^{2t}}{5e^t} = 5e^t$\\
+
+
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

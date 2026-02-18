@@ -1,0 +1,47 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Dara van Engelen \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 43.5\\
+
+\medskip
+
+\normalsize
+
+$ I = \displaystyle\int \dfrac{3x^4-6x^2-4x+4}{x^5-3x^3+2x^2}dx = \displaystyle\int \dfrac{3x^4-6x^2-4x+4}{x^2(x-1)^2(x+2)}dx$\\\\
+
+$\dfrac{3x^4-6x^2-4x+4}{x^2(x-1)^2(x+2)} =  \dfrac{A}{x^2} + \dfrac{B}{x} + \dfrac{C}{(x-1)^2} + \dfrac{D}{x-1} + \dfrac{E}{x+2}$\\\\
+
+$A  =\left. \dfrac{3x^4-6x^2-4x+4}{(x-1)^2(x+2)} \right|_{x=0} = 2$\\\\
+
+$\left( \dfrac{3x^4-6x^2-4x+4}{x^2(x-1)^2(x+2)} - \dfrac{2}{x^2}\right)x = \dfrac{3x^4-6x^2-4x+4-2(x-1)^2(x+2)}{x(x-1)^2(x+2)} $\\\\
+
+$= \dfrac{3x^4-6x^2-4x+4-2x^3+8x-2x-4}{x(x-1)^2(x+2)} = \dfrac{x(3x^3-2x^2+2)}{x(x-1)^2(x+2)} = \dfrac{3x^3-2x^2+2}{(x-1)^2(x+2)}$\\\\
+
+$\Rightarrow B = \left. \dfrac{3x^3-2x^2+2}{(x-1)^2(x+2)} \right|_{x=0} = 1$\\\\
+
+$C = \left. \dfrac{3x^4-6x^2-4x+4}{x^2(x+2)} \right|_{x=1} = -1$\\\\
+
+$\left( \dfrac{3x^4-6x^2-4x+4}{x^2(x-1)^2(x+2)} + \dfrac{1}{(x-1)^2} \right)(x-1) = \dfrac{3x^4-6x^2-4x+4+x^2(x+2)}{x^2(x-1)(x+2)}$\\\\
+
+$= \dfrac{3x^4-6x^2-4x+4+x^3+2x^2}{x^2(x-1)(x+2)} = \dfrac{3x^4+x^3-4x^2-4x+4}{x^2(x-1)(x+2)}$\\\\
+
+$= \dfrac{(x-1)(3x^3+4x^2-4)}{x^2(x-1)(x+2)} = \dfrac{3x^3+4x^2-4}{x^2(x+2)}$\\\\
+
+$\Rightarrow D = \left. \dfrac{3x^3+4x^2-4}{x^2(x+2)}\right|_{x=1} = 1$\\\\
+
+$E = \left. \dfrac{3x^4-6x^2-4x+4}{x^2(x-1)^2} \right|_{x=-2} = 1$\\\\
+
+$\Rightarrow I = \displaystyle\int \dfrac{2dx}{x^2} + \displaystyle\int \dfrac{dx}{x} + \displaystyle\int \dfrac{-dx}{(x-1)^2} + \displaystyle\int \dfrac{dx}{x-1} + \displaystyle\int \dfrac{dx}{x+2}$\\\\
+
+$= \dfrac{-2}{x} + \ln|x| + \dfrac{1}{x-1} + \ln|x-1| + \ln|x+2| + C$
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document}

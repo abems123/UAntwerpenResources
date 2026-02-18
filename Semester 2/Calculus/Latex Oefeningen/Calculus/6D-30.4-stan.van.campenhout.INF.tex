@@ -1,0 +1,32 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Stan Van Campenhout \\
+\noindent \large Studierichting:  Informatica\\
+\noindent \large Oefeningenreeks 6D nr. 30.4\\
+
+\medskip
+
+\normalsize
+
+$ \displaystyle\sum\limits_{n = 2}^\infty \dfrac{\ln n}{n^2} $\\
+
+$ = \displaystyle\int_2^{+\infty}\dfrac{\ln x}{x^2}dx = -\displaystyle\int_2^{+\infty}\ln xd\left(\dfrac{1}{x}\right) $\\
+
+$ = -\left[\dfrac{\ln x}{x}\right]_2^{+\infty} + \displaystyle\int_2^{+\infty}\dfrac{1}{x^2}dx $\\
+
+$ = -\left[\dfrac{\ln x + 1}{x}\right]_2^{+\infty} $\\
+
+$ = \lim\limits_{a \rightarrow +\infty} - \dfrac{-\ln a - 1}{a} - \dfrac{\ln 2 - 1}{2} = 0  - \dfrac{-\ln 2 - 1}{2} =  \dfrac{\ln 2 + 1}{2} \Rightarrow $ bestaat \\
+
+$ \stackrel{\text{integraalcriterium}}{\Rightarrow} $ convergent \\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

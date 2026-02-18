@@ -1,0 +1,27 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Stan Van Campenhout \\
+\noindent \large Studierichting:  Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 60.13\\
+
+\medskip
+
+\normalsize
+
+$ \displaystyle\int\dfrac{5+\sqrt{2x+3}}{3-\sqrt{2x+3}}dx \stackrel{t = \sqrt{2x+3}}{=} \displaystyle\int\dfrac{5+t}{3-t}tdt
+= -\displaystyle\int\dfrac{t^2+5t}{t-3}dt $\\
+
+$ = -\displaystyle\int\left(t+8+\dfrac{24}{t-3}\right)dt = -\dfrac{t^2}{2}-8t-24\displaystyle\int\dfrac{1}{t-3}dt $\\
+
+$ =  -\dfrac{t^2}{2}-8t-24\ln|t-3| + c \stackrel{t = \sqrt{2x+3}}{=} - x - 8\sqrt{2x+3}-24\ln|\sqrt{2x+3}-3| + c $\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

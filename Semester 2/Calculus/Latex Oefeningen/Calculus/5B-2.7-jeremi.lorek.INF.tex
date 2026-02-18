@@ -1,0 +1,36 @@
+\documentclass[a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\begin{document}
+
+\noindent \large Auteur: Jeremi Lorek\\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 5B nr. 2.7\\
+
+\medskip
+\normalsize
+
+$\displaystyle \int_{-\infty}^{+\infty} \dfrac{x}{(x^2 + 4)^2} dx = \lim\limits_{a \to -\infty} \int_a^0 \dfrac{x}{(x^2 + 4)^2} dx + \lim\limits_{b \to +\infty} \int_0^b \dfrac{x}{(x^2 + 4)^2} dx$ \\
+
+$\displaystyle \int \dfrac{x}{(x^2 + 4)^2} dx = \dfrac{1}{2} \int \dfrac{du}{u^2}$ \\
+
+$u = x^2 + 4$ \\
+
+$du = 2x dx$ \\
+
+$\dfrac{1}{2} du = x dx$ \\
+
+$\Rightarrow \displaystyle \int \dfrac{x}{(x^2 + 4)^2} dx = \dfrac{1}{2} \int \dfrac{du}{u^2} = \dfrac{-1}{2u} + C = \dfrac{-1}{2(x^2 + 4)} + C$ \\
+
+$\displaystyle \int_{-\infty}^{+\infty} \dfrac{x}{(x^2 + 4)^2} dx = \lim\limits_{a \to -\infty} \left[ \dfrac{-1}{2(x^2 + 4)} \right]_a^0 + \lim\limits_{b \to +\infty} \left[ \dfrac{-1}{2(x^2 + 4)} \right]_0^b$ \\
+
+$= \lim\limits_{a \to -\infty} \left( \dfrac{-1}{8} + \dfrac{1}{2(a^2 + 4)} \right) + \lim\limits_{b \to +\infty} \left( \dfrac{-1}{2(b^2 + 4)} + \dfrac{1}{8} \right)$ \\
+
+$= \dfrac{-1}{8} + 0 + 0 + \dfrac{1}{8} = 0$ \\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,75 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Eray Ayyildiz \\ 
+\noindent \large Studierichting: Informatica \\ 
+\noindent \large Oefeningenreeks 2A nr. 10.1 \\
+
+\medskip
+
+\normalsize
+Bewijs rechtstreeks dat als de reële functies $f$, $g$ en $h$ continu zijn in $a \in \mathbb{R}$, dan ook de volgende functies continu zijn in $a$.\\
+
+$$ f+g+h $$\\
+
+\textbf{Veronderstel}:  
+Als de reële functies  
+$$ f: I \subseteq \mathbb{R} \to \mathbb{R}, \quad  
+g: J \subseteq \mathbb{R} \to \mathbb{R}, \quad  
+h: K \subseteq \mathbb{R} \to \mathbb{R} $$\\ 
+ 
+continu zijn, dan moet $f+g+h: I \cap J \cap K \subseteq \mathbb{R} \to \mathbb{R}$ gedefinieerd worden als:\\  
+
+$$ x \mapsto f(x) + g(x) + h(x) $$\\  
+
+\textbf{Bewijs}: \\  
+
+Voor een element $a \in I \cap J \cap K$, geldt:\\
+  
+$ \varepsilon > 0 \Rightarrow \dfrac{\varepsilon}{3} > 0 $\\  
+
+En omdat $f$, $g$, en $h$ continu zijn, geldt dat er $\delta_1$, $\delta_2$, $\delta_3 > 0$ bestaan zodanig dat:\\  
+
+$$ |x - a| < \delta_1 \Rightarrow |f(x) - f(a)| < \dfrac{\varepsilon}{3}, $$\\  
+
+$$ |x - a| < \delta_2 \Rightarrow |g(x) - g(a)| < \dfrac{\varepsilon}{3}, $$\\ 
+ 
+$$ |x - a| < \delta_3 \Rightarrow |h(x) - h(a)| < \dfrac{\varepsilon}{3}. $$\\  
+
+\textbf{Stel}:\\  
+
+$ \delta = \min(\delta_1, \delta_2, \delta_3) $ dan is $\delta > 0$ en gelden de vorige uitspraken met voorwaarden dat $|x - a| < \delta$.\\  
+
+In dit geval geldt dat:\\
+  
+$$ |(f(x) + g(x) + h(x)) - (f(a) + g(a) + h(a))| = |(f(x) - f(a)) + (g(x) - g(a)) + (h(x) - h(a))| $$\\  
+
+Het resultaat van een aftrekking is altijd groter dan of gelijk aan het oorspronkelijke getal waaruit wordt afgetrokken:\\  
+
+$$ |f(x) - f(a) + g(x) - g(a) + h(x) - h(a)| \leq |f(x) - f(a)| + |g(x) - g(a)| + |h(x) - h(a)| $$\\  
+
+Door gebruik te maken van volgende gelijkheid $|f(x) - f(a)| \leq \dfrac{\varepsilon}{3}$ kunnen we de volgende stap opschrijven:\\  
+
+$$ |f(x) - f(a)| + |g(x) - g(a)| + |h(x) - h(a)| < \dfrac{\varepsilon}{3} + \dfrac{\varepsilon}{3} + \dfrac{\varepsilon}{3} = \varepsilon $$\\  
+
+We kiezen $ \varepsilon = \varepsilon_1 + \varepsilon_2 + \varepsilon_3 $, en er bestaat een $\delta > 0$ zodat:\\  
+
+$$ |x - a| < \delta \Rightarrow |(f(x) - f(a)) + (g(x) - g(a)) + (h(x) - h(a))| < \varepsilon $$\\  
+
+\textbf{Conclusie:}\\  
+
+De functie $f+g+h$ is continu in $a$ wanneer $f$, $g$, en $h$ continu zijn in $a$. \\  
+
+
+
+\begin{thebibliography}{99}
+
+\end{thebibliography}
+
+
+\end{document}

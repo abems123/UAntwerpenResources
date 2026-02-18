@@ -1,0 +1,57 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+\usepackage{cancel}
+
+% Command definities van frequent gebruikte commandos
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Bgsin}{\operatorname{Bgsin}}
+\newcommand{\Bgcos}{\operatorname{Bgcos}}
+\newcommand{\Bgtan}{\operatorname{Bgtan}}
+\newcommand{\cis}{\operatorname{cis}}
+\newcommand{\Limit}{\lim\limits_}
+
+\begin{document}
+  
+\noindent \large Auteur: Wout Vanderborght\\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 3H nr. 5.4\\
+
+\medskip
+
+\normalsize
+
+Bestudeer de functie met volgende poolvergelijking: \\
+
+$r = \dfrac{1}{2} +\sin(\theta)$ \\
+
+Deze functie is periodisch met periode $2\pi$ dus we beperken ons tot $\left[0, 2\pi\right]$. \\
+
+Nulpunten: $\left\{\dfrac{7\pi}{6}, \dfrac{11\pi}{6} \right\}$ \\
+
+$r' = \cos(\theta)$ \\
+
+Nulpunten: $\left\{\dfrac{\pi}{2}, \dfrac{3\pi}{2} \right\}$ \\
+
+\begin{tabular}{c|ccccccccccc}
+ $\theta$ & 0 & & $\dfrac{\pi}{2}$ & & $\dfrac{7\pi}{6}$ & & $\dfrac{3\pi}{2}$ & & $\dfrac{11\pi}{6}$ & & $2\pi$ \\ \hline
+ $r(\theta)$ & $+$ & $+$ & $+$ & $+$ & $0$ & $-$ & $-$ & $-$ & $0$ & $+$ & $+$ \\
+ $r'(\theta)$ & $+$ & $+$ & $0$ & $-$ & $-$ & $-$ & $0$ & $+$ & $+$ & $+$ & $+$ \\ \hline
+ $r(\theta)$ & $\nearrow$ & $\nearrow$ & $M\left(\dfrac{3}{2}\right)$ & $\searrow$ & $\searrow$ & $\searrow$ & $m\left(\dfrac{-1}{2}\right)$ & $\nearrow$ & $\nearrow$ & $\nearrow$ & $\nearrow$ \\
+\end{tabular} \\
+
+Tekening: \\
+
+\begin{figure}[h]
+    \includegraphics[width=8cm]{3H-5.4-wout.vanderborght.INF.png} \\ 
+\end{figure}
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

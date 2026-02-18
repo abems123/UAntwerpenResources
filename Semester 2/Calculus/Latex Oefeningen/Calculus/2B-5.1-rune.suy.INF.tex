@@ -1,0 +1,36 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}  
+
+\newcommand{\degree}{^{\circ}}
+\newcommand{\cis}{\operatorname{cis}}
+\newcommand{\Bgsin}{\operatorname{Bgsin}}
+\newcommand{\Bgcos}{\operatorname{Bgcos}}
+\newcommand{\Bgtan}{\operatorname{Bgtan}}
+
+\begin{document}
+  
+\noindent \large Auteur: Rune Suy \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 2B nr. 5.1\\
+
+\medskip
+
+\normalsize
+
+Bereken: $\forall x \ge 0: \Bgsin x + \Bgcos x$\\
+
+$\Bgsin x + \Bgcos x = \Bgsin(\sin \alpha) + \Bgcos(\sin \alpha)$ \\
+
+met $\sin \alpha = x$ en $\alpha \in \left[ \dfrac{-\pi}{2}, \dfrac{\pi}{2} \right]$ \\
+
+$= \alpha + \Bgcos(\sin \alpha) = \alpha + \dfrac{\pi}{2} - \alpha = \dfrac{\pi}{2}$\\
+
+want $\dfrac{\pi}{2} \in \left[0, \dfrac{\pi}{2}\right]$ en $\cos\left(\dfrac{\pi}{2}-\alpha\right) = \sin \alpha \Rightarrow \Bgcos(\sin \alpha) = \dfrac{\pi}{2} - \alpha$\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

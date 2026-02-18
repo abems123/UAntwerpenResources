@@ -1,0 +1,68 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}    
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+
+
+\begin{document}
+  
+\noindent \large Auteur: Siebe Mees \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 15.5\\
+
+\medskip
+
+\normalsize
+
+$\displaystyle\int (x^2-x-4) e^x dx $\\
+
+$ \left( \displaystyle\int u dv = uv - \displaystyle\int vdu \right) $\\
+
+$\left\{
+   \begin{array}{l}
+       u = x^2-x-4\\
+       dv = e^xdx
+   \end{array}
+\right.
+\Rightarrow
+\left\{
+   \begin{array}{l}
+       du = (2x-1)dx \\
+       v = e^x
+   \end{array}
+\right.$
+
+$ = (x^2-x-4)e^x - \displaystyle\int (2x-2)e^x dx $\\
+
+$ \left( \displaystyle\int u dv = uv - \displaystyle\int vdu \right) $\\
+
+$\left\{
+   \begin{array}{l}
+       u = 2x-1\\
+       dv = e^dx
+   \end{array}
+\right.
+\Rightarrow
+\left\{
+   \begin{array}{l}
+       du = 2dx \\
+       v = e^x
+   \end{array}
+\right.$
+
+$ = (x^2-x-4)e^x - (2x-1)e^x - \displaystyle\int 2e^x dx $\\
+
+$ = (x^2-x-4)e^x - (2x-1)e^x - 2e^x $ \\
+
+$ = (x^2-x-4)e^x - (2x-3)e^x $ \\
+
+$ = (x^2-x-4 - 2x+3)e^x $ \\
+
+$ = (x^2-3x -1)e^x + C $ \\
+
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

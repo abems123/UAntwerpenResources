@@ -1,0 +1,57 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Ahmed Meiyaki \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 5A nr. 11.7\\
+
+\medskip
+
+\newcommand{\Bgtan}{\operatorname{Bgtan}}
+
+\normalsize
+
+$I = \displaystyle\int_{0}^{1} \dfrac{x^2 \Bgtan(x)}{1 + x^2} dx $\\
+
+$= \displaystyle\int_{0}^{1} \dfrac{\left(x^2 + 1 - 1\right) \Bgtan(x)}{1 + x^2} dx $\\
+
+$= \displaystyle\int_{0}^{1} \left(\Bgtan(x) - \dfrac{\Bgtan(x)}{1 + x^2}\right) dx $\\
+
+$I_1 = \displaystyle\int_{0}^{1} \Bgtan(x) dx $\\
+
+$=  \left[x\cdot\Bgtan(x)\right]_{0}^{1} - \displaystyle\int_{0}^{1} \dfrac{x}{1 + x^2}dx $\\
+
+$= \dfrac{\pi}{4} - \displaystyle\int_{0}^{1} \dfrac{x}{1 + x^2}dx $\\
+
+Stel $t = 1 + x^2 $\\
+
+$\Rightarrow dt = 2xdx $\\
+
+$\Rightarrow \dfrac{1}{2}dt = xdx $\\
+
+$I_1 = \dfrac{\pi}{4} - \dfrac{1}{2} \displaystyle\int_{1}^{2} \dfrac{1}{t} dt $\\
+
+$= \dfrac{\pi}{4} - \dfrac{\ln2}{2} $\\
+
+$I_2 = \displaystyle\int_{0}^{1}\dfrac{\Bgtan(x)}{1 + x^2} dx $\\
+
+Stel $t = \Bgtan(x) $\\
+
+$\Rightarrow dt = \dfrac{1}{1+x^2} dx$\\
+
+$I_2 = \displaystyle\int_{0}^{\tfrac{\pi}{4}}tdt = \dfrac{\pi^2}{32} $\\
+
+$I = \dfrac{\pi}{4} - \dfrac{\ln2}{2} - \dfrac{\pi^2}{32} $\\
+
+
+
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

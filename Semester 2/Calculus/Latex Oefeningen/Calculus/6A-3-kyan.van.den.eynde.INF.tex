@@ -1,0 +1,38 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Kyan Van den Eynde \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 6A nr. 3\\
+
+\medskip
+
+\normalsize
+
+$x_k = ak^2 + bk + c$\\
+
+$x_{k+1} = a(k+1)^2 + b(k+1) + c = a(k^2+2k+1) + b(k+1) + c$\\
+
+$x_{k+2} = a(k+2)^2 + b(k+2) + c = a(k^2+4k+4) + b(k+2) + c$\\
+
+$x_{k+3} = a(k+3)^2 + b(k+3) + c = a(k^2+6k+9) + b(k+3) + c$\\
+
+$x_k -3x_{k+1} + 3x_{k+2} - x_{k+3} = [ak^2+bk+c] - 3[a(k^2+2k+1)+b(k+1)+c] + 3[a(k^2+4k+4) + b(k+2) + c] - [a(k^2+6k+9) + b(k+3) + c]$\\
+
+$ak^2-3a(k^2+2k+1) + 3a(k^2+4k+4) - a(k^2+6k+9) = 0$\\
+
+$bk-3b(k+1)+3b(k+2)-b(k+3) = 0$\\
+
+$c-3c+3c-c = 0$\\
+
+$\Rightarrow x_k -3x_{k+1} + 3x_{k+2} - x_{k+3} = 0$ met $a,b,c \in \mathbb{R}$\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

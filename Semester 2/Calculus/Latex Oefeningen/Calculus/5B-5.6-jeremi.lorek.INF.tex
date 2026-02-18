@@ -1,0 +1,46 @@
+\documentclass[a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\begin{document}
+
+\noindent \large Auteur: Jeremi Lorek\\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 5B nr. 5.6\\
+
+\medskip
+\normalsize
+
+$\displaystyle \int_0^{1-} \operatorname{Bgsin} x  dx$ \\
+
+$\Rightarrow \displaystyle \int \operatorname{Bgsin} x  dx$ \\
+
+$\left\{
+   \begin{array}{l}
+       u = \operatorname{Bgsin} x \\
+       dv = dx
+   \end{array}
+\right.
+\Rightarrow
+\left\{
+   \begin{array}{l}
+       du = \dfrac{1}{\sqrt{1 - x^2}} dx \\
+       v = x
+   \end{array}
+\right.$ \\
+
+$= x \operatorname{Bgsin} x - \displaystyle \int \dfrac{x}{\sqrt{1 - x^2}} dx$ \\
+
+$= x \operatorname{Bgsin} x + \dfrac{1}{2} \displaystyle \int \dfrac{d(1 - x^2)}{\sqrt{1 - x^2}}$ \\
+
+$= x \operatorname{Bgsin} x + \sqrt{1 - x^2} + C$ \\
+
+$\Rightarrow \displaystyle \int_0^{1-} \operatorname{Bgsin} x  dx = \left[ x \operatorname{Bgsin} x + \sqrt{1 - x^2} \right]_0^1$ \\
+
+$= \operatorname{Bgsin}(1) - 1 = \dfrac{\pi}{2} - 1$ \\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+
+\end{document}

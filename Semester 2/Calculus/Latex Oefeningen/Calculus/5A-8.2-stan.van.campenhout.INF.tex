@@ -1,0 +1,28 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Stan Van Campenhout \\
+\noindent \large Studierichting:  Informatica\\
+\noindent \large Oefeningenreeks 5A nr. 8.2\\
+
+\medskip
+
+\normalsize
+
+$ \displaystyle\int\limits_{-\tfrac{1}{2}}^1\sqrt{1-x^2}dx $\\
+
+O.I. $ = \displaystyle\int\sqrt{1-x^2}dx = \stackrel{x = \sin t}{=} \displaystyle\int\cos^2tdt = \displaystyle\int\dfrac{1+\cos 2t}{2}dt$\\
+
+$ = \dfrac{1}{2}t + \dfrac{1}{4}\sin 2t + c \stackrel{t = \operatorname{Bgtan}x}{=} \dfrac{\operatorname{Bgtan}x}{2} + \dfrac{\sin\left(2\operatorname{Bgsin}x\right)}{4} + c $\\
+
+$ \Rightarrow $ B.I. $ =  \left[ \dfrac{\operatorname{Bgtan}x}{2} + \dfrac{\sin\left(2\operatorname{Bgsin}x\right)}{4}\right]_{-\tfrac{1}{2}}^1 = \dfrac{\pi}{3} + \dfrac{\sqrt{3}}{8} $\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

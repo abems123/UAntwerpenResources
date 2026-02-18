@@ -1,0 +1,44 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\dom}{\operatorname{dom}}
+\newcommand{\ber}{\opperatorname{imm}}
+\newcommand{\llim}{\lim\limits}
+\newcommand{\bint}{\displaystyle\int}
+ 
+
+\begin{document}
+  
+\noindent \large Auteur: Nik Van Daele \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 31.1\\
+
+\medskip
+
+\normalsize
+
+$\bint (3x + 5) \sqrt{x - 2} \ dx$ Neem $t = x - 2$\\
+
+$=\bint (3(x - 2 + 2) + 5)\sqrt{t} \ dt$\\
+
+$=\bint (3(t + 2) + 5) \sqrt{t} \ dt$\\
+
+$=\bint (3t + 11) \sqrt{t} \ dt$\\
+
+$=\bint \left(3t\sqrt{t} + 11\sqrt{t}\right) \ dt$\\
+
+$=\bint \left(3t^{\tfrac{3}{2}} + 11t^{\tfrac{1}{2}}\right) \ dt$\\
+
+$= \dfrac{6t^{\tfrac{5}{2}}}{5} + \dfrac{22t^{\tfrac{3}{2}}}{3} + c$\\
+
+$= \dfrac{6\sqrt{(x-2)^5}}{5} + \dfrac{22\sqrt{(x-2)^3}}{3} + c$\\
+
+
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

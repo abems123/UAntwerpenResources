@@ -1,0 +1,30 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Tyas Hermans \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 3A nr. 5\\
+
+\medskip
+
+\normalsize
+
+$\dfrac{d}{dx}(x\sqrt{x})$\\
+
+$f(x+h) = (x+h)\sqrt{x+h}$\\
+
+$f(x+h) - f(x) = (x+h)\sqrt{x+h} - x\sqrt{x} = \dfrac{(x+h)^3-x^3}{(x+h)\sqrt{x+h}+x\sqrt{x}} = \dfrac{3x^2h+3xh^2+h^3}{(x+h)\sqrt{x+h}+x\sqrt{x}}$\\
+
+$\dfrac{f(x+h) - f(x)}{h} = \dfrac{3x^2h+O(h^2)}{h((x+h)\sqrt{x+h}+x\sqrt{x})} = \dfrac{3x^2+O(h)}{(x+h)\sqrt{x+h}+x\sqrt{x}}$\\
+
+$\lim\limits_{h\rightarrow 0} \dfrac{3x^2+O(h)}{(x+h)\sqrt{x+h}+x\sqrt{x}} = \dfrac{3x^2}{2x^{\frac{3}{2}}}  = \dfrac{3\sqrt{x}}{2}$\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

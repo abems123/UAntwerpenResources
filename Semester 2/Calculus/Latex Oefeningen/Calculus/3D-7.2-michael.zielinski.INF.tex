@@ -1,0 +1,108 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts,amsmath,amssymb,graphicx}
+
+\begin{document}
+
+\noindent \large Auteur: Michael Zielinski \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 3D nr. 7.2 \\
+
+\normalsize
+
+Bepaal de extrema van $f(x)=e^x\sin x$. \\
+
+\section*{1. Eerste afgeleide}
+
+$f'(x)=\dfrac{d}{dx}(e^x\sin x)$ \\
+
+$=\left(\dfrac{d}{dx}e^x\right)\sin x
++ e^x\left(\dfrac{d}{dx}\sin x\right)$ \\
+
+$=e^x\sin x + e^x\cos x$ \\
+
+$=e^x\left(\sin x+\cos x\right)$ \\
+
+\section*{2. Kritische punten}
+
+We zoeken $f'(x)=0$. \\
+
+$e^x\left(\sin x+\cos x\right)=0$ \\
+
+Omdat $e^x>0$ voor alle $x$ geldt: \\
+
+$\sin x+\cos x=0$ \\
+
+$\Leftrightarrow\sin x=-\cos x$ \\
+
+$\Leftrightarrow\tan x=-1$ \\
+
+$\Leftrightarrow x_k=-\dfrac{\pi}{4}+k\pi,\;k\in\mathbb{Z}$ \\
+
+\section*{3. Tweede afgeleide}
+
+$f''(x)=\dfrac{d}{dx}\left(e^x(\sin x+\cos x)\right)$ \\
+
+$=\left(\dfrac{d}{dx}e^x\right)(\sin x+\cos x)
++ e^x\left(\dfrac{d}{dx}(\sin x+\cos x)\right)$ \\
+
+$=e^x(\sin x+\cos x) + e^x(\cos x-\sin x)$ \\
+
+$=2e^x\cos x$ \\
+
+Daarom: \\
+
+$f''(x_k)=2e^{x_k}\cos x_k
+=2e^{x_k}\dfrac{\sqrt{2}}{2}(-1)^k
+=\sqrt{2}e^{x_k}(-1)^k$ \\
+
+\section*{4. Classificatie en specificatie}
+
+Uit $x_k=-\dfrac{\pi}{4}+k\pi$ onderscheiden we:
+
+\begin{itemize}
+\item Stel $k=2n$ (even). \\
+
+  $x_{2n}=-\dfrac{\pi}{4}+2n\pi$. \\
+
+  Dan $(-1)^{2n}=+1$, dus $f''(x_{2n})>0$. \\
+
+  $\Rightarrow$ lokaal minimum bij \\
+
+  $x=-\dfrac{\pi}{4}+2n\pi,\;n\in\mathbb{Z}$ \\
+
+\item Stel $k=2n+1$ (oneven). \\
+
+  $x_{2n+1}=-\dfrac{\pi}{4}+(2n+1)\pi
+  =-\dfrac{\pi}{4}+2n\pi+\pi
+  =\dfrac{3\pi}{4}+2n\pi$. \\
+
+  Dan $(-1)^{2n+1}=-1$, dus $f''(x_{2n+1})<0$. \\
+
+  $\Rightarrow$ lokaal maximum bij \\
+
+  $x=\dfrac{3\pi}{4}+2n\pi,\;n\in\mathbb{Z}$ \\
+
+\end{itemize}
+
+\section*{5. Waarden in de extrema}
+
+$f(x_k)=e^{x_k}\sin x_k
+=e^{x_k}\left(-\dfrac{\sqrt{2}}{2}(-1)^k\right)
+=-\dfrac{\sqrt{2}}{2}(-1)^k e^{x_k}$ \\
+
+\begin{itemize}
+\item Lokaal minimum ($k=2n$): \\
+
+  $x=-\dfrac{\pi}{4}+2n\pi,\;f(x)=-\dfrac{\sqrt{2}}{2}\,e^{-\tfrac{\pi}{4}+2n\pi}$. \\
+
+\item Lokaal maximum ($k=2n+1$): \\
+
+  $x=\dfrac{3\pi}{4}+2n\pi,\;f(x)=+\dfrac{\sqrt{2}}{2}\,e^{\tfrac{3\pi}{4}+2n\pi}$. \\
+
+\end{itemize}
+
+\begin{thebibliography}{9}
+% \bibitem{ref} Referentie
+\end{thebibliography}
+
+\end{document}

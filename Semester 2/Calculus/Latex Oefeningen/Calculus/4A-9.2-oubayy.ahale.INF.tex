@@ -1,0 +1,37 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\newcommand{\dint}{\displaystyle\int}
+\newcommand{\llim}{\lim\limits}
+
+\begin{document}
+  
+\noindent \large Auteur: Oubayy Ahale          \\
+\noindent \large Studierichting: Informatica   \\
+\noindent \large Oefeningenreeks 4A nr. 9.2   \\
+
+\medskip
+
+\normalsize
+
+$\dint (\cos x - \sin x)^2  dx$\\
+
+$= \dint (\cos^2 x - 2 \cos x \sin x + \sin^2 x)  dx$\\
+
+$= \dint (1 - 2 \cos x \sin x) dx$\\
+
+Gebruik de identiteit: $\sin(2x) = 2 \sin x \cos x$\\
+
+$\Rightarrow \dint (1 - \sin(2x)) dx$\\
+
+$= \dint 1 dx - \dint \sin(2x) dx$\\
+
+$= x + \dfrac{1}{2} \cos(2x) + C$\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

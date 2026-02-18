@@ -1,0 +1,38 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Sabawoon Enayat \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 41.12 \\
+
+\newcommand{\dint}{\displaystyle\int}
+
+\medskip
+
+\normalsize
+
+Opgave: $I = \dint \dfrac{dx}{\sqrt{x^2 + 5x + 8}}$\\
+
+$(x - a)^2 = x^2 + 5x + b \Rightarrow D = 5^5 - 4 \cdot 1 \cdot b = 25 - 4b = 0$\\
+
+$\Rightarrow b = \dfrac{25}{4} \overset{4 * 8 = 32}{\Rightarrow} 8 = \dfrac{25}{4} + \dfrac{7}{4} $\\
+
+$I =\dint \dfrac{dx}{\sqrt{\left(x^2 + 5x + \dfrac{25}{4}\right) + \dfrac{7}{4}}}$\\
+
+$\Rightarrow D = 0 \Rightarrow x = \dfrac{-5}{2}$\\
+
+$I = \dint \dfrac{dx}{\sqrt{\left(x + \dfrac{5}{2}\right)^2 + \dfrac{7}{4}}}$\\
+
+$I = \dint \dfrac{d\left(x + \dfrac{5}{2}\right)}{\sqrt{\left(x + \dfrac{5}{2}\right)^2 + \dfrac{7}{4}}}$\\
+
+$= \ln \left|x + \dfrac{5}{2} + \sqrt{\left(x + \dfrac{5}{2}\right)^2 + \dfrac{7}{4}}\right| + c$\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

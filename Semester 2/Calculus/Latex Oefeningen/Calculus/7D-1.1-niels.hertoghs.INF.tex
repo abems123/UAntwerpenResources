@@ -1,0 +1,42 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}  
+
+\begin{document}
+  
+\noindent \large Auteur: Niels Hertoghs \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 7D nr. 1.1\\
+
+\medskip
+
+\normalsize
+
+$f(x,y) = x^3 + x^2y^3-3y^4$ in $(1,-1)$, graad 2\\
+
+$f(1,-1) = -3$\\
+
+$\dfrac{\partial f}{\partial x}(x,y) = 3x^2+2xy^3 \Rightarrow \dfrac{\partial f}{\partial x}(1,-1) = 1$\\
+
+$\dfrac{\partial f}{\partial y}(x,y) = 3x^2y^2-12y^3 \Rightarrow \dfrac{\partial f}{\partial y}(1,-1) = 15$\\
+
+$\dfrac{\partial^2 f}{\partial x^2}(x,y) = 6x+3y^3 \Rightarrow \dfrac{\partial^2 f}{\partial x^2}(1,-1) = 4$\\
+
+$\dfrac{\partial^2 f}{\partial y^2}(x,y) = 6x^y-36y^2 \Rightarrow \dfrac{\partial^2 f}{\partial y^2}(1,-1) = -42$\\
+
+$\dfrac{\partial^2 f}{\partial x \partial y}(x,y) = \dfrac{\partial^2 f}{\partial y \partial x}(x,y) = 6xy^2$\\
+
+$\Rightarrow \dfrac{\partial^2 f}{\partial x \partial y}(1,-1) = \dfrac{\partial^2 f}{\partial y \partial x}(1,-1) = 6$\\
+
+$T_2(x,y) = f(a,b) + \dfrac{\partial f}{\partial y}(a,b)(y-b) + \dfrac{\partial f}{\partial x}(a,b)(x-a)$\\
+
+$  + \dfrac{1}{2}\left[\dfrac{\partial^2 f}{\partial x^2}(a,b)(x-a)^2 + \dfrac{\partial^2 f}{\partial x \partial y}(a,b)(x-a)(y-b) + \dfrac{\partial^2 f}{\partial y^2}(a,b)(y-b)^2\right]$\\
+
+$ = -14 +3x -33y +2x^2 -21y^2 + 6xy$\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

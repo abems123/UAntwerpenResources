@@ -1,0 +1,49 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+
+\newcommand{\dint}{\displaystyle\int}
+\newcommand{\llim}{\lim\limits}
+\newcommand{\Bgtan}{\operatorname{Bgtan}}
+
+\begin{document}
+
+\noindent \large Auteur: Oubayy Ahale       \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 7E nr. 1.2 \\
+
+\medskip
+
+\normalsize
+
+Bepaal van de volgende functies van twee variabelen de kritieke punten, en ga na of de functie in die punten een extremum bereikt.\\
+
+$ f(x,y) = \left(x^2 + y^2\right) \cdot e^{-\left(x^2 + y^2\right)} $\\
+
+Stel $ t = x^2 + y^2 \ge 0$\\
+
+$ \Rightarrow f(t) = te^{-t} $\\
+
+$ f'(t) = e^{-t}(1 - t)  $\\
+
+\[
+\begin{array}{c|cccc}
+ t & 0 &  & 1 &  \\
+ \hline
+ f'(t) & + & + & 0 & - \\
+ f(t)  & m(0) & \nearrow & M(1) & \searrow
+\end{array}
+\]\\
+
+De kritieke punten zijn dus:\\
+
+$ t = 0 \Leftrightarrow (x,y) = (0,0)$ en $ t = 1 \Leftrightarrow x^2 + y^2 = 1 $\\
+
+$f$ bereikt een maximum in alle punten waarvoor: $x^2 + y^2 = 1$ geldt en een minimum in $(0,0)$\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document}

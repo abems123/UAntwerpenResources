@@ -1,0 +1,44 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Victoria Mazur \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 1E nr. 41\\
+
+\medskip
+
+\normalsize
+
+$A(z) = A(z - 1) + z(z - 1)$ \\
+
+$A(z) = az^3 + bz^2 + cz$ \\
+
+$az^3 + bz^2 + cz = a(z - 1)^3 + b(z - 1)^2 + c(z - 1) + z(z - 1)$ \\
+
+$az^3 + bz^2 + cz = a(z^3 - 3z^2 + 3z - 1) + b(z^2 - 2z + 1) + c(z - 1) + z^2 - z$ \\
+
+$az^3 + bz^2 + cz = az^3 + (-3a + b + 1)z^2 + (3a - 2b + c - 1)z + (-a + b - c)$ \\
+
+Vergelijken van co\"effici\"enten: \\
+
+$\left\{
+\begin{array}{l}
+-3a + b + 1 = 0 \\
+3a - 2b + c - 1 = 0 \\
+-a + b - c = 0
+\end{array}
+\right.$ \\
+
+Uit het stelsel: $a = \dfrac{1}{3}$, $b = \dfrac{1}{2}$, $c = \dfrac{1}{6}$ \\
+
+$A(z) = \dfrac{1}{3}z^3 + \dfrac{1}{2}z^2 + \dfrac{1}{6}z = \dfrac{1}{3}z(z + 1)(z + 2)$ \\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document}

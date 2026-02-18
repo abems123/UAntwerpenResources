@@ -1,0 +1,28 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Stan Van Campenhout \\
+\noindent \large Studierichting:  Informatica\\
+\noindent \large Oefeningenreeks 5A nr. 6.8\\
+
+\medskip
+
+\normalsize
+
+$ \displaystyle\int\limits_0^1x\left(x-1\right)^8dx $\\
+
+O.I. $ =  \displaystyle\int x\left(x-1\right)^8dx \stackrel{t = 1-x}{=} -\displaystyle\int\left(1-t\right)t^8dt = \displaystyle\int t^9-t^8dt $\\
+
+$ = \dfrac{t^{10}}{10}-\dfrac{t^9}{9} + c \stackrel{t = 1-x}{=} \dfrac{\left(1-x\right)^{10}}{10}-\dfrac{\left(1-x\right)^9}{9} + c $\\
+
+$ \Rightarrow $ B.I. $ = \left[\dfrac{\left(1-x\right)^{10}}{10}-\dfrac{\left(1-x\right)^9}{9}\right]_0^1 = -\left(\dfrac{1}{10}-\dfrac{1}{9}\right) = \dfrac{1}{90} $\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

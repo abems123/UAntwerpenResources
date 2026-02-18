@@ -1,0 +1,33 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}    
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+
+\begin{document}
+
+\noindent \large Auteur: Karanjot Singh \\
+\noindent \large Studierichting: Informatica \\
+\noindent \large Oefeningenreeks 4A nr. 35.4 \\
+
+\normalsize
+
+$\displaystyle\int 7^{2x + 5} dx$ \\
+
+Stel $u = 2x + 5 \Rightarrow du = 2 dx \Rightarrow dx = \dfrac{1}{2} du$ \\
+
+$\displaystyle\int 7^{2x + 5} dx = \displaystyle\int 7^u \cdot \dfrac{1}{2} du = \dfrac{1}{2} \displaystyle\int 7^u du$ \\
+
+We weten dat de integraal van $a^u$ gelijk is aan $\dfrac{a^u}{\ln a}$: \\
+
+$\dfrac{1}{2} \displaystyle\int 7^u du = \dfrac{1}{2} \cdot \dfrac{7^u}{\ln 7} + C = \dfrac{7^u}{2 \ln 7} + C$ \\
+
+Dus: \\
+
+$\displaystyle\int 7^{2x + 5} dx = \dfrac{7^{2x + 5}}{2 \ln 7} + C$ \\
+
+\begin{thebibliography}{999}
+	%\bibitem{a} Referentie
+\end{thebibliography}
+
+\end{document}

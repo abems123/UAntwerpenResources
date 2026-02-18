@@ -1,0 +1,38 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\newcommand{\Bgtan}{\operatorname{Bgtan}}
+
+\begin{document}
+  
+\noindent \large Auteur: Torben Petré \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 20.12\\
+
+\medskip
+
+\normalsize
+
+Bereken de volgende onbepaalde integraal van een hyperbolisch-goniometrische functie $\displaystyle\int \sinh^3 x\cosh^2 xdx$\\
+
+$= \displaystyle\int \cosh^2 x\sinh^2 x\cdot\sinh xdx$\\
+
+$= \displaystyle\int \cosh^2 x(\cosh^2 x - 1)\sinh xdx$\\
+
+$u = \cosh, du = \sinh xdx$ \\
+
+$= \displaystyle\int u^2(u^2 - 1)du$\\
+
+$= \displaystyle\int u^4du - \displaystyle\int u^2du$\\
+
+$= \dfrac{u^5}{5} - \dfrac{u^3}{3} + C$\\
+
+$= \dfrac{\cosh^5 x}{5} - \dfrac{\cosh^3 x}{3} + C$\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

@@ -1,0 +1,43 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Noran Ben Said \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 6B nr. 17.6\\
+
+\medskip
+
+\normalsize
+
+$1^2 \cdot 4 + 2^2 \cdot 5 + \dots + n^2(n + 3)$ \\
+
+$= s_3(n) + 3 \cdot s_2(n)$ \\
+
+waarbij: \\
+
+$s_3(n) = \displaystyle\sum\limits_{k=1}^{n} k^2 \cdot k = \displaystyle\sum\limits_{k=1}^{n} k^3 = \left( \dfrac{n(n+1)}{2} \right)^2 = \dfrac{n^2(n+1)^2}{4}$ \\
+
+$s_2(n) = \displaystyle\sum\limits_{k=1}^{n} k^2 = \dfrac{n(n+1)(2n+1)}{6}$ \\
+
+Dus: \\
+
+$= \dfrac{n^2(n+1)^2}{4} + 3 \cdot \dfrac{n(n+1)(2n+1)}{6}$ \\
+
+$= \dfrac{n^4}{4} + \dfrac{n^3}{2} + \dfrac{n^2}{4} + 3 \cdot \left( \dfrac{n^3}{3} + \dfrac{n^2}{2} + \dfrac{n}{6} \right)$ \\
+
+$= \dfrac{n^4}{4} + \dfrac{3 \cdot n^3}{2} + \dfrac{7 \cdot n^2}{4} + \dfrac{n}{2}$ \\
+
+$= \dfrac{1}{4}n(n+1)(n^2 + 5n + 2)$ \\
+
+Omdat $n$ of $n+1$ even is en $n^2 + 5n + 2$ altijd even is, is de teller dus deelbaar door $4$. \\
+
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

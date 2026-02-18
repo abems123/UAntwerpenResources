@@ -1,0 +1,48 @@
+\documentclass[a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\begin{document}
+
+\noindent \large Auteur: Jeremi Lorek\\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 18.13\\
+
+\medskip
+\normalsize
+
+$\displaystyle \int \dfrac{x - \sin x}{2 \sin^2 \left( \dfrac{x}{2} \right)} dx$ \\
+
+$= \dfrac{1}{2} \displaystyle \int \dfrac{x}{\sin^2 \left( \dfrac{x}{2} \right)} dx - \dfrac{1}{2} \int \dfrac{\sin x}{\sin^2 \left( \dfrac{x}{2} \right)} dx$ \\
+
+$
+\left\{
+   \begin{array}{l}
+       u = x \\
+       dv = \dfrac{dx}{\sin^2 \left( \dfrac{x}{2} \right)} \\
+   \end{array}
+\right.
+\Rightarrow
+\left\{
+   \begin{array}{l}
+       du = dx \\
+       v = -2 \cot \left( \dfrac{x}{2} \right) \\
+   \end{array}
+\right.
+$ \\
+
+$= \dfrac{1}{2} \left( -2x \cot \left( \dfrac{x}{2} \right) + 2 \displaystyle \int \cot \left( \dfrac{x}{2} \right) dx \right) - \dfrac{1}{2} \displaystyle \int \dfrac{\sin x}{\sin^2 \left( \dfrac{x}{2} \right)} dx$ \\
+
+$= -x \cot \left( \dfrac{x}{2} \right) + \displaystyle \int \cot \left( \dfrac{x}{2} \right) dx - \dfrac{1}{2} \int \dfrac{2 \sin \left( \dfrac{x}{2} \right) \cos \left( \dfrac{x}{2} \right)}{\sin^2 \left( \dfrac{x}{2} \right)} dx$ \\
+
+$= -x \cot \left( \dfrac{x}{2} \right) + \displaystyle \int \cot \left( \dfrac{x}{2} \right) dx - \int \dfrac{\cos \left( \dfrac{x}{2} \right)}{\sin \left( \dfrac{x}{2} \right)} dx$ \\
+
+$= -x \cot \left( \dfrac{x}{2} \right) + \displaystyle \int \cot \left( \dfrac{x}{2} \right) dx - \int \cot \left( \dfrac{x}{2} \right) dx$ \\
+
+$= -x \cot \left( \dfrac{x}{2} \right) + C $ \\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,54 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Shahin Jamal \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 1C nr. 30\\
+
+\medskip
+
+\normalsize
+
+Bewijs dat:
+
+\[
+\dfrac{\cos \alpha + i \sin \alpha}{\cos \alpha - i \sin \alpha} = \cos 2\alpha + i \sin 2\alpha
+\]
+
+Bewijs:\\
+
+LL: $\dfrac{\cos \alpha + i \sin \alpha}{\cos \alpha - i \sin \alpha} = \dfrac{(\cos \alpha + i \sin \alpha)(\cos \alpha + i \sin \alpha)}{(\cos \alpha - i \sin \alpha)(\cos \alpha + i \sin \alpha)}$\\
+
+Noemer:\\
+
+$(\cos \alpha - i \sin \alpha)(\cos \alpha + i \sin \alpha) = \cos^2 \alpha + \sin^2 \alpha = 1$\\
+
+Dus we krijgen:\\
+
+$(\cos \alpha + i \sin \alpha)^2 = \cos^2 \alpha - \sin^2 \alpha + 2i \cos \alpha \sin \alpha$\\
+
+Gebruik de formules voor dubbele hoek:
+
+\[
+\cos 2\alpha = \cos^2 \alpha - \sin^2 \alpha
+\]
+\[
+\sin 2\alpha = 2 \cos \alpha \sin \alpha
+\]
+
+Na gebruik van deze formules krijgen we:
+
+\[
+\cos 2\alpha + i \sin 2\alpha
+\]
+
+QED
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

@@ -1,0 +1,45 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\newcommand{\R}{\mathbb{R}}
+\begin{document}
+  
+\noindent \large Auteur: Sadia Nazary \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 2A nr. 6\\
+
+\medskip
+
+\normalsize
+
+$f:\R\rightarrow\R:x\mapsto x^2 - 1 \quad (a = 2)$
+
+\medskip
+
+Pak: $\varepsilon > 0$\\
+
+Stel: $\delta = \min\left(1, \dfrac{\varepsilon}{5}\right)$\\
+
+Als $|x - 2| < \delta$, dan is:\\
+
+\[
+|f(x) - f(2)| = |x^2 - 1 - (2^2 - 1)| = |x^2 - 4| = |x - 2||x + 2|
+\]
+
+Aangezien $|x - 2| < 1$, ligt $x$ tussen $1$ en $3$, dus $|x + 2| \leq 5$
+
+\[
+\Rightarrow |f(x) - f(2)| = |x - 2||x + 2| < \delta \cdot 5 \leq \dfrac{\varepsilon}{5} \cdot 5 = \varepsilon
+\]
+
+Dus voor deze $\delta$ geldt: als $|x - 2| < \delta$, dan is $|f(x) - f(2)| < \varepsilon$\\
+
+\textbf{Conclusie:} $f$ is continu in $a = 2$.
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document}

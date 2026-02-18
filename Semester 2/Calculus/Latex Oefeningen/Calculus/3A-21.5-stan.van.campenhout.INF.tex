@@ -1,0 +1,50 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Stan Van Campenhout \\
+\noindent \large Studierichting:  Informatica\\
+\noindent \large Oefeningenreeks 3A nr. 21.5\\
+
+\medskip
+
+\normalsize
+
+$ A(x) = x^8 - 2x^7 +2x^6 - 2x^5 - 4x^4 + 10x^3 - 4x^2 - 2x + 1 $\\
+
+Te Bewijzen: $ (x - 1)^2 | A(x) $\\
+
+Geweten: Als $ (x - a) | A(x), (x - a) | A'(x) \Rightarrow (x - a)^2 | A(x) $\\
+
+Hier geldt: $ a = 1 $\\
+
+$ A'(x) = 8x^7 - 14x^6 + 12x^5 - 10x^4 - 16x^3 + 30x^2 - 8x - 2 $\\
+
+ $$ \begin{array}{c|rrrrrrrrr}     
+&1 &-2 &2 &-2 &-4 &10 &-4 &-2 &1  \\  
+1 & \downarrow  &1 &-1 &1 &-1 &-5 &5 &1 &-1 \\ \hline
+ &1 &-1 &1 &-1 &-5 &5 &1 & \multicolumn{1}{c|}{-1}  &0
+\end{array} $$ \\
+
+$ \Rightarrow  (x - 1) | A(x) $\\
+
+ $$ \begin{array}{c|rrrrrrrr}     
+&8 &-14 &12 &-10 &-16 &30 &-8 &-2  \\  
+1 & \downarrow  &8 &-6 &6 &-4 &-20 &10 &2 \\ \hline
+ &8 &-6 &6 &-4 &-20 &10 & \multicolumn{1}{c|}{2}  &0
+\end{array} $$ \\
+
+$ \Rightarrow  (x - 1) | A'(x) $\\
+
+$  (x - 1) | A(x), (x - 1) | A'(x) \Rightarrow (x - 1)^2 | A(x) $\\ 
+
+$ \blacksquare $\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

@@ -1,0 +1,60 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+
+\newcommand{\pdv}{\partial}
+
+\begin{document}
+  
+\noindent \large Auteur: Thijs Van Schel \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 7A nr. 11.4\\
+
+\medskip
+
+$f_1(x,y,z) = (xy)^z$\\
+
+$f_2(x,y,z) = x^{yz}$\\
+
+$f_2(x,y,z) = x^{y^{z}}$\\
+
+$\dfrac{\pdv f_1 }{\pdv x} = z(xy)^{z-1}y$, $\dfrac{\pdv f_1 }{\pdv y} =  z(xy)^{z-1}x$, $\dfrac{\pdv f_1 }{\pdv z} = (xy)^z \ln|xy|$\\
+
+$\dfrac{\pdv f_2 }{\pdv x} = yzx^{yz-1}$, $\dfrac{\pdv f_2 }{\pdv y} = x^{yz}z\ln|x|$, $\dfrac{\pdv f_2 }{\pdv z} = x^{yz}y\ln x$\\
+
+$\dfrac{\pdv f_3 }{\pdv x} = y^z x^{y^{z}-1}$, $\dfrac{\pdv f_3 }{\pdv y} = x^{y^{z}}\ln |x|zy^{z-1}$, $\dfrac{\pdv f_3 }{\pdv z} = x^{y^{z}} \ln|x| y^z \ln|y|$\\
+
+\[
+\left(
+\begin{array}{ccc}
+\pdv{f_1}{x} & \pdv{f_1}{y} & \pdv{f_1}{z} \\
+\pdv{f_2}{x} & \pdv{f_2}{y} & \pdv{f_2}{z} \\
+\pdv{f_3}{x} & \pdv{f_3}{y} & \pdv{f_3}{z}
+\end{array}
+\right)
+=
+\left(
+\begin{array}{ccc}
+z(xy)^{z-1}y & z(xy)^{z-1}x & (xy)^z \ln|xy| \\
+yzx^{yz-1} & x^{yz}z\ln|x| & x^{yz}y\ln x \\
+y^z x^{y^{z}-1} & x^{y^{z}}\ln |x|zy^{z-1} & x^{y^{z}} \ln|x| y^z \ln|y|
+\end{array}
+\right)
+\]
+
+
+
+
+
+
+
+\normalsize
+
+
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

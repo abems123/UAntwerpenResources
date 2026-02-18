@@ -1,0 +1,41 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Nathan De Roy \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 2D nr. 16.6\\
+
+\medskip
+
+\normalsize
+
+Los op: $f(x) = \dfrac{1 + \cos(2x)}{\sin(x)}$ voor: $x \to \dfrac{\pi}{2}; x \to 0; x \to \pi$\\
+
+Voor $x \to \dfrac{\pi}{2}: \lim\limits_{x \to \tfrac{\pi}{2}}\left(\dfrac{1 + \cos(2x)}{\sin(x)}\right) = \dfrac{1 + \cos(2\dfrac{\pi}{2})}{\sin(\dfrac{\pi}{2})} = \dfrac{1 + -1}{1} = 0$\\
+
+
+Voor $x \to 0: \lim\limits_{x \to 0}\left(\dfrac{1 + \cos(2x)}{\sin(x)}\right) = \dfrac{1 + \cos(0)}{\sin(0)} = \dfrac{1 + 1}{0} = \infty$\\
+
+Bekijk linker- en rechterlimiet:\\
+
+$\indent \lim\limits_{x \to 0+}\left(\dfrac{1 + \cos(2x)}{\sin(x)}\right) = \dfrac{1 + \cos(0+)}{\sin(0+)} = \dfrac{1 + 1+}{0+} = +\infty$\\
+
+$\indent \lim\limits_{x \to 0-}\left(\dfrac{1 + \cos(2x)}{\sin(x)}\right) = \dfrac{1 + \cos(0-)}{\sin(0-)} = \dfrac{1 + 1+}{0-} = -\infty$\\
+
+Voor $x \to \pi: \lim\limits_{x \to \pi}\left(\dfrac{1 + \cos(2x)}{\sin(x)}\right) = \dfrac{1 + \cos(2\pi)}{\sin(\pi)} = \dfrac{1 + 1}{0} = \infty$\\
+
+Bekijk linker- en rechterlimiet:\\
+
+$\indent \lim\limits_{x \to \pi+}\left(\dfrac{1 + \cos(2x)}{\sin(x)}\right) = \dfrac{1 + \cos(2\pi+)}{\sin(\pi+)} = \dfrac{1 + 1+}{0-} = -\infty$\\
+
+$\indent \lim\limits_{x \to \pi-}\left(\dfrac{1 + \cos(2x)}{\sin(x)}\right) = \dfrac{1 + \cos(2\pi-)}{\sin(\pi-)} = \dfrac{1 + 1+}{0+} = +\infty$\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

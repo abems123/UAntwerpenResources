@@ -1,0 +1,45 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Sabawoon Enayat      \\
+\noindent \large Studierichting: Informatica  \\
+\noindent \large Oefeningenreeks 7C nr. 2.2 \\
+
+\newcommand{\llim}{\lim\limits}
+
+\medskip
+
+\normalsize
+
+Opgave: Bereken alle tweede parti\"ele afgeleiden:\\
+
+$f: \mathbb{R}^2 \to \mathbb{R}: (x, y) \mapsto \sqrt{4x^2 + y^2}$\\
+
+$\dfrac{\partial f}{\partial x} = \dfrac{8x}{2\sqrt{4x^2 + y^2}} = \dfrac{4x}{\sqrt{4x^2 + y^2}}$\\
+
+$\dfrac{\partial f}{\partial y} = \dfrac{2y}{2\sqrt{4x^2 + y^2}} = \dfrac{y}{\sqrt{4x^2 + y^2}}$\\
+
+$\dfrac{\partial^2 f}{\partial x^2} = \dfrac{4\sqrt{4x^2 + y^2} - 4x \cdot \dfrac{4x}{\sqrt{4x^2 + y^2}}}{4x^2 + y^2} = \dfrac{4(4x^2 + y^2) - 16x^2}{(4x^2 + y^2)\sqrt{4x^2 + y^2}} = \dfrac{4y^2}{\sqrt{(4x^2 + y^2)^3}}$\\
+
+$\dfrac{\partial^2 f}{\partial y^2} = \dfrac{\sqrt{4x^2 + y^2} - y \cdot \dfrac{y}{\sqrt{4x^2 + y^2}}}{4x^2 + y^2} = \dfrac{(4x^2 + y^2) - y^2}{(4x^2 + y^2)\sqrt{4x^2 + y^2}} = \dfrac{4x^2}{\sqrt{(4x^2 + y^2)^3}}$\\
+
+$\dfrac{\partial^2 f}{\partial x\partial y} = 4x(-\dfrac{1}{2}(4x^2 + y^2)^{-\tfrac{3}{2}} \cdot 2y) = \dfrac{-4xy}{\sqrt{(4x^2 + y^2)^3}}$\\
+
+$\dfrac{\partial^2 f}{\partial y\partial x} = y(-\dfrac{1}{2}(4x^2 + y^2)^{-\tfrac{3}{2}} \cdot 8x) = \dfrac{-4xy}{\sqrt{(4x^2 + y^2)^3}}$\\
+
+$$D^2f = \left(
+	\begin{array}{cc}
+		\dfrac{4y^2}{\sqrt{(4x^2 + y^2)^3}} & \dfrac{-4xy}{\sqrt{(4x^2 + y^2)^3}} \\
+		\dfrac{-4xy}{\sqrt{(4x^2 + y^2)^3}} & \dfrac{4x^2}{\sqrt{(4x^2 + y^2)^3}}
+	\end{array}
+\right)$$\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

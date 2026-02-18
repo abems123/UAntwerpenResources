@@ -1,0 +1,58 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+
+\begin{document}
+
+\noindent \large Auteur: Victoria Mazur \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 20.7\\
+
+\medskip
+
+\normalsize
+
+$\displaystyle\int \sinh^2 x dx$ \\
+
+Stel $\left\{
+\begin{array}{l}
+u = \sinh x \\
+dv = \sinh x dx
+\end{array}
+\right. \Rightarrow \left\{
+\begin{array}{l}
+du = \cosh x dx \\
+v = \cosh x
+\end{array}
+\right.$ \\
+
+Partiële integratie: $\displaystyle\int u dv = uv - \displaystyle\int v du$ \\
+
+$= \sinh x \cosh x - \displaystyle\int \cosh x \cdot \cosh x dx$ \\
+
+$= \sinh x \cosh x - \displaystyle\int \cosh^2 x dx$ \\
+
+We weten dat $\cosh^2 x - \sinh^2 x = 1$, dus $\cosh^2 x = 1 + \sinh^2 x$ \\
+
+$= \sinh x \cosh x - \displaystyle\int \left(1 + \sinh^2 x\right) dx$ \\
+
+$= \sinh x \cosh x - \displaystyle\int 1 dx - \displaystyle\int \sinh^2 x dx$ \\
+
+$= \sinh x \cosh x - x - \displaystyle\int \sinh^2 x dx$ \\
+
+$\displaystyle\int \sinh^2 x dx = \sinh x \cosh x - x - \displaystyle\int \sinh^2 x dx$ \\
+
+$\displaystyle\int \sinh^2 x dx + \displaystyle\int \sinh^2 x dx = \sinh x \cosh x - x$ \\
+
+$2 \displaystyle\int \sinh^2 x dx = \sinh x \cosh x - x + C$ \\
+
+$\displaystyle\int \sinh^2 x dx = \dfrac{\sinh x \cosh x - x}{2} + C$ \\
+
+$\displaystyle\int \sinh^2 x dx = \dfrac{\sinh x \cosh x}{2} - \dfrac{x}{2} + C$ \\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document}

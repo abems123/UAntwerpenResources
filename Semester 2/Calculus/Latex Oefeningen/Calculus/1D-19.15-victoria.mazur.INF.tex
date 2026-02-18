@@ -1,0 +1,52 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\begin{document}
+
+\normalsize
+\noindent \large Auteur: Victoria Mazur \\
+\noindent \large Studierichting: Informatica \\
+\noindent \large Oefeningenreeks 1D nr. 19.15 \\
+
+$ A(z) = z^5 - 3z^4 + 4z^3 - 4z^2 + 3z - 1 $ \\
+
+Horner voor $z=1$:
+\[
+\begin{tabular}{c|cccccc}
+1 & 1 & -3 & 4 & -4 & 3 & -1 \\
+  &   & 1 & -2 & 2 & -2 & 1 \\ \hline
+  & 1 & -2 & 2 & -2 & 1 & 0 \\
+\end{tabular}
+\]
+
+Horner voor $z=1$ op restveelterm:
+\[
+\begin{tabular}{c|ccccc}
+1 & 1 & -2 & 2 & -2 & 1 \\
+  &   & 1 & -1 & 1 & -1 \\ \hline
+  & 1 & -1 & 1 & -1 & 0 \\
+\end{tabular}
+\]
+
+Horner voor $z=1$ op nieuwe restveelterm:
+\[
+\begin{tabular}{c|cccc}
+1 & 1 & -1 & 1 & -1 \\
+  &   & 1 & 0 & 1 \\ \hline
+  & 1 & 0 & 1 & 0 \\
+\end{tabular}
+\]
+
+Nulpunten: \\
+
+$ z = 1 $ (drievoudig), $ z = \pm i $ \\
+
+Ontbinding: \\
+
+$ (z - 1)^3(z^2 + 1) $ \\
+
+\begin{thebibliography}{999}
+\end{thebibliography}
+\end{document}

@@ -1,0 +1,47 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+\newcommand{\Bgsin}{\operatorname{Bgsin}} 
+
+\begin{document}
+ 
+\noindent \large Auteur: Shahin Jamal \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 22.1\\
+
+\medskip
+
+\normalsize
+
+$\displaystyle\int \Bgsin x dx$\\
+
+$\left\{
+   \begin{array}{l}
+       u = \Bgsin x\\
+       dv = dx
+   \end{array}
+\right.
+\Rightarrow
+\left\{
+   \begin{array}{l}
+       du = \dfrac{1}{\sqrt{1-x^2}} dx \\
+       v = x
+   \end{array}
+\right.$
+
+$\Rightarrow x\Bgsin x - \displaystyle\int \dfrac{x}{\sqrt{1-x^2}}dx$\\
+
+$u = 1-x^2 \Rightarrow du = -2x dx$\\
+
+$\Rightarrow x\Bgsin x + \dfrac{1}{2}\displaystyle\int \dfrac{1}{\sqrt{u}}du$\\
+
+$= x\Bgsin x + \dfrac{1}{2}\displaystyle\int u^{-\tfrac{1}{2}}du = x\Bgsin x + \dfrac{1}{2} \dfrac{u^{\tfrac{1}{2}}}{\dfrac{1}{2}} + c$\\
+
+$= x\Bgsin x + \sqrt{1-x^2} + c$\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

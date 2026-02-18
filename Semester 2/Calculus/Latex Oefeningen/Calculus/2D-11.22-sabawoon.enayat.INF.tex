@@ -1,0 +1,53 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Sabawoon Enayat      \\
+\noindent \large Studierichting: Informatica  \\
+\noindent \large Oefeningenreeks 2D nr. 11.22 \\
+
+\newcommand{\llim}{\lim\limits}
+
+\medskip
+
+\normalsize
+
+Opgave: $\llim_{x \to 0} \dfrac{\sqrt[5]{1 + x} - \sqrt{1 + x}}{2x}$\\
+
+$\Rightarrow y = 1 + x \overset{x \to 0}{\Rightarrow} y \to 1$\\
+
+$\Rightarrow \llim_{y \to 1} \dfrac{y^{\tfrac{1}{5}} - y^{\tfrac{1}{2}}}{2(y - 1)}$\\
+
+$\Rightarrow z = y^{\tfrac{1}{10}} \overset{y \to 1}{\Rightarrow}z \to 1$\\
+
+$\Rightarrow \llim_{z \to 1} \dfrac{z^2 - z^5}{2\left(z^{10} - 1\right)} = \llim_{z \to 1} \dfrac{z^2\left(1 - z^3\right)}{2\left(\left(z^5\right)^2 - 1^2\right)} = \llim_{z \to 1} \dfrac{z^2\left(1 - z^3\right)}{2\left(z^5 - 1\right)\left(z^5 + 1\right)}$\\
+
+$1 - z^3 \Rightarrow $\\
+
+\begin{tabular}{c|cccc}
+    & $-1$         & $0$  & $0$                         & $1$  \\
+$1$ & $\downarrow$ & $-1$ & $-1$                        & $-1$ \\ \hline
+    & $-1$         & $-1$ & $\multicolumn{1}{c|}{-1}$ & $0$
+\end{tabular}\\
+
+$z^5 - 1 \Rightarrow $\\
+
+\begin{tabular}{c|cccccc}
+    & $1$          & $0$ & $0$ & $0$ & $0$                      & $-1$ \\
+$1$ & $\downarrow$ & $1$ & $1$ & $1$ & $1$                      & $1$ \\ \hline
+    & $1$          & $1$ & $1$ & $1$ & $\multicolumn{1}{c|}{1}$ & $0$
+\end{tabular}\\
+
+$\Rightarrow \llim_{z \to 1} \dfrac{z^2(z - 1)\left(-z^2 - z - 1\right)}{2(z - 1)\left(z^4 + z^3 + z^2 + z + 1\right)\left(z^5 + 1\right)}$\\
+
+$= \llim_{z \to 1} \dfrac{z^2\left(-z^2 - z - 1\right)}{2\left(z^4 + z^3 + z^2 + z + 1\right)\left(z^5 + 1\right)} = \dfrac{-3}{20}$\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 
+

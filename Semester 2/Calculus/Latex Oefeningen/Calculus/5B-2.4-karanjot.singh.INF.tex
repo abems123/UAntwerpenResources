@@ -1,0 +1,54 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+
+\newcommand{\dint}{\displaystyle\int}
+\newcommand{\llim}{\lim\limits}
+
+\begin{document}
+
+\noindent \large Auteur: Karanjot Singh \\
+\noindent \large Studierichting: Informatica \\
+\noindent \large Oefeningenreeks 5B nr. 2.4 \\
+
+\normalsize
+
+$\dint_{-\infty}^{+\infty} xe^{-x^2} dx$ \\
+
+$= \llim_{a \to -\infty} \dint_{a}^{0} xe^{-x^2} dx + \llim_{b \to +\infty} \dint_{0}^{b} xe^{-x^2} dx$ \\
+
+Eerste limiet: \\
+
+$\llim_{a \to -\infty} \dint_{a}^{0} xe^{-x^2} dx$ \\
+
+$= \llim_{a \to -\infty} \left[ -\dfrac{1}{2} e^{-x^2} \right]_a^0$ \\
+
+$= \llim_{a \to -\infty} \left( -\dfrac{1}{2} e^0 + \dfrac{1}{2} e^{-a^2} \right)$ \\
+
+$= \llim_{a \to -\infty} \left( -\dfrac{1}{2} + \dfrac{1}{2} e^{-a^2} \right)$ \\
+
+$= -\dfrac{1}{2}$ \\
+
+Tweede limiet: \\
+
+$\llim_{b \to +\infty} \dint_{0}^{b} xe^{-x^2} dx$ \\
+
+$= \llim_{b \to +\infty} \left[ -\dfrac{1}{2} e^{-x^2} \right]_0^b$ \\
+
+$= \llim_{b \to +\infty} \left( -\dfrac{1}{2} e^{-b^2} + \dfrac{1}{2} \right)$ \\
+
+$= \dfrac{1}{2}$ \\
+
+Dus: \\
+
+$-\dfrac{1}{2} + \dfrac{1}{2} = 0$ \\
+
+$\Rightarrow \dint_{-\infty}^{+\infty} xe^{-x^2} dx = 0$ \\
+
+\begin{thebibliography}{999}
+	%\bibitem{a} Referentie
+\end{thebibliography}
+
+\end{document}

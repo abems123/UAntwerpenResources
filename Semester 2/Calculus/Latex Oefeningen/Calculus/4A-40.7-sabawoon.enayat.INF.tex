@@ -1,0 +1,37 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Sabawoon Enayat \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 40.7 \\
+
+\newcommand{\dint}{\displaystyle\int}
+\newcommand{\Bgsin}{\operatorname{Bgsin}}
+
+\medskip
+
+\normalsize
+
+Opgave: $\dint \dfrac{dx}{\sqrt{1 - 3x^2}}$\\
+
+$= \dint \dfrac{dx}{\sqrt{3\left(\left(\dfrac{1}{\sqrt{3}}\right)^2 - x^2\right)}}$\\
+
+$= \dfrac{1}{\sqrt{3}}\dint \dfrac{dx}{\sqrt{\left(\dfrac{\sqrt{3}}{3}\right)^2 - x^2}}$\\
+
+$= \dfrac{\sqrt{3}}{3} \Bgsin \left(\dfrac{x}{\dfrac{\sqrt{3}}{3}}\right) + c$\\
+
+$= \dfrac{\sqrt{3}}{3} \Bgsin \left(\dfrac{3x}{\sqrt{3}}\right) + c$\\
+
+$= \dfrac{\sqrt{3}}{3} \Bgsin \left(\dfrac{3\sqrt{3} \cdot x}{3}\right) + c$\\
+
+$= \dfrac{\sqrt{3}}{3} \Bgsin \left(\sqrt{3} \cdot x\right) + c$\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

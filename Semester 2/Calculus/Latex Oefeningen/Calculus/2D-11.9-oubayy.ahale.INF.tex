@@ -1,0 +1,42 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\newcommand{\dint}{\displaystyle\int}
+\newcommand{\llim}{\lim\limits}
+\newcommand{\Bgtan}{\operatorname{Bgtan}}
+
+\begin{document}
+  
+\noindent \large Auteur: Oubayy Ahale         \\
+\noindent \large Studierichting: Informatica  \\
+\noindent \large Oefeningenreeks 2D nr. 11.9  \\
+
+\medskip
+
+\normalsize
+
+Bereken de limiet:\\
+
+$\llim_{x \rightarrow 0} \left( \dfrac{\sqrt{2 + x} - \sqrt{2 - x}}{x} \right) $\\
+
+$ = \llim_{x \rightarrow 0} \left( \dfrac{\sqrt{2 + x} - \sqrt{2 - x}}{x} \cdot \dfrac{\sqrt{2 + x} + \sqrt{2 - x}}{\sqrt{2 + x} + \sqrt{2 - x}} \right) $\\
+
+$ = \llim_{x \rightarrow 0} \left( \dfrac{(\sqrt{2 + x} - \sqrt{2 - x})(\sqrt{2 + x} + \sqrt{2 - x})}{x(\sqrt{2 + x} + \sqrt{2 - x})} \right) $\\
+
+$ = \llim_{x \rightarrow 0} \left( \dfrac{2x}{x(\sqrt{2 + x} + \sqrt{2 - x})} \right) $\\
+
+$ = \llim_{x \rightarrow 0} \left( \dfrac{2}{\sqrt{2 + x} + \sqrt{2 - x}} \right) $\\
+
+$ = \dfrac{2}{\sqrt{2} + \sqrt{2}} = \dfrac{2}{2\sqrt{2}} = \dfrac{1}{\sqrt{2}} = \dfrac{\sqrt{2}}{2} $\\
+
+\textbf{Antwoord: } $\boxed{\dfrac{\sqrt{2}}{2}}$\\
+
+\end{document}
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

@@ -1,0 +1,35 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Stan Van Campenhout \\
+\noindent \large Studierichting:  Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 58.10\\
+
+\medskip
+
+\normalsize
+
+$ \displaystyle\int\dfrac{1+2\sin x}{1+\cos x+\sin x}dx \stackrel{t = \tan\left(\tfrac{x}{2}\right)}{=}
+\displaystyle\int\dfrac{1+\dfrac{4t}{1+t^2}}{1+\dfrac{1-t^2}{1+t^2}+\dfrac{2t}{1+t^2}}\cdot\dfrac{2}{1+t^2}dt $\\
+
+$ = 2\displaystyle\int\dfrac{1+\dfrac{4t}{1+t^2}}{1+t^2+1-t^2+2t}dt =\displaystyle\int\dfrac{1+t^2+4t}{\left(t+1\right)\left(t^2+1\right)} $\\
+
+$ \Rightarrow \dfrac{t^2+4t+1}{\left(t+1\right)\left(t^2+1\right)} = \dfrac{A}{t+1}+\dfrac{Bx+C}{t^2+1} $\\
+
+$ \Rightarrow A = \dfrac{1-4+1}{1+1} = -1 $\\
+
+$ \Rightarrow B\left(i\right)+C = \dfrac{-1+4i+1}{i+1} = 2+2i \Rightarrow B = 2, C = 2 $\\
+
+$ = -\displaystyle\int\dfrac{1}{t+1}dt + 2\displaystyle\int\dfrac{1+t}{t^2+1}dt =-\ln|t+1|+2\operatorname{Bgtan}t+\ln|t^2+1|+c $\\
+
+$ \stackrel{t = \tan\left(\tfrac{x}{2}\right)}{=} -\ln\left|\tan\left(\dfrac{x}{2}\right) + 1\right|+\ln\left|\tan^2\left(\dfrac{x}{2}\right)+1\right|+x+c $\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

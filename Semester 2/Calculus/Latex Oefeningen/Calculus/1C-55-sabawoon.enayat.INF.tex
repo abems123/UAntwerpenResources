@@ -1,0 +1,77 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Sabawoon Enayat \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 1C nr. 55 \\
+
+\newcommand{\Bgtan}{\operatorname{Bgtan}}
+\newcommand{\Bgcos}{\operatorname{Bgcos}}
+\newcommand{\Bgcot}{\operatorname{Bgcot}}
+\newcommand{\cis}{\operatorname{cis}}
+
+\medskip
+
+\normalsize
+
+Opgave: $1 + \cis x \cdot \cis 2x \cdot \cis 3x = 0$\\
+
+$\Rightarrow 1 + (\cos x + i \sin x) (\cos 2x + i \sin 2x) (\cos 3x + i \sin 3x) = 0$\\
+
+$\Rightarrow 1 + (\cos x \cdot \cos 2x + i \sin 3x - \sin x \cdot \sin 2x) (\cos 3x + i \sin 3x) = 0$\\
+
+$\Rightarrow 1 + (\cos 3x + i \sin 3x) (\cos 3x + i \sin 3x) = 0$\\
+
+$\Rightarrow 1 + \cos^2 3x + 2i \cos 3x \cdot \sin 3x - \sin^2 3x = 0$\\
+
+$\Rightarrow 1 + \cos^2 3x + i \sin 6x - \sin^2 3x = 0$\\
+
+$\Rightarrow 1 + \cos 6x + i \sin 6x = 0$\\
+
+$a = 1 + \cos 6x$, $b = \sin 6x$\\
+
+$r = \sqrt{a^2 + b^2}$, $\tan \theta = \dfrac{b}{a} \Rightarrow \theta = \Bgtan \dfrac{b}{a}$\\
+
+$\Rightarrow r =\sqrt{(1 + \cos 6x)^2 + \sin^2 6x} = \sqrt{1 + 2 \cos 6x + \cos^2 6x + \sin^2 6x}$\\
+
+$= \sqrt{2 + 2 \cos 6x} = \sqrt{2} \cdot \sqrt{1 + \cos 6x}$\\
+
+$\tan \theta = \dfrac{\sin 6x}{1 + \cos 6x}$\\
+
+$= \dfrac{2 \sin 3x \cos 3x}{(\sin^2 3x + \cos^2 3x) + (\cos^2 3x - \sin^2 3x)}$\\
+
+$= \dfrac{2 \sin 3x \cos 3x}{2\cos^2 3x}$\\
+
+$= \dfrac{\sin 3x}{\cos 3x} = \tan 3x \Rightarrow \theta = 3x$\\
+
+$\Rightarrow r \cis 3x = 0 \Rightarrow r = 0$ of $\cis 3x = 0$\\
+
+$\Rightarrow r = 0 \Rightarrow r = \sqrt{(1 + cos 6x)^2 + sin^2 6x} = \sqrt{\cos^2 6x + \sin^2 6x + 1 + 2 \cos 6x}$\\
+
+$= \sqrt{2 + 2 \cos 6x} = \sqrt{2} \sqrt{1 + \cos 6x}$\\
+
+$\Rightarrow r = \sqrt{2} \sqrt{1 + \cos 6x} \Rightarrow \sqrt{2} \sqrt{1 + \cos 6x} = 0$\\
+
+$\Rightarrow \sqrt{1 + \cos 6x} = 0 \Rightarrow 1 + \cos 6x = 0 \Rightarrow \cos 6x = -1$\\
+
+$6x = \Bgcos(-1) \Rightarrow 6x = \pi + 2k\pi, k\in\mathbb{R} \Rightarrow x = \dfrac{\pi + 2k\pi}{6} = \dfrac{\pi}{6} + \dfrac{k\pi}{3}, k\in\mathbb{R}$\\
+
+$\Rightarrow \cis 3x = 0 \Rightarrow \cos 3x + i \sin 3x = 0$\\
+
+$\Rightarrow \left\{
+	\begin{array}{lcr}
+		\cos 3x & = & 0	\\
+		\sin 3x & = & 0
+	\end{array}
+\right. \Rightarrow \cis 3x \ne 0$\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 
+

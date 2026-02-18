@@ -1,0 +1,81 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\newcommand{\dint}{\displaystyle\int}
+\newcommand{\bdint}{\displaystyle\int\limits_0^{\tfrac{\pi}{2}}}
+
+\begin{document}
+  
+\noindent \large Auteur: Thijs Van Schel \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 5A nr. 11.5\\
+
+\medskip
+
+$\bdint e^{2x} \cos(3x)dx$\\
+
+$\left\{
+   \begin{array}{l}
+       u = \cos(3x)\\ 
+			
+       dv =  e^{2x}dx
+   \end{array}
+\right.
+\Rightarrow
+\left\{
+   \begin{array}{l}
+       du = -3\sin(3x)dx \\
+			
+       v =  \dfrac{1}{2}e^{2x}
+   \end{array}
+\right.$\\
+
+O.I.:\\
+
+$I = \dfrac{1}{2}e^{2x}\cos(3x) + \dfrac{3}{2}\dint e^{2x}\sin(3x)dx$\\
+
+$\left\{
+   \begin{array}{l}
+       u = \sin(3x)\\ 
+			
+       dv =  e^{2x}dx
+   \end{array}
+\right.
+\Rightarrow
+\left\{
+   \begin{array}{l}
+       du = 3\cos(3x)dx \\
+			
+       v =  \dfrac{1}{2}e^{2x}
+   \end{array}
+\right.$\\
+
+$ = \dfrac{1}{2}e^{2x}\cos(3x) + \dfrac{3}{4}e^{2x}\sin(3x) - \dfrac{9}{4}\dint e^{2x}\cos(3x)dx$\\
+
+$I = \dfrac{1}{2}e^{2x}\cos(3x) + \dfrac{3}{4}e^{2x}\sin(3x) - \dfrac{9}{4}I$\\
+
+$I + \dfrac{9}{4} = \dfrac{1}{2}e^{2x}\cos(3x) + \dfrac{3}{4}e^{2x}\sin(3x)+c$\\
+
+$\dfrac{13}{4}I = e^{2x}\left(\dfrac{1}{2}\cos(3x) + \dfrac{3}{4}\sin(3x)\right)+c$\\
+
+$I = \dfrac{4}{13} e^{2x}\left(\dfrac{1}{2}\cos(3x) + \dfrac{3}{4}\sin(3x)\right)+c$\\
+
+B.I.:\\
+
+$\dfrac{4}{13}e^\pi\left(\dfrac{1}{2}\cdot 0 + \dfrac{3}{4} \cdot (-1)\right) - \dfrac{4}{13} \cdot 1 \left(\dfrac{1}{2} \cdot 1 + 0\right)$\\
+
+$ = \dfrac{-3e^\pi}{13} - \dfrac{2}{13}$\\
+
+$ = \dfrac{-3e^\pi - 2}{13}$
+
+\normalsize
+
+
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

@@ -1,0 +1,46 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+
+\begin{document}
+\noindent \large Auteur: Michael Zielinski\\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 2E nr.\ 5.2\\
+\medskip
+
+\normalsize
+
+$
+  \lim\limits_{x \to 0}
+  \left(1 - x\right)^{\tfrac{a}{x}}
+$\\
+
+Substitutie $u = -x$\\
+
+$u \to 0$ als $x \to 0$\\
+
+$\left(1 - x\right)^{\tfrac{a}{x}}
+      =\left(1 + u\right)^{-\tfrac{a}{u}}
+      =\left(\left(1 + u\right)^{\tfrac{1}{u}}\right)^{-a}$\\
+
+Bekende limiet:\\
+
+$
+  \lim\limits_{u \to 0}
+  \left(1 + u\right)^{\tfrac{1}{u}}
+  = e$\\
+
+Dus\\
+
+$
+  \lim\limits_{x \to 0}
+  \left(1 - x\right)^{\tfrac{a}{x}}
+  = e^{-a}$\\
+
+\begin{thebibliography}{999}
+% \bibitem{a} Referentie
+\end{thebibliography}
+
+\end{document}

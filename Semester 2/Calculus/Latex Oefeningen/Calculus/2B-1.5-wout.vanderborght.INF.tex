@@ -1,0 +1,44 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+% Command definities van frequent gebruikte commandos
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Bgsin}{\operatorname{Bgsin}}
+\newcommand{\Bgcos}{\operatorname{Bgcos}}
+\newcommand{\Bgtan}{\operatorname{Bgtan}}
+\newcommand{\cis}{\operatorname{cis}}
+
+\begin{document}
+  
+\noindent \large Auteur: Wout Vanderborght\\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 2B nr. 1.5\\
+
+\medskip
+
+\normalsize
+
+Druk de volgende uidrukking uit in $x$: $\cos(\Bgtan x)$ \\
+
+$ y = \Bgtan x \Leftrightarrow x = \tan y $ en $ y \in \left]-\dfrac{\pi}{2}, \dfrac{\pi}{2}\right[ $ \\
+
+$ \Leftrightarrow x = \dfrac{\sin y}{\cos y} $ \\
+
+$ \Leftrightarrow x^2 = \dfrac{\sin^2 y}{\cos^2 y} $ \\
+
+$ \Leftrightarrow x^2 + 1 = \dfrac{\sin^2 y + \cos^2 y}{\cos^2 y} = \dfrac{1}{\cos^2 y} $ \\
+
+$ \Leftrightarrow \cos^2 y = \dfrac{1}{x^2 + 1} $ \\
+
+$ \Leftrightarrow \cos y = \cos(\Bgtan x) = \dfrac{1}{\sqrt{x^2 + 1}} $ \\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

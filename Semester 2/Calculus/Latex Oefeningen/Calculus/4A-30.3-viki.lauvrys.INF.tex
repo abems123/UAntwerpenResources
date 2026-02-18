@@ -1,0 +1,41 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}   
+
+\begin{document}
+  
+\noindent \large Auteur: Viki	Lauvrys \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 30.3\\
+
+\medskip
+
+\normalsize
+
+$ \displaystyle\int x^3 \sqrt{1 - x^2} dx $ \\
+
+Stel $ t = 1 -x^2 \Rightarrow dt = -2x dx $ \\
+
+$ \Rightarrow x = \sqrt{1 -t} \Rightarrow dx = \dfrac{dt}{-2x} $ \\
+
+$ = \displaystyle\int \left( \sqrt{1 -t} \right)^3 \sqrt{t} \dfrac{dt}{-2(\sqrt{1 -t})} $ \\
+
+$ = \displaystyle\int \dfrac{(1 -t) \sqrt{1-t} \sqrt{t}}{-2 \left( \sqrt{1-t} \right)} dt $ \\
+
+$ = \displaystyle\int \dfrac{(1 -t) \sqrt{t}}{-2} dt $ \\
+
+$ = - \dfrac{1}{2} \displaystyle\int \left( \sqrt{t} - \sqrt{t^3} \right) dt $ \\
+
+$ = - \dfrac{1}{2} \displaystyle\int \left( t^{\tfrac{1}{2}} - t^{\tfrac{3}{2}} \right) dt $ \\
+
+$ = \dfrac{-t^{\tfrac{3}{2}}}{3} + \dfrac{t^{\tfrac{5}{2}}}{5} + C $ \\
+
+$ = \dfrac{-(1 - x^2)^{\tfrac{3}{2}}}{3} + \dfrac{(1 - x^2)^{\tfrac{5}{2}}}{5} +  C$ \\
+
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

@@ -1,0 +1,37 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{cancel}     
+
+\newcommand{\R}{\mathbb{R}}
+
+\begin{document}
+  
+\noindent \large Auteur: Torben Petré \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 1b nr. 24.9\\
+
+\medskip
+
+\normalsize
+
+Bereken voor $a, b \in \R$:\\
+
+$1 + \dfrac{a - bi}{a + bi} + \dfrac{a + bi}{a - bi}$\\
+
+$= 1 + \dfrac{a - bi}{a + bi} \cdot \dfrac{a - bi}{a - bi} + \dfrac{a + bi}{a - bi} \cdot \dfrac{a + bi}{a + bi}$\\
+
+$= 1 + \dfrac{(a - bi)^2}{a^2 + b^2} + \dfrac{(a + bi)^2}{a^2 + b^2}$\\
+
+$= 1 + \dfrac{a^2 - 2abi - b^2}{a^2 + b^2} + \dfrac{a^2 + 2abi - b^2}{a^2 + b^2}$\\
+
+$= \dfrac{a^2 + b^2}{a^2 + b^2} + \dfrac{a^2 \cancel{- 2abi} - b^2 + a^2 \cancel{+ 2abi} - b^2}{a^2 + b^2}$\\
+
+$= \dfrac{3a^2 - b^2}{a^2 + b^2}$\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

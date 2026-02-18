@@ -1,0 +1,40 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Sabawoon Enayat \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 25.15 \\
+
+\newcommand{\dint}{\displaystyle\int}
+
+\medskip
+
+\normalsize
+
+Opgave: $\dint \dfrac{2x^2 - x + 1}{2x + 1} dx$\\
+
+\begin{tabular}{lll|ll}
+	$2x^2$  &	$-x$	&	$+1$	&	$2x$	&	$+1$	\\ \cline{4-5}
+	$-2x^2$	&	$-x$	&			&	$x$		&	$-1$	\\ \cline{1-2}
+			&	$-2x$	&	$+1$	&			&			\\
+			&	$2x$	&	$+1$	&			&			\\ \cline{2-3}
+			&			&	$2$		&			&			\\
+\end{tabular}\\\\
+
+$= \dint x - 1 + \dfrac{2}{2x + 1} dx = \dint x dx - \dint dx + 2\dint \dfrac{dx}{2x + 1}$\\
+
+$\Rightarrow t = 2x + 1$, $t' = 2 \Rightarrow dx = \dfrac{dt}{2}$\\
+
+$= \dfrac{x^2}{2} - x + \dint \dfrac{dt}{t} = \dfrac{x^2}{2} - x + \ln |t| + c$\\
+
+$= \dfrac{x^2}{2} - x + \ln |2x + 1| + c$\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

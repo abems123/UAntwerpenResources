@@ -1,0 +1,39 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Stan Van Campenhout \\
+\noindent \large Studierichting:  Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 46.2\\
+
+\medskip
+
+\normalsize
+
+$ \displaystyle\int\dfrac{-3x + 3}{2x^4+5x^2+2}dx = \displaystyle\int\dfrac{-3x+3}{\left(x^2+2\right)\left(2x^2+1\right)}dx
+= \dfrac{1}{2}\displaystyle\int\dfrac{-3x+3}{\left(x^2+2\right)\left(x^2+\dfrac{1}{2}\right)}dx $\\
+
+$ \rightarrow \dfrac{-3x+3}{\left(x^2+2\right)\left(x^2+\dfrac{1}{2}\right)} = \dfrac{Ax + B}{x^2+2} + \dfrac{Cx + D}{x^2 + \dfrac{1}{2}} $\\
+
+$ A\left(\sqrt{2}i\right) + B = \dfrac{-3\sqrt{2}i + 3}{-2 + \dfrac{1}{2}} = -2 -2\sqrt{2}i $\\
+
+$ \Rightarrow A = 2, B = -2 $\\
+
+$ \Rightarrow C\left(\dfrac{\sqrt{2}}{2}i\right) + D = \dfrac{\dfrac{-3\sqrt{2}}{2}i + 3}{-\dfrac{1}{2}+2} = 2 - \sqrt{2}i $\\
+
+$ \Rightarrow C = -2, D = 2 $\\
+
+$ = \displaystyle\int\dfrac{x-1}{x^2+2}dx - \displaystyle\int\dfrac{x-1}{x^2+\dfrac{1}{2}}dx $\\
+
+$ = \dfrac{1}{2}\displaystyle\int\dfrac{1}{x^2+2}d\left(x^2+2\right) - \displaystyle\int\dfrac{1}{x^2+2}dx -\dfrac{1}{2}\displaystyle\int\dfrac{1}{x^2+\dfrac{1}{2}}d\left(x^2+\dfrac{1}{2}\right) + \displaystyle\int\dfrac{1}{x^2+\dfrac{1}{2}}dx $\\
+
+$ = \dfrac{1}{2}\ln|x^2+2|-\dfrac{1}{\sqrt{2}}\operatorname{Bgtan}\left(\dfrac{x}{\sqrt{2}}\right)-\dfrac{1}{2}\ln\left|x^2+\dfrac{1}{2}\right|+\sqrt{2}\operatorname{Bgtan}\left(\sqrt{2}x\right) + c $\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

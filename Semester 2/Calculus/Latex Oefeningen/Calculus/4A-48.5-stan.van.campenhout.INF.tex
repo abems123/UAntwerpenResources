@@ -1,0 +1,36 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Stan Van Campenhout \\
+\noindent \large Studierichting:  Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 48.5\\
+
+\medskip
+
+\normalsize
+
+$ \displaystyle\int\ln\left(\dfrac{x^2+1}{x^2-1}\right)dx =x\ln\left(\dfrac{x^2+1}{x^2-1}\right) - \displaystyle\int\dfrac{x^2-1}{x^2+1}\cdot\dfrac{2x\left(x^2-1\right)-2x\left(x^2+1\right)}{\left(x^2-1\right)}xdx $\\
+
+$ = x\ln\left(\dfrac{x^2+1}{x^2-1}\right) - \displaystyle\int\dfrac{-4x^2}{\left(x^2+1\right)\left(x-1\right)\left(x+1\right)}dx $\\
+
+$ \Rightarrow \dfrac{-4x^2}{\left(x^2+1\right)\left(x-1\right)\left(x+1\right)} = \dfrac{Ax+B}{x^2+1} + \dfrac{C}{x-1} + \dfrac{D}{x-1} $\\
+
+$ \Rightarrow A\left(i\right)+B = \dfrac{-4i}{i^2-1} = -2 \Rightarrow A = 0, B = -2 $\\
+
+$ \Rightarrow C = \dfrac{-4}{\left(1+1\right)\left(1+1\right)} = -1 $\\
+
+$ \Rightarrow D = \dfrac{-4}{\left(1+1\right)\left(-1-1\right)} = 1 $\\
+
+$ = x\ln\left(\dfrac{x^2+1}{x^2-1}\right) + \displaystyle\int\dfrac{1}{x-1}dx-\displaystyle\int\dfrac{1}{x+1}dx+2\displaystyle\int\dfrac{1}{x^2+1}dx $\\
+
+$ = x\ln\left(\dfrac{x^2+1}{x^2-1}\right) + \ln|x-1| - \ln|x+1| + 2\operatorname{Bgtan}x + c $\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

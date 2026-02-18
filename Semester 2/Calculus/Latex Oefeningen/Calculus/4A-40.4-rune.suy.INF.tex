@@ -1,0 +1,43 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}  
+\usepackage{cancel}
+
+\newcommand{\degree}{^{\circ}}
+\newcommand{\cis}{\operatorname{cis}}
+\newcommand{\Bgsin}{\operatorname{Bgsin}}
+\newcommand{\Bgcos}{\operatorname{Bgcos}}
+\newcommand{\Bgtan}{\operatorname{Bgtan}}
+\newcommand{\limit}{\lim\limits}
+\newcommand{\summation}{\displaystyle\sum}
+\newcommand{\dom}{\operatorname{dom}}
+\newcommand{\Int}{\displaystyle\int}
+
+\begin{document}
+  
+\noindent \large Auteur: Rune Suy \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 40.4\\
+
+\medskip
+
+\normalsize
+
+$\Int \dfrac{dx}{\sqrt{-3+4x-x^2}}$\\
+
+$=\Int \dfrac{dx}{\sqrt{-(x^2-4x+4-1)}}$\\
+
+$=\Int \dfrac{dx}{\sqrt{(x-2)^2-1}}$\\
+
+$=\Int \dfrac{dy}{\sqrt{y^2-1}}$ met $y=x-2 \Rightarrow dy=dx$\\
+
+$=\Int \dfrac{dy}{\sqrt{1-y^2}}$\\
+
+$= \Bgsin(x-2) + c$\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

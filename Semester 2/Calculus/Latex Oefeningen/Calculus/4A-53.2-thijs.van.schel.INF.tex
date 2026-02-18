@@ -1,0 +1,38 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\newcommand{\dint}{\displaystyle\int}
+
+\begin{document}
+  
+\noindent \large Auteur: Thijs Van Schel \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 53.2\\
+
+\medskip
+
+\normalsize
+
+$\dint \dfrac{dx}{\cos^4(x)}$\\
+
+$ = \dint \sec^4(x)dx$\\
+
+$ = \dint \sec^2(x)(\tan^2(x)+1)dx$\\
+
+$ t = \tan(x)$, $ dt = \sec^2(x)dx$\\
+
+$ = \dint (t^2+1)dt$\\
+
+$ = \dint t^2dt + \dint dt$\\
+
+$ = \dfrac{t^3}{3} + t + C$\\
+
+$ = \dfrac{1}{3}\tan^3(x) + \tan(x) + C$\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

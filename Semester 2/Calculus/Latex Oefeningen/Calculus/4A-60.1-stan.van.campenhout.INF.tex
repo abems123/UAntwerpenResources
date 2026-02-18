@@ -1,0 +1,26 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Stan Van Campenhout \\
+\noindent \large Studierichting:  Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 60.1\\
+
+\medskip
+
+\normalsize
+
+$ \displaystyle\int\sqrt{1-\sqrt{x}}dx \stackrel{t = \sqrt{x}}{=} \displaystyle\int\sqrt{1-t}\cdot2tdt = 2\displaystyle\int t\sqrt{1-t}dt $\\
+
+$ \stackrel{u = \sqrt{1-t}}{=} 2\displaystyle\int\left(1-u^2\right)\cdot u\cdot\left(-2u\right)du = -4\displaystyle\int\left(u^2-u^4\right)du $\\
+
+$ = -\dfrac{4}{3}u^3+\dfrac{4}{5}u^5+c \stackrel{t = \sqrt{1-\sqrt{x}}}{=}  -\dfrac{4}{3} \sqrt{\left(1-\sqrt{x}\right)^3}+\dfrac{4}{5} \sqrt{\left(1-\sqrt{x}\right)^5}+c $\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

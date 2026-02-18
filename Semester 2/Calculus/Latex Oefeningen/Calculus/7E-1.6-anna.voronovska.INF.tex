@@ -1,0 +1,89 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Anna Voronovska \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 7E nr. 1.6\\
+
+\medskip
+
+\normalsize
+
+$f(x, y)= x^3+y^3-6xy$\\
+
+$\dfrac{\partial f}{\partial x} = 3x^2 -6y$ (*)\\
+
+$\dfrac{\partial f}{\partial y} = 3y^2 -6x$ (**)\\
+
+Kritieke punten:\\
+
+(*) $3x^2-6y=0$\\
+
+    $x^2=2y$\\
+
+    $y=\dfrac{x^2}{2}$\\
+    
+(**) $3y^2 -6x=0$\\
+
+	 $y^2=2x$\\
+	 
+Wij substitueren $y=\dfrac{x^2}{2}$ in $y^2=2x$:\\
+
+$\left(\dfrac{x^2}{2}\right)^2 =2x$\\
+
+$\dfrac{x^4}{4}=2x$\\
+
+$x^4-8x=0$\\
+
+$x(x^3-8)=0$\\
+
+$x_1=0$ \\ 
+
+$x^3-8=0$\\
+
+$x^3=8$\\
+
+$x_2=2$\\
+
+Voor $x=0$: $y = \dfrac{0^2}{2} = 0$\\
+
+Voor $x=2$: $y = \dfrac{2^2}{2} = 2$\\
+
+Kritieke punten: $(0,0)$ en $(2,2)$.\\
+
+$H = 
+\left|
+\begin{array}{ccc}
+\dfrac{\partial^2 f}{\partial x^2} & \dfrac{\partial^2 f}{\partial x \partial y}\\
+\dfrac{\partial^2 f}{\partial x \partial y} & \dfrac{\partial^2 f}{\partial y^2}
+\end{array}
+\right| = 
+\left|
+\begin{array}{ccc}
+6x & -6\\
+-6 & 6y
+\end{array}
+\right| = (6x)(6y)-(-6)^2=36xy-36
+$\\
+
+
+
+
+Als $(0,0)$: $H = 36\cdot 0 \cdot 0 -36 = -36$\\
+
+Dus $(0, 0)$ is een zadelpunt.\\
+
+Als $(2, 2)$: $H = 36 \cdot 2 \cdot 2 - 36 = 144 - 36 = 108$\\
+
+Dus $(2, 2)$ is een lokaal minimum in:\\
+
+$f(2, 2) = 2^3 + 2^3 -6 \cdot 2 \cdot 2 = 8+8-24=-8$\\
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

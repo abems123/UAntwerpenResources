@@ -1,0 +1,48 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\newcommand{\dint}{\displaystyle\int}
+
+\begin{document}
+  
+\noindent \large Auteur: Thijs Van Schel \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 31.12\\
+
+\medskip
+
+\normalsize
+
+$\dint \dfrac{3xdx}{1+\sqrt{1+2x}}$\\
+
+$ = 3\dint \dfrac{xdx}{1+\sqrt{1+2x}}$\\
+
+Stel $t = 2x+1\Rightarrow dt = 2dx$\\
+
+$ = \dfrac{1}{4} \dint \dfrac{t-1}{\sqrt{t}+1}dt$\\
+
+Stel $u = \sqrt{t}+1\Rightarrow du = \dfrac{1}{2\sqrt{t}}dt$\\
+
+$ = \dfrac{1}{4} \left( 2\dint (u-2)(u-1)du\right)$\\
+
+$ = \dfrac{2}{4} \left(\dint u^2du - 3\dint u du + 2\dint du\right)$ \\
+
+$ = \dfrac{2}{4} \left( \dfrac{u^3}{3} - \dfrac{3u^2}{2} + 2u \right)$ + C\\
+
+$ = \dfrac{1}{4} \left( \dfrac{2u^3}{3} - 3u^2 + 4u \right)$ + C\\
+
+$ = \dfrac{1}{4} \left( \dfrac{2(\sqrt{t}+1)^3}{3} - 3(\sqrt{t}+1)^2 + 4(\sqrt{t} + 1) \right)$ + C\\
+
+$ = \dfrac{1}{4} \left( \dfrac{2(\sqrt{2x+1}+1)^3}{3} - 3(\sqrt{2x+1}+1)^2 + 4(\sqrt{2x+1}+1) \right)$ + C\\
+
+$ = \dfrac{\sqrt{2x+1}+1}{6} - \dfrac{3(\sqrt{2x+1}+1)^2}{4} + \sqrt{2x+1}+1$ + C\\
+
+$ = \dfrac{(2x+1)^{\tfrac{3}{2}} - 3x}{2}$ + C\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

@@ -1,0 +1,43 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+
+\begin{document}
+
+\noindent \large Auteur: Karanjot Singh \\
+\noindent \large Studierichting: Informatica \\
+\noindent \large Oefeningenreeks 4A nr. 9.6 \\
+
+\normalsize
+
+$\displaystyle\int \sin(x) \tan^2(x) dx$ \\
+
+$= \displaystyle\int \sin(x) (\sec^2(x) - 1) dx$ \\
+
+$= \displaystyle\int \sin(x) \sec^2(x) dx - \displaystyle\int \sin(x) dx$ \\
+
+Voor de eerste integraal gebruiken we substitutie. \\
+
+Laat $u = \cos(x)$, dan $du = -\sin(x) dx$ \\
+
+$\displaystyle\int \sin(x) \sec^2(x) dx = \displaystyle\int \dfrac{\sin(x)}{\cos^2(x)} dx$ \\
+
+$= \displaystyle\int \dfrac{-du}{u^2} = -\displaystyle\int u^{-2} du$ \\
+
+$= -\left[ -\dfrac{1}{u} \right] + C = \dfrac{1}{\cos(x)} + C = \sec(x) + C$ \\
+
+Voor de tweede integraal: \\
+
+$\displaystyle\int \sin(x) dx = -\cos(x) + C$ \\
+
+Dus: \\
+
+$\displaystyle\int \sin(x) \tan^2(x) dx = \sec(x) + \cos(x) + C$ \\
+
+\begin{thebibliography}{999}
+	%\bibitem{a} Referentie
+\end{thebibliography}
+
+\end{document}

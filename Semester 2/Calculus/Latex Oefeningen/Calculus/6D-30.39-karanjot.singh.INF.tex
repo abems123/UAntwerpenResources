@@ -1,0 +1,34 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}    
+\newcommand{\llim}{\lim\limits}
+
+\begin{document}
+
+\noindent \large Auteur: Karanjot Singh \\
+\noindent \large Studierichting: Informatica \\
+\noindent \large Oefeningenreeks 6D nr. 30.39 \\
+
+\normalsize
+
+$\displaystyle\sum\limits_{n=1}^\infty \dfrac{1}{(n!)^n}$ \\
+
+We gebruiken het criterium van Cauchy\\
+
+$\llim_{n \to \infty} \sqrt[n]{\left| \dfrac{1}{(n!)^n} \right|} = \llim_{n \to \infty} \dfrac{1}{n!}$ \\
+
+Aangezien $n!$ zeer snel groeit, geldt: $\dfrac{1}{n!} \to 0$ als $n \to \infty$ \\
+
+Dus: $\llim_{n \to \infty} \dfrac{1}{n!} = 0$ \\
+
+Aangezien $0 < 1$, is de reeks convergent volgens het wortelcriterium. \\
+
+$\Rightarrow$ De reeks is convergent. \\
+
+\begin{thebibliography}{999}
+	%\bibitem{a} Referentie
+\end{thebibliography}
+
+\end{document}

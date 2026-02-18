@@ -1,0 +1,28 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Stan Van Campenhout \\
+\noindent \large Studierichting:  Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 60.2\\
+
+\medskip
+
+\normalsize
+
+$ \displaystyle\int\dfrac{1}{\sqrt{x}+\sqrt[3]{x}}dx \stackrel{x = t^6}{=} 6\displaystyle\int\dfrac{t^5}{t^3+t^2}dt $\\
+
+$ = 6\displaystyle\int t^2dt - 6\displaystyle\int t dt + 6\displaystyle\int dt - 6\displaystyle\int\dfrac{1}{t+1}dt $\\
+
+$ = 2t^3-3t^2+6t-6\ln\left|t+1\right|+c $\\
+
+$ \stackrel{t = \sqrt[6]{x}}{=} 2\sqrt{x}-3\sqrt[3]{x}+6\sqrt[6]{x}-6\ln\left|\sqrt[6]{x}+1\right| + c $\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

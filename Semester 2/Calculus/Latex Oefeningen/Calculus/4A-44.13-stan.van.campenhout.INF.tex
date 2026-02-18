@@ -1,0 +1,36 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Stan Van Campenhout \\
+\noindent \large Studierichting:  Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 44.13\\
+
+\medskip
+
+\normalsize
+
+$ \displaystyle\int\dfrac{1}{x^4-1}dx = \displaystyle\int\dfrac{1}{\left(x^2-1\right)\left(x^2+1\right)}dx =  \displaystyle\int\dfrac{1}{\left(x-1\right)\left(x+1\right)\left(x^2+1\right)}dx $\\
+
+$ \rightarrow \dfrac{1}{\left(x-1\right)\left(x+1\right)\left(x^2+1\right)} = \dfrac{A}{x-1}+\dfrac{B}{x+1}+\dfrac{Cx+D}{x^2+1} $\\
+
+$ \Rightarrow A = \dfrac{1}{\left(1+1\right)\left(1+1\right)} = \dfrac{1}{4} $\\
+
+$ \Rightarrow B = \dfrac{1}{\left(-1-1\right)\left(\left(-1\right)^2+1\right)} = -\dfrac{1}{4} $\\
+
+$ \Rightarrow C\left(i\right) + D = \dfrac{1}{\left(i-1\right)\left(i+1\right)} = -\dfrac{1}{2} + 0i $\\
+
+$ \Rightarrow D = -\dfrac{1}{2}, C = 0 $\\
+
+$ = \dfrac{1}{4}\displaystyle\int\dfrac{1}{x-1}dx-\dfrac{1}{4}\displaystyle\int\dfrac{1}{x+1}dx-\dfrac{1}{2}\displaystyle\int\dfrac{1}{x^2+1}dx $\\
+
+$ = \dfrac{1}{4}\ln|x-1|-\dfrac{1}{4}\ln|x+1|-\dfrac{1}{2}\operatorname{Bgtan}x + c $\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

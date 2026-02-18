@@ -1,0 +1,41 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Raj Shah \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 3C nr. 2\\
+
+\medskip
+
+\normalsize
+
+Voor de continue functie $f(x) = | x |$ is $f(-1) = f(1) = 1$. Nochtans bevat het interval $]-1, 1[$ geen enkel punt c waarvoor $f'(c) = 0$. Of is dit in strijd met de stelling van Rolle?\\
+
+Rolle: 
+\begin{itemize}
+	\item $f$ continu op gesloten interval $[-1, 1]$ : correct
+	\item $f(-1) = f(1)$ : correct
+	\item $f$ differentieerbaar op open interval $]-1, 1[$ : niet correct\\
+ \end{itemize}
+
+$\Rightarrow f(x) = | x |$ is wel continu, maar\\
+
+$\lim\limits_{h\rightarrow 0+} \dfrac{f(h) - f(x)}{h} = \lim\limits_{h\rightarrow 0+} \dfrac{| h |}{h} = 1 = f'_{r}(0)$\\
+
+$\lim\limits_{h\rightarrow 0-} \dfrac{f(h) - f(x)}{h} = \lim\limits_{h\rightarrow 0-} \dfrac{-h}{h} = -1 = f'_{l}(0)$\\
+
+$x = 1 = $ knikpunt $\Rightarrow$ want $\lim\limits_{h\rightarrow 0+} f(x) \neq \lim\limits_{h\rightarrow 0-} f(x)$\\
+
+$\Rightarrow f(x) = | x | $ is dus niet differentieerbaar 
+ 
+
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

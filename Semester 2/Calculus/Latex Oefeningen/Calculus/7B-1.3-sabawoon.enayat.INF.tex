@@ -1,0 +1,44 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Sabawoon Enayat      \\
+\noindent \large Studierichting: Informatica  \\
+\noindent \large Oefeningenreeks 7B nr. 1.3 \\
+
+\newcommand{\llim}{\lim\limits}
+
+\medskip
+
+\normalsize
+
+Opgave: zoek $\dfrac{dw}{dt}$: $w = \sin xyz$ met $x = t$, $y = t^2$ en $z = t^3$\\
+
+$\dfrac{\partial w}{\partial x} = \cos (xyz) \cdot \dfrac{\partial (xyz)}{\partial x} = \cos (xyz) \cdot (yz)$\\
+
+$\dfrac{\partial w}{\partial y} = \cos (xyz) \cdot (xz)$\\
+
+$\dfrac{\partial w}{\partial z} = \cos (xyz) \cdot (xy)$\\
+
+$\dfrac{dx}{dt} = 1$\\
+
+$\dfrac{dy}{dt} = 2t$\\
+
+$\dfrac{dz}{dt} = 3t^2$\\
+
+$\dfrac{dw}{dt} = \dfrac{\partial w}{\partial x} \cdot \dfrac{dx}{dt} + \dfrac{\partial w}{\partial y} \cdot \dfrac{dy}{dt} + \dfrac{\partial w}{\partial z} \cdot \dfrac{dz}{dt}$\\
+
+$= \cos\left(xyz\right) \cdot \left(yz + 2t\cdot xz + 3t^2\cdot xy\right)$\\
+
+$= \cos\left(t^6\right) \cdot \left(t^5 + 2t^5 + 3t^5\right) = \cos\left(t^6\right) \cdot \left(6t^5\right)$\\
+
+$$\dfrac{dw}{dt} = \cos\left(t^6\right) \cdot \left(6t^5\right)$$\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

@@ -1,0 +1,60 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\newcommand{\dint}{\displaystyle\int}
+\newcommand{\llim}{\lim\limits}
+
+\begin{document}
+  
+\noindent \large Auteur: Oubayy Ahale          \\
+\noindent \large Studierichting: Informatica   \\
+\noindent \large Oefeningenreeks 3E nr. 4      \\
+
+\medskip
+
+\normalsize
+
+$ V(t) = 5000 \left( 1 - \dfrac{t}{40} \right)^2 $\\
+
+$ V'(t) = 5000 \cdot \dfrac{d}{dt} \left[ \left( 1 - \dfrac{t}{40} \right)^2 \right] $\\
+
+$ = 5000 \cdot 2 \left( 1 - \dfrac{t}{40} \right) \cdot \dfrac{d}{dt} \left( 1 - \dfrac{t}{40} \right) $\\
+
+$ = 10000 \left( 1 - \dfrac{t}{40} \right) \cdot \left( -\dfrac{1}{40} \right) $\\
+
+$ = -250 \left( 1 - \dfrac{t}{40} \right) $\\
+
+\medskip
+
+Stel $ Q(t) = 5000 - V(t) $\\
+
+$ Q'(t) = - \left[ -250 \left( 1 - \dfrac{t}{40} \right) \right] $\\
+
+$ = 250 \left( 1 - \dfrac{t}{40} \right) $\\
+
+\medskip
+
+4.1. Na 5 minuten:\\
+
+$ Q'(5) = 250 \left( 1 - \dfrac{5}{40} \right) = 250 \left( 1 - 0.125 \right) = 218.75 $ liter per minuut\\
+
+\medskip
+
+4.2. Na 10 minuten:\\
+
+$ Q'(10) = 250 \left( 1 - \dfrac{10}{40} \right) = 250 \left( 1 - 0.25 \right) = 187.5 $ liter per minuut\\
+
+\medskip
+
+4.3. Na 20 minuten:\\
+
+$ Q'(20) = 250 \left( 1 - \dfrac{20}{40} \right) = 250 \left( 1 - 0.5 \right) = 125 $ liter per minuut\\
+
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

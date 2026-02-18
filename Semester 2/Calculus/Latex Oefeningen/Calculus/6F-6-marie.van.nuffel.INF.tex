@@ -1,0 +1,67 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+\usepackage{color}     
+
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\llim}{\lim\limits}
+\newcommand{\dint}{\displaystyle\int}
+
+\begin{document}
+  
+\noindent \large Auteur: Marie Van Nuffel \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 6F nr. 6\\
+
+\medskip
+
+\normalsize
+
+$f_n : [0,1] \to \mathbb{R} : x \mapsto x^n(1-x^n)$\\
+
+Puntsgewijze Convergentie:\\
+
+Voor elke $x \in [0,1]$ bepalen we $\lim\limits_{n \to \infty} f_n(x) = \lim\limits_{n \to \infty} x^n(1-x^n)$.\\
+
+$x = 0$: $f_n(0) = 0^n(1-0^n) = 0 \cdot 1 = 0$ voor alle $n$, dus $\lim\limits_{n \to \infty} f_n(0) = 0$\\
+
+$x = 1$: $f_n(1) = 1^n(1-1^n) = 1 \cdot (1-1) = 0$ voor alle $n$, dus $\lim\limits_{n \to \infty} f_n(1) = 0$\\
+
+$0 < x < 1$: $\lim\limits_{n \to \infty} x^n = 0$, daarom $\lim\limits_{n \to \infty} f_n(x) = \lim\limits_{n \to \infty} x^n(1-x^n) = 0 \cdot (1-0) = 0$\\
+
+De functierij convergeert puntsgewijs naar de nulfunctie:\\
+
+$f(x) = 0$ voor alle $x \in [0,1]$\\
+
+Uniforme Convergentie:\\
+
+$\lim\limits_{n \to \infty} \sup\limits_{x \in [0,1]} |f_n(x) - f(x)| = 0$\\
+
+$f(x) = 0$, dus:\\
+
+$\sup\limits_{x \in [0,1]} |f_n(x)| = \sup\limits_{x \in [0,1]} x^n(1-x^n)$\\
+
+Maximum bepalen:\\
+
+$f_n'(x) = nx^{n-1}(1-x^n) + x^n(-nx^{n-1}) = nx^{n-1}(1-x^n-x^n) = nx^{n-1}(1-2x^n)$\\
+
+$f_n'(x) = 0$ wanneer $x = 0$ of $1-2x^n = 0 \Rightarrow x^n = \dfrac{1}{2}$.\\
+
+Voor $0 < x < 1$: $x^n = \dfrac{1}{2}$ geeft $x = \left(\dfrac{1}{2}\right)^{1/n}$.\\
+
+Maximum berekenen:\\
+
+Bij $x = \left(\dfrac{1}{2}\right)^{1/n}$:\\
+
+$f_n\left(\left(\dfrac{1}{2}\right)^{1/n}\right) = \left(\dfrac{1}{2}\right)\left(1-\dfrac{1}{2}\right) = \dfrac{1}{2} \cdot \dfrac{1}{2} = \dfrac{1}{4}$\\
+
+Conclusie uniforme convergentie:\\
+
+$\lim\limits_{n \to \infty}\sup\limits_{x \in [0,1]} |f_n(x) - 0| = \lim\limits_{n \to \infty} \dfrac{1}{4} = \dfrac{1}{4} \neq 0$, dus niet uniform\\
+
+\begin{thebibliography}{999}
+\end{thebibliography}
+\end{document} 

@@ -1,0 +1,60 @@
+   \documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}   
+
+\begin{document}
+  
+\noindent \large Auteur: Eryk Borczuch \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 15.5\\
+
+\medskip
+
+\normalsize
+
+
+$\int((x^2-x-4)e^x)dx$\\
+
+$\left\{
+   \begin{array}{l}
+       u = x^2-x-4\\
+       dv = e^x dx
+   \end{array}
+\right.
+\Rightarrow
+\left\{
+   \begin{array}{l}
+       du = 2x-1 dx \\
+       v =e^x
+   \end{array}
+\right.$\\
+
+
+$= (x^2-x-4)e^x-\int(2xe^x-e^x)dx$\\
+
+$\left\{
+   \begin{array}{l}
+       u = 2x\\
+       dv = e^x dx
+   \end{array}
+\right.
+\Rightarrow
+\left\{
+   \begin{array}{l}
+       du = 2 dx \\
+       v =e^x
+   \end{array}
+\right.$\\
+
+$= (x^2-x-4)e^x-2xe^x-2e^x+2e^x+e^x$\\
+
+$=e^x(x^2-3x-1)+c$\\
+
+
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

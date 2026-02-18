@@ -1,0 +1,65 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}  
+\usepackage{cancel}
+
+\newcommand{\degree}{^{\circ}}
+\newcommand{\cis}{\operatorname{cis}}
+\newcommand{\Bgsin}{\operatorname{Bgsin}}
+\newcommand{\Bgcos}{\operatorname{Bgcos}}
+\newcommand{\Bgtan}{\operatorname{Bgtan}}
+\newcommand{\limit}{\lim\limits}
+\newcommand{\summation}{\displaystyle\sum}
+\newcommand{\dom}{\operatorname{dom}}
+\newcommand{\Int}{\displaystyle\int}
+
+\begin{document}
+  
+\noindent \large Auteur: Rune Suy \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks X nr. Y\\
+
+\medskip
+
+\normalsize
+
+$f(x,y) = 2x^3 + y^3 - 3x^2 - 12x - 3y$\\
+
+$\dfrac{\partial f}{\partial x} = 6x^2 - 6x - 12$\\
+
+$\dfrac{\partial f}{\partial y} = 3y^2 - 3$\\
+
+$\left\{
+    \begin{array}{l}
+        6x^2 - 6x - 12 = 0\\
+        3y^2 - 3 = 0
+    \end{array}
+\right.$\\
+
+$\Rightarrow y=1$ of $y=-1$\\
+
+$D=\sqrt{18}$\\
+
+$x_1 = -1$\\
+
+$x_2 = 2$\\
+
+$H(x,y) = \det \left(\begin{array}{cc}
+    12x-6 & 0\\
+    0 & 6y
+\end{array}\right) = 72xy-36y$\\
+
+$H(-1,1) = -72-36 < 0$ dus $(-1,1)$ is een zadelpunt\\
+
+$H(-1,-1) = 72+36 > 0$ en $\dfrac{\partial^2 f}{\partial x^2}, \dfrac{\partial^2 f}{\partial y^2} > 0$ dus $(-1,-1)$ is een maximum\\
+
+$H(2,-1) = -144 - 36 < 0$ dus $(2,-1)$ is een zadelpunt\\
+
+$H(2,1) = 72 - 36 > 0$ en $\dfrac{\partial^2 f}{\partial x^2}, \dfrac{\partial^2 f}{\partial y^2} < 0$ dus $(2,1)$ is een minimum\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

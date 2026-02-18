@@ -1,0 +1,38 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Stan Van Campenhout \\
+\noindent \large Studierichting:  Informatica\\
+\noindent \large Oefeningenreeks 6G nr. 2.4\\
+
+\medskip
+
+\normalsize
+
+$ f(x) = x^2 $\\
+
+$ \Rightarrow $ even functie  $ \Rightarrow \forall b_n = 0 $\\
+
+$ a_n = \left<x^2|\cos(nx)\right> = \dfrac{1}{\pi}\displaystyle\int_{-\pi}^{\pi}x^2\cos(nx)dx = \dfrac{1}{n\pi}\displaystyle\int_{-\pi}^{\pi}x^2d\left(\sin(nx)\right) $\\
+
+$ = \left[\dfrac{x^2\sin(nx)}{n\pi}\right]_{-\pi}^{\pi} - \dfrac{2}{n\pi}\displaystyle\int_{-\pi}^{\pi}x\sin(nx)dx = \dfrac{2}{n^2\pi}\displaystyle\int_{-\pi}^{\pi}xd\left(\cos(nx)\right) $\\
+
+$ = \left[\dfrac{2x\cos(nx)}{n^2\pi}\right]_{-\pi}^{\pi} - \dfrac{2}{n^2\pi}\displaystyle\int_{-\pi}^{\pi}\cos(nx)dx $\\
+
+$ = 2\cdot\dfrac{2\pi(-1)^n}{n^2\pi} -  \left[\dfrac{2\sin(nx)}{n^3\pi}\right]_{-\pi}^{\pi} = \dfrac{4(-1)^n}{n^2} $\\
+
+$ a_0 = \left<x^2|1\right> = \dfrac{1}{\pi}\displaystyle\int_{-\pi}^{\pi}x^2dx = \left[\dfrac{x^3}{\pi}\right]_{-\pi}^{\pi} = \dfrac{2\pi^2}{3} $\\
+
+$ \Rightarrow \widehat{f}(x) = \dfrac{\pi^2}{3} + 4\displaystyle\sum\limits_{n = 1}^{\infty} \dfrac{(-1)^n}{n^2}\cos(nx) $\\
+
+
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

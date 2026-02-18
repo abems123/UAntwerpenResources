@@ -1,0 +1,60 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\newcommand{\llim}{\lim\limits}
+
+\begin{document}
+  
+\noindent \large Auteur: Mathijs Pittoors \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 3F nr. 1.11\\
+
+\medskip
+
+\normalsize
+
+\textbf{Verticale Asymptoot:}\\
+
+$ \llim_{x \rightarrow 7} \left( x + 1 + \dfrac{3}{x-7}\right) = \llim_{x \rightarrow 7} \left( \dfrac{x^2-6x-4}{x-7} \right) = \infty \Rightarrow $ Dé limiet bestaat niet\\
+
+$\llim_{x \rightarrow 7+} = \dfrac{3}{0^+} = +\infty$\\
+
+$\llim_{x \rightarrow 7-} = \dfrac{3}{0^-} = -\infty$\\
+
+Verticale Asymptoot op $x=7$\\
+
+$\begin{array}{r|c c c c}
+x & & 7 & &\\ \hline
+f(x) & + & | & - &
+\end{array}$ \\
+
+
+
+\textbf{Horizontale Asymptoot:}\\
+
+$ \llim_{x \rightarrow \pm \infty}\left( x + 1 + \dfrac{3}{x-7}\right) = \pm \infty \Rightarrow $ Geen Horizontale Asymptoot\\
+
+\textbf{Schuine Asymptoot:}\\
+
+$a = \llim_{x \rightarrow \infty}\left(\dfrac{f(x)}{x}\right) = \llim_{x \rightarrow \infty}\left(1+\dfrac{1}{x}+\dfrac{3}{(x-7)(x)}\right) = 1 $\\
+
+$b = \llim_{x \rightarrow \infty}(f(x)-ax) = \llim_{x \rightarrow \infty}\left(1+\dfrac{3}{x-7}\right) = 1$\\
+
+$\Rightarrow$ Schuine Asymptoot: $y=x+1$\\
+
+$\begin{array}{r|c c c}
+x & & 7 & \\ \hline
+f(x) - (x+1) & + & | & - 
+\end{array}$ \\
+
+Conclusie: als $x \rightarrow -\infty$ nadert de functie de schuine asymptoot langs onder, 
+
+en als $x \rightarrow +\infty$ nadert ze hem langs boven.
+
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

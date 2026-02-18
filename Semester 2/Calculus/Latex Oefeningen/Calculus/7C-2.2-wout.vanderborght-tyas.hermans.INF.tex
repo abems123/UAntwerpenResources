@@ -1,0 +1,53 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+\usepackage{cancel}
+
+% Command definities van frequent gebruikte commandos
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Bgsin}{\operatorname{Bgsin}}
+\newcommand{\Bgcos}{\operatorname{Bgcos}}
+\newcommand{\Bgtan}{\operatorname{Bgtan}}
+\newcommand{\cis}{\operatorname{cis}}
+\newcommand{\Limit}{\lim\limits_}
+\newcommand{\Int}{\displaystyle\int}
+\newcommand{\Dint}{\displaystyle\int\limits}
+
+\begin{document}
+  
+\noindent \large Auteur: Wout Vanderborght en Tyas Hermans \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 7C nr. 2.2\\
+
+\medskip
+
+\normalsize
+
+$ f:\R \rightarrow \R: (x, y) \rightarrow \sqrt{4x^2 + y^2} $ \\
+
+$ \dfrac{\partial f}{\partial x} (x, y) = \dfrac{4x}{\sqrt{4x^2 + y^2}} $ \\
+
+$ \dfrac{\partial f}{\partial y} (x, y) = \dfrac{y}{\sqrt{4x^2 + y^2}} $ \\
+
+$ \dfrac{\partial^2 f}{\partial x^2} (x, y) = \dfrac{4\sqrt{4x^2 + y^2} - \dfrac{16x^2}{\sqrt{4x^2 + y^2}}}{4x^2 + y^2} = \dfrac{4(4x^2+y^2) - 16x^2}{(4x^2+y^2)\sqrt{4x^2+y^2}} = \dfrac{4y^2}{(4x^2+y^2)\sqrt{4x^2+y^2}} $ \\
+
+$ \dfrac{\partial^2 f}{\partial xy} (x, y) = \dfrac{-4xy}{(4x^2+y^2)\sqrt{4x^2+y^2}} $ \\
+
+$ \dfrac{\partial^2 f}{\partial yx} (x, y) = \dfrac{-4xy}{(4x^2+y^2)\sqrt{4x^2+y^2}} $ \\
+
+$ \dfrac{\partial^2 f}{\partial y^2} (x, y) = \dfrac{\sqrt{4x^2+y^2} - \dfrac{y^2}{\sqrt{4x^2+y^2}}}{4x^2+y^2} = \dfrac{4x^2}{(4x^2+y^2)\sqrt{4x^2+y^2}} $ \\
+
+$ D^2 f = \left( \begin{array}{cc}
+    \dfrac{4y^2}{(4x^2+y^2)\sqrt{4x^2+y^2}} & \dfrac{-4xy}{(4x^2+y^2)\sqrt{4x^2+y^2}} \\
+    \dfrac{-4xy}{(4x^2+y^2)\sqrt{4x^2+y^2}} & \dfrac{4x^2}{(4x^2+y^2)\sqrt{4x^2+y^2}} \\
+\end{array} \right) $
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

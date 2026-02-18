@@ -1,0 +1,49 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Noran Ben Said \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 7E nr. 1.23\\
+
+\medskip
+
+\normalsize
+
+$f(x,y) = 4xy -2x^4 - y^2$\\
+
+$\dfrac{\partial f}{\partial x} = 4y - 8x^3 = 0$\\
+
+$\leftrightarrow x = 8x\left(1-x^2\right) = 0\leftrightarrow 8x \left(1-x\right)\left(1+x\right)$\\
+
+$\dfrac{\partial f}{\partial y} = 4x-2y = 0$\\
+
+$\Rightarrow y = 2x $\\
+
+$\text{Dus: } x = 0 \Rightarrow y=0,x = 1 \Rightarrow y=2,x = -1 \Rightarrow y=-2, $\\
+
+$\text{Punten: } (0,0), (1,2), (-1,-2)$\\
+
+$H(x,y) = 
+\left|
+\begin{array}{ccc}
+-24x^2 & 4\\
+4 & -2
+\end{array}
+\right|
+\Rightarrow 48x^2 -16$\\
+
+$H(0, 0) = -16 \Rightarrow \text{zadelpunt}$\\
+
+$H(1, 2) = 32 \Rightarrow \dfrac{\partial^2 f}{\partial x^2}(1,2) = -24 < 0 \Rightarrow \text{Maximum}$\\
+
+$H(-1, -2) = 32 \Rightarrow \dfrac{\partial^2 f}{\partial x^2}(-1,-2) = -24 < 0 \Rightarrow \text{Maximum}$\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

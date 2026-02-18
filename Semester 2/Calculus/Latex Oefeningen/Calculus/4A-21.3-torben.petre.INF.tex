@@ -1,0 +1,34 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Torben Petré \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 21.3\\
+
+\medskip
+
+\normalsize
+
+Bereken de volgende onbepaalde integraal, eventueel door gebruik van goniometrische en/of hypergoniometrische formules $\displaystyle\int \sin x\sinh xdx$ \\\\
+
+$u = \sin x, du = \cos xdx, v = \cosh x, dv = \sinh xdx, \displaystyle\int udv = uv - \displaystyle\int vdu$\\
+
+$\displaystyle\int \sin x\sinh xdx = \sin x\cosh x - \left(\displaystyle\int \cosh x\cos xdx\right)$ \\
+
+$u = \cos x, du = -\sin xdx, v = \sinh x, dv = \cosh xdx, \displaystyle\int udv = uv - \displaystyle\int vdu$\\
+
+$\displaystyle\int \sin x\sinh xdx = \sin x\cosh x - \left(\cos x\sinh x - \displaystyle\int \sin x\sinh xdx\right)$ \\
+
+$2 \displaystyle\int \sin x\sinh xdx = \sin x\cosh x - \cos x\sinh x + C$ \\
+
+$\displaystyle\int \sin x\sinh xdx = \dfrac{\sin x\cosh x - \cos x\sinh x}{2} + C$ \\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

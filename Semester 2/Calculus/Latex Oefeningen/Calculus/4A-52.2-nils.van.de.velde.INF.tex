@@ -1,0 +1,32 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+
+\newcommand{\dint}{\displaystyle\int}
+  
+\noindent \large Auteur: Nils Van de Velde \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 52.2\\
+
+\medskip
+
+\normalsize
+
+$\dint\sin^2x\cos^4xdx=\dint(\sin x\cos x)^2\cos^2xdx$\\
+
+$=\dint\left(\dfrac{1}{2}\sin2x\right)^2\cos^2xdx=\dfrac{1}{4}\dint\sin^22x\cos^2xdx$\\
+
+$=\dfrac{1}{16}\dint(1-\cos4x)(1+\cos2x)dx=\dfrac{1}{16}\dint(1+\cos2x-\cos4x-\cos4x\cos2x)dx$\\
+
+$=\dfrac{x}{16}+\dfrac{1}{32}\dint\cos2xdx-\dfrac{1}{64}\sin4x-\dfrac{1}{32}\dint\cos6xdx$\\
+
+$=\dfrac{x}{16}+\dfrac{1}{64}\sin2x-\dfrac{1}{64}\sin4x-\dfrac{1}{192}\sin6x+c$\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

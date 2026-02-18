@@ -1,0 +1,59 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\newcommand{\dint}{\displaystyle\int}
+\newcommand{\llim}{\lim\limits}
+\newcommand{\Bgtan}{\operatorname{Bgtan}}
+
+\begin{document}
+  
+\noindent \large Auteur: Oubayy Ahale         \\
+\noindent \large Studierichting: Informatica  \\
+\noindent \large Oefeningenreeks 5D nr. 14    \\
+
+\medskip
+
+\normalsize
+
+$ y^2 = x^4+x^5                     $\\
+
+$\Leftrightarrow y = \sqrt{x^4+x^5} $\\
+
+$\Leftrightarrow y = x^2\sqrt{x+1}  $\\
+
+$\dint_{-1}^{0} x^2\sqrt{x+1} dx    $\\
+
+$t = x+1 \Leftrightarrow x = t-1    $\\
+
+$x=-1\;\Rightarrow\;t=0$, $x=0\;\Rightarrow\;t=1             $\\
+
+$= \dint_{0}^{1} (t-1)^2 \cdot \sqrt{t} dt                   $\\
+
+$= \dint_{0}^{1} \left(t^2 - 2t + 1\right) \cdot \sqrt{t} dt $\\
+
+$=\dint_{0}^{1} \left(t^{\tfrac{5}{2}}- 2t^{\tfrac{3}{2}} + \sqrt{t}\right) dt $\\
+
+$=\dint_{0}^{1} t^{\tfrac{5}{2}} dt - \dint_{0}^{1} 2t^{\tfrac{3}{2}} dt + \dint_{0}^{1} \sqrt{t} dt $\\
+
+$=\left[\dfrac{2t^{\tfrac{7}{2}}}{7}\right]^{1}_{0} - \left[\dfrac{4t^{\tfrac{5}{2}}}{5}\right]^{1}_{0} + \left[\dfrac{2t^{\tfrac{3}{2}}}{3}\right]^{1}_{0} $\\
+
+$= \dfrac{16}{105} $\\
+
+Voor de volledige oppervlakte vermenigvuldigen we met 2\\
+
+$= \dfrac{32}{105} $\\
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=250pt, angle=0]{5D-14-oubayy.ahale.INF.png}
+\end{figure}
+
+\end{document}
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

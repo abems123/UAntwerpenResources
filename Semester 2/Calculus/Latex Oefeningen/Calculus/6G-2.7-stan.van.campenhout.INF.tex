@@ -1,0 +1,40 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Stan Van Campenhout \\
+\noindent \large Studierichting:  Informatica\\
+\noindent \large Oefeningenreeks 6G nr. 2.7\\
+
+\medskip
+
+\normalsize
+
+$ f(x) = 
+\left\{
+\begin{array}{lll}
+x & \text{als} & x \in [0,\pi] \\
+0 & \text{als} & x \in [-\pi,0]
+\end{array}
+\right.$\\
+
+$ a_n = \left<f|\cos(nx)\right> = \dfrac{1}{\pi}\displaystyle\int_0^{\pi}x\cos(nx)dx = \left[\dfrac{x\sin(nx)}{n\pi}\right]_0^{\pi} - \dfrac{1}{n\pi}\displaystyle\int_0{\pi}\sin xdx $\\
+
+$ = \left[\dfrac{\cos(nx)}{n^2\pi}\right]_0^{\pi} = \dfrac{(-1)^n - 1}{n^2\pi} $\\
+
+$ b_n = \left<f|\sin(nx)\right> = \dfrac{1}{\pi}\displaystyle\int_0^{\pi}x\sin(nx)dx = -\dfrac{1}{n\pi}\displaystyle\int_0^{\pi}xd(\cos(nx)) $\\
+
+$ = \left[\dfrac{x\cos(nx)}{n\pi}\right]_0^{\pi} + \left[\dfrac{\sin(nx)}{n^2\pi}\right]_0^{\pi} = \dfrac{-(-1)^n}{n} = \dfrac{(-1)^{n-1}}{n} $\\
+
+$ a_0 = \left<f|1\right> = \dfrac{1}{\pi}\displaystyle\int_0^{\pi}xdx = \left[\dfrac{x^2}{2\pi}\right]_0^{\pi} = \dfrac{\pi}{2} $\\
+
+$ \Rightarrow \widehat{f}(x) = \dfrac{\pi}{4} + \displaystyle\sum\limits_{n = 1}^{\infty}\left( \dfrac{(-1)^n - 1}{n^2\pi}\cos(nx) + \dfrac{(-1)^{n-1}}{n}\sin(nx) \right) $\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

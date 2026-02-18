@@ -1,0 +1,66 @@
+\documentclass[a4paper,fleqn]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\setlength{\mathindent}{0pt} % Zorgt ervoor dat wiskundige expressies helemaal links staan
+
+\begin{document}
+  
+\noindent \large Auteur: Victoria Mazur \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 1D nr. 19.12\\
+
+\medskip
+
+\normalsize
+
+\begin{enumerate}
+    \item Oefening:
+    $$
+    z^5 + 2z^4 + 2z^3 + 4z^2 - 15z - 30
+    $$
+
+    \item Ontbinding in factoren:
+    $$
+    z^4(z + 2) + 2z^2(z + 2) - 15(z + 2) = 0
+    $$
+    $$
+    (z^4 + 2z^2 - 15)(z + 2) = 0
+    $$
+    \begin{itemize}
+        \item \( z + 2 = 0 \Rightarrow z = -2 \)
+        \item \( z^4 + 2z^2 - 15 = 0 \)
+    \end{itemize}
+
+    \item Substitueer \( w = z^2 \) in \( z^4 + 2z^2 - 15 = 0 \):
+    $$
+    w^2 + 2w - 15 = 0
+    $$
+    $$
+    (w + 5)(w - 3) = 0
+    $$
+    Dit geeft:
+    \begin{itemize}
+        \item \( w + 5 = 0 \Rightarrow w = -5 \Rightarrow z^2 = -5 \Rightarrow z = \pm i\sqrt{5} \)
+        \item \( w - 3 = 0 \Rightarrow w = 3 \Rightarrow z^2 = 3 \Rightarrow z = \pm \sqrt{3} \)
+    \end{itemize}
+
+    \item Nulpunten in \(\mathbb{C}\):
+    $$
+    z = -2, \quad z = i\sqrt{5}, \quad z = -i\sqrt{5}, \quad z = \sqrt{3}, \quad z = -\sqrt{3}
+    $$
+
+    \item Eindresultaat \(\mathbb{R}[z]\):
+    $$
+    (z + 2)(z^2 + 5)(z + \sqrt{3})(z - \sqrt{3})
+    $$
+\end{enumerate}
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document}
+
+

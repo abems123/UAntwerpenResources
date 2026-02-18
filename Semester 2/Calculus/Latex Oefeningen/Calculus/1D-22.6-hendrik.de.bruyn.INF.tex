@@ -1,0 +1,49 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Hendrik De Bruyn \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 1D nr. 22.6\\
+
+\medskip
+
+\normalsize
+
+\textbf{Opgave:} Bepaal de nulpunten van de veelterm in $\mathbb{C}$ en ontbind in factoren over $\mathbb{C}[z]$: $z^4 - z^3 -2z -4$ \\
+
+\textbf{Oplossing:} \\
+
+\begin{tabular}{c|cccccccccc}
+         && $1$ && $-1$ && $0$ &       & $-2$ &       & $-4$ \\
+    $-1$ &&     && $-1$ && $2$ &       & $-2$ &       & $4$  \\ \hline
+    % -----------------------------------------------------------
+         && $1$ && $-2$ && $2$ &       & $-4$ &\vline & $0$  \\
+    $2$  &&     && $2$  && $0$ &       & $4$  &       &      \\ \cline{0-8}
+    % -----------------------------------------------------------
+         && $1$ && $0$  && $2$ &\vline & $0$  &       &      \\
+\end{tabular} \\
+
+$\Rightarrow (z + 1)(z - 2)(z^2 + 2)$ \\
+
+$(z + 1) = 0 \Leftrightarrow z = -1 = z_0$ \\
+
+$(z - 2) = 0 \Leftrightarrow z = 2 = z_1$ \\
+
+$(z^2 + 2) = 0$ (twee complex toegevoegde nulpunten) \\
+
+$z_{2,3} = \pm i\sqrt{2}$ \\
+
+\textbf{Ontbinding:} $(z+1)(z-2)(z-i\sqrt{2})(z+i\sqrt{2})$ \\
+
+\textbf{Nulpunten:} $z_0 = -1$, $z_1 = 2$, $z_2 = i\sqrt{2}$, $z_3 = -i\sqrt{2}$  \\
+
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

@@ -1,0 +1,41 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\newcommand{\Bgtan}{\operatorname{Bgtan}}
+
+\begin{document}
+  
+\noindent \large Auteur: Siebe Mees \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 2B nr. 6.6\\
+
+\medskip
+
+\normalsize
+
+
+$2\Bgtan\dfrac{1}{2} - \Bgtan\dfrac{1}{7}$\\
+
+We gebruiken de dubbele hoekformule: $\tan(2\alpha) = \dfrac{2\tan(\alpha)}{1 - \tan^2(\alpha)}$\\
+
+We mogen deze formule toepassen omdat zowel $2\Bgtan\dfrac{1}{2}$ \text{ als } $\Bgtan\dfrac{1}{7}$ \ binnen het beeld van $\Bgtan(x)$ vallen, namelijk $\left(-\dfrac{\pi}{2}, \dfrac{\pi}{2}\right)$. \\
+
+$ = \Bgtan\dfrac{2 \cdot \dfrac{1}{2}}{1 - \left(\dfrac{1}{2}\right)^2} - \Bgtan\dfrac{1}{7}$\\
+
+$= \Bgtan\dfrac{1}{\dfrac{3}{4}} - \Bgtan\dfrac{1}{7}$\\
+
+$= \Bgtan\dfrac{4}{3} - \Bgtan\dfrac{1}{7}$\\
+
+$= \Bgtan\left(\dfrac{\dfrac{4}{3} - \dfrac{1}{7}}{1 + \dfrac{4}{3} \cdot \dfrac{1}{7}}\right)$\\
+
+$= \Bgtan 1 = \dfrac{\pi}{4}$
+
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+
+\end{thebibliography}
+\end{document} 

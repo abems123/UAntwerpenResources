@@ -1,0 +1,25 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Stan Van Campenhout \\
+\noindent \large Studierichting:  Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 62.10\\
+
+\medskip
+
+\normalsize
+
+$ \displaystyle\int\dfrac{1}{x^2\sqrt{x^2-1}}dx\stackrel{x = \tfrac{1}{\cos^2t}}{=} \displaystyle\int\dfrac{1}{\dfrac{1}{\cos^2t}\sqrt{\dfrac{1}{\cos^2t}-1}}\dfrac{\sin t}{\cos^2t}dt 
+= \displaystyle\int\dfrac{\sin t}{\tan t}dt =\displaystyle\int\cos tdt $\\
+
+$ = \sin t +c \stackrel{t = \operatorname{Bgcos\left(\tfrac{1}{x}\right)}}{=} \dfrac{\sqrt{x^2-1}}{x} + c $\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

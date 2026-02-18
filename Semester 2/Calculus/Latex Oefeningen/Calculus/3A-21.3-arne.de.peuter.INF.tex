@@ -1,0 +1,52 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+
+\noindent \large Auteur: Arne De Peuter\\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 3A nr. 21.3\\
+
+\medskip
+
+\normalsize
+
+\textbf{Gegeven:}
+\begin{itemize}
+    \item $A(x) = (x-a) \cdot C_1(x)$
+    \item $A'(x) = (x-a) \cdot C_2(x)$
+\end{itemize}
+
+\textbf{Te bewijzen:} $A(x) = (x-a)^2 \cdot C_3(x)$
+
+\medskip
+
+\textbf{Bewijs:}
+
+\[
+A'(x) = C_1(x) + (x-a)C_1'(x).
+\]
+
+Aangezien gegeven is dat $A'(x)$ ook deelbaar is door $(x-a)$, moet gelden:
+\[
+C_1(a) = 0.
+\]
+
+Dit betekent dat $C_1(x)$ zelf deelbaar is door $(x-a)$, dus er bestaat een $C_3(x)$ zodat:
+\[
+C_1(x) = (x-a) C_3(x).
+\]
+
+Door dit in te vullen in de expressie voor $A(x)$, krijgen we:
+\[
+A(x) = (x-a)(x-a)C_3(x) = (x-a)^2 C_3(x).
+\]
+
+\textbf{Hieruit volgt dat $A(x)$ deelbaar is door $(x-a)^2$.}
+
+$\hfill\blacksquare$
+
+\end{document}

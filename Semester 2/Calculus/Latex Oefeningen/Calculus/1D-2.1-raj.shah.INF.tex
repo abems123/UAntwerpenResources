@@ -1,0 +1,76 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Raj Shah\\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 1D nr. 2.1\\
+
+\medskip
+\noindent \large Opgave: Bereken a, b en c zodanig dat:\\
+
+\normalsize
+
+$a\left(z-2\right) + b\left(z^2 + 3z + 1 \right) + c\left(2z^2 - 1 \right) = z\left(z + 11 \right)$\\
+
+$\Leftrightarrow az -2a + bz^2 + 3bz + b +2cz^2 - c = z^2 + 11z$\\
+
+$\Leftrightarrow \left(b + 2c\right)z^2 + \left(a + 3b\right)z - 2a + b - c = z^2 + 11z$\\ 
+
+$\Rightarrow\left\{
+	\begin{array}{l}
+		b + 2c = 1\\
+		a + 3b = 11\\
+		-2a + b - c = 0
+	\end{array}
+\right.$\\ 
+
+$\Leftrightarrow\left\{
+	\begin{array}{l}
+		b = 1 - 2c\\
+		a = 11 - 3b\\
+		c = -2a + b
+	\end{array}
+\right.$\\ 
+
+$\Leftrightarrow\left\{
+	\begin{array}{l}
+		b = 1 - 2\left(-2a + b\right)\\
+		a = 11 - 3b\\
+		c = -2a + b
+	\end{array}
+\right.$\\ 
+
+$\Leftrightarrow\left\{
+	\begin{array}{l}
+		3b = 1 + 4\left(11 - 3b\right)\\
+		a = 11 - 3b\\
+		c = -2a + b
+	\end{array}
+\right.$\\ 
+
+$\Leftrightarrow\left\{
+	\begin{array}{l}
+		15b = 45\\
+		a = 11 - 3b\\
+		c = -2a + b
+	\end{array}
+\right.$\\ 
+
+$\Leftrightarrow\left\{
+	\begin{array}{l}
+		b =3\\
+		a = 2\\
+		c = -1
+	\end{array}
+\right.$\\ 
+
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

@@ -1,0 +1,30 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Etienne El Hachem \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 63.6\\
+
+\medskip
+
+\normalsize
+
+$\displaystyle\int\dfrac{dx}{\sqrt{\left(1+x^2\right)^5}}dx \stackrel{x = \tan u}{=} \displaystyle\int\dfrac{\sec^2u}{\left(\tan^2u+1\right)^{\tfrac{5}{2}}}du $\\
+
+$ = \displaystyle\int\dfrac{\sec^2u}{\sec^5u}du = \displaystyle\int\dfrac{1}{\sec^3u}du = \displaystyle\int\cos u\left(1-\sin^2u\right)du $\\
+
+$ \stackrel{v = \sin u}{=} \displaystyle\int\left(1-v^2\right)dv $\\
+
+$ v - \dfrac{v^3}{3} + c \stackrel{v = \sin u}{=} \sin u - \dfrac{\sin^3u}{3} + c $\\
+
+$ \stackrel{x = \tan u}{=} \dfrac{x}{\sqrt{x^2+1}}-\dfrac{x^3}{3\left(x^2+1\right)^{\tfrac{3}{2}}} + c $\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

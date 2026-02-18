@@ -1,0 +1,32 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Shahin Jamal \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 7A nr. 12.9\\
+
+\medskip
+
+\normalsize
+
+$f(x,y,z) =\sqrt{xyz}$ in $a(2,-1,-2)$ richting $h(1,2,-2)$ en $f(2,-1,-2) = 2$\\
+
+$Df(a,h) = \lim\limits_{\lambda \rightarrow 0} \dfrac{f\left((2,-1,-2) + \lambda(1,2,-2)\right) - 2}{\lambda}$
+
+$= \lim\limits_{\lambda \rightarrow 0} \dfrac{\sqrt{-2\lambda^3 - 4\lambda^2 + 2\lambda + 4} - 2}{\lambda}$\\
+
+$= \lim\limits_{\lambda \rightarrow 0} \dfrac{\sqrt{-2\lambda^3 - 4\lambda^2 + 2\lambda + 4} - 2}{\lambda} \cdot \dfrac{\sqrt{-2\lambda^3 - 4\lambda^2 + 2\lambda + 4} + 2}{\sqrt{-2\lambda^3 - 4\lambda^2 + 2\lambda + 4} + 2}$
+
+$= \lim\limits_{\lambda \rightarrow 0} \dfrac{-2\lambda^3 - 4\lambda^2 + 2\lambda + 4 - 4}{\lambda\cdot\left(\sqrt{-2\lambda^2-4\lambda^2+2\lambda+4}+2\right)}$\\
+
+$= \lim\limits_{\lambda \rightarrow 0} \dfrac{\lambda\left(-2\lambda^2-4\lambda+2\right)}{\lambda\sqrt{-2\lambda^3-4\lambda^2+2\lambda+4} + 2} = -\dfrac{1}{2}$
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

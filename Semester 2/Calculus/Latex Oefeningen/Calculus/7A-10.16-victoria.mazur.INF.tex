@@ -1,0 +1,32 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Victoria Mazur \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 7A nr. 10.16\\
+
+\medskip
+
+\normalsize
+
+$f(u, v) = (2u^2 + 3v^2) \cdot e^{-u^2-v^2} = 2u^2 \cdot e^{-u^2-v^2} + 3v^2 \cdot e^{-u^2-v^2}$ \\
+
+$\dfrac{\partial f}{\partial u}(u, v) = 4u \cdot e^{-u^2-v^2} + 2u^2 \cdot (-2u) \cdot e^{-u^2-v^2} + 3v^2 \cdot (-2u) \cdot e^{-u^2-v^2}$ \\
+
+$= (4u - 4u^3 - 6uv^2) \cdot e^{-u^2-v^2}$ \\
+
+$\dfrac{\partial f}{\partial v}(u, v) = 2u^2 \cdot (-2v) \cdot e^{-u^2-v^2} + 6v \cdot e^{-u^2-v^2} + 3v^2 \cdot (-2v) \cdot e^{-u^2-v^2}$ \\
+
+$= (-4u^2v + 6v - 6v^3) \cdot e^{-u^2-v^2}$ \\
+
+$\Rightarrow Df(u, v) = \left( \begin{array}{cc} (4u - 4u^3 - 6uv^2) \cdot e^{-u^2-v^2} & (-4u^2v + 6v - 6v^3) \cdot e^{-u^2-v^2} \end{array} \right)$ \\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document}

@@ -1,0 +1,49 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+
+\begin{document}
+  
+\noindent \large Auteur: Michael Livchits\\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 7E nr. 1.6\\
+
+\medskip
+
+\normalsize
+
+$f(x,y) = x^3 - 6xy + y^3$\\
+
+$\dfrac{\partial f}{\partial x} = 3x^2 - 6y = 0 \Rightarrow x^2 = 2y$\\
+
+$\dfrac{\partial f}{\partial y} = -6x + 3y^2 = 0 \Rightarrow x = \dfrac{1}{2} y^2$\\
+
+Oplossen geeft: $(x,y) = (0,0)$ en $(x,y) = (2,2)$\\
+
+We onderzoeken deze punten met de tweede afgeleiden:\\
+
+$\dfrac{\partial^2 f}{\partial x^2} = 6x$,\quad
+$\dfrac{\partial^2 f}{\partial y^2} = 6y$,\quad
+$\dfrac{\partial^2 f}{\partial x \partial y} = -6$\\
+
+\medskip
+
+Determinant:
+\[
+H(x,y) = \left|\begin{array}{cc}
+6x & -6 \\
+-6 & 6y
+\end{array}\right| = 36xy - 36
+\]
+
+\medskip
+
+Voor $(0,0)$ geldt: $H(0,0) = -36 < 0 \Rightarrow$ zadelpunt\\
+
+Voor $(2,2)$ geldt: $H(2,2) = 108 > 0$ en $\dfrac{\partial^2 f}{\partial x^2} = 12 > 0 \Rightarrow$ lokaal minimum\\
+
+\begin{thebibliography}{999}
+\end{thebibliography}
+\end{document}

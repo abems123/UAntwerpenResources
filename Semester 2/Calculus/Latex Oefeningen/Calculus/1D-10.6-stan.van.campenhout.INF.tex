@@ -1,0 +1,34 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Stan Van Campenhout \\
+\noindent \large Studierichting:  Informatica\\
+\noindent \large Oefeningenreeks 1D nr. 10.6\\
+
+\medskip
+
+\normalsize
+
+$ A(z) = \dfrac{iz^2 + (i-3)z - 2}{z + 2} $\\
+
+Deler is van de vorm $(z - a)$ met $a = -2 \rightarrow$ Horner \\
+
+ \[ \begin{array}{c|rrr}     
+&i &i + 3 &-2  \\      
+-2 & \downarrow  &-2i &-6 + 2i \\ \hline    
+ &i &  \multicolumn{1}{c|}{3 - i}  &-8 + 2i
+\end{array} \] \\
+
+Rest: $ -8 + 2i $\\
+
+Quotiënt: $iz + 3 - i $\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

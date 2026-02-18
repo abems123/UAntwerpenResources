@@ -1,0 +1,35 @@
+\documentclass[a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\begin{document}
+
+\noindent \large Auteur: Dina Haajou \\
+\noindent \large Studierichting: Informatica \\
+\noindent \large Oefeningenreeks 4A nr. 9.6 \\
+
+\medskip
+
+\normalsize
+
+$ \displaystyle\int \sin(x) \tan^2(x) dx $ \\
+
+$= \displaystyle\int \sin(x)(\sec^2(x) - 1) dx $ \\
+
+$= \displaystyle\int \dfrac{\sin(x)}{\cos^2(x)} dx - \displaystyle\int \sin(x) dx $ \\
+
+Substitueer $u = \cos(x)$ \\
+
+$du = -\sin(x) dx$ \\
+
+$= \displaystyle\int \dfrac{-du}{u^2} - (-\cos(x)) + C $ \\
+
+$= \dfrac{1}{\cos(x)} + \cos(x) + C $ \\
+
+$= \sec(x) + \cos(x) + C$ \\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+
+\end{document}

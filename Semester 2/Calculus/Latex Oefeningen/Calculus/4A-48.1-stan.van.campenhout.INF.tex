@@ -1,0 +1,37 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Stan Van Campenhout \\
+\noindent \large Studierichting:  Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 48.1\\
+
+\medskip
+
+\normalsize
+
+$ \displaystyle\int\dfrac{\operatorname{Bgtan}x}{x^2}dx = -\displaystyle\int\operatorname{Bgtan}xd\left(\dfrac{1}{x}\right)
+= -\dfrac{\operatorname{Bgtan}x}{x}+\displaystyle\int\dfrac{1}{x}d\left(\operatorname{Bgtan}x\right) $\\
+
+$ = -\dfrac{\operatorname{Bgtan}x}{x}+\displaystyle\int\dfrac{1}{x\left(x^2+1\right)} dx $\\
+
+$ \rightarrow \dfrac{1}{x\left(x^2+1\right)} = \dfrac{A}{x} + \dfrac{Bx+C}{x^2+1} $\\
+
+$ A = \dfrac{1}{1} = 1 $\\
+
+$ B\left(i\right) + C = \dfrac{1}{i} = -i \Rightarrow B = -1, C = 0 $\\
+
+$ = -\dfrac{\operatorname{Bgtan}x}{x}+\displaystyle\int\dfrac{1}{x}dx + \displaystyle\int\dfrac{-x}{1+x^2}dx $\\
+
+$ = -\dfrac{\operatorname{Bgtan}x}{x}+ \ln|x| + -\dfrac{1}{2}\displaystyle\int\dfrac{1}{1+x^2}d\left(x^2\right) $\\
+
+$ = -\dfrac{\operatorname{Bgtan}x}{x}+\ln|x| + -\dfrac{1}{2}\ln|1+x^2| +c$\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

@@ -1,0 +1,41 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Etienne El Hachem \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 25.21\\
+
+\medskip
+
+\normalsize
+
+$\displaystyle\int \dfrac{x^2 + x + 1}{x - 1} dx$ \\
+
+\begin{tabular}{lll|ll}
+$x^2$ & $+x$ & $+1$ & $x$ & $-1$ \\ \cline{4-5}
+$-x^2$ & $+x$ & & $x$ & $+2$ \\ \cline{1-2}
+& $2x$ & $+1$ & & \\
+& $-2x$ & $+2$ & & \\ \cline{2-3}
+& & & $3$ & \\
+\end{tabular} \\
+
+
+
+
+$= \displaystyle\int (x+2)dx + \displaystyle\int \dfrac{3}{x-1} dx$ \\
+
+Substitutie: $u = x - 1 \Rightarrow du = dx$ \\
+
+$= \displaystyle\int (x + 2) dx + 3 \displaystyle\int \dfrac{du}{u}$ \\
+
+$= \dfrac{x^2}{2} + 2x + 3 \cdot \ln |x-1| + c$
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

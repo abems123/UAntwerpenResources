@@ -1,0 +1,81 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Sadia Nazary  \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 1D nr. 22.7\\
+
+\medskip
+
+\normalsize
+
+\textbf{Opgave:} Bepaal de nulpunten van de veelterm in $\mathbb{C}$ en ontbind in factoren over $\mathbb{C}[z]$: 
+\[
+z^4 - 2z^3 - 2z^2 + 8z - 8
+\]
+
+\textbf{Oplossing:}\\
+
+We proberen een paar eenvoudige waarden in te vullen:
+
+\[
+z = 2 \Rightarrow 2^4 - 2 \cdot 2^3 - 2 \cdot 2^2 + 8 \cdot 2 - 8 = 16 - 16 - 8 + 16 - 8 = 0
+\]
+
+Dus $z = 2$ is een nulpunt. We delen de veelterm door $(z - 2)$:\\
+
+\begin{tabular}{c|ccccc}
+       & $1$ & $-2$ & $-2$ & $8$ & $-8$ \\
+$2$    &     & $2$  & $0$  & $-4$ & $8$ \\ \hline
+       & $1$ & $0$  & $-2$ & $4$ & $0$
+\end{tabular}
+
+\[
+\Rightarrow z^4 - 2z^3 - 2z^2 + 8z - 8 = (z - 2)(z^3 - 2z + 4)
+\]
+
+We testen opnieuw:\\
+
+\[
+z = -2 \Rightarrow (-2)^3 - 2(-2) + 4 = -8 + 4 + 4 = 0
+\]
+
+Dus $z = -2$ is ook een nulpunt. We delen verder:\\
+
+\begin{tabular}{c|cccc}
+       & $1$ & $0$ & $-2$ & $4$ \\
+$-2$   &     & $-2$ & $4$ & $-4$ \\ \hline
+       & $1$ & $-2$ & $2$ & $0$
+\end{tabular}
+
+\[
+\Rightarrow z^3 - 2z + 4 = (z + 2)(z^2 - 2z + 2)
+\]
+
+We lossen $z^2 - 2z + 2 = 0$ op:\\
+
+\[
+z = \frac{2 \pm \sqrt{(-2)^2 - 4 \cdot 1 \cdot 2}}{2} = \frac{2 \pm \sqrt{-4}}{2} = 1 \pm i
+\]
+
+\textbf{Eindresultaat:}\\
+
+\[
+z^4 - 2z^3 - 2z^2 + 8z - 8 = (z - 2)(z + 2)(z - (1 + i))(z - (1 - i))
+\]
+
+\textbf{Nulpunten:} \\
+
+\[
+z_0 = 2, \quad z_1 = -2, \quad z_2 = 1 + i, \quad z_3 = 1 - i
+\]
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document}

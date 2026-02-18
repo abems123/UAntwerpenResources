@@ -1,0 +1,44 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+\newcommand{\dint}{\displaystyle\int}
+\begin{document}
+  
+\noindent \large Auteur: Tyas Hermans \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 7B nr. 7.2\\
+
+\medskip
+
+\normalsize
+
+$f:\Omega\subseteq\mathbb{R}^2\rightarrow\mathbb{R}^2: (x,y) \rightarrow \left(e^{xy}, \ln\dfrac{x}{y}\right)$\\
+
+$Df(x,y) = \left(
+\begin{array}{cc}
+ye^{xy} & xe^xy\\
+\dfrac{1}{x} & \dfrac{-1}{y}
+\end{array}
+\right)$\\
+
+$\det( Df(x,y)) = -2e^{xy} \neq 0$\\
+
+$Df^-1(x,y) = \dfrac{1}{-2e^{xy}}\cdot \left(
+\begin{array}{cc}
+\dfrac{-1}{y}  & -xe^{xy}\\
+\dfrac{-1}{x} & ye^{xy}
+\end{array}
+\right) = \left(
+\begin{array}{cc}
+\dfrac{1}{2ye^{xy}}  & \dfrac{x}{2}\\
+\dfrac{1}{2xe^{xy}} & \dfrac{-y}{2}
+\end{array}
+\right)$\\
+
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

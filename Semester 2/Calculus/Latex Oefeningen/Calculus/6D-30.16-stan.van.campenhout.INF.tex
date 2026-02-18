@@ -1,0 +1,36 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Stan Van Campenhout \\
+\noindent \large Studierichting:  Informatica\\
+\noindent \large Oefeningenreeks 6D nr. 30.16\\
+
+\medskip
+
+\normalsize
+
+$ \displaystyle\sum\limits_{n = 2}^\infty e^{-\tfrac{\sqrt{n}}{2}} $\\
+
+$ \displaystyle\int_0^{+\infty}e^{-\tfrac{\sqrt{n}}{2}}dn \stackrel{t^2 = n}{=} 2\displaystyle\int_0^{+\infty}te^{-\tfrac{t}{2}}dt
+= -4\displaystyle\int_0^{+\infty}td\left(e^{-\tfrac{t}{2}}\right) $\\
+
+$ = \left[-4te^{-\tfrac{t}{2}}\right]_0^{+\infty} - 8\displaystyle\int_0^{+\infty}e^{-\tfrac{t}{2}}d\left(-\dfrac{t}{2}\right) $\\
+
+$ = \left[-4te^{-\tfrac{t}{2}}-8e^{-\tfrac{t}{2}}\right]_0^{+\infty} \stackrel{t = \sqrt{n}}{=} \left[-4\sqrt{n}e^{-\tfrac{\sqrt{n}}{2}}-8e^{-\tfrac{\sqrt{n}}{2}}\right]_0^{+\infty}
+= \left[\dfrac{-4\left(\sqrt{n}+2\right)}{e^{\tfrac{\sqrt{n}}{2}}}\right]_0^{+\infty} $\\
+
+$ \lim\limits_{a \rightarrow +\infty}\left(\dfrac{-4\left(\sqrt{a}+2\right)}{e^{\tfrac{\sqrt{a}}{2}}}\right) - \left(\dfrac{-4\left(\sqrt{0}+2\right)}{e^{\tfrac{\sqrt{0}}{2}}}\right) $\\
+
+$ = 0 - \left(-8\right) = 8 \Rightarrow $ bestaat \\
+
+$ \stackrel{\text{integraalcriterium}}{\Rightarrow} $ convergent \\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

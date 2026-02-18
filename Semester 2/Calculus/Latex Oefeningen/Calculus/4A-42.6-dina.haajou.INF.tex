@@ -1,0 +1,44 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+
+\nofiles
+\newcommand{\bigint}{\displaystyle\int}
+
+\begin{document}   
+  
+\noindent \large Auteur: Dina Haajou \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 42.6\\
+
+\medskip
+
+\normalsize
+
+$I = \bigint \dfrac{x}{2x^2 - 3x + 1} dx$ \\
+
+$= \bigint \dfrac{x}{(2x - 1)(x - 1)} dx$ \\
+
+We gebruiken de regel van Fuss: \\
+
+$A = \left. \left( \dfrac{x}{x - 1} \right) \right|_{x = \tfrac{1}{2}} = -1$ \\
+
+$B = \left. \left( \dfrac{x}{2x - 1} \right) \right|_{x = 1} = 1$ \\
+
+$\Rightarrow \dfrac{x}{(2x - 1)(x - 1)} = \dfrac{-1}{2x - 1} + \dfrac{1}{x - 1}$ \\
+
+$I = \bigint \left( \dfrac{1}{x - 1} - \dfrac{1}{2x - 1} \right) dx$ \\
+
+$t = 2x - 1 \Rightarrow \dfrac{1}{2} dt = dx$ \\
+
+$I = \ln |x - 1| - \dfrac{1}{2} \bigint \dfrac{1}{t} dt$ \\
+
+$= \ln |x - 1| - \dfrac{1}{2} \ln |2x - 1| + c$ \\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}  
+
+\end{document}

@@ -1,0 +1,38 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Raj Shah \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 3C nr. 12 \\
+
+\medskip
+
+\normalsize
+
+Bewijs: als $0 < b \leq a$, dan geldt $\dfrac{a-b}{a} \leq \ln \dfrac{a}{b} \leq \dfrac{a-b}{b}$\\
+
+\begin{itemize}
+	\item $f $ is differentieerbaar in $ ]b, a[$
+	\item $f$ is continu in $[b, a]$
+\end{itemize}
+
+met $f(x) = \ln x \Rightarrow f'(x) = \dfrac{1}{x}$\\
+$\overset{Lagrange}{\Rightarrow} f'(c) = \dfrac{f(a) - f(b)}{a-b} = \dfrac{\ln a - \ln b}{a-b} = \dfrac{\ln \dfrac{a}{b}}{a-b}$\\
+
+$\Rightarrow f'(c) = \dfrac{\ln \dfrac{a}{b}}{a-b} = \dfrac{1}{c} \Leftrightarrow \dfrac{a-b}{c} = \ln \dfrac{a}{b}$ met $\left( b \leq c \leq a \right)$\\
+
+$\Leftrightarrow \dfrac{1}{a} \leq \dfrac{1}{c} \leq \dfrac{1}{b}$\\
+
+$\Leftrightarrow \dfrac{1}{a} \leq \dfrac{\ln \dfrac{a}{b}}{a-b} \leq \dfrac{1}{b}$\\
+
+$\Leftrightarrow  \dfrac{a-b}{a} \leq \ln \dfrac{a}{b} \leq \dfrac{a-b}{b}$\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

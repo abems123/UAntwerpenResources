@@ -1,0 +1,35 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Stan Van Campenhout \\
+\noindent \large Studierichting:  Informatica\\
+\noindent \large Oefeningenreeks 7B nr. 1.3\\
+
+\medskip
+
+\normalsize
+
+$ w = \sin xyz, x = t, y = t^2, z = t^3 $\\
+
+$ \dfrac{\partial w}{\partial s} = \left(\begin{array}{c c c} \dfrac{\partial w}{\partial x} & \dfrac{\partial w}{\partial y} & \dfrac{\partial w}{\partial z} \end{array}\right) \cdot 
+\left(\begin{array}{c} \dfrac{\partial x}{ds} \\ \dfrac{\partial y}{ds} \\ \dfrac{\partial z}{ds} \end{array}\right) $\\
+
+$ \dfrac{\partial w}{\partial x} = yz\cos xyz, \dfrac{\partial x}{\partial s} = 1 $\\
+
+$ \dfrac{\partial w}{\partial y} =  xz\cos xyz, \dfrac{\partial y}{\partial s} = 2t $\\
+
+$ \dfrac{\partial w}{\partial z} =  xy\cos xyz, \dfrac{\partial z}{\partial s} = 3t^2 $\\
+
+$ \Rightarrow  \dfrac{dw}{dt} = yz\cos xyz + 2txz\cos xyz + 3t^2xy\cos xyz $\\
+
+$ = t^5\cos t^6 + 2t^5\cos t^6 + 3t^5\cos t^6 = 6t^5\cos t^6 $\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

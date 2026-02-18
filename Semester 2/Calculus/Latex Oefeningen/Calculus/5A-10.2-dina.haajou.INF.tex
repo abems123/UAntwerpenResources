@@ -1,0 +1,40 @@
+\documentclass[a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+\begin{document}
+
+\normalsize
+
+\noindent \large Auteur: Dina Haajou \\
+\noindent \large Studierichting: Informatica \\
+\noindent \large Oefeningenreeks 5A nr. 10.2 \\
+
+\medskip
+
+\normalsize
+
+$\displaystyle \int_0^1 \dfrac{e^{2x}}{\sqrt{e^x + 1}} dx$ \\
+
+$t = e^x + 1 \Rightarrow dt = e^x dx$ \\
+
+$e^x = t - 1 \Rightarrow e^{2x} = (t - 1)^2$ \\
+
+$x = 0 \Rightarrow t = 2$ \\
+
+$x = 1 \Rightarrow t = e + 1$ \\
+
+$\displaystyle \int_0^1 \dfrac{e^{2x}}{\sqrt{e^x + 1}} dx = \displaystyle \int_2^{e+1} \dfrac{(t - 1)^2}{\sqrt{t}(t - 1)} dt$ \\
+
+$= \displaystyle \int_2^{e+1} \dfrac{t - 1}{\sqrt{t}} dt$ \\
+
+$= \left[ \dfrac{2\sqrt{t}(t - 3)}{3} \right]_2^{e+1}$ \\
+
+$= \dfrac{(2e - 4)\sqrt{e + 1} - 2\sqrt{2}}{3}$ \\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,69 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Hendrik De Bruyn \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 1D nr. 24.1\\
+
+\medskip
+
+\normalsize
+
+\textbf{Opgave:} Los de hyperkwadratische vergelijking op in $\mathbb{C}$. \\
+
+$z^4 + (1-2i)z^2 -2i = 0$ \\
+
+\textbf{Oplossing:} \\
+
+Stel $w = z^2$. \\
+
+Daaruit volgt $w^2 + (1-2i)w -2i = 0$. \\
+
+\begin{tabular}{c|ccccc}
+         & $1$ && $(1-2i)$ &       & $-2i$ \\
+    $-1$ &     && $-1$      &       & $2i$  \\ \hline
+         & $1$ && $-2i$     &\vline & $0$   \\
+\end{tabular} \\
+
+$w^2 + (1-2i)w -2i = 0 \Leftrightarrow (w+1)(w-2i) = 0$ \\
+
+We vinden dus dat $w_0 = -1$ en $w_1 = 2i$. \\
+
+Voor $w_0$ vinden we de volgende oplossingen voor $z$: \\
+
+$z^2 = w_0 = -1 \Rightarrow {\bf z_{0, 1}} = \pm i$ \\
+
+Voor $w_1$ vinden we de volgende oplossingen voor $z$: \\
+
+$z^2 = w_1 = 2i = (x+yi)^2 = x^2 - y^2 + 2xyi$ \\
+
+$\Rightarrow \left\{\begin{array}{l}
+    x^2 - y^2 = 0 \\
+    2xy = 2
+\end{array}\right. \Rightarrow \left\{\begin{array}{l}
+    x^2 - y^2 = 0 \\
+    x^2(-y^2) = -\dfrac{1}{2} \cdot 2
+\end{array}\right.$ \\
+
+$\Rightarrow \lambda^2 - \dfrac{1}{4} \cdot 2 = 0$ \\
+
+$\Rightarrow \lambda_{0,1} = \dfrac{\pm 2}{2} = \pm 1 \Rightarrow \left\{
+    \begin{array}{lcl}
+    \lambda_0 = 1 = x^2   & \Rightarrow & x = \pm 1 \\
+    \lambda_1 = -1 = -y^2 & \Rightarrow & y = \pm 1
+\end{array}
+\right.$ \\
+
+$\Rightarrow x + yi = 1+i = {\bf z_2}$ en $x + yi = -1-i = {\bf z_3}$ \\
+
+De \textbf{oplossingen} zijn dus $z_0 = i$, $z_1 = -i$, $z_2 = 1+i$, $z_3 = -1-i$, 
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

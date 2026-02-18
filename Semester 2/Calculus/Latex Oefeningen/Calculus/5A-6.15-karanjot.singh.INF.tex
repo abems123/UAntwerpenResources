@@ -1,0 +1,46 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\DeclareMathOperator{\Bgtan}{Bgtan}
+
+\begin{document}
+
+\noindent \large Auteur: Karanjot Singh \\
+\noindent \large Studierichting: Informatica \\
+\noindent \large Oefeningenreeks 6A nr. 6.15 \\
+
+\normalsize
+
+$\displaystyle\int_{0}^{1} \dfrac{dx}{x^2 + 4}$ \\
+
+We gebruiken de substitutie $x = 2 \tan \theta$, dus $dx = 2 \sec^2 \theta\, d\theta$ \\
+
+Pas de grenzen aan: \\
+
+Als $x = 0$, dan $\theta = 0$ \\
+
+Als $x = 1$, dan $1 = 2 \tan \theta \Rightarrow \theta = \operatorname{Bgtan}\left( \dfrac{1}{2} \right)$ \\
+
+Vervang in de integrand: \\
+
+$\displaystyle\int_{0}^{1} \dfrac{dx}{x^2 + 4} = \displaystyle\int_{0}^{\operatorname{Bgtan}\left(\tfrac{1}{2}\right)} \dfrac{2 \sec^2 \theta\, d\theta}{4 \tan^2 \theta + 4}$ \\
+
+$= \displaystyle\int_{0}^{\operatorname{Bgtan}\left(\tfrac{1}{2}\right)} \dfrac{2 \sec^2 \theta\, d\theta}{4(\tan^2 \theta + 1)}$ \\
+
+$= \displaystyle\int_{0}^{\operatorname{Bgtan}\left(\tfrac{1}{2}\right)} \dfrac{2 \sec^2 \theta\, d\theta}{4 \sec^2 \theta}$ \\
+
+$= \displaystyle\int_{0}^{\operatorname{Bgtan}\left(\tfrac{1}{2}\right)} \dfrac{2}{4}\, d\theta = \dfrac{1}{2} \displaystyle\int_{0}^{\operatorname{Bgtan}\left(\tfrac{1}{2}\right)} d\theta$ \\
+
+$= \dfrac{1}{2} \left( \operatorname{Bgtan}\left( \dfrac{1}{2} \right) - 0 \right)$ \\
+
+$= \dfrac{1}{2} \operatorname{Bgtan}\left( \dfrac{1}{2} \right)$ \\
+
+Dus, $\displaystyle\int_{0}^{1} \dfrac{dx}{x^2 + 4} = \dfrac{1}{2} \operatorname{Bgtan}\left( \dfrac{1}{2} \right)$ \\
+
+\begin{thebibliography}{999}
+	%\bibitem{a} Referentie
+\end{thebibliography}
+
+\end{document}

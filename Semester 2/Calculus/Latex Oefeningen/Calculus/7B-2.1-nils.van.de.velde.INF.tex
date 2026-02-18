@@ -1,0 +1,47 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+\usepackage{color}     
+
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\llim}{\lim\limits}
+\newcommand{\dint}{\displaystyle\int}
+\newcommand{\lsum}{\displaystyle\sum\limits}
+
+\begin{document}
+  
+\noindent \large Auteur: Nils Van de Velde \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 7B nr. 2.1\\
+
+\medskip
+
+\normalsize
+
+$w = \ln(x^2+y^2+z^2)$\\
+
+$x=s-t$\\
+
+$y=s+t$\\
+
+$z=2\sqrt{st}$\\
+
+$\dfrac{\partial w}{\partial s} = \dfrac{\partial w}{\partial x}\cdot\dfrac{\partial x}{\partial s}+\dfrac{\partial w}{\partial y}\cdot\dfrac{\partial y}{\partial s}+\dfrac{\partial w}{\partial z}\cdot\dfrac{\partial z}{\partial s}$\\
+
+$=\dfrac{2x}{x^2+y^2+z^2}+\dfrac{2y}{x^2+y^2+z^2}+\dfrac{2z}{x^2+y^2+z^2}\cdot\dfrac{t}{\sqrt{st}}$\\
+
+$=\dfrac{2}{s+t}$\\
+
+$\dfrac{\partial w}{\partial t} = \dfrac{\partial w}{\partial x}\cdot\dfrac{\partial x}{\partial t}+\dfrac{\partial w}{\partial y}\cdot\dfrac{\partial y}{\partial t}+\dfrac{\partial w}{\partial z}\cdot\dfrac{\partial z}{\partial t}$\\
+
+$=-\dfrac{2x}{x^2+y^2+z^2}+\dfrac{2y}{x^2+y^2+z^2}+\dfrac{2z}{x^2+y^2+z^2}\cdot\dfrac{s}{\sqrt{st}}$\\
+
+$=\dfrac{2}{s+t}$\\
+
+\begin{thebibliography}{999}
+%\bibitem{a}
+\end{thebibliography}
+\end{document} 

@@ -1,0 +1,69 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+\usepackage{cancel}
+
+% Command definities van frequent gebruikte commandos
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Bgsin}{\operatorname{Bgsin}}
+\newcommand{\Bgcos}{\operatorname{Bgcos}}
+\newcommand{\Bgtan}{\operatorname{Bgtan}}
+\newcommand{\cis}{\operatorname{cis}}
+\newcommand{\Limit}{\lim\limits_}
+\newcommand{\Int}{\displaystyle\int}
+
+\begin{document}
+  
+\noindent \large Auteur: Wout Vanderborght\\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 15.8\\
+
+\medskip
+
+\normalsize
+
+$ \Int \dfrac{x^2}{e^x}dx = \Int x^2e^{-x} $ \\
+
+$\left\{
+\begin{array}{l}
+    u = x^2 \\
+    dv = e^{-x} \\
+\end{array} \right. 
+\Rightarrow \left\{
+\begin{array}{l}
+    du = 2xdx \\
+    v = -e^{-x} \\
+\end{array} \right. 
+$ \\
+
+$ = -x^2e^{-x} - \Int \left(-e^{-x}\right) 2xdx $ \\ 
+
+$ = -x^2e^{-x} + 2\Int e^{-x} \cdot xdx $ \\
+
+$\left\{
+\begin{array}{l}
+    u = x \\
+    dv = e^{-x} \\
+\end{array} \right. 
+\Rightarrow \left\{
+\begin{array}{l}
+    du = dx \\
+    v = -e^{-x} \\
+\end{array} \right. 
+$ \\
+
+$ = -x^2e^{-x} + 2\left(-x \cdot e^{-x} - \Int \left(-e^{-x}\right)dx \right) $ \\
+
+$ = -x^2e^{-x} -2x \cdot e^x + 2\Int e^{-x}dx $ \\
+
+$ = -x^2e^{-x} -2x \cdot e^x - 2e^{-x} + C $ \\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

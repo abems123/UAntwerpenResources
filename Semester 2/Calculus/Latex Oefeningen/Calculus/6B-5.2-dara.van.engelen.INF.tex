@@ -1,0 +1,34 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+	
+\noindent \large Auteur: Dara van Engelen     \\
+\noindent \large Studierichting: Informatica \\
+\noindent \large Oefeningenreeks 6B nr. 5.2 \\
+	
+\medskip
+	
+\normalsize
+
+Bereken $n$ als $x_n = 1$, $s_n = 31$ en $q= 0.5$\\
+
+$s_n = x_1 \cdot \dfrac{1-q^n}{1-q}$\\
+
+$x_n = x_1 \cdot q^{n-1} \Leftrightarrow x_1 = \dfrac{x_n}{q^{n-1}}$\\
+
+$\Rightarrow 31 = \dfrac{1}{0.5^{n-1}} \cdot \dfrac{1-0.5^n}{0.5^{n-1}} \Leftrightarrow \dfrac{31}{2} = \dfrac{1-0.5^n}{0.5^{n-1}}$\\
+
+Stel $a = 0.5^n \Rightarrow 0.5^{n-1} = \dfrac{a}{0.5} = 2a$\\
+
+$\Rightarrow \dfrac{31}{2} = \dfrac{1-a}{2a} \Leftrightarrow 31a = 1-a \Leftrightarrow 32a = 1 \Leftrightarrow a = \dfrac{1}{32}$\\
+
+Dus $\dfrac{1}{32} = 0.5^n \Leftrightarrow \dfrac{1}{32} = \left(\dfrac{1}{2}\right)^n \Leftrightarrow n = 5$
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document}

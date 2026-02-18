@@ -1,0 +1,47 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\newcommand{\dint}{\displaystyle\int}
+\newcommand{\llim}{\lim\limits}
+
+\begin{document}
+  
+\noindent \large Auteur: Oubayy Ahale          \\
+\noindent \large Studierichting: Informatica   \\
+\noindent \large Oefeningenreeks 3C nr. 18.19  \\
+
+\medskip
+
+\normalsize
+
+$ \llim_{x \rightarrow +\infty} \left( x - x^2 \ln \left( 1 + \dfrac{1}{x} \right) \right) $\\
+
+$ \Leftrightarrow \llim_{x \rightarrow +\infty} \left( 1 - 2x \ln \left( 1 + \dfrac{1}{x} \right) + x^2 \cdot \dfrac{1}{1 + \dfrac{1}{x}} \cdot \dfrac{x \cdot 0 - 1 \cdot 1}{x^2} \right) $\\
+
+$ \Leftrightarrow \llim_{x \rightarrow +\infty} \left( 1 - 2x \ln \left( 1 + \dfrac{1}{x} \right) + \dfrac{1}{1 + \dfrac{1}{x}} \right) $\\
+
+Stel $ t = \dfrac{1}{x} \Rightarrow  x = \dfrac{1}{t} $\\
+
+Wanneer $ x \to \infty $, geldt dat $ t \to 0 $\\
+
+We herschrijven de limiet in termen van $ t $:\\
+
+$ \llim_{t \rightarrow 0} \left( \dfrac{1}{t} - \dfrac{1}{t^2} \ln (1 + t) \right) $\\
+
+$ = \llim_{t \rightarrow 0} \left( \dfrac{t - \ln (1+t)}{t^2} \right) $\\
+
+$ = \llim_{t \rightarrow 0} \dfrac{1 - \dfrac{1}{1 + t}}{2t} $\\
+
+$ = \llim_{t \rightarrow 0} \dfrac{t}{2t + 2t^2} $\\
+
+$ = \llim_{t \rightarrow 0} \dfrac{1}{2 + 2t} $\\
+
+$ = \dfrac{1}{2} $\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document}

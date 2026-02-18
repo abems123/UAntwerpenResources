@@ -1,0 +1,49 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+
+\begin{document}
+
+\noindent \large Auteur: Michael Zielinski\\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 2D nr. 17.2\\
+
+\medskip
+\normalsize
+
+$ f(x) = \dfrac{1 + \cos 2x}{\sin x} $\\
+
+$ = \dfrac{1 + \left(1 - 2\sin^2 x\right)}{\sin x} $\\
+
+$ = \dfrac{2 - 2\sin^2 x}{\sin x} $\\
+
+$ = 2\dfrac{1 - \sin^2 x}{\sin x} $\\
+
+$ = 2\dfrac{\cos^2 x}{\sin x} $\\
+
+$ \lim\limits_{x \to \tfrac{\pi}{2}} f(x) $\\
+
+$ = 2\dfrac{\cos^2\left(\dfrac{\pi}{2}\right)}{\sin\left(\dfrac{\pi}{2}\right)} $\\
+
+$ = 2\dfrac{0}{1} $\\
+
+$ = 0 $\\
+
+Voor $x \to 0: \lim\limits_{x \to 0}\left(\dfrac{1 + \cos(2x)}{\sin(x)}\right) = \dfrac{1 + \cos(0)}{\sin(0)} = \dfrac{1 + 1}{0} = \infty$\\
+
+$\indent \lim\limits_{x \to 0+}\left(\dfrac{1 + \cos(2x)}{\sin(x)}\right) = \dfrac{1 + \cos(0+)}{\sin(0+)} = \dfrac{1 + 1+}{0+} = +\infty$\\
+
+$\indent \lim\limits_{x \to 0-}\left(\dfrac{1 + \cos(2x)}{\sin(x)}\right) = \dfrac{1 + \cos(0-)}{\sin(0-)} = \dfrac{1 + 1+}{0-} = -\infty$\\
+
+Voor $x \to \pi: \lim\limits_{x \to \pi}\left(\dfrac{1 + \cos(2x)}{\sin(x)}\right) = \dfrac{1 + \cos(2\pi)}{\sin(\pi)} = \dfrac{1 + 1}{0} = \infty$\\
+
+$\indent \lim\limits_{x \to \pi+}\left(\dfrac{1 + \cos(2x)}{\sin(x)}\right) = \dfrac{1 + \cos(2\pi+)}{\sin(\pi+)} = \dfrac{1 + 1+}{0-} = -\infty$\\
+
+$\indent \lim\limits_{x \to \pi-}\left(\dfrac{1 + \cos(2x)}{\sin(x)}\right) = \dfrac{1 + \cos(2\pi-)}{\sin(\pi-)} = \dfrac{1 + 1+}{0+} = +\infty$\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

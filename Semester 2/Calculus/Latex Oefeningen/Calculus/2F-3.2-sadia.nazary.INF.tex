@@ -1,0 +1,56 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+
+\newcommand{\csch}{\operatorname{csch}}
+\newcommand{\coth}{\operatorname{coth}}
+
+\noindent \large Auteur: Sadia Nazary \\
+\noindent \large Studierichting: Informatica \\
+\noindent \large Oefeningenreeks 2F nr. 3.2 \\
+
+\medskip
+
+\normalsize
+
+\noindent Bewijs dat: \\
+
+$$
+\coth^2 x - \csch^2 x = 1
+$$
+
+\noindent Uitgeschreven in termen van $ \sinh $ en $ \cosh $: \\
+
+$$
+\coth x = \dfrac{\cosh x}{\sinh x}, \quad \csch x = \dfrac{1}{\sinh x}
+$$
+
+$$
+\Rightarrow \coth^2 x = \dfrac{\cosh^2 x}{\sinh^2 x}, \quad \csch^2 x = \dfrac{1}{\sinh^2 x}
+$$
+
+$$
+\Rightarrow \coth^2 x - \csch^2 x = \dfrac{\cosh^2 x - 1}{\sinh^2 x}
+$$
+
+\noindent Gebruik de identiteit $ \cosh^2 x - \sinh^2 x = 1 \Rightarrow \cosh^2 x - 1 = \sinh^2 x $: \\
+
+$$
+= \dfrac{\sinh^2 x}{\sinh^2 x} = 1
+$$
+
+$$
+\Rightarrow \coth^2 x - \csch^2 x = 1
+$$
+
+\begin{thebibliography}{999}
+
+% \bibitem{a} Referentie
+
+\end{thebibliography}
+
+\end{document}

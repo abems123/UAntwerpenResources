@@ -1,0 +1,52 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\newcommand{\dint}{\displaystyle\int\limits}
+\newcommand{\Bgtan}{\operatorname{Bgtan}}
+
+\begin{document}
+
+  
+\noindent \large Auteur:  Niels Hertoghs \\
+\noindent \large Studierichting:  Informatica\\
+\noindent \large Oefeningenreeks 5K nr. 1.5\\
+
+
+\medskip
+
+\normalsize
+
+$r = \sin^3 \left(\dfrac{\theta}{3}\right)$ in het interval $[0, 3\pi]$\\
+
+$r^2 = \sin^6 \left(\dfrac{\theta}{3}\right)$\\
+
+$(r')^2 = \sin^4 \left(\dfrac{\theta}{3}\right)\cdot \cos^2 \left(\dfrac{\theta}{3}\right)$\\
+
+$\Rightarrow \dint_\alpha^\beta \sqrt{r^2 + (r')^2} d\theta = \dint_0^{3\pi} \sqrt{\sin^6 \left(\dfrac{\theta}{3}\right) + \sin^4 \left(\dfrac{\theta}{3}\right) \cdot \cos^2 \left(\dfrac{\theta}{3}\right)} d\theta$\\
+
+$= \dint_0^{3\pi} \sqrt{\sin^4 \left(\dfrac{\theta}{3}\right)\left(\sin^2 \left(\dfrac{\theta}{3}\right) + \cos^2 \left(\dfrac{\theta}{3}\right)\right)} d\theta$\\
+
+$= \dint_0^{3\pi} \sqrt{\sin^4\left(\dfrac{\theta}{3}\right)} d\theta$\\
+
+$= \dint_0^{3\pi}\sin^2 \left(\dfrac{\theta}{3}\right) d\theta $\\
+
+$= \dfrac{1}{2} \dint_0^{3\pi} \left(1 + \cos \left(\dfrac{2\theta}{3}\right)\right) d\theta$\\
+
+$= \left[\dfrac{\theta}{2}\right]_0^{3\pi} + \dfrac{3}{4}\left[\sin\left(\dfrac{2\theta}{3}\right)\right]_0^{3\pi}$\\
+
+$= \dfrac{3\pi}{2}$\\
+
+\begin{figure}[h]
+\centering
+	\includegraphics[width=6cm]{5K-1.5-niels.hertoghs.INF.png}
+\end{figure}
+
+
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

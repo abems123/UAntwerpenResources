@@ -1,0 +1,36 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+\newcommand{\dint}{\displaystyle\int}
+\newcommand{\bgtan}{\operatorname{Bgtan}}
+
+\begin{document}
+  
+\noindent \large Auteur: Tyas Hermans \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 39.4\\
+
+\medskip
+
+\normalsize
+
+$I = \dint\dfrac{3x+1}{(x^2-4x+5)^2}dx = \dfrac{3}{2}\dint\dfrac{d(x^2-4x+5)}{(x^2-4x+5)^2} + 7\dint\dfrac{dx}{(x^2-4x+5)^2}$\\
+
+$I = \dfrac{-3}{2(x^2-4x+5)} + 7\dint\dfrac{dx}{((x-2)^2+1)^2}$\\
+
+$M_1 = \bgtan(x-2)$\\
+
+$M_2 = \dfrac{1}{2}\bgtan(x-2)+\dfrac{x-2}{2(x^2-4x+5)}$\\
+
+$I = \dfrac{-3}{2(x^2-4x+5)} +\dfrac{7}{2}\bgtan(x-2)+\dfrac{7(x-2)}{2(x^2-4x+5)} + C$\\
+
+$I = \dfrac{7x-17}{2(x^2-4x+5)} + \dfrac{7}{2}\bgtan(x-2) + C$\\
+
+
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

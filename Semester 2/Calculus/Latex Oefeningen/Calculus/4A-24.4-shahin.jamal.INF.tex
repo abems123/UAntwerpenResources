@@ -1,0 +1,60 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Shahin Jamal \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 24.4\\
+
+\medskip
+
+\normalsize
+
+$\displaystyle\int\cos(\ln x) dx$\\
+
+$\left\{
+   \begin{array}{l}
+       u = \cos(\ln x)\\
+       dv = dx
+   \end{array}
+\right.
+\Rightarrow
+\left\{
+   \begin{array}{l}
+       du = \dfrac{-\sin(\ln x)}{x}dx \\
+       v = x
+   \end{array}
+\right.$\\
+
+$\Rightarrow x\cos(\ln x) + \displaystyle\int x \cdot \dfrac{\sin(\ln x)}{x} dx$\\
+
+$\left\{
+   \begin{array}{l}
+       u = \sin(\ln x)\\
+       dv = dx
+   \end{array}
+\right.
+\Rightarrow
+\left\{
+   \begin{array}{l}
+       du = \dfrac{\cos(\ln x)}{x} \\
+       v = x
+   \end{array}
+\right.$\\
+
+$\Rightarrow x \cos(\ln x) + x\sin(\ln x) - \displaystyle\int x\cdot \dfrac{\cos(\ln x)}{x} dx$\\
+
+Breng $\displaystyle\int \cos(\ln x) dx$ naar het linkerlid\\
+
+$2\displaystyle\int \cos(\ln x)dx = x\cos(\ln x) + x\sin(\ln x)+c$\\
+
+$\Rightarrow \displaystyle\int \cos(\ln x)dx = \dfrac{x}{2}\cos(\ln x) + \dfrac{x}{2}\sin(\ln x) + c$\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

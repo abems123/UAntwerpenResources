@@ -1,0 +1,36 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Shahin Jamal \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 43.3\\
+
+\medskip
+
+\normalsize
+
+$\displaystyle\int\dfrac{4x^2-6x+1}{2x^3-x^2}dx = \displaystyle\int\dfrac{4x^2-6x+1}{x^2(2x-1)}dx$\\
+
+$\dfrac{4x^2-6x+1}{x^2(2x-1)} = \dfrac{A}{x^2} + \dfrac{B}{x} + \dfrac{C}{2x-1}$\\
+
+$A = \left . \dfrac{4x^2-6x+1}{2x-1} \right |_{x=0} = -1$\\
+
+$B = \dfrac{4x^2-6x+1}{x^2(2x-1)} + \dfrac{1}{x^2} = \dfrac{4x^2-6x+1+(2x-1)}{x^2(2x-1)}= \dfrac{4x^2-4x}{x^2(2x-1)} = \dfrac{4x-4}{x(2x-1)}$\\
+
+$\Rightarrow B = \left . \dfrac{4x-4}{2x-1} \right |_{x=0} = 4$\\
+
+$C = \left . \dfrac{4x^2-6x+1}{x^2} \right |_{x=\tfrac{1}{2}} = -4$\\
+
+$\Rightarrow - \displaystyle\int\dfrac{dx}{x^2} + 4\displaystyle\int\dfrac{dx}{x} - 4\displaystyle\int\dfrac{dx}{2x-1}$\\
+
+$= \dfrac{1}{x} + 4\ln\lvert x \rvert - 2\ln \lvert 2x-1 \rvert + c$\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

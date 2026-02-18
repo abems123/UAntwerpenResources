@@ -1,0 +1,49 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}  
+
+\newcommand{\degree}{^{\circ}}
+\newcommand{\cis}{\operatorname{cis}}
+
+\begin{document}
+  
+\noindent \large Auteur: Rune Suy \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 1D nr. 19.2\\
+
+\medskip
+
+\normalsize
+
+Bepaal de nulpunten en de van de volgende veelterm en ontbind deze in factoren over $\mathbb{R}[z]$: \\
+
+$F(z) = 2z^3 - z^2 + 2z - 1$\\
+
+\begin{tabular}{ c c c c c c }
+                    &\vline     &$2$            &$-1$ &$2$  &$-1$ \\  
+    $\dfrac{1}{2}$  &\vline     &$\downarrow$   &$1$  &$0$  &$1$ \\  
+    \hline          & \vline    & $2$           &$0$  &$2$  &\vline $0$ \\
+\end{tabular}
+
+\bigskip
+
+$2z^2 + 2 = 0$\\
+
+$\Leftrightarrow z^2 + 1 = 0$\\
+
+$z^2 = -1$\\	
+
+$z = \sqrt{-1}$\\
+
+$z = \pm i$\\
+
+$\Rightarrow F(z) = \left( z - \dfrac{1}{2}\right) \left(2z^2 + 2\right)$ is de ontbinding in factoren over $\mathbb{R}[z]$.\\
+
+De nulpunten zijn $\dfrac{1}{2}, i, -i$\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

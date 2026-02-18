@@ -1,0 +1,30 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+\usepackage{color}     
+
+
+\begin{document}
+  
+\noindent \large Auteur: Siebe Haché \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 5A nr. 9.4\\
+
+\medskip
+
+\normalsize
+
+
+$ \displaystyle\int \limits_{1}^{16} \dfrac{1}{\sqrt[4]{x^3}+x} dx \stackrel{x=u^4}{\Rightarrow}  \displaystyle\int \dfrac{4u^3}{u^4+u^3} du
+= 4\displaystyle\int \dfrac{1}{u - 1}du \stackrel{t = u - 1}{=}  4\displaystyle\int \dfrac{1}{t}dt$\\
+
+$ = 4\ln| t | + c  \stackrel{t = u - 1}{=} 4\ln| u - 1 | + c  \stackrel{u = \sqrt[4]{x}}{=} 4\ln\left( \sqrt[4]{x} - 1 \right) + c$\\
+										
+$ \Rightarrow 4 \left[\ln\left(\sqrt[4]{x}+1\right) \right]^{16}_1 = 4\left(\ln\left(3\right)-\ln\left(2\right)\right)$\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

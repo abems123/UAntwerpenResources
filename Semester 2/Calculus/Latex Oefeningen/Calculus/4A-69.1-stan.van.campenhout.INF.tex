@@ -1,0 +1,35 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Stan Van Campenhout \\
+\noindent \large Studierichting:  Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 69.1\\
+
+\medskip
+
+\normalsize
+
+$ \displaystyle\int\sin x\ln\left(\sin x\right)dx = -\displaystyle\int\ln\left(\sin x\right)d\left(\cos x\right) = -\ln\left(\sin x\right)\cos x +\displaystyle\int\dfrac{\cos^2x}{\sin x}dx $\\
+
+$ = -\ln\left(\sin x\right)\cos x +\displaystyle\int\dfrac{\cos^2x\sin x}{\sin^2 x}dx
+= -\ln\left(\sin x\right)\cos x -\displaystyle\int\dfrac{\cos^2x}{1-\cos^2 x}d\left(\cos x\right) $\\
+
+$ \stackrel{\cos x = u}{=} -\ln\left(\sin x\right)u +\displaystyle\int\dfrac{u^2}{u^2-1}du = -\ln\left(\sin x\right)u +\displaystyle\int\left(\dfrac{1}{u^2-1}+1\right)du  $\\
+
+$ \Rightarrow \dfrac{1}{\left(u+1\right)\left(u-1\right)} = \dfrac{A}{u-1} + \dfrac{B}{u+1} $\\
+
+$ \Rightarrow A = \dfrac{1}{2}, B = -\dfrac{1}{2} $\\
+
+$ = -\ln\left(\sin x\right)u + \dfrac{\ln\left|u-1\right|}{2}-\dfrac{\ln\left|u+1\right|}{2} + u + c $\\
+
+$ \stackrel{ u = \cos x}{=} -\ln\left(\sin x\right)\cos x + \dfrac{\ln\left|\cos x-1\right|}{2}-\dfrac{\ln\left|\cos x+1\right|}{2} + \cos x + c $\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

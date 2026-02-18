@@ -1,0 +1,36 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Stan Van Campenhout \\
+\noindent \large Studierichting:  Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 57.4\\
+
+\medskip
+
+\normalsize
+
+$ \displaystyle\int\dfrac{1}{\tan x-1}dx \stackrel{t = \tan x}{=} \displaystyle\int\dfrac{1}{t-1}\cdot\dfrac{1}{1+t^2}dt $\\
+
+$ \rightarrow \dfrac{1}{\left(t-1\right)\left(1+t^2\right)} = \dfrac{A}{t-1} + \dfrac{Bx + C}{1+t^2} $\\
+
+$ \Rightarrow A = \dfrac{1}{1^2+1} = \dfrac{1}{2} $\\
+
+$ \Rightarrow B\left(i\right) + C = \dfrac{1}{i-1} = \dfrac{i+1}{-2} \Rightarrow B = -\dfrac{1}{2}, C = -\dfrac{1}{2} $\\
+
+$ = \dfrac{1}{2}\displaystyle\int\dfrac{1}{t-1}dt-\dfrac{1}{2}\displaystyle\int\dfrac{t+1}{t^2+1}dt $\\
+
+$ = \dfrac{1}{2}|t-1|-\dfrac{1}{2}\displaystyle\int\dfrac{t}{t^2+1}dt-\dfrac{1}{2}\displaystyle\int\dfrac{1}{t^2+1}dt $\\
+
+$ = \dfrac{1}{2}\ln|t-1|-\dfrac{1}{4}\ln|t^2+1|-\dfrac{1}{2}\operatorname{Bgtan}t + c $\\
+
+ $ \stackrel{t = \tan x}{=}  \dfrac{1}{2}\ln|\tan x-1|-\dfrac{1}{4}\ln|\tan^2x+1|-\dfrac{1}{2}x + c $\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

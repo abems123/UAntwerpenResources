@@ -1,0 +1,38 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}   
+
+\begin{document}
+  
+\noindent \large Auteur: Viki	Lauvrys \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 30.6\\
+
+\medskip
+
+\normalsize
+
+$ \displaystyle\int x \sqrt{1 - 4x^2} dx $ \\
+
+Stel $ t = 1 -4x^2 \Rightarrow dt = -8x dx $ \\
+
+$ \Rightarrow x = \dfrac{\sqrt{t-1}}{4} \Rightarrow dx = \dfrac{dt}{-8x} $ \\
+
+$ = \displaystyle\int \dfrac{\sqrt{\dfrac{t-1}{-4}} \sqrt{t}}{-8 \sqrt{\dfrac{t-1}{-4}}} dt $ \\
+
+$ = \displaystyle\int \dfrac{\sqrt{t}}{-8} dt $ \\
+
+$ = - \dfrac{1}{8} \displaystyle\int t^{\tfrac{1}{2}} dt $ \\
+
+$ = - \dfrac{1}{8} \dfrac{t^{\tfrac{3}{2}}}{\dfrac{3}{2}} + C $ \\
+
+$ = - \dfrac{\sqrt{t^3}}{12} + C $ \\
+
+$ = - \dfrac{\sqrt{(1 -4x^2)^3}}{12} + C $ \\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

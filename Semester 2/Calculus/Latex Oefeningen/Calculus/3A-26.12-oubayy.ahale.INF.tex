@@ -1,0 +1,31 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\newcommand{\dint}{\displaystyle\int}
+\newcommand{\llim}{\lim\limits}
+
+\begin{document}
+  
+\noindent \large Auteur: Oubayy Ahale          \\
+\noindent \large Studierichting: Informatica   \\
+\noindent \large Oefeningenreeks 3A nr. 26.12  \\
+
+\medskip
+
+\normalsize
+
+Bereken de afgeleide functie van: $ f(x) = \sqrt{1 - x^2} \cdot \operatorname{Bgsin}(x) $\\
+
+$ f'(x) = \sqrt{1 - x^2} \cdot \dfrac{d}{dx} (\operatorname{Bgsin}(x)) + \operatorname{Bgsin}(x) \cdot \dfrac{d}{dx} (\sqrt{1 - x^2}) $\\
+
+$ = \sqrt{1 - x^2} \cdot \dfrac{1}{\sqrt{1 - x^2}} + \operatorname{Bgsin}(x) \cdot \dfrac{1}{2 \sqrt{1 - x^2}} \cdot (-2x) $\\
+
+$ = 1 - \dfrac{\operatorname{Bgsin}(x) \cdot x}{\sqrt{1 - x^2}} $\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

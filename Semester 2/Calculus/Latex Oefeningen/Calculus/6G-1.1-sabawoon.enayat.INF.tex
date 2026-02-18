@@ -1,0 +1,38 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Sabawoon Enayat \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 6G nr. 1.1 \\
+
+\medskip
+
+\newcommand{\llim}{\lim\limits}
+\newcommand{\dint}{\displaystyle\int}
+
+\normalsize
+
+Opgave: $\left(f_n = 1_{\left[0, \tfrac{1}{n}\right]}\right)_{n\in\mathbb{N}_0}$\\
+
+Convergentie naar nulfunctie in kwadratisch gemiddelde:\\
+
+$\llim_{n\to\infty} \dint_{0}^{\tfrac{1}{n}} |f_n(x) - f(x)|^2 dx = \llim_{n\to\infty} \dint_{0}^{\tfrac{1}{n}} |f_n(x) - 0|^2 dx = \llim_{n\to\infty} \dint_{0}^{\tfrac{1}{n}} |1|^2 dx$\\
+
+$= \llim_{n\to\infty} \dint_{0}^{\tfrac{1}{n}} dx = \llim_{n\to\infty} [x]_{0}^{\tfrac{1}{n}} = \llim_{n\to\infty} \dfrac{1}{n} = 0 \Rightarrow$ convergent\\
+
+Geen puntsgewijze convergentie naar nulfunctie:\\
+
+$\forall x\in[0, \tfrac{1}{2}]: \llim_{n\to\infty} f_n(x) = 0$\\
+
+Tegenvoorbeeld: $x = 0 \Rigtharrow \llim_{n\to\infty} f_n(0) = \llim_{n\to\infty} 1_{\left[0, \tfrac{1}{n}\right]}(0) = 1\ne 0$
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 
+

@@ -1,0 +1,26 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Stan Van Campenhout \\
+\noindent \large Studierichting:  Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 62.12\\
+
+\medskip
+
+\normalsize
+
+$ \displaystyle\int\dfrac{x^2}{\sqrt{4-x^2}}dx \stackrel{x=2\sin t}{=} \displaystyle\int\dfrac{4\sin^2t}{2\cos t}\cdot2\cos tdt = \displaystyle\int4\sin^2tdt $\\
+
+$ = 4\displaystyle\int\dfrac{1-\cos2t}{2}dt = 2\displaystyle\int dt-2\displaystyle\int\cos 2tdt = 2t - \sin 2t + c $\\
+
+$ \stackrel{t = \operatorname{Bgsin}\left(\tfrac{x}{2}\right)}{=} 2\operatorname{Bgsin}\left(\dfrac{x}{2}\right) - \dfrac{x\sqrt{4-x^2}}{2} + c $\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

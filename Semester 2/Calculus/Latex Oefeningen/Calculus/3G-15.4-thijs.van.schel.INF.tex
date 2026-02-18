@@ -1,0 +1,73 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}  
+\usepackage[a4paper,landscape]{geometry}    
+
+\begin{document}
+  
+\noindent \large Auteur: Thijs Van Schel \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 3G nr. 15.4\\
+
+\medskip
+
+$f(x) = \sin x + \dfrac{1}{2}\sin 2x$\\
+
+\begin{enumerate}
+	\item Domein: $\mathbb{R}$\\
+
+	\item Asymptoten: geen, periodieke functie\\
+
+	\item Tekenonderzoek $f(x)$\\
+
+	$f(x) = \sin x + \sin x\cos x = \sin x(1+\cos x)$\\
+
+	$f(x) = 0 \Leftrightarrow \sin x = 0 \text{ of } \cos x = -1$\\
+
+	$ x = n\pi \text{ en } x = \pi + 2k\pi$\\
+
+	$f^{-1}(0) = {x \in \mathbb{R} | x = n\pi, n \in \mathbb{Z}}$\\
+
+	\item Tekenonderzoek $f'(x)$\\
+
+	$f(x) = \cos x + \dfrac{1}{2}\cdot 2\cos 2x = \cos x + \cos 2x = 2\cos\left(\dfrac{3x}{2}\right)\cos\left(\dfrac{x}{2}\right)$\\
+
+	$f'(x) = 0 \Leftrightarrow \cos\left(\dfrac{3x}{2}\right) = 0 \text{ of } \cos\left(\dfrac{x}{2}\right) = 0$\\
+
+	$ x = \pm \dfrac{\pi}{3} + 2k\pi \text{ en } x = \pi+2k\pi$\\
+
+	\item Tekenonderzoek $f''(x)$\\
+
+	$f''(x) = -\sin x - 2\sin 2x$\\
+
+	$ = -\sin x - 4\sin x\cos x = \sin x(-1-4\cos x) = 0$\\
+
+	$\sin x = 0 \Rightarrow x = k\pi$\\
+
+	$\cos x = -\dfrac{1}{4} \Rightarrow \pm \operatorname{Bgcos}\left(-\dfrac{1}{4}\right)+2k\pi$\\
+\end{enumerate}
+
+\begin{tabular}{c|ccccccccccccccc}
+$x$ 			& &$0$ && $\dfrac{\pi}{3}$ && $\operatorname{Bgcos}\left(-\dfrac{1}{4}\right)$ && $\pi$ && $2\pi-\operatorname{Bgcos}\left(-\dfrac{1}{4}\right)$ && $\dfrac{5\pi}{3}$ && $2\pi$& \\ \cline{1-16}
+$f(x)$ 		& $-$ &$0$ & $+$ & $+$ & $+$ & $+$ & $-$ & $0$ & $-$ & $-$ & $-$ & $-$ & $-$ & $0$ & $+$\\
+$f'(x)$ 	& $+$ &$+$ & $+$ & $0$ & $-$ & $-$ & $-$ & $0$ & $-$ & $-$ & $-$ & $0$ & $+$ & $+$ & $+$\\
+$f''(x)$ 	& $+$ &$0$ & $-$ & $-$ & $-$ & $0$ & $+$ & $0$ & $-$ & $0$ & $+$ & $+$ & $+$ & $0$ & $-$\\ \cline{1-16}
+$f(x)$		& $\nearrow$ &$\nearrow$ & $\nearrow$ & M$(\sqrt{3})$ & $\searrow$ & $\searrow$ & $\searrow$ & $\searrow$ & $\searrow$ & $\searrow$ & $\nearrow$ & m$\left(\dfrac{-3\sqrt{3}}{4}\right)$ & $\nearrow$ & $\nearrow$ & $\nearrow$\\
+					& $\smile$ &B$(0)$ & $\frown$& $\frown$ && B$\left(\dfrac{3\sqrt{15}}{8}\right)$ &  $\smile$ & B$(0)$ & $\frown$ & $\smile$ & B$\left(-\dfrac{3\sqrt{15}}{16}\right)$& $\smile$ & $\smile$& B$(0)$& $\frown$
+\end{tabular} \\
+
+\normalsize
+
+Grafiek: \\
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.6\textwidth]{3G-15.4-thijs.van.schel.INF.png}
+\end{figure}
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

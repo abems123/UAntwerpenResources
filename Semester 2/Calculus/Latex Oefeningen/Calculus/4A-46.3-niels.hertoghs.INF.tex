@@ -1,0 +1,35 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Niels Hertoghs \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 46.3\
+
+\medskip
+
+\normalsize
+
+$\displaystyle\int \dfrac{3x^2+6}{x^4+5x^2+4} dx = \displaystyle\int \dfrac{3x^2+6}{(x^2+1)(x^2+4)} dx$\\
+
+we splitsen eerst de partieelbreuken:\\
+
+$\dfrac{3x^2+6}{(x^2+1)(x^2+4)} = \dfrac{Ax+B}{x^2+1} + \dfrac{Cx+D}{x^2+4} $\\
+
+$A(i) + B = \dfrac{3x^2+6}{x^2+4}  \bigg|_{x = i} = 1 $ dit impliceert dat: $A = 0$ en $B =1$ \\
+
+$C(2i) + D =  \dfrac{3x^2+6}{x^2+1} \bigg|_{x = 2i} = 2 $  dit impliceert dat: $C=0$ en $D =2$\\
+
+$I = \displaystyle\int \dfrac{1}{x^2+1}dx + 2\displaystyle\int \dfrac{1}{x^2+4}dx$\\
+
+$= \operatorname{Bgtan}(x) + \operatorname{Bgtan}\left(\dfrac{x}{2}\right) + c $\\
+
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

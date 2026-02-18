@@ -1,0 +1,36 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Hendrik De Bruyn \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 2D nr. 12.11\\
+
+\medskip
+
+\normalsize
+
+\textbf{Opgave:} Bereken de limiet $\lim\limits_{x \rightarrow \infty} (x + 3 - \sqrt{x^2 + 6x})$ \\
+
+\textbf{Oplossing:} \\
+
+$\lim\limits_{x \rightarrow -\infty} (x + 3 - \sqrt{x^2 + 6x}) = -\infty - (+\infty) = -\infty$ \\
+
+$\begin{array}{rcl}
+\lim\limits_{x \rightarrow +\infty} (x + 3 - \sqrt{x^2 + 6x}) 
+    &=& \lim\limits_{x \rightarrow +\infty} \dfrac{(x + 3 - \sqrt{x^2 + 6x})(x + 3 + \sqrt{x^2 + 6x})}{(x + 3 + \sqrt{x^2 + 6x})} \\
+    &=& \lim\limits_{x \rightarrow +\infty} \dfrac{x+3)^2 - x^2 + 6x}{(x + 3 + \sqrt{x^2 + 6x})} \\
+    &=& \lim\limits_{x \rightarrow +\infty} \dfrac{9}{(x + 3 + \sqrt{x^2 + 6x})} \\
+    &=& \dfrac{9}{+\infty} \\
+    &=& 0 \\
+\end{array}
+$ \\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

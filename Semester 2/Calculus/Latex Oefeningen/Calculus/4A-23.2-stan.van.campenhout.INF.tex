@@ -1,0 +1,33 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Stan Van Campenhout \\
+\noindent \large Studierichting:  Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 23.2\\
+
+\medskip
+
+\normalsize
+
+$ \displaystyle\int x \operatorname{Bgtan} x dx = \dfrac{1}{2}\displaystyle\int\operatorname{Bgtan}x d(x^2) $\\
+
+$ \dfrac{x^2}{2}\operatorname{Bgtan}x - \dfrac{1}{2}\displaystyle\int x^2 d\left(\operatorname{Bgtan}x\right)
+= \dfrac{x^2}{2}\operatorname{Bgtan}x - \dfrac{1}{2}\displaystyle\int \dfrac{x^2}{1 + x^2} dx $\\
+
+$ = \dfrac{x^2}{2}\operatorname{Bgtan}x - \dfrac{1}{2}\displaystyle\int \dfrac{1 + x^2 - 1}{1 + x^2} dx $\\
+
+$ = \dfrac{x^2}{2}\operatorname{Bgtan}x - \dfrac{1}{2}\displaystyle\int \dfrac{1 + x^2}{1 + x^2} dx 
++ \dfrac{1}{2}\displaystyle\int \dfrac{1}{1 + x^2} dx $\\
+
+$ = \dfrac{x^2}{2}\operatorname{Bgtan}x - \dfrac{1}{2}x + \dfrac{1}{2}\operatorname{Bgtan}x + c  
+ = \dfrac{x^2 + 1}{2}\operatorname{Bgtan}x - \dfrac{1}{2}x + c $\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

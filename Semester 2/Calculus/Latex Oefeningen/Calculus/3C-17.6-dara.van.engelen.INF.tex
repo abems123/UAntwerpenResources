@@ -1,0 +1,30 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Dara van Engelen\\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 3C nr. 17.6\\
+
+\medskip
+
+\normalsize
+
+$\lim\limits_{x \rightarrow 0} \dfrac{\sin x - x\cos x}{x(1-\cos x)} \left(=  \dfrac{0}{0}\right)$\\
+
+$\overset{H}{=} \lim\limits_{x \rightarrow 0} \dfrac{\cos x - (\cos x 
+- x\sin x)}{(1-\cos x) + (x\sin x)} = \lim\limits_{x \rightarrow 0} \dfrac{x\sin x}{(1-\cos x) + (x\sin x)} \left(=  \dfrac{0}{0}\right)$\\
+
+$\overset{H}{=} \lim\limits_{x \rightarrow 0} \dfrac{\sin x + x\cos x}{\sin x + x\cos x + \sin x} =  \lim\limits_{x \rightarrow 0} \dfrac{\sin x + x\cos x}{2\sin x + x\cos x }\left(=  \dfrac{0}{0}\right)$\\
+
+$\overset{H}{=} \lim\limits_{x \rightarrow 0} \dfrac{\cos x + (\cos x - x\sin x)}{2\cos x + (\cos x - x\sin x)} = \lim\limits_{x \rightarrow 0} \dfrac{2\cos x -x\sin x}{3\cos x - x\sin x} = \dfrac{2}{3}$\\
+
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

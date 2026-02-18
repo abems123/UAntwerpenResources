@@ -1,0 +1,26 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Stan Van Campenhout \\
+\noindent \large Studierichting:  Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 58.9\\
+
+\medskip
+
+\normalsize
+
+$ \displaystyle\int\dfrac{1}{\cos x-\sin x+1}dx \stackrel{t = \tan\left(\tfrac{x}{2}\right)}{=} \displaystyle\int\dfrac{1}{\dfrac{1-t^2}{1+t^2}-\dfrac{2t}{1+t^2}}\cdot\dfrac{2}{1+t^2}dt $\\
+
+$ = 2 \displaystyle\int\dfrac{1}{2-2t}dt=-\displaystyle\int\dfrac{1}{1-t}d\left(1-t\right) = - \ln|1-t| + c $\\
+
+$ \stackrel{t = \tan\left(\tfrac{x}{2}\right)}{=} -\ln\left|1 - \tan\left(\dfrac{x}{2}\right)\right| + c$\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

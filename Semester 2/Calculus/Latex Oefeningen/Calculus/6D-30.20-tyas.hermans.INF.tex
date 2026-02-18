@@ -1,0 +1,36 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\newcommand{\SUM}{\displaystyle\sum_{n=1}^{\infty}}
+\newcommand{\LIM}{\lim\limits_{n\rightarrow \infty}}     
+\newcommand{\dint}{\displaystyle\int}
+\begin{document}
+  
+\noindent \large Auteur: Tyas Hermans \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 6D nr. 30.20\\
+
+\medskip
+
+\normalsize
+
+$ \SUM \dfrac{1}{n \cdot \ln\left( 1 + \dfrac{1}{n}\right)} = \SUM \dfrac{1}{\ln\left( 1 + \dfrac{1}{n}\right)^n} $ \\
+
+negatief criterium:\\
+
+$ \LIM \dfrac{1}{\ln\left( 1 + \dfrac{1}{n}\right)^n} $ \\
+
+$ = \dfrac{1}{\LIM \ln\left( 1 + \dfrac{1}{n}\right)^n}$ \\
+
+$ = \dfrac{1}{\ln\left(\LIM \left(1 + \dfrac{1}{n}\right)^n\right)} $ \\
+
+$ = \dfrac{1}{\ln(e)} = 1 \neq 0 $ \\
+
+$ \Rightarrow \SUM \dfrac{1}{n \cdot \ln\left( 1 + \dfrac{1}{n}\right)}$ is divergent \\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

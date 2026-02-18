@@ -1,0 +1,34 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Shahin Jamal \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 5A nr. 7.7\\
+
+\medskip
+
+\normalsize
+
+$\displaystyle\int\limits_0^{\tfrac{\pi}{2}} \dfrac{dx}{2+\sin x}$\\
+
+Onbepaald integraal: $\displaystyle\int \dfrac{dx}{2+\sin x}$\\
+
+$\tan\dfrac{x}{2} = t \Rightarrow x = 2\operatorname{Bgtan}t \Rightarrow dx = \dfrac{2dt}{1+t^2}, \ \sin x = \dfrac{2t}{1+t^2}$\\
+
+$\Rightarrow \displaystyle\int \dfrac{\dfrac{2}{1+t^2}}{2+\dfrac{2t}{1+t^2}}dt = \displaystyle\int\dfrac{\dfrac{2}{1+t^2}}{\dfrac{2+2t^2+2t}{1+t^2}}dt = \displaystyle\int\dfrac{2}{2+2t^2+2t}dt$\\
+
+$= \displaystyle\int\dfrac{1}{t^2+t+1}dt = \displaystyle\int\dfrac{1}{t^2+t+\dfrac{1}{4} + \dfrac{3}{4}}dt$\\
+
+$= \displaystyle\int\dfrac{1}{\left(t+\dfrac{1}{2}\right)^2+\dfrac{3}{4}}dt = \dfrac{2\sqrt{3}}{3}\operatorname{Bgtan} \dfrac{2t+1}{\sqrt{3}} + c = \dfrac{2\sqrt{3}}{3}\operatorname{Bgtan} \dfrac{2\tan\dfrac{x}{2}+1}{\sqrt{3}} + c $\\
+
+$\Rightarrow \displaystyle\int\limits_0^{\tfrac{\pi}{2}} \dfrac{dx}{2+\sin x} = \left[\dfrac{2\sqrt{3}}{3}\operatorname{Bgtan} \dfrac{2\tan\dfrac{x}{2}+1}{\sqrt{3}}\right]_0^{\tfrac{\pi}{2}} = \dfrac{\pi\sqrt{3}}{9}$\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

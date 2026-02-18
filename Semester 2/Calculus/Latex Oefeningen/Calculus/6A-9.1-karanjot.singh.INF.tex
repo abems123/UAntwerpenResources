@@ -1,0 +1,59 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\newcommand{\dint}{\displaystyle\int}
+
+\begin{document}
+
+\noindent \large Auteur: Karanjot Singh \\
+\noindent \large Studierichting: Informatica \\
+\noindent \large Oefeningenreeks 6A nr. 9.1 \\
+
+\normalsize
+
+Gegeven: drie opeenvolgende termen van een rekenkundige rij waarvan de som en het product bekend zijn.\\
+
+Laat de drie termen zijn: $(x - v)$, $x$, $(x + v)$ \\
+
+Dan geldt het stelsel: \\
+
+$\left\{
+\begin{array}{l}
+(x - v) + x + (x + v) = 51 \\
+(x - v) \cdot x \cdot (x + v) = 4641 \\
+\end{array}
+\right.$ \\
+
+Bereken de som: \\
+
+$(x - v) + x + (x + v) = 3x = 51 \Rightarrow x = 17$ \\
+
+Substitueer $x = 17$ in het product: \\
+
+$(x - v) \cdot x \cdot (x + v) = x(x^2 - v^2)$ \\
+
+$\Rightarrow x(x^2 - v^2) = 4641$ \\
+
+$\Rightarrow 17(17^2 - v^2) = 4641$ \\
+
+$\Rightarrow 17(289 - v^2) = 4641$ \\
+
+$\Rightarrow 289 - v^2 = \dfrac{4641}{17} = 273$ \\
+
+$\Rightarrow v^2 = 289 - 273 = 16$ \\
+
+$\Rightarrow v = \pm4$ \\
+
+Dus de drie termen zijn: \\
+
+Voor $v = 4$: $(13,\ 17,\ 21)$ \\
+
+Voor $v = -4$: $(21,\ 17,\ 13)$ \\
+
+\begin{thebibliography}{999}
+	%\bibitem{a} Referentie
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,39 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+
+\DeclareMathOperator{\Bgsin}{Bgsin}
+
+\begin{document}
+
+\noindent \large Auteur: Karanjot Singh \\
+\noindent \large Studierichting: Informatica \\
+\noindent \large Oefeningenreeks 4A nr. 40.4 \\
+
+\normalsize
+
+$\displaystyle\int \dfrac{dx}{\sqrt{-x^2 + 4x - 3}}$ \\
+
+$\sqrt{-x^2 + 4x - 3} = \sqrt{-(x - 2)^2 + 1}$ \\
+
+Stel $u = x - 2$ \\
+
+$\Rightarrow du = dx$ \\
+
+$= \displaystyle\int \dfrac{dx}{\sqrt{-(x - 2)^2 + 1}}$ \\
+
+$= \displaystyle\int \dfrac{du}{\sqrt{1 - u^2}}$ \\
+
+$\displaystyle\int \dfrac{du}{\sqrt{1 - u^2}} = \Bgsin(u) + C$ \\
+
+$\Bgsin(u) = \Bgsin(x - 2)$ \\
+
+$\Rightarrow \displaystyle\int \dfrac{dx}{\sqrt{-x^2 + 4x - 3}} = \Bgsin(x - 2) + C$ \\
+
+\begin{thebibliography}{999}
+	%\bibitem{a} Referentie
+\end{thebibliography}
+
+\end{document}

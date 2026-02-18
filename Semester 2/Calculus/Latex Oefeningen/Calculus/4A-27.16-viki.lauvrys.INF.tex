@@ -1,0 +1,35 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}   
+
+\begin{document}
+  
+\noindent \large Auteur: Viki	Lauvrys \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 27.16\\
+
+\medskip
+
+\normalsize
+
+$ \displaystyle\int \dfrac{x^5}{x^3-1} dx $ \\
+
+Stel $ t = x^3 - 1 \Rightarrow dt = 3x^2 dx$ \\
+
+$ = \displaystyle\int \dfrac{t+1}{3t} dt $ \\
+
+$ = \dfrac{1}{3} \displaystyle\int \dfrac{t+1}{t} dt $ \\
+
+$ = \dfrac{1}{3} \displaystyle\int dt + \dfrac{1}{3} \displaystyle\int \dfrac{dt}{t} $ \\
+
+$ = \dfrac{1}{3}t + \dfrac{1}{3} \ln |t| + C $ \\
+
+$ = \dfrac{x^3 - 1 + \ln |x^3-1|}{3} + C $ \\
+
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

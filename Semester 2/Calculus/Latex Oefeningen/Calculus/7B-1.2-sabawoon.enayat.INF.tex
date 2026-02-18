@@ -1,0 +1,44 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Sabawoon Enayat      \\
+\noindent \large Studierichting: Informatica  \\
+\noindent \large Oefeningenreeks 7B nr. 1.2 \\
+
+\newcommand{\llim}{\lim\limits}
+
+\medskip
+
+\normalsize
+
+Opgave: zoek $\dfrac{dw}{dt}$: $w = \dfrac{1}{u^2 + v^2}$ met $u = \cos 2t$ en $v = \sin 2t$\\
+
+$w = \left(u^2 + v^2\right)^{-1}$\\
+
+$\Rightarrow \dfrac{\partial w}{\partial u} = -1\cdot\left(u^2 + v^2\right)^2\cdot 2u = \dfrac{-2u}{\left(u^2 + v^2\right)^2}$\\
+
+$\Rightarrow \dfrac{\partial w}{\partial v} = -1\cdot\left(u^2 + v^2\right)^2\cdot 2v = \dfrac{-2v}{\left(u^2 + v^2\right)^2}$\\
+
+$\Rightarrow \dfrac{du}{dt} = \dfrac{d}{dt}\left(\cos 2t\right) = -2\sin 2t$\\
+
+$\Rightarrow \dfrac{dv}{dt} = \dfrac{d}{dt}\left(\sin 2t\right) = 2\cos 2t$\\
+
+$\dfrac{dw}{dt} = \dfrac{\partial w}{\partial u}\cdot\dfrac{du}{dt} + \dfrac{\partial w}{\partial v}\cdot\dfrac{dv}{dt}$\\
+
+$= \dfrac{-2u}{\left(u^2 + v^2\right)^2} \cdot (-2\sin 2t) - \dfrac{2v}{\left(u^2 + v^2\right)^2} \cdot (2\cos 2t)$\\
+
+$= \dfrac{4\cos 2t\cdot \sin 2t}{\left(\cos^2 2t + \sin^2 2t\right)^2} - \dfrac{4\sin 2t\cdot \cos 2t}{\left(\cos^2 2t + \sin^2 2t\right)^2}$\\
+
+$= 4\cos 2t\cdot \sin 2t - 4\sin 2t\cdot \cos 2t = 0$\\
+
+$$\dfrac{dw}{dt} = 0$$\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

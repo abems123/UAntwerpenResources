@@ -1,0 +1,48 @@
+   \documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}   
+
+\begin{document}
+  
+\noindent \large Auteur: Eryk Borczuch \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 5B nr. 1.12.\\
+
+\medskip
+
+\normalsize
+
+$\displaystyle\int_{-\infty}^{0} xe^x dx$\\
+
+$= \lim\limits_{a \to -\infty} \displaystyle\int_{a}^{0} x e^x $\\
+
+$\left\{
+   \begin{array}{l}
+       u = x\\
+       dv = e^x dx
+   \end{array}
+\right.
+\Rightarrow
+\left\{
+   \begin{array}{l}
+       du = dx \\
+       v =e^x
+   \end{array}
+\right.$\\
+
+$= \lim\limits_{a \to -\infty} \left(x e^x - \displaystyle\int_{a}^{0}e^x dx\right) $\\
+
+$= \lim\limits_{a \to -\infty} [xe^x - e^x]_{a}^{0}$\\
+
+$= \lim\limits_{a \to -\infty} (0e^0-e^0)-(ae^a-e^a)$\\
+
+$= -1 +\infty\cdot e^{-\infty} + e^{-\infty} $\\
+
+$= -1 $\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

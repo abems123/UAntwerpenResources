@@ -1,0 +1,42 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+
+\begin{document}
+  
+\noindent \large Auteur: Siebe Mees \\
+\noindent \large Studierichting: Informatica \\
+\noindent \large Oefeningenreeks 2E nr. 5.5 \\
+
+\medskip
+
+\normalsize
+
+$ \lim\limits_{x \rightarrow 0} \left(\dfrac{ax+b}{cx+b}\right)^{\tfrac{1}{x}} $ \\
+
+$\left( s = \dfrac{1}{x} \right) $ \\
+
+$ = \lim\limits_{s \rightarrow \infty} \left(\dfrac{as^{-1}+b}{cx^{-1}+b}\right)^{s} $ \\
+
+$ = \lim\limits_{s \rightarrow \infty} \left(\dfrac{bs+a}{bs+c}\right)^{s} $ \\
+
+$\left( z = bs + c \right) $ \\
+
+$ = \lim\limits_{z \rightarrow \infty} \left(\dfrac{z-c+a}{z}\right)^{\tfrac{z-c}{b}} $ \\
+
+$ = \lim\limits_{z \rightarrow \infty} \left(1+\dfrac{a-c}{z}\right)^{\tfrac{z}{b}}
+\cdot
+\lim\limits_{z \rightarrow \infty} \left(1+\dfrac{a-c}{z}\right)^{\tfrac{-c}{b}} $ \\
+
+$ = \left(\lim\limits_{z \rightarrow \infty} \left(\dfrac{z-c+a}{z}\right)^{\tfrac{z}{a-c}}\right)^{\tfrac{a-c}{b}}
+\cdot
+1 $ \\
+
+$= e^{\tfrac{a-c}{b}} $
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

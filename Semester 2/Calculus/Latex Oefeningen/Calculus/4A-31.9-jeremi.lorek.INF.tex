@@ -1,0 +1,32 @@
+\documentclass[a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\begin{document}
+
+\noindent \large Auteur: Jeremi Lorek\\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 31.9\\
+
+\medskip
+\normalsize
+
+$\displaystyle \int \dfrac{x^2 \sqrt{x - 2}}{\sqrt[3]{x - 2}}  dx = \int x^2 \sqrt[6]{x - 2}  dx$ \\
+
+Stel $u = x - 2 \Rightarrow du = dx$\\
+
+$x^2 = x \cdot x = (u + 2)^2$ \\
+
+$= \displaystyle \int (u + 2)^2 \cdot u^{\tfrac{1}{6}}  du = \int (u^2 + 4u + 4) u^{\tfrac{1}{6}}  du$ \\
+
+$= \displaystyle \int u^{\tfrac{13}{6}}  du + 4 \int u^{\tfrac{7}{6}}  du + 4 \int u^{\tfrac{1}{6}}  du$ \\
+
+$= \dfrac{6}{19} u^{\tfrac{19}{6}} + 4 \cdot \dfrac{6}{13} u^{\tfrac{13}{6}} + 4 \cdot \dfrac{6}{7} u^{\tfrac{7}{6}} + C$ \\
+
+$= \dfrac{6}{19} (x - 2)^{\tfrac{19}{6}} + \dfrac{24}{13} (x - 2)^{\tfrac{13}{6}} + \dfrac{24}{7} (x - 2)^{\tfrac{7}{6}} + C$ \\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+
+\end{document}

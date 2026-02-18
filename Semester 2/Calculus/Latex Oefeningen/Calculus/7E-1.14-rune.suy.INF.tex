@@ -1,0 +1,65 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}  
+\usepackage{cancel}
+
+\newcommand{\degree}{^{\circ}}
+\newcommand{\cis}{\operatorname{cis}}
+\newcommand{\Bgsin}{\operatorname{Bgsin}}
+\newcommand{\Bgcos}{\operatorname{Bgcos}}
+\newcommand{\Bgtan}{\operatorname{Bgtan}}
+\newcommand{\limit}{\lim\limits}
+\newcommand{\summation}{\displaystyle\sum}
+\newcommand{\dom}{\operatorname{dom}}
+\newcommand{\Int}{\displaystyle\int}
+
+\begin{document}
+  
+\noindent \large Auteur: Rune Suy \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 7E nr. 1.14\\
+
+\medskip
+
+\normalsize
+
+$f(x,y) = x^3 + y^3 + 3xy + 3$\\
+
+$\dfrac{\partial f}{\partial x} = 3x^2 + 3y$\\
+
+$\dfrac{\partial f}{\partial y} = 3y^2 + 3x$\\
+
+$\left\{
+    \begin{array}{l}
+        3x^2 + 3y = 0\\
+        3y^2 + 3x = 0
+    \end{array}
+\right.$\\
+
+$\Leftrightarrow -x^2 = y$\\
+
+$\Leftrightarrow 3x^4+3x=0$\\
+
+$\Leftrightarrow x(x-1)(3x^2 - 3x + 3)$\\
+
+$x = 0 \Rightarrow y=0$\\
+
+of\\
+
+$x=-1 \Rightarrow y=-1$\\
+
+$H(x,y) = \det \left(\begin{array}{cc}
+    6x & 3\\
+    3 & 6y
+\end{array}\right) = 36xy-9$\\
+
+$H(0,0) = -9 < 0$ dus $(0,0)$ is een zadelpunt\\
+
+$H(-1,-1) = 27 > 0$ en $\dfrac{\partial^2 f}{\partial x^2}, \dfrac{\partial^2 f}{\partial y^2} < 0$ dus $(-1,-1)$ is een maximum\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

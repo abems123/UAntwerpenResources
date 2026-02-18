@@ -1,0 +1,60 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Raj Shah \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 5A nr. 11.1 \\
+
+\medskip
+
+\normalsize
+
+$\displaystyle\int_{0}^{\tfrac{\pi}{2}} x^2 \sin x dx $\\
+
+$\left\{
+    \begin{array}{l}
+        u = x^2 \\
+        dv = \sin x dx
+    \end{array}
+\right.
+\Rightarrow
+\left\{
+    \begin{array}{l}
+        du =  2x dx \\
+        v = - \cos x
+    \end{array}
+\right.$\\
+
+$ \overset{PI}{=} [-x^2 \cos x]_{0}^{\tfrac{\pi}{2}} + \displaystyle\int_{0}^{\tfrac{\pi}{2}} \cos x \cdot 2x dx$\\
+
+$ = \left(-\dfrac{\pi}{4} \cdot 0\right)+ 2\displaystyle\int_{0}^{\tfrac{\pi}{2}} x \cos x dx$
+
+$\left\{
+    \begin{array}{l}
+        u = x \\
+        dv = \cos x dx
+    \end{array}
+\right.
+\Rightarrow
+\left\{
+    \begin{array}{l}
+        du =  dx \\
+        v = \sin x
+    \end{array}
+\right.$\\
+
+$ \overset{PI}{=} 2\cdot \left([x \sin x]_{0}^{\tfrac{\pi}{2}} - \displaystyle\int_{0}^{\tfrac{\pi}{2}}\sin x dx\right) $\\
+
+$ = 2\left(\left(\dfrac{\pi}{2} \cdot 1\right) + [\cos x]_0^{\tfrac{\pi}{2}}\right) = 2\left(\dfrac{\pi}{2} + (0-1)\right)$\\
+
+$ = \pi - 2$\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

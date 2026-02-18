@@ -1,0 +1,38 @@
+\documentclass[a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\begin{document}
+
+\noindent \large Auteur: Jeremi Lorek\\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 27.13\\
+
+\medskip
+\normalsize
+
+$\displaystyle \int \dfrac{x + 2}{x^2 + 4x + 7} dx$ \\
+
+$= \displaystyle \int \dfrac{x + 2}{(x + 2)^2 + 3} dx$ \\
+
+Stel $u = x + 2 \Rightarrow du = dx$\\
+
+$= \displaystyle \int \dfrac{u}{u^2 + 3} du$ \\
+
+Stel $t = u^2 + 3 \Rightarrow dt = 2u du \Rightarrow \dfrac{1}{2} dt = u du $\\
+
+$= \dfrac{1}{2} \displaystyle \int \dfrac{dt}{t}$ \\
+
+$= \dfrac{1}{2} \ln |t| + C = \dfrac{1}{2} \ln |u^2 + 3| + C$ \\
+
+$= \dfrac{1}{2} \ln \left| (x + 2)^2 + 3 \right| + C$ \\
+
+$= \dfrac{1}{2} \ln \left| x^2 + 4x + 7 \right| + C$ \\
+
+$= \dfrac{1}{2} \ln (x^2 + 4x + 7) + C$ \\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+
+\end{document}

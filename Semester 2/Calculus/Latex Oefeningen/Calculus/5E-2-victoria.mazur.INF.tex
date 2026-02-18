@@ -1,0 +1,49 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Victoria Mazur \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 5E nr. 2\\
+
+\medskip
+
+\normalsize
+
+$S = 4 \displaystyle\int_{\dfrac{\pi}{2}}^0 |a \sin^3 t| \cdot |{-3a \cos^2 t \sin t}| \, dt$ \\
+
+$= -12a^2 \displaystyle\int_{\dfrac{\pi}{2}}^0 \sin^4 t \cos^2 t \, dt = 12a^2 \displaystyle\int_0^{\dfrac{\pi}{2}} \sin^4 t \cos^2 t \, dt$ \\
+
+Gebruik: $\sin^2 t = \dfrac{1 - \cos 2t}{2}$ en $\cos^2 t = \dfrac{1 + \cos 2t}{2}$ \\
+
+$\Rightarrow \sin^4 t \cos^2 t = \left( \dfrac{1 - \cos 2t}{2} \right)^2 \cdot \left( \dfrac{1 + \cos 2t}{2} \right) = \dfrac{(1 - \cos 2t)^2 (1 + \cos 2t)}{8}$ \\
+
+$S = 12a^2 \cdot \dfrac{1}{8} \displaystyle\int_0^{\dfrac{\pi}{2}} (1 - \cos 2t)^2 (1 + \cos 2t) \, dt = \dfrac{3a^2}{2} \displaystyle\int_0^{\dfrac{\pi}{2}} (1 - \cos 2t)^2 (1 + \cos 2t) \, dt$ \\
+
+Bereken de integrand: \\
+
+$(1 - \cos 2t)^2 (1 + \cos 2t) = (1 - 2\cos 2t + \cos^2 2t)(1 + \cos 2t)$ \\
+
+$= 1 - \cos 2t - \cos^2 2t + \cos^3 2t$ \\
+
+$S = \dfrac{3a^2}{2} \displaystyle\int_0^{\dfrac{\pi}{2}} \left( 1 - \cos 2t - \cos^2 2t + \cos^3 2t \right) dt$ \\
+
+Gebruik bekende waarden: \\
+
+$\displaystyle\int_0^{\dfrac{\pi}{2}} \cos 2t \, dt = 0$, $\displaystyle\int_0^{\dfrac{\pi}{2}} \cos^2 2t \, dt = \dfrac{\pi}{4}$, $\displaystyle\int_0^{\dfrac{\pi}{2}} \cos^3 2t \, dt = 0$ \\
+
+$S = \dfrac{3a^2}{2} \left( \dfrac{\pi}{2} - 0 - \dfrac{\pi}{4} + 0 \right) = \dfrac{3a^2}{2} \cdot \dfrac{\pi}{4} = \dfrac{3\pi a^2}{8}$ \\
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=10cm]{5E-2-victoria.mazur.INF.png}
+\end{figure}
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document}

@@ -1,0 +1,47 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}	
+\newcommand{\integraal}{\displaystyle\int}
+
+\begin{document}
+  
+\noindent \large Auteur: Joe Ayoub \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 4A nr.42.18 \\
+
+\medskip
+
+\normalsize
+
+$\integraal{}\dfrac{2x^2 - 5x + 7}{x^3 - 7x + 6}dx = \integraal{}\dfrac{2x^2 - 5x + 7}{(x-1)(x-2)(x+3)}dx$ \\
+
+$ \dfrac{2x^2 - 5x + 7}{(x-1)(x-2)(x+3)}dx = \dfrac{A}{(x-1)} + \dfrac{B}{(x-2)} + \dfrac{C}{(x + 3)}$ \\
+
+Door gebruik te maken van de Fuss methode kunnen we nu zeggen dat: \\
+
+$ \Rightarrow A = \dfrac{2x^2 - 5x + 7}{(x-2)(x+3)}$ \\
+
+Als $x = $ dan $A =  -1$ \\
+
+$ \Rightarrow B = \dfrac{2x^2 - 5x + 7}{(x-1)(x+3)}$\\
+
+Als $x = 2$ dan $B = 1$ \\
+
+$ \Rightarrow C = \dfrac{2x^2 - 5x + 7}{(x-1)(x-2)}$\\
+
+Als $x = -3$ dan $C = 2$ \\
+
+We gaan terug naar het integraal \\
+
+$= \integraal{}\dfrac{2x^2 - 5x + 7}{(x-1)(x-2)(x+3)}dx$ \\
+
+$= -\integraal{}\dfrac{1}{x-1}dx + \integraal{}\dfrac{1}{x-2}dx + 2\integraal{}\dfrac{1}{x+3}dx$ \\
+
+$= -\ln{}|x-1| + \ln{}|x-2| + 2\ln{}|x+3| + C$
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

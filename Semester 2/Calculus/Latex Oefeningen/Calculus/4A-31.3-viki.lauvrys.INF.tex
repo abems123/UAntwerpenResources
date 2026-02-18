@@ -1,0 +1,34 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}   
+
+\begin{document}
+  
+\noindent \large Auteur: Viki	Lauvrys \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 31.3\\
+
+\medskip
+
+\normalsize
+
+$ \displaystyle\int \dfrac{2x -3}{\sqrt[3]{x+1}} dx $ \\
+
+Stel $ t = \sqrt[3]{x+1} \Rightarrow dx = 3t^2 dx $ \\
+
+$ = \displaystyle\int \dfrac{2(t^3 -1) -3}{t} 3t^2 dt $ \\
+
+$ = \displaystyle\int \dfrac{(2t^3 -5) 3t^2}{t} dt $ \\
+
+$ = \displaystyle\int 6t^4 dt - \displaystyle\int 15t dt $ \\
+
+$ = \dfrac{6t^5}{5} - \dfrac{15t^2}{2} +C $ \\
+
+$ = \dfrac{6}{5} \left(\sqrt[3]{x+1} \right)^5 - \dfrac{15}{2} \left(\sqrt[3]{x+1} \right)^2 +C $ \\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

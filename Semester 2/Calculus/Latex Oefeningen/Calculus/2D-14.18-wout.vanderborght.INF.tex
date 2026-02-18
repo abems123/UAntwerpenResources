@@ -1,0 +1,45 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+\usepackage{cancel}
+
+% Command definities van frequent gebruikte commandos
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Bgsin}{\operatorname{Bgsin}}
+\newcommand{\Bgcos}{\operatorname{Bgcos}}
+\newcommand{\Bgtan}{\operatorname{Bgtan}}
+\newcommand{\cis}{\operatorname{cis}}
+\newcommand{\Limit}{\lim\limits_}
+
+\begin{document}
+  
+\noindent \large Auteur: Wout Vanderborght\\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 2D nr. 14.18\\
+
+\medskip
+
+\normalsize
+
+Bereken de volgende limiet: \\
+
+$ \Limit{x \rightarrow 0} \dfrac{\cos(x) - \cos(2x)}{x^2} $ \\
+
+$ = \Limit{x \rightarrow 0} \dfrac{-2 \sin\left(\dfrac{3}{2}x\right) \sin\left(\dfrac{-1}{2}x\right)}{x^2} $ \\
+
+$ = -2 \left(\Limit{x \rightarrow 0} \dfrac{\sin\left(\dfrac{3}{2}x\right)}{x}\right) \left(\Limit{x \rightarrow 0} \dfrac{\sin\left(-\dfrac{1}{2}x\right)}{x}\right) $ \\
+
+$ = -2 \cdot \dfrac{2}{3} \cdot \dfrac{-1}{2} \left(\Limit{x \rightarrow 0} \dfrac{\sin\left(\dfrac{3}{2}x\right)}{\dfrac{3}{2}x}\right) \left(\Limit{x \rightarrow 0} \dfrac{\sin\left(-\dfrac{1}{2}x\right)}{-\dfrac{1}{2}x}\right) $ \\
+
+
+$ = -2 \cdot \dfrac{2}{3} \cdot \dfrac{-1}{2} \cdot 1 \cdot 1 = \dfrac{3}{2} $
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

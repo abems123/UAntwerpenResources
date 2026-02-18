@@ -1,0 +1,34 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Etienne El Hachem \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 66.4\\
+
+\medskip
+
+\normalsize
+
+$\displaystyle\int \sqrt{x^2 + 1}dx$ \\
+
+$ \stackrel{\sqrt{x^2+1}= x+ t}= \displaystyle\int \left(-\dfrac{t^2-1}{2t}+t\right)\left(-\dfrac{t^2+1}{2t^2}\right)dt$ \\
+
+$ = \displaystyle\int \left(\dfrac{t^2+1}{2t}\right)\left(-\dfrac{t^2+1}{2t^2}\right)dt$ \\
+
+$ = -\displaystyle\int \dfrac{(t^2+1)^2}{4t^3}dt$ \\
+
+$ = -\dfrac{1}{4} \cdot \left( \displaystyle\int \dfrac{t^4+2t^2+1}{t^3} \right)dt$
+
+$ = -\dfrac{1}{4} \cdot \left( \dfrac{t^2}{2}+2\cdot \ln |t| - \dfrac{1}{2t^2} \right) + c$ \\
+
+$ = -\dfrac{(\sqrt{x^2+1}-x)^2}{8} - \dfrac{\ln |\sqrt{x^2+1}-x|}{2} + \dfrac{1}{8(\sqrt{x^2+1}-x)^2}+c$
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

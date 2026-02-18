@@ -1,0 +1,33 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\newcommand{\dint}{\displaystyle \int}
+\begin{document}
+  
+\noindent \large Auteur: Rubin Cuypers \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 62.3\\
+
+\medskip
+
+\normalsize
+
+$I=\dint \dfrac{\sqrt{1-x^2}}{x} dx$\\
+
+$\overset{x=\cos y }{=} \dint \dfrac{\sqrt{1-\cos^2y}}{\cos y} (-\sin y) dy$ \\
+
+$=-\dint \dfrac{\sin^2 y}{\cos y} dy =-\dint \dfrac{1-\cos^2y}{\cos y}dy = -\dint \dfrac{1}{\cos y} dy+ \dint \cos y dy$\\
+
+$=-\ln \left| \tan\left( \dfrac{y}{2} + \dfrac{\pi}{4} \right) \right|+ \sin y +C$\\
+
+$=-\ln \left| \tan\left( \dfrac{y}{2} + \dfrac{\pi}{4} \right) \right| +\sqrt{1-\cos^2y} + C$\\
+
+$\overset{y=\operatorname{Bgcos} x}{=} -\ln \left| \tan\left( \dfrac{\operatorname{Bgcos} x}{2} + \dfrac{\pi}{4} \right) \right| +\sqrt{1-x^2} + C$\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

@@ -1,0 +1,71 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\newcommand{\cis}{\operatorname{cis}}
+
+\begin{document}
+  
+\noindent \large Auteur: Hendrik De Bruyn \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 1C nr. 54\\
+
+\medskip
+
+\normalsize
+
+\textbf{Opgave:} \\
+
+Los op in $\mathbb{C}$: $z^6 + z^3 + 1 = 0$ \\
+
+\textbf{Oplossing:} \\
+
+Substitueer $v = z^3$. \\
+
+Hieruit volgt dat $v^2 + v + 1 = 0$ \\
+
+Discriminant: $D = 1 - 4 = -3$ \\
+
+$-3 = (x + yi)^2 = x^2 - y^2 + 2xyi$ \\
+
+$\Rightarrow\left\{\begin{array}{l}
+    x^2 - y^2 = -3 \\
+    2xy = 0
+\end{array}\right.$ \\
+
+$\Rightarrow -y^2 = -3 \Rightarrow y = \pm \sqrt{3}$ \\
+
+$\Rightarrow x + yi = \sqrt{3}i$ en $x + yi = -\sqrt{3}i$ \\
+
+$v_{1,2} = \dfrac{-1 \pm \sqrt{3}i}{2} = -\dfrac{1}{2} \pm \dfrac{\sqrt{3}}{2}i$ \\
+
+Voor $v_1$ berekenen we de volgende drie oplossingen: \\
+
+$-\dfrac{1}{2} + \dfrac{\sqrt{3}}{2}i = \cis \dfrac{2\pi}{3} = v_1 = z^3$ \\
+
+$z = \cis \dfrac{\dfrac{2\pi}{3} + k\cdot2\pi}{3} = \cis \dfrac{2\pi + k\cdot6\pi}{9}$ (met $k \in \{0,1,2\})$ \\
+
+${\bf z_0} = \cis \dfrac{2\pi}{9}$ \\
+
+${\bf z_1} = \cis \dfrac{8\pi}{9}$ \\
+
+${\bf z_2} = \cis \dfrac{14\pi}{9} = \cis \dfrac{-4\pi}{9}$ \\
+
+Voor $v_2$ berekenen we de volgende drie oplossingen: \\
+
+$-\dfrac{1}{2} - \dfrac{\sqrt{3}}{2}i = \cis \dfrac{4\pi}{3} = v_1 = z^3$ \\
+
+$z = \cis \dfrac{\dfrac{4\pi}{3} + k\cdot2\pi}{3} = \cis \dfrac{4\pi + k\cdot6\pi}{9}$ (met $k \in \{0,1,2\})$ \\
+
+${\bf z_3} = \cis \dfrac{4\pi}{9}$ \\
+
+${\bf z_4} = \cis \dfrac{10\pi}{9} = \cis \dfrac{-8\pi}{9}$ \\
+
+${\bf z_5} = \cis \dfrac{16\pi}{9} = \cis \dfrac{-2\pi}{9}$ \\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

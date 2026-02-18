@@ -1,0 +1,30 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Shahin Jamal \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 58.2\\
+
+\medskip
+
+\normalsize
+
+$\displaystyle\int\dfrac{dx}{1+\sin x}$\\
+
+$\tan \dfrac{x}{2} = t \Rightarrow x = 2\operatorname{Bgtan}t \Rightarrow dx = \dfrac{2dt}{1+t^2}, \sin x = \dfrac{2t}{1+t^2}$\\
+
+$\Rightarrow \displaystyle\int \dfrac{\dfrac{2}{1+t^2}}{1+\dfrac{2t}{1+t^2}}dt = \displaystyle\int \dfrac{\dfrac{2}{1+t^2}}{\dfrac{(1+t^2)+2t}{1+t^2}}dt$\\
+
+$= \displaystyle\int \dfrac{2}{(1+t)^2}d(1+t) = \displaystyle\int \dfrac{2}{u^2}du = -\dfrac{2}{u}+c = -\dfrac{2}{1+t}+c$\\
+
+$= -\dfrac{2}{1+\tan\dfrac{x}{2}} + c$
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

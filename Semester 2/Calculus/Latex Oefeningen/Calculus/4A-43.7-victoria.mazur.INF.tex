@@ -1,0 +1,46 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Victoria Mazur \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 43.7\\
+
+\medskip
+
+\normalsize
+
+$\displaystyle\int \dfrac{1-x^4}{3x^5+x^4}dx$\\
+
+$\dfrac{1-x^4}{3x^5+x^4} = \dfrac{1-x^4}{x^4(3x+1)}$\\
+
+$\dfrac{1-x^4}{x^4(3x+1)} = \dfrac{A}{x^4} + \dfrac{B}{x^3} + \dfrac{C}{x^2} + \dfrac{D}{x} + \dfrac{E}{3x+1}$\\
+
+$A = \left. \dfrac{1-x^4}{3x+1} \right|_{x=0} = 1$\\
+
+$E = \left. \dfrac{1-x^4}{x^4} \right|_{x=-\tfrac{1}{3}} = 80$\\
+
+$\dfrac{1-x^4}{x^4(3x+1)} - \dfrac{1}{x^4} = \dfrac{1-x^4-(3x+1)}{x^4(3x+1)} = \dfrac{-x^4-3x}{x^4(3x+1)} = \dfrac{-x(x^3+3)}{x^4(3x+1)} = \dfrac{-(x^3+3)}{x^3(3x+1)}$\\
+
+$B = \left. \dfrac{-(x^3+3)}{3x+1} \right|_{x=0} = -3$\\
+
+$\dfrac{-(x^3+3)}{x^3(3x+1)} + \dfrac{3}{x^3} = \dfrac{-(x^3+3)+3(3x+1)}{x^3(3x+1)} = \dfrac{-x^3-3+9x+3}{x^3(3x+1)} = \dfrac{-x^3+9x}{x^3(3x+1)} = \dfrac{x(-x^2+9)}{x^3(3x+1)} = \dfrac{-x^2+9}{x^2(3x+1)}$\\
+
+$C = \left. \dfrac{-x^2+9}{3x+1} \right|_{x=0} = 9$\\
+
+$\dfrac{-x^2+9}{x^2(3x+1)} - \dfrac{9}{x^2} = \dfrac{-x^2+9-9(3x+1)}{x^2(3x+1)} = \dfrac{-x^2+9-27x-9}{x^2(3x+1)} = \dfrac{-x^2-27x}{x^2(3x+1)} = \dfrac{x(-x-27)}{x^2(3x+1)} = \dfrac{x+27}{x(3x+1)}$\\
+
+$D = \left. \dfrac{x+27}{3x+1} \right|_{x=0} = 27$\\
+
+$\displaystyle\int \dfrac{1-x^4}{3x^5+x^4}dx = \displaystyle\int \left( \dfrac{1}{x^4} - \dfrac{3}{x^3} + \dfrac{9}{x^2} + \dfrac{27}{x} + \dfrac{80}{3x+1} \right)dx$\\
+
+$= \dfrac{-1}{3x^3} + \dfrac{3}{2x^2} - \dfrac{9}{x} - 27\ln|x| + \dfrac{80}{3}\ln|3x+1| + C$
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document}

@@ -1,0 +1,39 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\newcommand{\R}{\mathbb{R}}
+
+\begin{document}
+  
+\noindent \large Auteur: Jeremi Lorek \\
+\noindent \large Studierichting:  Informatica\\
+\noindent \large Oefeningenreeks 2E nr. 6.3\\
+
+\medskip
+
+\normalsize
+
+
+$\lim\limits_{x \to 2} \left( \dfrac{3x - 2}{2x} \right)^{\tfrac{1}{x-2}}$  \\
+
+$= \lim\limits_{x \to 2} \left( \dfrac{x-2 + 2x}{2x} \right)^{\tfrac{1}{x-2}}$  \\
+
+$= \lim\limits_{x \to 2} \left( 1 + \dfrac{x-2}{2x} \right)^{\tfrac{1}{x-2}}$  \\
+
+$= \lim\limits_{x \to 2} \left( \left( 1 + \dfrac{x-2}{2x} \right)^{\tfrac{2x}{x-2} \cdot \tfrac{x-2}{2x}} \right)^{\tfrac{1}{x-2}}$  \\
+
+$= e^{\lim\limits_{x \to 2} \tfrac{\tfrac{x-2}{x-2}}{2x}}$  \\
+
+$= e^{\lim\limits_{x \to 2} \tfrac{1}{2x}}$  \\
+
+$= e^{\tfrac{1}{4}}$  \\
+
+
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

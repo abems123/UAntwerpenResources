@@ -1,0 +1,40 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Stan Van Campenhout \\
+\noindent \large Studierichting:  Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 44.4\\
+
+\medskip
+
+\normalsize
+
+$ \displaystyle\int\dfrac{x^4+x^3-3x+5}{x^3+2x^2+2x+1}dx = \displaystyle\int\left(x-1\dfrac{-2x+6}{x^3+2x^2+2x+1}\right)dx $\\
+
+$ = \dfrac{x^2}{2}-x+\displaystyle\int\dfrac{-2x+6}{\left(x+1\right)\left(x^2+x+1\right)}dx $\\
+
+$ \rightarrow \dfrac{-2x+6}{\left(x+1\right)\left(x^2+x+1\right)} = \dfrac{A}{x+1} + \dfrac{Bx+C}{x^2+x+1} $\\
+
+$ \Rightarrow A = \dfrac{-2\cdot-1+6}{1-1+1} = 8 $\\
+
+$ \Rightarrow B\left(-\dfrac{1}{2}+\dfrac{\sqrt{3}}{2}i\right) + C = \dfrac{7-\sqrt{3}i}{\dfrac{1}{2}+\dfrac{\sqrt{3}}{2}i} = 2 -4\sqrt{3}i \Rightarrow B = -8, C = -2 $\\
+
+$ = \dfrac{x^2}{2}-x+8\displaystyle\int\dfrac{1}{x+1}dx + \displaystyle\int\dfrac{-4\left(2x+1\right)+2}{x^2+x+1}dx $\\
+
+$ = \dfrac{x^2}{2}-x+8\ln|x+1|-4\ln|x^2+x+1|+2\displaystyle\int\dfrac{1}{x^2+x+1}dx $\\
+
+$ = \dfrac{x^2}{2}-x+8\ln|x+1|-4\ln|x^2+x+1|+2\displaystyle\int\dfrac{1}{\left(x+\dfrac{1}{2}\right)^2+\dfrac{3}{4}}d\left(x+\dfrac{1}{2}\right) $\\
+
+$ = \dfrac{x^2}{2}-x+8\ln|x+1|-4\ln|x^2+x+1| +\dfrac{2}{\sqrt{\dfrac{3}{4}}}\operatorname{Bgtan}\dfrac{x+\dfrac{1}{2}}{\sqrt{\dfrac{3}{4}}} + c $\\
+
+$ = \dfrac{x^2}{2}-x+8\ln|x+1|-4\ln|x^2+x+1| +\dfrac{4}{\sqrt{3}}\operatorname{Bgtan}\dfrac{2x+1}{\sqrt{3}} + c $\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

@@ -1,0 +1,55 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Mathijs Pittoors \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 2E nr. 10.7\\
+
+\medskip
+
+\normalsize
+
+\begin{eqnarray*}
+    2^{2x} + 7 &=& 3 \cdot 2^{1-x} + 2^{2x+1} \\
+    \textbf{Neem } t & = &2^x\\
+    t^2 + 7 & = & \dfrac{3 \cdot 2}{t^2} + 2t^2\\
+    u^3 + 7u & = & 6 + 2u^3\\
+    -u^3 + 7u -6 & = & 0
+\end{eqnarray*}
+
+\textbf{Horner:\\}
+
+$\begin{array}{r|r r r r}
+    & -1 & 0 & 7 & -6\\
+   1&    &-1 &-1 &  6\\ \hline
+    & -1 & -1& 6 & 0
+\end{array}$ \\
+
+Nieuwe functie: $(t^2-t+6)(t-1) = 0$\\
+
+\textbf{Som- en verschilformules:}\\
+
+$s= -\dfrac{b}{a} = -1$ en $p = \dfrac{c}{a} = -6$\\
+
+$\Rightarrow t_1 = 1$, $t_2 = 2$ en $t_3 = -3$\\
+
+\textbf{t opnieuw vervangen:}\\
+
+$2^x = 1 \Rightarrow x = 0$\\
+
+$2^x = 2 \Rightarrow x = 1$\\
+
+$2^x = -3$ heeft geen reële oplossingen
+
+
+
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

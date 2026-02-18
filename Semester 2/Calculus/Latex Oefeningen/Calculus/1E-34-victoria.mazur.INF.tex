@@ -1,0 +1,64 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Victoria Mazur \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 1E nr. 34\\
+
+\medskip
+
+\normalsize
+
+Gegeven: $A(z) = (z - 1)(z + 1)(z - z_3)$ waar $z_3$ onbekend is. \\
+
+We weten dat $A(i) = 4$. \\
+
+Substitutie van $z = i$ in de vergelijking: \\
+
+$A(i) = (i - 1)(i + 1)(i - z_3) = 4$ \\
+
+Eerst berekenen we $(i - 1)(i + 1)$: \\
+
+$(i - 1)(i + 1) = i^2 - 1^2$ \\
+
+Omdat $i^2 = -1$: \\
+
+$(i - 1)(i + 1) = -1 - 1 = -2$ \\
+
+Nu substitueren we dit terug: \\
+
+$-2(i - z_3) = 4$ \\
+
+Beide zijden delen door $-2$: \\
+
+$i - z_3 = \dfrac{4}{-2} = -2$ \\
+
+Oplossen naar $z_3$: \\
+
+$z_3 = i - (-2) = i + 2 = 2 + i$ \\
+
+Verificatie door $A(0)$ te berekenen: \\
+
+$A(0) = (0 - 1)(0 + 1)(0 - z_3)$ \\
+
+$A(0) = (-1)(1)(0 - (2 + i))$ \\
+
+$A(0) = (-1)(1)(-(2 + i))$ \\
+
+$A(0) = (-1)(-(2 + i))$ \\
+
+$A(0) = 2 + i$ \\
+
+Dus de complete vorm van $A(z)$ is: \\
+
+$A(z) = (z - 1)(z + 1)(z - 2 - i)$ \\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document}

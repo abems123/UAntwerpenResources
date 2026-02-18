@@ -1,0 +1,35 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Jeremi Lorek\\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 2E nr. 4.7\\
+
+\medskip
+\normalsize
+
+$\lim\limits_{x \to \infty} \left( \dfrac{ax + b}{ax + c} \right)^x$  \\
+
+$= \lim\limits_{x \to \infty} \left( \dfrac{ax + c + d}{ax + c} \right)^x$ \quad (met $c + d = b$)  \\
+
+$= \lim\limits_{x \to \infty} \left( 1 + \dfrac{d}{ax + c} \right)^x$  \\
+
+$= \lim\limits_{x \to \infty} \left(\left( 1 + \dfrac{d}{ax + c} \right)^{\tfrac{ax+c}{d} \cdot \tfrac{d}{ax+c}}\right)^x$  \\
+
+$= e^{\lim\limits_{x \to \infty} \tfrac{dx}{ax+c}}$  \\
+
+$= e^{\tfrac{d}{a}} $ \\
+
+$= e^{\tfrac{b-c}{a}}$  \\
+
+
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

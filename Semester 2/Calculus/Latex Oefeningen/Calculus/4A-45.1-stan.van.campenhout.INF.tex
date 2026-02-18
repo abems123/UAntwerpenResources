@@ -1,0 +1,47 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Stan Van Campenhout \\
+\noindent \large Studierichting:  Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 45.1\\
+
+\medskip
+
+\normalsize
+
+$ \displaystyle\int\dfrac{9x^2-x+2}{4x^5+x^3}dx = \displaystyle\int\dfrac{9x^2-x+2}{x^3\left(4x^2+1\right)}dx 
+= \dfrac{1}{4}\displaystyle\int\dfrac{9x^2-x+2}{x^3\left(x^2+\dfrac{1}{4}\right)}dx $\\
+
+$ \rightarrow\dfrac{9x^2-x+2}{x^3\left(x^2+\dfrac{1}{4}\right)} = \dfrac{A}{x^3}+\dfrac{B}{x^2}+\dfrac{C}{x}+\dfrac{Dx+E}{x^2+\dfrac{1}{4}} $\\
+
+$ \Rightarrow A = \dfrac{2}{\dfrac{1}{4}} = 8 $\\
+
+$ \rightarrow \dfrac{9x^2-x+2}{x^3\left(x^2+\dfrac{1}{4}\right)} -  \dfrac{8}{x^3} = \dfrac{x-1}{x^2\left(x^2+\dfrac{1}{4}\right)} $\\
+
+$ \Rightarrow B = \dfrac{-1}{\dfrac{1}{4}} = -4 $\\
+
+$ \rightarrow \dfrac{x-1}{x^2\left(x^2+\dfrac{1}{4}\right)} - \dfrac{-4}{x^2} = \dfrac{4x+1}{x\left(x^2+\dfrac{1}{4}\right)} $\\
+
+$ \Rightarrow C = \dfrac{1}{\dfrac{1}{4}} = 4 $\\
+
+$ \Rightarrow D\left(\dfrac{1}{2}i\right)+E = \dfrac{-\dfrac{9}{4}-\dfrac{1}{2}i+2}{-\dfrac{1}{4}\cdot\dfrac{1}{2}i} = 4-2i \Rightarrow E = 4 $\\
+
+$ \Rightarrow \dfrac{1}{2}Di = -2i \Rightarrow D = -4 $\\
+
+$ = 2\displaystyle\int\dfrac{1}{x^3}dx-\displaystyle\int\dfrac{1}{x^2}dx+\displaystyle\int\dfrac{1}{x}dx+\dfrac{1}{4}\displaystyle\int\dfrac{-4x+4}{x^2+\dfrac{1}{4}}dx $\\
+
+$ = -\dfrac{1}{x^2}+\dfrac{1}{x}+\ln|x|+\dfrac{1}{4}\displaystyle\int\dfrac{-2\left(2x\right)+4}{x^2+\dfrac{1}{4}}dx $\\
+
+$ = -\dfrac{1}{x^2}+\dfrac{1}{x}+\ln|x|-\dfrac{1}{2}\ln\left|x^2+\dfrac{1}{4}\right|+\dfrac{1}{\dfrac{1}{2}}\operatorname{Bgtan}\left(\dfrac{1}{\dfrac{1}{2}}x\right)+c $\\ 
+
+$ = -\dfrac{1}{x^2}+\dfrac{1}{x}+\ln|x|-\dfrac{1}{2}\ln\left|x^2+\dfrac{1}{4}\right|+2\operatorname{Bgtan}\left(2x\right)+c $\\ 
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

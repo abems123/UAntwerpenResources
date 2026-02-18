@@ -1,0 +1,40 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}    
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+
+\begin{document}
+  
+\noindent \large Auteur: Anass Hamzaoui \\
+\noindent \large Studierichting: Informatica \\
+\noindent \large Oefeningenreeks 6E nr. 1.1 \\
+
+\medskip
+
+\normalsize
+
+$T_4(f, 0)(x)$ voor $f(x) = \dfrac{1}{1+x}$ \\
+
+$\left|\begin{array}{ll}
+     &  D\left[ \dfrac{1}{1+x} \right] = \dfrac{-1}{(1+x)^2} \\
+     \\
+     &  D\left[ \dfrac{-1}{(1+x)^2} \right] = \dfrac{2}{(1+x)^3} \\
+     \\
+     &  D\left[ \dfrac{2}{(1+x)^3} \right] = \dfrac{-6}{(1+x)^4} \\
+     \\
+     &  D\left[ \dfrac{-6}{(1+x)^4} \right] = \dfrac{24}{(1+x)^5} \\
+\end{array}\right.$ \\
+\\
+
+$\begin{array}{ll}
+    \Rightarrow T_4(f, a)(x) = & \dfrac{\dfrac{1}{1+a}}{0!} - \dfrac{\dfrac{1}{(1+a)^2}}{1!}(x-a) + \dfrac{\dfrac{2}{(1+a)^3}}{2!}(x-a)^2 \\
+    & - \dfrac{\dfrac{6}{(1+a)^4}}{3!}(x-a)^3 + \dfrac{\dfrac{24}{(1+a)^5}}{4!}(x-a)^4 \\
+\end{array}$ \\
+
+$T_4(f, 0)(x) = 1 - x + x^2 - x^3 + x^4$ \\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

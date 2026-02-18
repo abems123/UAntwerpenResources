@@ -1,0 +1,71 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+\usepackage{cancel}
+
+\begin{document}
+  
+\noindent \large Auteur: Rubin Cuypers \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 57.1\\
+
+\medskip
+
+\normalsize
+
+$I=\displaystyle\int \dfrac{\sin x}{2\cos x + \sin x} dx$\\
+
+$\displaystyle\int \dfrac{\dfrac{\sin x}{\cos x}}{\dfrac{2\cos x + \sin x}{\cos x}} dx = \displaystyle\int \dfrac{\tan x}{2+ \tan x} dx$\\
+
+
+
+$\overset{\tan x =t}{=} \displaystyle\int \dfrac{t}{2+t} \dfrac{dt}{1+t^2}=\displaystyle\int \dfrac{(2+t)-2}{2+t} \dfrac{dt}{1+t^2}$\\
+
+$=\displaystyle\int \dfrac{1}{1+t^2} dt -2 \displaystyle\int \dfrac{1}{(2+t)(1+t^2)} dt $\\
+
+$=\operatorname{Bgtan} t -2\left(\displaystyle\int \dfrac{A}{2+t}dt +\displaystyle\int \dfrac{Bt+C}{1+t^2} dt\right)$\\
+
+$\Rightarrow \dfrac{A(1+t^2)+(Bt+C)(2+t)}{(2+t)(1+t^2)} \Rightarrow (A+B)t^2 +(2B+C)t+(A+2C)=1$\\
+
+$\Rightarrow \left \{
+			\begin{array}{lll}
+				A+B=0 \\
+				2B+C=0 \\
+				A+2C=1
+			\end{array}	
+			\right.= \left \{
+			\begin{array}{lll}
+				B=-A \\
+				-2A+\dfrac{1-A}{2}=0 \\
+				C=\dfrac{1-A}{2}
+			\end{array}	
+			\right.=\left \{
+			\begin{array}{lll}
+				A=\dfrac{1}{5} \\ 
+				B=-\dfrac{1}{5} \\ 
+				C=\dfrac{2}{5}
+			\end{array}	
+			\right.$\\
+
+$\Rightarrow  I=\operatorname{Bgtan}t -\dfrac{2}{5} \displaystyle\int \dfrac{1}{2+t} dt  -2 \displaystyle\int \dfrac{-\dfrac{t}{5}+\dfrac{2}{5}}{1+t^2} dt$\\
+
+$=\operatorname{Bgtan}t - \dfrac{2}{5} \displaystyle\int \dfrac{1}{2+t} d(2+t) +\dfrac{2}{5} \displaystyle\int \dfrac{t}{1+t^2} dt - \dfrac{4}{5} \displaystyle\int \dfrac{1}{1+t^2} dt$\\
+
+$=\operatorname{Bgtan}t - \dfrac{2}{5} \ln |2+t|  + \dfrac{\cancel{2}}{5} \displaystyle\int \dfrac{\cancel{t}}{(1+t^2)\cancel{2}\cancel{t}} d(1+t^2) - \dfrac{4}{5}  \operatorname{Bgtan} t $\\ 
+
+$=\dfrac{1}{5} \operatorname{Bgtan} t -\dfrac{2}{5} \ln |2+t| + \dfrac{1}{5} \ln | 1+t^2| +C$\\
+
+$= \dfrac{1}{5} \left(x - 2 \ln|2+ \tan x| +  \ln | 1+ \tan^2 x| \right)+ C $ \\
+
+
+			
+
+
+
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

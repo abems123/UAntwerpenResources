@@ -1,0 +1,58 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\dom}{\operatorname{dom}}
+\newcommand{\ber}{\opperatorname{imm}}
+\newcommand{\llim}{\lim\limits}
+ 
+
+\begin{document}
+  
+\noindent \large Auteur: Nik Van Daele \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 3F nr. 1.8\\
+
+\medskip
+
+\normalsize
+
+$f(x) = \dfrac{4x^2 - 3x + 7}{x^2 + 3}$\\
+
+\textbf{VA}\\
+
+Geen verticale asymptoot want de noemer heeft geen nulpunten.\\
+
+\textbf{HA}\\
+
+\begin{eqnarray*}
+\llim_{x \rightarrow +\infty} \dfrac{4x^2 - 3x + 7}{x^2 + 3} &\overset{H}=& \llim_{x \rightarrow +\infty} \dfrac{8x -3}{2x}\\
+= \llim_{x \rightarrow +\infty} \dfrac{8x}{2x} - \dfrac{3}{2x} &=& \llim_{x \rightarrow +\infty} 4 - \dfrac{3}{2x}=4\\
+\end{eqnarray*}
+
+\begin{eqnarray*}
+\llim_{x \rightarrow -\infty} \dfrac{4x^2 - 3x + 7}{x^2 + 3} &\overset{H}=& \llim_{x \rightarrow -\infty} \dfrac{8x -3}{2x}\\
+= \llim_{x \rightarrow -\infty} \dfrac{8x}{2x} - \dfrac{3}{2x} &=& \llim_{x \rightarrow -\infty} 4 - \dfrac{3}{2x}=4\\
+\end{eqnarray*}
+
+$y = 4$ is een horizontale asymptoot\\
+
+\textbf{SA}\\
+
+Geen schuine asymptoot.\\
+
+$\begin{array}{r|c c c c c c}
+x & -\infty & & -\dfrac{5}{3} & & +\infty \\ \hline
+f(x)-4 & 0 & + & 0 & - & 0 \\
+\end{array}$\\
+
+Tussen $-\infty$ en $-\dfrac{5}{3}$ ligt $f(x)$ boven de asymptoot en van $-\dfrac{5}{3}$ tot $+\infty$ ligt
+
+$f(x)$ onder asymptoot.\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

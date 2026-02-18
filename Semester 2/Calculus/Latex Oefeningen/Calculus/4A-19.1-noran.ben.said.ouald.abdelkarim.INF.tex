@@ -1,0 +1,65 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Noran Ben Said \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 19.1\\
+
+\medskip
+
+\normalsize
+
+$ I= \displaystyle\int e^x \sin x  dx $ \\
+
+Stel
+$
+\left\{
+  \begin{array}{l}
+    u = e^x \\
+    dv = \sin x  dx
+  \end{array}
+\right.
+\quad \Rightarrow \quad
+\left\{
+  \begin{array}{l}
+    du = e^x  dx \\
+    v = -\cos x
+  \end{array}
+\right.
+$ \\
+
+
+$ \Rightarrow  I= -e^x \cos x + \displaystyle\int e^x \cos x  dx $ \\
+
+Stel 
+$
+\left\{
+  \begin{array}{l}
+    u = e^x \\
+    dv = \cos x  dx
+  \end{array}
+\right.
+\quad \Rightarrow \quad
+\left\{
+  \begin{array}{l}
+    du = e^x  dx \\
+    v = \sin x
+  \end{array}
+\right.
+$ \\
+
+$ \Rightarrow I=-e^x \cos x + e^x \sin x - \displaystyle\int e^x \sin x  dx $ \\
+
+$ \Rightarrow 2I = -e^x \cos x + e^x \sin x + C $ \\
+
+$\Rightarrow I = \dfrac{e^x (\sin x - \cos x)}{2} + C $ \\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

@@ -1,0 +1,54 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[a4paper,landscape]{geometry}    
+
+\begin{document}
+  
+\noindent \large Auteur: Thijs Van Schel \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 3G nr. 7.2\\
+
+\medskip
+
+\normalsize
+$f(x) = -x^3+7x^2-8x$\\
+
+$\operatorname{dom}f: x \in \mathbb{R}$ \\
+
+$f(x) = x(-x^2+7x-8)$\\
+
+$x_{1} = 0$, $x_{2} = \dfrac{7+\sqrt{17}}{2}$, $x_{3} = \dfrac{7-\sqrt{17}}{2}$\\
+
+$f'(x) = -3x^2+14x-8$\\
+
+$x_{1} = \dfrac{-14+\sqrt{(-14)^2-4\cdot(-3)\cdot(-8)}}{-6} = \dfrac{2}{3} \Rightarrow f\left(\dfrac{2}{3}\right) = \dfrac{-68}{27}$ (min)\\
+
+$x_{2} = \dfrac{-14-\sqrt{(-14)^2-4\cdot(-3)\cdot(-8)}}{-6} = 4 \Rightarrow f(4) = 16$ (max)\\
+
+$f''(x) = -6x+14$\\
+
+$x = \dfrac{7}{3} \Rightarrow f\left(\dfrac{7}{3}\right) = \dfrac{182}{27}$ (buigpunt)\\
+
+\begin{tabular}{c|cccccccccccccc}
+$x$ 			&			& $0$ & & $\dfrac{2}{3}$ & & $\dfrac{7-\sqrt{17}}{2}$ & & $\dfrac{7}{3}$ & & $4$ & & $\dfrac{7+\sqrt{17}}{2}$ & & \\ \cline{1-14}
+$f(x)$ 		& $+$ & $0$ & $-$ & $-$ & $-$ & $0$ & $+$ & $+$ & $+$ & $+$ & $+$ & $0$ & $-$\\
+$f'(x)$ 	& $-$ & $-$ & $-$ & $0$ & $+$ & $+$ & $+$ & $+$ & $+$ & $0$ & $-$ & $-$ & $-$\\
+$f''(x)$ 	& $+$ & $+$ & $+$ & $+$ & $+$ & $+$ & $+$ & $0$ & $-$ & $-$ & $-$ & $-$ & $-$\\ \cline{1-14}
+$f(x)$		& $\searrow$ & $\searrow$ & $\searrow$ & $m\left(\dfrac{-68}{27}\right)$ & $\nearrow$ & $\nearrow$ & $\nearrow$ & $\nearrow$ & $\nearrow$ & $M(16)$ & $\searrow$ & $\searrow$ & $\searrow$\\
+					& $\frown$ & $\frown$ & $\frown$ & $\frown$ & $\frown$ & $\frown$ & $\frown$ & $B\left(\dfrac{182}{27}\right)$ & $\smile$ & $\smile$ & $\smile$ & $\smile$ & $\smile$
+\end{tabular} \\
+
+Tekening: \\
+
+\begin{figure}[h]
+\includegraphics[width=0.3\linewidth]{3G-7.2-thijs.van.schel.INF.png}
+\end{figure} 
+
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

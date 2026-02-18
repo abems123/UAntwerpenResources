@@ -1,0 +1,44 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Stan Van Campenhout \\
+\noindent \large Studierichting:  Informatica\\
+\noindent \large Oefeningenreeks 6A nr. 10.3\\
+
+\medskip
+
+\normalsize
+
+$ a, b, c, d $\\
+
+Meetkundige rij met $ a + b = 28, c + d = 252 $\\
+
+$ \Rightarrow a + aq = 28, aq^2 + aq^3 = 252 \Leftrightarrow a\left(1+q\right) = 28, a\left(q^2+q^3\right) = 252 $\\
+
+$ \Rightarrow \dfrac{28}{1+q} = \dfrac{252}{q^2+q^3} \Leftrightarrow \left(1+q\right)252 = \left(q^2+q^3\right)252 $\\
+
+$ \Leftrightarrow 28q^3+28q^2-252q-252 = 0 $\\
+
+ \[ \begin{array}{c|rrrr}     
+& 28 & 28 & -252 & -252 \\      
+-1 & \downarrow  & -28 & 0 & 252   \\ \hline    
+ & 28  & 0  &  \multicolumn{1}{c|}{-252}  & 0   
+\end{array} \] \\
+
+$ \Rightarrow \left(q+1\right)\left(28q^2-252\right) = 0 \Rightarrow  \left(q+1\right)\left(q-3\right)\left(q+3\right) = 0 $\\
+
+Schrap $q = -1$ aangezien we deelden door $1+q $\\
+
+$ \Rightarrow a \pm 3 = 28 \Leftrightarrow a \in \{7, -14\} $\\
+
+$ \Rightarrow -14,42,-126,378$ en $ 7, 21, 63, 189 $\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

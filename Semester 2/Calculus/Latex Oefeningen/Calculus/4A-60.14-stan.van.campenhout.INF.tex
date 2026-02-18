@@ -1,0 +1,32 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Stan Van Campenhout \\
+\noindent \large Studierichting:  Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 60.14\\
+
+\medskip
+
+\normalsize
+
+$ \displaystyle\int\dfrac{6x+2-\sqrt{4x+1}}{2x+1+\sqrt{4x+1}}dx 
+\stackrel{t = \sqrt{4x+1}}{=} = \dfrac{1}{2}\displaystyle\int\dfrac{t\left(\dfrac{3\left(t^2-1\right)}{2}-t+2\right)}{\dfrac{t^2-1}{2}+t+1}dt $\\
+
+$ \dfrac{1}{2}\displaystyle\int\dfrac{3t^3-2t^2+t}{t^2+2t+1}dt = \dfrac{1}{2}\displaystyle\int\left(3t-8+\dfrac{14t+8}{\left(t+1\right)^2}\right)dt $\\
+
+$ = \dfrac{3}{4}t^2-4t+\displaystyle\int\dfrac{7t+4}{\left(t+1\right)^2}dt
+= \dfrac{3}{4}t^2-4t+7\displaystyle\int\dfrac{t+1-1}{\left(t+1\right)^2}dt + 4\displaystyle\int\dfrac{1}{\left(t-1\right)^2}dt $\\
+
+$ = \dfrac{3}{4}t^2-4t + \dfrac{3}{t+1} + 7\ln|t+1| + c $\\
+
+$ \stackrel{t = \sqrt{4x+1}}{=} 3x-4\sqrt{4x+1}+\dfrac{3}{\sqrt{4x+1}+1} + 7\ln\left|\sqrt{4x+1}+1\right| + c $\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

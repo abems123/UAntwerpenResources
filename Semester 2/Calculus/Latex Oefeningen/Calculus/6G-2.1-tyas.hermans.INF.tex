@@ -1,0 +1,55 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+\newcommand{\dint}{\displaystyle\int}
+\begin{document}
+  
+\noindent \large Auteur: Tyas Hermans \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 6G nr. 2.1 \\
+
+\medskip
+
+\normalsize
+
+$f(x) = \left\{
+    \begin{array}{lrr}
+        0 & als & x\in[-\pi, 0[ \\
+        4 & als & x\in[0, \pi[  \\
+        7 & als & x\in\{-\pi, 0, \pi\}
+    \end{array}
+\right .$\\
+
+$\Rightarrow f(1) \ne f(-1) \Rightarrow$ niet even\\
+
+$\Rightarrow f(1) \ne -f(1) \Rightarrow$ niet oneven\\
+
+$\Rightarrow f(x) = \dfrac{a_0}{2} + \displaystyle\sum_{n=1}^{\infty}(a_n \cos(nx)+b_n \sin(nx))$\\
+
+$\Rightarrow a_0 = \dfrac{1}{\pi} \left(\dint_{-pi}^{0}0dx + \dint_{0}^{\pi}4dx\right) = \dfrac{1}{\pi}\left(\dint_{0}^{\pi}4dx\right) = 4$\\
+
+$\Rightarrow a_n = \dfrac{1}{\pi}\left(\dint_{0}^{\pi}4\cos(nx)dx\right) = \dfrac{4}{\pi}\dint \cos(nx)dx$\\
+
+$= \dfrac{4}{\pi}\left[\dfrac{\sin(nx)}{n}\right]_{0}^{\pi} = \dfrac{4}{\pi} \cdot 0 = 0$\\
+
+$\Rightarrow b_n = \dfrac{1}{\pi} \left(\dint_{0}^{\pi}4\sin(nx) dx\right) = \dfrac{4}{\pi}\dint_{0}^{\pi}\sin(nx)dx$\\
+
+$= \dfrac{4}{\pi}\left[-\dfrac{\cos(nx)}{n}\right]_{0}^{\pi} = \dfrac{4}{\pi}\left[-\dfrac{\cos(n\pi)-cos(0)}{n}\right] = \dfrac{4}{\pi}\left[-\dfrac{(-1)^n - 1}{n}\right]$\\
+
+$\Rightarrow n$ even $\Rightarrow b_n = \dfrac{4}{\pi}\left(-\dfrac{0}{n}\right) = 0$\\
+
+$\Rightarrow n$ oneven $\Rightarrow b_n = \dfrac{4}{\pi}\left(\dfrac{2}{n}\right) = \dfrac{8}{n\pi}$\\
+
+$\Rightarrow f(x) = 2 + \displaystyle\sum_{n=1}^{\infty}\left(-4\left(\dfrac{(-1)^n - 1}{n\pi}\right)\sin(nx)\right)$\\
+
+alleen over oneven getallen:\\
+
+$= 2 + \dfrac{8}{\pi}\displaystyle\sum_{n=0}^{\infty}\dfrac{\sin (2n + 1) x}{2n + 1}$\\
+
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

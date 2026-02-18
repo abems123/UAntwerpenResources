@@ -1,0 +1,30 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Thomas Eertmans \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 7C nr. 1.1\\
+
+\medskip
+
+\normalsize
+
+$f: \mathbb{R}^3 \rightarrow \mathbb{R} : (x,y,z) \rightarrow xy^2z^3+x^2y^3z^4+x^3y^4z^5$ \\
+
+$Df = \left( \begin{array}{ccc}y^2z^3+2xy^3z^4+3x^2y^4z^5 & 2xyz^3+3x^2y^2z^4+4x^3y^3z^5 & 3xy^2z^2+4x^2y^3z^3+5x^3y^4z^4 \end{array}\right)$ \\
+
+$D^2f = \left( \begin{array}{ccc}
+	2y^3z^4+6xy^4z^5 & 2yz^3+6xy^2z^4+12x^2y^3z^5 & 3y^2z^2+8xy^3z^3+15x^2y^4z^4 \\
+	2yz^3+6xy^2z^4+12x^2y^3z^5 & 2xz^3+6x^2yz^4+12x^3y^2z^5 & 6xyz^2+12x^2y^2z^3+20x^3y^3z^4 \\
+	3y^2z^2+8xy^3z^3+15x^2y^4z^4 & 6xyz^2+12x^2y^2z^3+20x^3y^3z^4 & 6xy^2z+12x^2y^3z^2+20x^3y^4z^3
+\end{array}\right)$
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

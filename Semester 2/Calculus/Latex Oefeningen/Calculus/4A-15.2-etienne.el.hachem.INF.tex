@@ -1,0 +1,73 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Etienne El Hachem \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 15.2\\
+
+\medskip
+
+\normalsize
+
+$\displaystyle\int x^3 \cdot e^x = x^3 \cdot e^x - \displaystyle\int e^x \cdot 3x^2 dx$ \\
+
+$\left\{
+   \begin{array}{l}
+       u = x^3 \\
+       dv = e^x dx
+   \end{array}
+\right.
+\Rightarrow
+\left\{
+   \begin{array}{l}
+       du = 3x^2 dx \\
+       v = e^x
+   \end{array}
+\right.
+$ \\
+
+$= x^3 \cdot e^x - 3x^2 \cdot e^x + \displaystyle\int e^x \cdot 6x dx$ \\
+
+$\left\{
+   \begin{array}{l}
+       u = 3x^2 \\
+       dv = e^x dx
+   \end{array}
+\right.
+\Rightarrow
+\left\{
+   \begin{array}{l}
+       du = 6x dx \\
+       v = e^x
+   \end{array}
+\right.
+$ \\
+
+$= x^3 \cdot e^x - 3x^2 \cdot e^x + 6x \cdot - 6 \displaystyle\int e^x dx$ \\
+
+$\left\{
+   \begin{array}{l}
+       u = 6x \\
+       dv = e^x dx
+   \end{array}
+\right.
+\Rightarrow
+\left\{
+   \begin{array}{l}
+       du = 6 dx \\
+       v = e^x
+   \end{array}
+\right.
+$ \\
+
+$= x^3 \cdot e^x - 3x^2 \cdot e^x + 6x \cdot e^x - 6 \cdot e^x + c$
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

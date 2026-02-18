@@ -1,0 +1,58 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[landscape]{geometry}
+    
+
+\begin{document}
+
+\noindent \large Auteur: Niels Hertoghs \\
+\noindent \large Studierichting: Informatica \\
+\noindent \large Oefeningenreeks 7B nr. 3.2 \\
+
+\medskip
+
+\normalsize
+
+$r = uvw-u^2-v^2-w^2$ met\\
+
+$u = y+z$, $v = x+z$, $w = x+y$\\
+
+$f:(u,v,w) \rightarrow uvw-u^2-v^2-w^2$ \\
+
+$g:(x,y,z) \rightarrow (x+y,x+z,y+z)$ \\
+
+$r = Df(u,v,w)\cdot Dg(x,y,z)$ \\
+
+$Df(u,v,w) = \left(\begin{array}{ccc}
+vw-2u & uw-2v & uv-2w 
+\end{array}\right)$ \\
+
+$Dg(x,y,z) = \left(\begin{array}{ccc}
+0 & 1 & 1 \\
+1 & 0 & 1 \\
+1 & 1 & 0
+\end{array}\right)$ \\
+
+$\dfrac{\partial r}{\partial x} = uw-2v+uv-2w = (y+z)(x+y) - 2(x+z) + (y+z)(x+z) - 2(x+y)$ \\
+
+$ = 2xy+y^2+2zx+2zy-4x-2z+z^2-2y$\\
+
+$\dfrac{\partial r}{\partial y} = vw-2u+uv-2w = (x+z)(x+y)-2(y+z)+(y+z)(x+z)-2(x+y)$ \\
+
+$ = 2yx+x^2+2zx+2zy-4y-2z-2x+z^2$\\
+
+$\dfrac{\partial r}{\partial z} = vw-2u+uw-2v = (x+z)(x+y)-2(y+z)+(y+z)(x+z)-2(x+z)$ \\
+
+$ = 2xy+x^2+2zx+2zy-4z-2y+y^2-2x$\\
+
+$\Rightarrow \left(\begin{array}{ccc}
+2xy+y^2+2zx+2zy-4x-2z+z^2-2y & 2yx+x^2+2zx+2zy-4y-2z-2x+z^2 & 2xy+x^2+2zx+2zy-4z-2y+y^2-2x
+\end{array} \right)$\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

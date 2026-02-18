@@ -1,0 +1,46 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Niels Hertoghs \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 2D nr. 10.14\\
+
+\medskip
+
+\normalsize
+
+$\lim\limits_{x \rightarrow 2}  \dfrac{x^3-x^2-8x+12}{3x^3-10x^2+4x+8} = \dfrac{0}{0} $\\\\
+
+
+\begin{tabular}{c|ccc|c}
+			& $1$	& $-1$ 	& $-8$ 	& 			$12$ \\
+	   $-3$ & 		& $-3$ 	& $12$ 	& 			$-12$ \\ \hline
+			& $1$ 	& $-4$ 	& $4$ 	& 	$0$  \\
+
+\end{tabular}\\
+
+$\Rightarrow (x^2-4x+4) = (x-2)^2$\\
+
+$=\lim\limits_{x \rightarrow 2}  \dfrac{(x+3)(x-2)^2}{3x^3-6x^2-4x^2+8x-4x+8} = \lim\limits_{x \rightarrow 2}  \dfrac{(x+3)(x-2)^2}{3x^2(x-2)-4x(x-2)-4(x-2)}$\\
+
+$=\lim\limits_{x \rightarrow 2}  \dfrac{(x+3)(x-2)}{3x^2-4x-4}$\\\\
+
+\begin{tabular}{c|cc|c}
+	 & $3$	& $-4$ 	&		$-4$\\
+$2$ & 		& $6$ 	& 		$4$ \\ \hline
+ 	 & $3$ 	& $2$ 	& $0$ \\
+	
+\end{tabular}\\
+
+$=\lim\limits_{x \rightarrow 2}  \dfrac{(x+3)(x-2)}{(3x+2)(x-2)} = \lim\limits_{x \rightarrow 2}\dfrac{(x+3)}{(3x+2)} = \dfrac{5}{8}$\\
+
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

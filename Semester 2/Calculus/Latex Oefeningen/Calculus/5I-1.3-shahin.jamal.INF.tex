@@ -1,0 +1,35 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Shahin Jamal \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 5I nr. 1.3\\
+
+\medskip
+
+\normalsize
+
+$y = x^2-\dfrac{1}{8}\ln x \Rightarrow y' = 2x - \dfrac{1}{8x} \Rightarrow (y')^2= 4x^2 - \dfrac{1}{2} + \dfrac{1}{64x^2}$\\
+ 
+$\Rightarrow 1 + (y')^2 = 1 + 4x^2 - \dfrac{1}{2} + \dfrac{1}{64x^2} = \dfrac{256x^4 + 32x^2 + 1}{64x^2}$\\
+
+$\displaystyle\int\limits_2^3 \sqrt{\dfrac{256x^4 + 32x^2 + 1}{64x^2}}dx = \displaystyle\int\limits_2^3 \sqrt{\dfrac{\left(16x^2+1\right)^2}{64x^2}}dx = \displaystyle\int\limits_2^3 \dfrac{16x^2+1}{8x}dx$\\
+
+$= \displaystyle\int\limits_2^3 \dfrac{16}{8}x + \dfrac{1}{8x}dx = \left[x^2+\dfrac{1}{8} \ln \lvert x\rvert\right]_2^3 = 9 + \dfrac{1}{8}\ln \lvert 3 \rvert - \left(4+\dfrac{1}{8}\ln\lvert 2 \rvert\right)$\\
+
+$= 5 + \dfrac{1}{8}\ln \dfrac{3}{2}$\\
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=7cm]{5I-1_3_shahin_jamal_INF.png}
+\end{figure}
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

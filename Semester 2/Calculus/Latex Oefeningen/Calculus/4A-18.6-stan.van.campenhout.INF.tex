@@ -1,0 +1,33 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Stan Van Campenhout \\
+\noindent \large Studierichting:  Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 18.6\\
+
+\medskip
+
+\normalsize
+
+$ \displaystyle\int\left(x^3-x^2\right)\cos xdx =  \displaystyle\int\left(x^3-x^2\right)d\left(\sin x\right)
+= \left(x^3-x^2\right)\sin x-\displaystyle\int\sin xd\left(x^3-x^2\right) $\\
+
+$ = \left(x^3-x^2\right)\sin x-\displaystyle\int\left(3x^2-2x\right)\sin xdx $\\
+
+$ = \left(x^3-x^2\right)\sin x + \left(3x^2-2x\right)\cos x - \displaystyle\int\left(6x-2\right)\cos xdx $\\
+
+$ = \left(x^3-x^2\right)\sin x + \left(3x^2-2x\right)\cos x - \displaystyle\int6x\cos xdx + 2\displaystyle\int\cos xdx $\\
+
+$ = \left(x^3-x^2\right)\sin x + \left(3x^2-2x\right)\cos x - 6x\sin x + \displaystyle\int\sin xd\left(6x\right) + 2\sin x $\\
+
+$ = \left(x^3-x^2\right)\sin x + \left(3x^2-2x\right)\cos x - 6x\sin x -6\cos x + 2\sin x + c $\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

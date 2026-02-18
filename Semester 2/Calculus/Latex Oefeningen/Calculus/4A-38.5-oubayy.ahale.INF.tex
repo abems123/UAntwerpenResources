@@ -1,0 +1,59 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\newcommand{\dint}{\displaystyle\int}
+\newcommand{\llim}{\lim\limits}
+\newcommand{\Bgtan}{\operatorname{Bgtan}}
+
+\begin{document}
+  
+\noindent \large Auteur: Oubayy Ahale          \\
+\noindent \large Studierichting: Informatica   \\
+\noindent \large Oefeningenreeks 4A nr. 38.5   \\
+
+\medskip
+
+\normalsize
+
+Bereken de volgende onbepaalde integraal:\\
+
+$\displaystyle I = \dint \dfrac{x + 4}{x^2 - x + 1} dx$\\
+
+Voltooi het kwadraat in de noemer:\\
+
+$x^2 - x + 1 = \left(x - \dfrac{1}{2}\right)^2 + \dfrac{3}{4}$\\
+
+Substitueer: $t = x - \dfrac{1}{2} \Leftrightarrow x = t + \dfrac{1}{2} dx = dt$\\
+
+$\Rightarrow I = \dint \left( \dfrac{t + \dfrac{9}{2}}{t^2 + \dfrac{3}{4}} \right) dt$\\
+
+Scheid de breuk:\\
+
+$= \dint \left(\dfrac{t}{t^2 + \dfrac{3}{4}} \right) dt + \dfrac{9}{2} \cdot \dint \left( \dfrac{1}{t^2 + \dfrac{3}{4}} \right) dt$\\
+
+Voor de eerste term:\\
+
+Stel $u = t^2 + \dfrac{3}{4} \Rightarrow du = 2t dt$\\
+
+$\Rightarrow \dint \dfrac{t}{t^2 + \dfrac{3}{4}} dt = \dfrac{1}{2} \dint \dfrac{du}{u} = \dfrac{1}{2} \ln|u| = \dfrac{1}{2} \ln\left(t^2 + \dfrac{3}{4}\right)$\\
+
+Voor de tweede term:\\
+
+$\dint \dfrac{1}{t^2 + \dfrac{3}{4}} dt = \dint \dfrac{1}{\left(\left(\dfrac{\sqrt{3}}{2}\right)^2 + t^2\right)} dt = \dfrac{2}{\sqrt{3}} \Bgtan\left(\dfrac{2t}{\sqrt{3}}\right)$\\
+
+Dus:\\
+
+$I = \dfrac{1}{2} \ln\left|t^2 + \dfrac{3}{4}\right| + \dfrac{9}{2} \cdot \dfrac{2}{\sqrt{3}} \Bgtan\left(\dfrac{2t}{\sqrt{3}}\right) + C$\\
+
+$= \dfrac{1}{2} \ln\left|\left(x - \dfrac{1}{2}\right)^2 + \dfrac{3}{4}\right| + 3\sqrt{3} \Bgtan\left(\dfrac{2x - 1}{\sqrt{3}}\right) + C$\\
+
+
+\end{document}
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

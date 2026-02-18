@@ -1,0 +1,29 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Stan Van Campenhout \\
+\noindent \large Studierichting:  Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 26.15\\
+
+\medskip
+
+\normalsize
+
+$ \displaystyle\int\dfrac{4x^2+2x+1}{\left(2x-1\right)^3}dx 
+\stackrel{t = 2x-1}{=} \dfrac{1}{2}\displaystyle\int\dfrac{4\left(\dfrac{1}{2}t + \dfrac{1}{2}\right)^2+2\left(\dfrac{1}{2}t+\dfrac{1}{2}\right)+1}{t^3}dt $\\
+
+$ = \dfrac{1}{2}\displaystyle\int\dfrac{t^2+3t+3}{t^3}dt 
+= \dfrac{1}{2}\displaystyle\int\dfrac{1}{t}dt+\dfrac{3}{2}\displaystyle\int\dfrac{1}{t^2}dt+\dfrac{3}{2}\displaystyle\int\dfrac{1}{t^3}dt $\\
+
+$ = \dfrac{1}{2}\ln\left|t\right|-\dfrac{3}{2t}-\dfrac{3}{4t^2} + c 
+\stackrel{t = 2x-1}{=} \dfrac{1}{2}\ln\left|2x-1\right|-\dfrac{3}{2\left(2x-1\right)}-\dfrac{3}{4\left(2x-1\right)^2} + c $\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

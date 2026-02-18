@@ -1,0 +1,32 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+
+\begin{document}
+
+\noindent \large Auteur: Michael Zielinski\\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 2D nr. 16.6\\
+
+\medskip
+
+\normalsize
+
+$ \lim\limits_{x \rightarrow \tfrac{\pi}{2}} \left(\sin(2x)\tan(3x)\right)
+= \lim\limits_{x \rightarrow \tfrac{\pi}{2}} \left(\dfrac{\sin(2x)\sin(3x)}{\cos(3x)}\right) $\\
+
+$ = \lim\limits_{x \rightarrow \tfrac{\pi}{2}} \left(\dfrac{\sin(2x)\left(3\sin x - 4\sin^3x\right)}{4\cos^3x - 3\cos x}\right) $\\
+
+$ = \lim\limits_{x \rightarrow \tfrac{\pi}{2}} \left(\dfrac{2\sin x\cos x\sin x\left(3-4\sin^2x\right)}{\cos x\left(4\cos^2x-3\right)}\right) $\\
+
+$ = \lim\limits_{x \rightarrow \tfrac{\pi}{2}} \left(\dfrac{2\sin^2x\left(3-4\sin^2x\right)}{4\cos^2x-3}\right) $\\
+
+$ = \dfrac{2\left(3-4\right)}{-3} = \dfrac{2}{3} $\\
+
+\begin{thebibliography}{999}
+% \bibitem{a} Referentie
+\end{thebibliography}
+
+\end{document}

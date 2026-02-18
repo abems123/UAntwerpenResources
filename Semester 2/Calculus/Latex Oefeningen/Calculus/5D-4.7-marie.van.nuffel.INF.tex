@@ -1,0 +1,51 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+\usepackage{color}     
+
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\llim}{\lim\limits}
+\newcommand{\dint}{\displaystyle\int}
+
+\begin{document}
+  
+\noindent \large Auteur: Marie Van Nuffel \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 5D nr. 4.7\\
+
+\medskip
+
+\normalsize
+
+$y = x^2+1$ en $y = 2x+9$\\
+
+Snijpunten berekenen:\\
+
+$x^2+1 = 2x+9 \Rightarrow x^2-2x-8 = 0$\\
+
+$D = 36 \Rightarrow x_{1,2} = \{-2,4\}$ \\
+
+Door $x = 3$ in te vullen in beide functies, kan je vaststellen dat $y = 2x+9$ de bovenste functie is in dit interval.\\
+
+Oppervlakte berekenen:\\
+
+$\displaystyle \int_{-2}^{4} \left(2x^2+9 - (x^2+1)\right) dx$\\
+
+$\displaystyle \int_{-2}^{4} (2x-x^2+8) dx$\\
+
+$= \left[ x^2 - \dfrac{x^3}{3} + 8x \right]_{-2}^{4}$\\
+
+$= 16-\dfrac{64}{3}+32-(4+\dfrac{8}{3}-16)$\\
+
+$= -24+60 = 36$\\
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=8cm]{5D-4.7-marie.van.nuffel.INF.png}
+\end{figure}
+\begin{thebibliography}{999}
+\end{thebibliography}
+\end{document} 

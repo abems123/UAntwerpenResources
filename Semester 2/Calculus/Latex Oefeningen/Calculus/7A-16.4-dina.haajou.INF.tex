@@ -1,0 +1,62 @@
+\documentclass[a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+
+\begin{document}
+
+\normalsize
+
+\noindent \large Auteur: Dina Haajou \\
+\noindent \large Studierichting: Informatica \\
+\noindent \large Oefeningenreeks 7A nr. 16.4 \\
+
+\medskip
+
+\normalsize
+
+$f(x,y) = 
+\left.
+\begin{array}{rl}
+\dfrac{x^2 y^8}{x^6 + y^{12}} & \text{voor } (x,y) \neq (0,0) \\
+0 & \text{voor } (x,y) = (0,0)
+\end{array}
+\right.$ \\
+
+Onderzoek naar continuïteit: \\
+
+Laat $x = y^2$, dan wordt de limiet: \\
+
+$= \lim\limits_{y \to 0} \dfrac{(y^2)^2 y^8}{(y^2)^3 + y^{12}} = \lim\limits_{y \to 0} \dfrac{y^{12}}{2y^{12}} = \dfrac{1}{2}$ \\
+
+$\Rightarrow$ de limiet hangt af van het gekozen pad, dus $f$ is niet continu in $(0,0)$. \\
+
+Onderzoek naar partiële afgeleiden: \\
+
+$\dfrac{\partial f}{\partial x}(0,0) = \lim\limits_{\lambda \to 0} \dfrac{f(\lambda, 0) - f(0,0)}{\lambda} = \lim\limits_{\lambda \to 0} \dfrac{0}{\lambda^7} = 0$ \\
+
+$\dfrac{\partial f}{\partial y}(0,0) = \lim\limits_{\lambda \to 0} \dfrac{f(0, \lambda) - f(0,0)}{\lambda} = \lim\limits_{\lambda \to 0} \dfrac{0}{\lambda^{13}} = 0$ \\
+
+$\Rightarrow$ beide partiële afgeleiden bestaan en zijn nul in $(0,0)$. \\
+
+Onderzoek naar afleidbaarheid: \\
+
+$Df(0,h) = \lim\limits_{\lambda \to 0} \dfrac{f(\lambda h_1, \lambda h_2) - f(0,0)}{\lambda}$ \\
+
+$= \lim\limits_{\lambda \to 0} \dfrac{\lambda^{10} h_1^2 h_2^8}{\lambda^7 (h_1^6 + \lambda^6 h_2^{12})}$ \\
+
+$= \lim\limits_{\lambda \to 0} \dfrac{\lambda^3 h_1^2 h_2^8}{h_1^6 + \lambda^6 h_2^{12}} = 0$ \\
+
+$\Rightarrow$ alle richtingsafgeleiden bestaan en zijn nul, dus $f$ is afleidbaar in $(0,0)$. \\
+
+Onderzoek naar differentieerbaarheid: \\
+
+Omdat de functie niet continu is in $(0,0)$ \\
+
+volgt meteen dat $f$ niet differentieerbaar is in dat punt. \\
+
+\begin{thebibliography}{999}
+% \bibitem{}
+\end{thebibliography}
+
+\end{document}

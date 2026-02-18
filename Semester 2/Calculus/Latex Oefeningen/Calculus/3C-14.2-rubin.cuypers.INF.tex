@@ -1,0 +1,44 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Rubin Cuypers \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 3C nr. 14.2\\
+
+\medskip
+
+\normalsize
+zij $h>0$\\
+
+$ f:[a-b,a+b] \rightarrow \mathbb{R}$ continu en differtieerbaar op $ ]a-b,a+b[$\\
+
+$\exists \theta_2 \in ]0,1[ : \dfrac{f(a+h)-2f(a)+f(a-h)}{h}=f'(a+\theta_2h)-f'(a-\theta_2h)$\\
+
+$F:[0,1] \rightarrow \mathbb{R} : x \rightarrow f(a+hx)+f(a-hx)$\\
+
+$F$ is continu op $[0,1]$ en differentieerbaar op $ ]0,1[ $ want het is een samenstelling van $f$ met 2 lineaire functies $a+hx$ en $a-hx$.\\
+
+$\Rightarrow$ Lagrange\\
+
+(i) $ F:[0,1] \rightarrow \mathbb{R} $ is continu op $[0,1]$\\
+
+(ii) en differentieerbaar op $]0,1[$\\
+
+$\Rightarrow \exists \theta_2 \in ]0,1[ : F'(\theta_2) =\dfrac{F(1)-F(0)}{1}$\\
+
+$F'(\theta_2)=h(f'(a+h\theta_2)-f'(a-h\theta_2))$\\
+
+$\Rightarrow h(f'(a+h\theta_2)-f'(a-h\theta_2))=f(a+h)+f(a-h)-(f(a)+f(a))$\\
+
+$\Rightarrow f'(a+h\theta_2)-f'(a-h\theta_2)=\dfrac{f(a+h)+f(a-h)-2f(a)}{h}$\\
+
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

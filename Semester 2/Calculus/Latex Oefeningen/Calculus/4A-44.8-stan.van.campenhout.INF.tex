@@ -1,0 +1,32 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Stan Van Campenhout \\
+\noindent \large Studierichting:  Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 44.8\\
+
+\medskip
+
+\normalsize
+
+$ \displaystyle\int\dfrac{x^2+6}{x^3-2x-4}dx = \displaystyle\int\dfrac{x^2+6}{\left(x-2\right)\left(x^2+2x+2\right)}dx $\\
+
+$ \rightarrow \dfrac{x^2+6}{\left(x-2\right)\left(x^2+2x+2\right)} = \dfrac{A}{x-2} + \dfrac{Bx + C}{x^2+2x+2} $\\
+
+$ \Rightarrow A = \dfrac{4+6}{4+4+2} = 1 $\\
+
+$ \Rightarrow B\left(-1+i\right) + C = \dfrac{\left(-1+i\right)^2+6}{-1+i-2} = -2 + 0i \Rightarrow B = 0, C = -2 $\\
+
+$ = \displaystyle\int\dfrac{1}{x-2}d\left(x-2\right)-2\displaystyle\int\dfrac{1}{\left(x+1\right)^2+1}d\left(x+1\right) $\\
+
+$ = \ln|x-2|-2\operatorname{Bgtan}\left(x+1\right) + c $\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

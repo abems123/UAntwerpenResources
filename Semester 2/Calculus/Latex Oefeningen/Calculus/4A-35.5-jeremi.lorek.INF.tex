@@ -1,0 +1,28 @@
+\documentclass[a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\begin{document}
+
+\noindent \large Auteur: Jeremi Lorek\\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 35.5\\
+
+\medskip
+\normalsize
+
+$\displaystyle \int \dfrac{2^x}{1 + 4^{x}} dx = \int \dfrac{2^x dx}{1 + 2^{2x}}$ \\
+
+Stel $u = 2^x \Rightarrow du = (2^x \ln 2) dx \Rightarrow \dfrac{1}{\ln 2} du = 2^x dx $\\
+
+$= \dfrac{1}{\ln 2} \displaystyle \int \dfrac{du}{1 + u^2}$ \\
+
+$= \dfrac{1}{\ln 2} \operatorname{Bgtan}(u) + C$ \\
+
+$= \dfrac{1}{\ln 2} \operatorname{Bgtan}(2^x) + C$ \\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+
+\end{document}

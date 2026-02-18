@@ -1,0 +1,27 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Stan Van Campenhout \\
+\noindent \large Studierichting:  Informatica\\
+\noindent \large Oefeningenreeks 5B nr. 5.7\\
+
+\medskip
+
+\normalsize
+
+$ \displaystyle\int\limits_{-1}^1\dfrac{1}{x^2}dx = \displaystyle\int\limits_{-1}^0\dfrac{1}{x^2}dx + \displaystyle\int\limits_0^1\dfrac{1}{x^2}dx
+= \lim\limits_{a\rightarrow0^-}\displaystyle\int\limits_{-1}^a\dfrac{1}{x^2}dx + \lim\limits_{b\rightarrow0^+} \displaystyle\int\limits_b^1\dfrac{1}{x^2}dx $\\
+
+$ = -\lim\limits_{a\rightarrow0^-}\left[\dfrac{1}{x}\right]_{-1}^a-\lim\limits_{b\rightarrow0^+}\left[\dfrac{1}{x}\right]_b^1 
+= -\left(-\infty+1\right)-\left(-\infty+1\right) = +\infty $\\
+
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

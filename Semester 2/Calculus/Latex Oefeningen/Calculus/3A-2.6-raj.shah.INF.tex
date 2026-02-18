@@ -1,0 +1,56 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Raj Shah \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 3A nr. 2.6\\
+
+\medskip
+
+\normalsize
+
+Bereken de afgeleide van $f(x) = -3x^2$ voor $a \in \left\{-2, 1, 5\right\}$\\
+
+$f'(a) = \lim\limits_{h\rightarrow 0} \dfrac{f(a+h) - f(a)}{h} $\\
+\begin{itemize}
+	\item $a = -2$\\
+
+$f'(-2) = \lim\limits_{h\rightarrow 0} \dfrac{-3(h-2)^2 - f(-2)}{h} $\\
+
+	$ = \lim\limits_{h\rightarrow 0} \dfrac{-3(h^2 -4h + 4) + 12}{h}$\\
+	
+	$ = \lim\limits_{h\rightarrow 0} \dfrac{-3h^2 +12h}{h}$\\ 
+	
+	$ = \lim\limits_{h\rightarrow 0} (-3h + 12) = 12$\\
+
+	\item $a = 1$\\
+
+$f'(1) = \lim\limits_{h\rightarrow 0} \dfrac{-3(h+1)^2 - f(1)}{h} $\\
+
+	$ = \lim\limits_{h\rightarrow 0} \dfrac{-3(h^2 + 2h +1) -3}{h}$\\
+	
+	$ = \lim\limits_{h\rightarrow 0} \dfrac{-3h^2 -6h}{h}$\\
+	
+	$ = \lim\limits_{h\rightarrow 0} (-3h - 6) = -6 $\\
+	
+	\item $a = 5$\\
+
+$f'(5) = \lim\limits_{h\rightarrow 0} \dfrac{-3(h+5)^2 - f(5)}{h} $\\
+
+	$ = \lim\limits_{h\rightarrow 0} \dfrac{-3(h^2 + 10h + 25) -75}{h}$\\
+	
+	$ = \lim\limits_{h\rightarrow 0} \dfrac{-3h^2 - 30h}{h}$\\
+	
+	$ = \lim\limits_{h\rightarrow 0} (-3h -30) = -30$\\
+
+\end{itemize}
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 
