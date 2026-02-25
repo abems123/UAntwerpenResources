@@ -1,2 +1,0 @@
-r1 iptables -I INPUT -s 10.0.0.1 -p icmp -j DROP
-r1 iptables -I FORWARD -s 10.0.0.1 -p icmp -j DROP
