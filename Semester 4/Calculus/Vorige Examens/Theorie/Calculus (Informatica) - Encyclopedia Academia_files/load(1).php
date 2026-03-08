@@ -1,0 +1,1 @@
+﻿span.PDFlink a{background:url(http://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Icons-mini-file_acrobat.gif/15px-Icons-mini-file_acrobat.gif) center right no-repeat !important;padding-right:17px !important}@media print{body{font-family:'Arial',Helvetica,sans-serif}#toc{display:none}}
