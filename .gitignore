@@ -1,0 +1,28 @@
+# Videos
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.wmv
+*.flv
+*.webm
+*.mpeg
+*.mpg
+*.m4v
+*.3gp
+
+# Audio
+*.mp3
+*.wav
+*.flac
+*.aac
+*.ogg
+*.wma
+*.m4a
+
+# Camtasia Studio
+*.camproj
+*.cmproj
+*.trec
+*.tscproj
+*.camrec
