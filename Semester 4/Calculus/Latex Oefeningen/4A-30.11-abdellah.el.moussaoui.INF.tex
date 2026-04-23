@@ -1,0 +1,40 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Abdellah El Moussaoui \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 30.11\\
+
+\medskip
+
+\normalsize
+
+$\displaystyle\int \dfrac{x^3}{\sqrt[3]{x^2 + 1}}dx$\\
+
+$t=x^2+1 \Rightarrow dt=2x\,dx \Rightarrow x\,dx=\dfrac{1}{2}dt$\\
+
+$x^2=t-1$\\
+
+$\Rightarrow \displaystyle\int \dfrac{x^2 \cdot x}{\sqrt[3]{x^2+1}}dx=\displaystyle\int \dfrac{\left( t-1 \right)}{\sqrt[3]{t}} \cdot \dfrac{1}{2}dt$\\
+
+$= \dfrac{1}{2} \displaystyle\int \dfrac{t-1}{\sqrt[3]{t}}dt$\\
+
+$= \dfrac{1}{2} \displaystyle\int \left( t^{\tfrac{2}{3}}-t ^ {-\tfrac{1}{3}} \right)dt$\\
+
+$=\dfrac{1}{2}\left( \dfrac{3}{5}t^{\tfrac{5}{3}}-\dfrac{3}{2}t ^{\tfrac{2}{3}} \right)+C$\\
+
+$= \dfrac{3}{10}t^{\tfrac{5}{3}}-\dfrac{3}{4}t^{\tfrac{2}{3}}+C$\\
+
+$= \dfrac{3}{10}\left( x^2+1 \right)^{\tfrac{5}{3}}-\dfrac{3}{4}\left( x^2+1 \right)^{\tfrac{2}{3}}+C$\\
+
+
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

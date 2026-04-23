@@ -1,0 +1,41 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Abdellah El Moussaoui \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 5G nr. 1.13\\
+
+\medskip
+
+\normalsize
+
+$V = \pi \displaystyle\int^1_0 \left(\sqrt{x} \sqrt[4]{1-x}\right)^2 dx$\\
+
+$V = \pi \displaystyle\int^1_0 x\left(1-x\right)^{\tfrac{1}{2}} dx$\\
+
+Laat $t = \left(1-x\right)^{\tfrac{1}{2}}$\\
+
+$x = 1 - t^2 \Rightarrow dx=-2tdt$ \\
+
+$V = -2\pi \displaystyle\int^0_1 \left(1 - t^2\right)t^2dt$\\
+
+$ = 2\pi \displaystyle\int^1_0 t^2 - t^4 dt$\\
+
+$ = 2\pi \left[ \dfrac{1}{3}t^3 - \dfrac{1}{5}t^5\right]^1_0$\\
+
+$ = \dfrac{4}{15}\pi$
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\linewidth]{5G-1.13-abdellah.el.moussaoui.INF.png}\\
+\end{figure}
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

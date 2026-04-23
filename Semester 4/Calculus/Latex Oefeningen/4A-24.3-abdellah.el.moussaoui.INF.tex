@@ -1,0 +1,44 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Abdellah El Moussaoui \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 24.3\\
+
+\medskip
+
+\normalsize
+
+$\displaystyle\int \dfrac{x-1}{x^2}\ln xdx$\\
+
+$=\displaystyle\int \dfrac{\ln x}{x}dx-\displaystyle\int \dfrac{\ln x}{x^2}dx$\\
+
+$=\dfrac{1}{2}\ln^2x+c-\displaystyle\int \dfrac{\ln x}{x^2}dx$\\
+
+Laat $u=\ln x$ , $dv=\dfrac{1}{x^2}dx$\\
+
+$\Rightarrow du=\dfrac{1}{x}dx$ , $v=-\dfrac{1}{x}$\\
+
+$\Rightarrow \displaystyle\int \dfrac{\ln x}{x^2}dx
+=uv-\displaystyle\int vdu$\\
+
+$=-\dfrac{\ln x}{x}-\displaystyle\int \left(-\dfrac{1}{x}\right)\dfrac{1}{x}dx$\\
+
+$=-\dfrac{\ln x}{x}+\displaystyle\int \dfrac{1}{x^2}dx$\\
+
+$=-\dfrac{\ln x}{x}-\dfrac{1}{x} +c$\\
+
+$\Rightarrow \displaystyle\int \dfrac{x-1}{x^2}\ln xdx
+=\dfrac{1}{2}\ln^2x-\left(-\dfrac{\ln x}{x}-\dfrac{1}{x}\right)+c$\\
+
+$=\boxed{\dfrac{1}{2}\ln^2x+\dfrac{\ln x+1}{x}+c}$\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 
