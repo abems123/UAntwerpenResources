@@ -1,0 +1,117 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Abdellah El Moussaoui \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 3G nr. 11.7\\
+
+\medskip
+
+\normalsize
+
+$f(x) = \dfrac{2x^2 -5x +24}{2x - 7}$ \\
+
+$\operatorname{dom}f = \mathbb{R}\setminus\left\{\dfrac{7}{2}\right\}$ \\
+
+Nulpunten: \\
+
+$2x^2 - 5x + 24 = 0$ \\
+
+$\Delta = (-5)^2 - 4\cdot2\cdot24 = 25 - 192 = -167 < 0$ \\
+
+$\Rightarrow$ geen nulpunten. \\
+
+Polen: $2x - 7 = 0 \Leftrightarrow x = \dfrac{7}{2}$ \\
+
+VA: \\
+
+$\lim\limits_{x\to\tfrac{7}{2}+}\dfrac{2x^2 -5x +24}{2x - 7} = \dfrac{31}{0^+} = +\infty$ \\
+
+$\lim\limits_{x\to\tfrac{7}{2}-}\dfrac{2x^2 -5x +24}{2x - 7} = \dfrac{31}{0^-} = -\infty$ \\
+
+$\Rightarrow x = \dfrac{7}{2}$ \\
+
+HA: \\
+
+geen HA. \\
+
+SA: \\
+
+$\dfrac{2x^2 -5x +24}{2x - 7} = x + 1 + \dfrac{31}{2x - 7}$ \\
+
+$\lim\limits_{x\to\infty}\left(\dfrac{2x^2 -5x +24}{2x - 7} - (x + 1)\right) = \lim\limits_{x\to\infty}\dfrac{31}{2x - 7} = 0$ \\
+
+$\Rightarrow y = x + 1$ \\
+
+Ligging t.o.v. de SA: \\
+
+$A(x) = x + 1$ \\
+
+$f(x)-A(x) = \dfrac{2x^2 -5x +24}{2x - 7} - x-1$ \\
+
+$= \dfrac{2x^2 -5x +24 - 2x^2+7x-2x+7}{2x - 7}$ \\
+
+$= \dfrac{31}{2x-7}$ \\
+
+$\begin{array}{c|ccc}
+    x        & -\infty & \dfrac{7}{2} & +\infty \\ 
+    \hline
+    f(x)-A(x) & -       & | & + \\ 
+\end{array}$ \\
+
+Dus voor $x\to-\infty$ geldt $f(x)-A(x)<0$, dus de functie ligt onder de SA. \\
+
+Voor $x\to+\infty$ geldt $f(x)-A(x)>0$, dus de functie ligt boven de SA. \\
+
+Tekenonderzoek: \\
+
+$f'(x) = \dfrac{d}{dx}\left(\dfrac{2x^2 -5x +24}{2x - 7}\right)$ \\
+
+$= \dfrac{\dfrac{d}{dx}(2x^2 -5x +24)(2x - 7) - (2x^2 -5x +24)\dfrac{d}{dx}(2x - 7)}{(2x - 7)^2}$ \\
+
+$= \dfrac{(4x - 5)(2x - 7) - 2(2x^2 -5x +24)}{(2x - 7)^2}$ \\
+
+$= \dfrac{8x^2 -38x +35 -4x^2 +10x -48}{(2x - 7)^2}$ \\
+
+$= \dfrac{4x^2 -28x -13}{(2x - 7)^2}$ \\
+
+$= \dfrac{(2x - 7)^2 - 62}{(2x - 7)^2}$ \\
+
+$f'(x) = 0 \Leftrightarrow 4x^2 -28x -13 = 0$ \\
+
+$\Leftrightarrow x = \dfrac{28 \pm \sqrt{992}}{8}$ \\
+
+$\Leftrightarrow x = \dfrac{7 \pm \sqrt{62}}{2}$ \\
+
+$f''(x) = \dfrac{d}{dx}\left(1 - \dfrac{62}{(2x - 7)^2}\right)$ \\
+
+$= -62\cdot \dfrac{d}{dx}\left((2x - 7)^{-2}\right)$ \\
+
+$= -62\cdot (-2)(2x - 7)^{-3}\cdot 2$ \\
+
+$= \dfrac{248}{(2x - 7)^3}$ \\
+
+$\begin{array}{r|cccccccccc}
+    x      & -\infty & & \dfrac{7-\sqrt{62}}{2} & & \dfrac{7}{2} & & \dfrac{7+\sqrt{62}}{2} & & +\infty \\ 
+    \hline
+    f(x)   &         & - &          -             & - & |            & + &          +             & + &\\
+    f'(x)  &         & + & 0                     & - & |^{(2)}      & - & 0                     & + &\\
+    f''(x) &         & - & -                     & - & |^{(3)}      & + & +                     & + &\\ 
+    \hline
+    f(x)   &         & \nearrow & M\left(\dfrac{9 - 2\sqrt{62}}{2}\right) & \searrow & & \searrow & m\left(\dfrac{9 + 2\sqrt{62}}{2}\right) & \nearrow &\\
+           &         & \frown   &                 & \frown   & & \smile &                      & \smile &\\
+\end{array}$ \\
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\linewidth]{3G-11.7-abdellah.el.moussaoui.INF.png}\\
+\end{figure}
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

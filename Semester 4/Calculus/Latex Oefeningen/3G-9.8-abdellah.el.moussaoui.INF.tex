@@ -1,0 +1,102 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Abdellah El Moussaoui \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 3G nr. 9.8\\
+
+\medskip
+
+\normalsize
+
+$f(x) = \dfrac{8x + 3}{5x}$ \\
+
+$\operatorname{dom}f = \mathbb{R}\setminus\left\{0\right\}$ \\
+
+Nulpunten: $8x + 3 = 0 \Leftrightarrow x = -\dfrac{3}{8}$ \\
+
+Polen: $5x = 0 \Leftrightarrow x = 0$ \\
+
+VA: \\
+
+$\lim\limits_{x\to0+}\dfrac{8x + 3}{5x} = \dfrac{3}{0^+} = +\infty$ \\
+
+$\lim\limits_{x\to0-} \dfrac{8x+3}{5x} = \dfrac{3}{0^-} = -\infty$ \\
+
+$\Rightarrow \boxed{x = 0}$ \\
+
+HA: \\
+
+$\lim\limits_{x\to\pm\infty}\dfrac{8x + 3}{5x} = \dfrac{8}{5}$ \\
+
+$\Rightarrow\boxed{y = \dfrac{8}{5}}$ \\
+
+Ligging t.o.v. de HA: \\
+
+$A(x) = \dfrac{8}{5}$ \\
+
+$f(x)-A(x) = \dfrac{8x+3}{5x} - \dfrac{8}{5}$ \\
+
+$= \dfrac{8x+3-8x}{5x}$ \\
+
+$= \dfrac{3}{5x}$ \\
+
+$\begin{array}{c|ccc}
+    x        & -\infty & 0 & +\infty \\ 
+    \hline
+    f(x)-A(x) & -       & | & + \\ 
+\end{array}$ \\
+
+Dus voor $x\to-\infty$ geldt $f(x)-A(x)<0$, dus de functie ligt onder de HA. \\
+
+Voor $x\to+\infty$ geldt $f(x)-A(x)>0$, dus de functie ligt boven de HA. \\
+
+SA: \\
+
+geen SA. \\
+
+Tekenonderzoek: \\
+
+$f'(x) = \dfrac{d}{dx}\left(\dfrac{8x + 3}{5x}\right)$ \\
+
+$= \dfrac{\dfrac{d}{dx}(8x + 3)(5x) - (8x + 3)\dfrac{d}{dx}(5x)}{(5x)^2}$ \\
+
+$= \dfrac{40x -(40x + 15)}{25x^2}$ \\
+
+$= -\dfrac{15}{25x^2}$ \\
+
+$= -\dfrac{3}{5x^2}$ \\
+
+$f''(x) = \dfrac{d}{dx}\left(-\dfrac{3}{5x^2}\right)$ \\
+
+$= -\dfrac{3}{5}\cdot \dfrac{d}{dx}(x^{-2})$ \\
+
+$= -\dfrac{3}{5}\cdot (-2)x^{-3}$ \\
+
+$= \dfrac{6}{5x^3}$ \\
+
+$\begin{array}{r|ccccccc}
+    x      & -\infty &          & -\dfrac{3}{8} &          & 0 &          & +\infty \\ 
+    \hline
+    f(x)   &         & +        & 0             & -        & | & +        &\\
+    f'(x)  &         & -        & -             & -        & |^{(2)} & -  & -\\
+    f''(x) &         & -        & -             & -        & |^{(3)} & +  & +\\ 
+    \hline
+    f(x)   &         & \searrow & \searrow      & \searrow &         & \searrow &\\
+           &         & \frown   & \frown        & \frown   &         & \smile   &\\
+\end{array}$ \\
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\linewidth]{3G-9.8-abdellah.el.moussaoui.INF.png}\\
+\end{figure}
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

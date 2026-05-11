@@ -1,0 +1,60 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Abdellah El Moussaoui \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 5B nr. 3.2\\
+
+\medskip
+
+\normalsize
+
+$\displaystyle\int^1_0\dfrac{\ln{x}}{\left(x+1\right)^2}dx$\\
+
+$=\lim\limits_{b\to0+}\displaystyle\int^1_b\ln{x}\left(x+1\right)^{-2}dx$\\
+
+We weten dat: $\displaystyle\int^c_dudv=\left[uv\right]^c_d-\displaystyle\int^c_dvdu$\\
+
+Laat:\\
+
+$u=\ln{x}$ , $dv=\left(x+1\right)^{-2}dx$\\
+
+$du=\dfrac{1}{x}dx$ , $v=-\left(x+1\right)^{-1}$\\
+
+Dus:\\
+
+$\lim\limits_{b\to0+}\displaystyle\int^1_b\ln{x}\left(x+1\right)^{-2}dx = \lim\limits_{b\to0+} \left(-\left[\dfrac{\ln{x}}{x+1}\right]^1_b+\displaystyle\int^1_b\dfrac{1}{x\left(x+1\right)}dx\right)$\\
+
+We weten dat:\\
+
+$\dfrac{1}{x\left(x+1\right)} = \dfrac{A}{x}+\dfrac{B}{x+1}$\\
+
+$\Rightarrow A=1$ , $B=-1$\\
+
+$\lim\limits_{b\to0+}\displaystyle\int^1_b\ln{x}\left(x+1\right)^{-2}dx = \lim\limits_{b\to0+} \left(-\left[\dfrac{\ln{x}}{x+1}\right]^1_b+\displaystyle\int^1_b\left(\dfrac{1}{x}-\dfrac{1}{\left(x+1\right)}\right)dx\right)$\\
+
+$= \lim\limits_{b\to0+} \left(-\left(\dfrac{\ln{1}}{2}-\dfrac{\ln{b}}{b+1}\right)+\left[\ln{x} - \ln{x+1} \right]^1_b\right)$\\
+
+$= \lim\limits_{b\to0+} \dfrac{\ln{b}}{b+1}+\ln{1} - \ln2 -\ln{b} + \ln\left({b+1}\right)$\\
+
+$= \lim\limits_{b\to0+} \dfrac{\ln{b}}{b+1} -\ln{b} + \ln\left({b+1}\right)- \ln2 $\\
+
+$= \lim\limits_{b\to0+} \ln{b} \left(\dfrac{1}{b+1}-1\right) +\ln\left({b+1}\right)- \ln2 $\\
+
+
+$= \lim\limits_{b\to0+} \ln{b} \left(\dfrac{-b}{b+1}\right) +\ln\left({b+1}\right)- \ln2 $\\
+
+$ = 0 + 0 -\ln2$\\
+
+$=-\ln2$\\
+
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

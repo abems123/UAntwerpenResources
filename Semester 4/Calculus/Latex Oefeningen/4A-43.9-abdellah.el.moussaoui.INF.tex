@@ -1,0 +1,53 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Abdellah El Moussaoui \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 4A nr. 43.9\\
+
+\medskip
+
+\normalsize
+
+$\displaystyle\int \dfrac{x^2\left(x+2\right)}{x^4-2x^2+1}dx$\\
+
+$x^4-2x^2+1=\left(x^2-1\right)^2=\left(x-1\right)^2\left(x+1\right)^2$\\
+
+$\dfrac{x^2\left(x+2\right)}{\left(x-1\right)^2\left(x+1\right)^2} = \dfrac{A}{\left(x-1\right)^2} + \dfrac{B}{x-1} + \dfrac{C}{\left(x+1\right)^2} + \dfrac{D}{x+1}$\\
+
+$A = \left.\dfrac{x^2\left(x+2\right)}{\left(x+1\right)^2}\right|_{x=1} = \dfrac{3}{4}$\\
+
+$B = \left.\dfrac{\dfrac{x^2\left(x+2\right)}{\left(x+1\right)^2}-\dfrac{3}{4}}{x-1}\right|_{x=1} 
+= \left.\dfrac{4x^3+5x^2-6x-3}{4\left(x+1\right)^2\left(x-1\right)}\right|_{x=1} 
+= \left.\dfrac{\left(x-1\right)\left(4x^2+9x+3\right)}{4\left(x+1\right)^2\left(x-1\right)}\right|_{x=1}$\\
+
+$B = 1$\\
+
+$C = \left.\dfrac{x^2\left(x+2\right)}{\left(x-1\right)^2}\right|_{x=-1} = \dfrac{1}{4}$\\
+
+
+$D = \left.\dfrac{\dfrac{x^2\left(x+2\right)}{\left(x-1\right)^2}-\dfrac{1}{4}}{x+1}\right|_{x=-1}
+= \left.\dfrac{\dfrac{4x^2\left(x+2\right)-\left(x-1\right)^2}{4\left(x-1\right)^2}}{x+1}\right|_{x=-1}$\\
+
+$= \left.\dfrac{\left(x+1\right)\left(4x^2+3x-1\right)}{4\left(x-1\right)^2\left(x+1\right)}\right|_{x=-1}$\\
+
+$= \left.\dfrac{4x^2+3x-1}{4\left(x-1\right)^2}\right|_{x=-1}$\\
+
+$D = 0$\\
+
+$\Rightarrow \displaystyle\int \left(\dfrac{\dfrac{3}{4}}{\left(x-1\right)^2} + \dfrac{1}{x-1} + \dfrac{\dfrac{1}{4}}{\left(x+1\right)^2}\right)dx$\\
+
+$= \dfrac{3}{4}\displaystyle\int\dfrac{dx}{\left(x-1\right)^2} + \displaystyle\int\dfrac{dx}{x-1} + \dfrac{1}{4}\displaystyle\int\dfrac{dx}{\left(x+1\right)^2}$\\
+
+$= \ln{\left|x-1\right|} - \dfrac{3}{4\left(x-1\right)} - \dfrac{1}{4\left(x+1\right)}
++k$\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 
