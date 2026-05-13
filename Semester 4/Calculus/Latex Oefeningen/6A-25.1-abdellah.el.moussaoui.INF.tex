@@ -1,0 +1,75 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Abdellah El Moussaoui \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 6A nr. 25.1\\
+
+\medskip
+
+\normalsize
+
+De tweede verschillen zijn constant, dus de rij is van orde 2.\\
+
+$\Rightarrow x_n=an^2+bn+c$\\
+
+$\left\{
+\begin{array}{l}
+a+b+c=1\\
+4a+2b+c=2\\
+9a+3b+c=5
+\end{array}
+\right.$\\
+
+$\left[
+\begin{array}{ccc|c}
+1&1&1&1\\
+4&2&1&2\\
+9&3&1&5
+\end{array}
+\right]$\\
+
+$R_2 \leftarrow R_2-4R_1$ , $R_3 \leftarrow R_3-9R_1$\\
+
+$\left[
+\begin{array}{ccc|c}
+1&1&1&1\\
+0&-2&-3&-2\\
+0&-6&-8&-4
+\end{array}
+\right]$\\
+
+$R_3 \leftarrow R_3-3R_2$\\
+
+$\left[
+\begin{array}{ccc|c}
+1&1&1&1\\
+0&-2&-3&-2\\
+0&0&1&2
+\end{array}
+\right]$\\
+
+$\Rightarrow \boxed{c=2}$\\
+
+$-2b-3(2)=-2$\\
+
+$\Rightarrow \boxed{b=-2}$\\
+
+$a+b+c=1$\\
+
+
+$\Rightarrow \boxed{a=1}$\\
+
+$\Rightarrow  \boxed{x_n=n^2-2n+2}$\\
+
+$x_8=8^2-2\cdot8+2=50$\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

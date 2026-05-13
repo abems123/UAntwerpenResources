@@ -1,0 +1,40 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Abdellah El Moussaoui \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 6D nr. 26.2\\
+
+\medskip
+
+\normalsize
+
+
+$\displaystyle\sum_{n=1}^{\infty}\dfrac{1}{n}\ln{n}$\\
+
+Aangezien $\dfrac{1}{n}\ln{n}$ positief, continu, en dalend is naar 0, dan heeft het hetzelfde convergentiegedrag als de integraal:\\
+
+$\displaystyle\int^\infty_1\dfrac{1}{x}\ln{x}dx$\\
+
+$ = \lim\limits_{a\to+\infty} \displaystyle\int^a_1\dfrac{1}{x}\ln{x}dx$\\
+
+$ = \lim\limits_{a\to+\infty} \left[\dfrac{\ln^2x}{2}\right]^a_1$\\
+
+$ = \lim\limits_{a\to+\infty} \dfrac{\ln^2a}{2} - \dfrac{\ln^20}{2}$\\
+
+$ = +\infty$\\
+
+Dus $\displaystyle\int^\infty_1\dfrac{1}{x}\ln{x}dx$ is divergent, vervolgens is $\displaystyle\sum_{n=1}^{\infty}\dfrac{1}{n}\ln{n}$ ook divergent.
+
+
+
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

@@ -1,0 +1,46 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Abdellah El Moussaoui \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 6B nr. 17.3\\
+
+\medskip
+
+\normalsize
+
+$\displaystyle s_n=\sum_{k=1}^{n}k(k+1)(k+2)$\\
+
+$= \displaystyle\sum_{k=1}^{n}k\left(k^2+3k+2\right)$\\
+
+$= \displaystyle\sum_{k=1}^{n}k^3+3k^2+2k$\\
+
+$= \displaystyle\sum_{k=1}^{n}k^3+3\displaystyle\sum_{k=1}^{n}k^2+2\displaystyle\sum_{k=1}^{n}k$\\
+
+$= \dfrac{n^2\left(n+1\right)^2}{4}+3\cdot \dfrac{n\left(n+1\right)\left(2n+1\right)}{6}+ 2\cdot \dfrac{n\left(n+1\right)}{2}$\\
+
+$= \dfrac{n^2\left(n+1\right)^2}{4}+\dfrac{n\left(n+1\right)\left(2n+1\right)}{2}+n\left(n+1\right)$\\
+
+$= \dfrac{n\left(n+1\right)\left(n\left(n+1\right)+2\left(2n+1\right)+4\right)}{4}$\\
+
+$= \dfrac{n\left(n+1\right)\left(n^2+n+4n+2+4\right)}{4}$\\
+
+$= \dfrac{n\left(n+1\right)\left(n^2+5n+6\right)}{4}$\\
+
+
+$= \dfrac{n\left(n+1\right)\left(n+2\right)\left(n+3\right)}{4}$\\
+
+
+Dus de algemene term van $s_n$ is altijd geheel omdat: \\
+
+$n\left(n+1\right)\left(n+2\right)\left(n+3\right) \mod 4 = 0$\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

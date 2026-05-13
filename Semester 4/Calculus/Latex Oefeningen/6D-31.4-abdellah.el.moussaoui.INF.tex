@@ -1,0 +1,37 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Abdellah El Moussaoui \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 6D nr. 31.4\\
+
+\medskip
+
+\normalsize
+
+$\displaystyle\sum_{n = 2}^{\infty}\dfrac{\ln n}{n^2}$\\
+
+Laat ons het convergentiegedrag controleren van: $\displaystyle\int^{+\infty}_2\dfrac{\ln x}{x^2}dx$\\
+
+$ \lim\limits_{a\to+\infty} \displaystyle\int^a_2 \dfrac{\ln x}{x^2}dx$\\
+
+$=\lim\limits_{a\to+\infty} \left[-\dfrac{\ln x}{x}\right]^a_2-\displaystyle\int^a_2\dfrac{1}{x^2}dx$\\
+
+$= \lim\limits_{a\to+\infty} \left[-\dfrac{\ln x}{x} - \dfrac{1}{x}\right]^a_2$\\
+
+$= \lim\limits_{a\to+\infty} \dfrac{-\ln a}{a}-\dfrac{1}{a} + \dfrac{\ln2+1}{2}$\\
+
+$= \dfrac{\ln2+1}{2}$\\
+
+Dus $\displaystyle\int^{+\infty}_2\dfrac{\ln x}{x^2}dx$ is convergent, vervolgens is $\displaystyle\sum_{n = 2}^{\infty}\dfrac{\ln n}{n^2}$ convergent volgens het integraalcriterium.\\
+
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

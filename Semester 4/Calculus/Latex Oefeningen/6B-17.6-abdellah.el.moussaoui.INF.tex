@@ -1,0 +1,51 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Abdellah El Moussaoui \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 6B nr. 17.6\\
+
+\medskip
+
+\normalsize
+
+$s_n =\displaystyle\sum_{k=1}^{n}k^2 \left(k+3\right)$\\
+
+$= \displaystyle\sum_{k=1}^{n} \left(k^3+3k^2\right)$\\
+
+$= \displaystyle\sum_{k=1}^{n}k^3 + 3\displaystyle\sum_{k=1}^{n}k^2$\\
+
+$= \dfrac{n^2\left(n+1\right)^2}{4} + 3\dfrac{n\left(n+1\right)\left(2n+1\right)}{6}$\\
+
+$= \dfrac{n^2\left(n+1\right)^2}{4} + \dfrac{n\left(n+1\right)\left(2n+1\right)}{2}$\\
+
+$= n\left(n+1\right)\left(\dfrac{n\left(n+1\right)}{4} + \dfrac{2n+1}{2}\right)$\\
+
+$= n\left(n+1\right) \left(\dfrac{n\left(n+1\right) + 2\left(2n+1\right)}{4}\right)$\\
+
+$= \dfrac{n\left(n+1\right) \left(n^2+n+4n+2\right)}{4}$\\
+
+$= \dfrac{n\left(n+1\right) \left(n^2+5n+2\right)}{4}$\\
+
+Omdat $n$ en $n+1$ opeenvolgende getallen zijn, is één van beide even.\\
+
+Als $n$ even is, dan is $n^2+5n+2$ ook even.\\
+
+Als $n$ oneven is, dan is $n^2+5n+2$ even.\\
+
+Dus $n^2+5n+2$ is altijd even.\\
+
+$\Rightarrow n\left(n+1\right)\left(n^2+5n+2\right)$ is deelbaar door $4$\\
+
+$\Rightarrow s_n\in\mathbb{N}$\\
+
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

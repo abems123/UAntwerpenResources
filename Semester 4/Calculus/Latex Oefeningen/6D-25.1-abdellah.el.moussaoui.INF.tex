@@ -1,0 +1,37 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Abdellah El Moussaoui \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 6D nr. 25.1\\
+
+\medskip
+
+\normalsize
+
+
+$\displaystyle\sum_{n=1}^{\infty}\dfrac{\left(-1\right)^{n-1}\left(n+1\right)}{n!}$\\
+
+Laat $x_n = \dfrac{\left(-1\right)^{n-1}\left(n+1\right)}{n!}$\\
+
+$ \lim\limits_{n\to+\infty} \left|x_n\right| =  \lim\limits_{n\to+\infty} \dfrac{n+1}{n!} = 0$\\
+
+Aangezien $x_n$ alternerend is, en $\lim\limits_{n\to+\infty} \left|x_n\right| = 0$, dan is $x_n$ convergent volgens het Criterium van Lebnitz.\\
+
+Ik gebruik het Verhoudingscriterium om te controleren of $x_n$ absoluut convergent is.\\
+
+$ \lim\limits_{n\to+\infty} \left| \dfrac{x_{n+1}}{x_n}\right| =  \lim\limits_{n\to+\infty} \dfrac{n+2}{\left(n+1\right)!} \cdot \dfrac{n!}{n+1} = 
+\lim\limits_{n\to+\infty} \dfrac{n+1}{\left(n+1\right)^2}= 0 < 1$\\
+
+Volgens het verhoudingscriterium is $\displaystyle\sum_{n=1}^{\infty}\left|x_n\right|$ convergent, dus is $\displaystyle\sum_{n=1}^{\infty}x_n$ absoluut convergent.\\
+
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

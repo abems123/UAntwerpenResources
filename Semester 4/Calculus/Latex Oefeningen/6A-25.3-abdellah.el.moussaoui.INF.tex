@@ -1,0 +1,75 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Abdellah El Moussaoui \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 6A nr. 25.3\\
+
+\medskip
+
+\normalsize
+
+De tweede verschillen zijn constant, dus de rij is van orde 2.\\
+
+$\Rightarrow x_n=an^2+bn+c$\\
+
+$\left\{
+\begin{array}{l}
+a+b+c=4\\
+4a+2b+c=6\\
+9a+3b+c=6
+\end{array}
+\right.$\\
+
+$\left[
+\begin{array}{ccc|c}
+1&1&1&4\\
+4&2&1&6\\
+9&3&1&6
+\end{array}
+\right]$\\
+
+$R_2 \leftarrow R_2-4R_1$ , $R_3 \leftarrow R_3-9R_1$\\
+
+$\left[
+\begin{array}{ccc|c}
+1&1&1&4\\
+0&-2&-3&-10\\
+0&-6&-8&-30
+\end{array}
+\right]$\\
+
+$R_3 \leftarrow R_3-3R_2$\\
+
+$\left[
+\begin{array}{ccc|c}
+1&1&1&4\\
+0&-2&-3&-10\\
+0&0&1&0
+\end{array}
+\right]$\\
+
+$\Rightarrow \boxed{c=0}$\\
+
+$-2b-3c = -10$\\
+
+$\Rightarrow \boxed{b=5}$\\
+
+$a+b+c =4$\\
+
+
+$\Rightarrow \boxed{a=-1}$\\
+
+$\Rightarrow x_n = -n^2+5n$\\
+
+$x_8 = -8^2+5\cdot8=-64+40=-24$\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

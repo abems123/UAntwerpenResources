@@ -1,0 +1,38 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Abdellah El Moussaoui \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 6D nr. 20.3\\
+
+\medskip
+
+\normalsize
+
+
+$\displaystyle\sum_{n=1}^{\infty}\dfrac{\sqrt{n}}{n!}$\\
+
+Volgens het criterium van d'Alembert:\\
+
+$\lim\limits_{n\to+\infty} \left| \dfrac{\dfrac{\sqrt{n+1}}{\left(n+1\right)!}}{\dfrac{\sqrt{n}}{n!}} \right|$ \\
+
+$= \lim\limits_{n\to+\infty} \left| \dfrac{\sqrt{n+1}}{\left(n+1\right)!} \cdot \dfrac{n!}{\sqrt{n}}\right|$ \\
+
+$= \lim\limits_{n\to+\infty} \left| \dfrac{\sqrt{n+1}}{\left(n+1\right)\sqrt{n}}\right|$\\
+
+$= \lim\limits_{n\to+\infty}\dfrac{1}{\sqrt{n\left(n+1\right)}}$\\
+
+$=0$\\
+
+Omdat $0<1$, is de reeks convergent.\\
+
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

@@ -1,0 +1,38 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Abdellah El Moussaoui \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 6D nr. 31.46\\
+
+\medskip
+
+\normalsize
+
+$\displaystyle\sum_{n=1}^{\infty} \dfrac{n^n}{n!}$\\
+
+$ = \lim\limits_{n\to+\infty} \left| \dfrac{\dfrac{\left(n+1\right)^{n+1}}{\left(n+1\right)!}}{\dfrac{n^n}{n!}} \right|$\\
+
+$ = \lim\limits_{n\to+\infty} \left| \dfrac{\left(n+1\right)^{n+1}}{\left(n+1\right)!}\cdot\dfrac{n!}{n^n} \right|$\\
+
+$ = \lim\limits_{n\to+\infty} \dfrac{\left(n+1\right)^{n+1}}{\left(n+1\right)n!}\cdot\dfrac{n!}{n^n}$\\
+
+$= \lim\limits_{n\to+\infty} \dfrac{\left(n+1\right)^n}{n^n}$\\
+
+$= \lim\limits_{n\to+\infty} \left(\dfrac{n+1}{n}\right)^n$\\
+
+$ = \lim\limits_{n\to+\infty} \left(1+\dfrac{1}{n}\right)^n$\\
+
+$ = e$\\
+
+Omdat $e>1$, is de reeks divergent volgens het criterium van d'Alembert.\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 
