@@ -1,0 +1,66 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Abdellah El Moussaoui \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 3F nr. 1.11\\
+
+\medskip
+
+\normalsize
+
+$f(x)=x+1+\dfrac{3}{x-7}$\\
+
+$f(x)=0 \Leftrightarrow x+1=-\dfrac{3}{x-7}\Leftrightarrow(x+1)(x-7)=-3$
+
+$\Leftrightarrow (x-3)^2=13 \Leftrightarrow x=3\pm\sqrt{13}$\\
+
+$f'(x)=1-\dfrac{3}{(x-7)^2}$\\
+
+VA:\\
+
+$x=7$\\
+
+$\lim\limits_{x\to7+} f(x) = +\infty$\\
+
+$\lim\limits_{x\to7-} f(x) = -\infty$\\
+
+HA:\\
+
+$\lim\limits_{x\to\infty} f(x) = +\infty$\\
+
+Geen HA!\\
+
+SA:\\
+
+$\lim\limits_{x\to\infty} \dfrac{f(x)}{x}$
+
+$= \lim\limits_{x\to\infty} \dfrac{x+1+\dfrac{3}{x-7}}{x}$\\
+
+$=\lim\limits_{x\to\infty} 1 + \dfrac{1}{x} + \dfrac{3}{x(x-7)}$\\
+
+$ = 1$\\
+
+$\lim\limits_{x\to\infty} f(x)-x = 1$\\
+
+Dus $f(x)$ heeft een schuine asymptoot, namelijk $y=x+1$\\
+
+$f(x)-(x+1) = 0 \Leftrightarrow x\in \emptyset$\\
+
+$\begin{array}{r|ccccccc}
+           & -\infty &          & 7     &       & +\infty \\
+    \hline  
+    f(x)-(x+1)  &   -    & - & |& +   &  +   \\
+\end{array}$ \\
+
+Dus $f(x)$ is onder $y=x+1$ voor $x \in ]-\infty,7[$ en boven $y=x+1$ voor $x\in ]7,+\infty[ .$\\
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 
