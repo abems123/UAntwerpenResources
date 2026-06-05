@@ -1,0 +1,93 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Abdellah El Moussaoui \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 7A nr. 16.7\\
+
+\medskip
+
+\normalsize
+
+$f(x,y) = 
+\left\{ 
+\begin{array}{ll} 
+\dfrac{x^2y^2(x+y)}{x^4+y^4} & \text{als } (x,y) \neq (0,0)\\[2ex] 
+0 & \text{als } (x,y) = (0,0) 
+\end{array} 
+\right.$ \\
+
+\textbf{Continuïteit}:\\
+
+We weten dat:\\
+
+$\left(x^2+y^2\right)^2 = x^4+y^4+2x^2y^2 \geq 0 \Rightarrow x^4+y^4\geq -2x^2y^2$\\
+
+$\left(x^2-y^2\right)^2 = x^4+y^4-2x^2y^2 \geq 0 \Rightarrow x^4+y^4\geq 2x^2y^2$\\
+
+Dus:\\
+
+$x^4+y^4\geq \left|2x^2y^2\right|$\\
+
+$\Rightarrow \dfrac{1}{x^4+y^4} \leq \dfrac{1}{\left|2x^2y^2\right|}$\\
+
+$\Rightarrow \dfrac{x^2y^2\left| x+y \right|}{x^4+y^4} \leq \dfrac{x^2y^2\left| x+y \right|}{2x^2y^2}$\\
+
+$\Rightarrow\left |\dfrac{x^2y^2\left( x+y \right)}{x^4+y^4} \right | \leq \dfrac{\left| x+y \right|}{2}$\\
+
+$\Rightarrow -\dfrac{\left| x+y \right|}{2} \leq \dfrac{x^2y^2\left( x+y \right)}{x^4+y^4} \leq \dfrac{\left| x+y \right|}{2}$\\
+
+$\Rightarrow \lim\limits_{(x,y)\rightarrow (0,0)}-\dfrac{\left| x+y \right|}{2} \leq \lim\limits_{(x,y)\rightarrow (0,0)} \dfrac{x^2y^2\left( x+y \right)}{x^4+y^4} \leq \lim\limits_{(x,y)\rightarrow (0,0)} \dfrac{\left| x+y \right|}{2}$\\
+
+$\Rightarrow 0 \leq \lim\limits_{(x,y)\rightarrow (0,0)} f(x,y) \leq 0$\\
+
+Dus $\lim\limits_{(x,y)\rightarrow (0,0)} f(x,y) = f(0,0)=0$\\
+
+$\Rightarrow f$ is continu in $(0,0). \\
+
+\textbf{Partiële afgeleiden}:\\
+
+$\left\{ 
+\begin{array}{l} 
+\dfrac{\partial f}{\partial x}(0,0) = \lim\limits_{\lambda \rightarrow 0} \dfrac{f(\lambda,0) - f(0,0)}{\lambda} = \lim\limits_{\lambda \rightarrow 0} \dfrac{0}{\lambda} = 0 \\[2ex] 
+\dfrac{\partial f}{\partial y}(0,0) = \lim\limits_{\lambda \rightarrow 0} \dfrac{f(0,\lambda) - f(0,0)}{\lambda} = \lim\limits_{\lambda \rightarrow 0} \dfrac{0}{\lambda} = 0 
+\end{array} 
+\right.$ \\
+
+$\Rightarrow f$ is partieel afleidbaar in $(0,0)$\\
+
+\textbf{Afleidbaarheid}:\\
+
+Stel $\overline{h} = (h_1,h_2)$ met $h_1 \neq 0$ en $h_2 \neq 0$\\
+
+$Df\left(\overline{0}, \overline{h}\right) = \lim\limits_{\lambda \rightarrow 0} \dfrac{f(\lambda h_1, \lambda h_2) - f(0,0)}{\lambda}$\\
+
+$= \lim\limits_{\lambda \rightarrow 0} \dfrac{\dfrac{\lambda^4 h_1^2 h_2^2\left(\lambda h_1+\lambda h_2\right)}{\lambda^4 h_1^4+\lambda^4h_2^4}}{\lambda}$\\
+
+$=  \lim\limits_{\lambda \rightarrow 0} \dfrac{\lambda^5 h_1^2 h_2^2\left( h_1+ h_2\right)}{\lambda^5 \left(h_1^4+h_2^4\right)}$\\
+
+$=  \dfrac{ h_1^2 h_2^2\left( h_1+ h_2\right)}{h_1^4+h_2^4}$\\
+
+Limiet bestaat, dus $f$ is afleidbaar in $(0,0).$\\
+
+\textbf{Differentieerbaarheid}:\\
+
+Als $f$ differentieerbaar is, dan moet de volgende kloppen:\\
+
+$Df\left(\overline{0}, \overline{h}\right)=Df\left(\overline{0}\right) \cdot h$\\
+
+$\dfrac{ h_1^2 h_2^2\left( h_1+ h_2\right)}{h_1^4+h_2^4} = 
+\begin{pmatrix}0 & 0\end{pmatrix} \cdot \begin{pmatrix}h_1 \\ h_2\end{pmatrix} = 0$\\
+
+Dat klopt niet want $h_1$ en $h_2$ kunnen alles zijn. Dus $f$ is niet differentieerbaar.\\
+
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 

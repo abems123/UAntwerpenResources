@@ -1,0 +1,68 @@
+\documentclass[a4paper]{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}     
+
+\begin{document}
+  
+\noindent \large Auteur: Abdellah El Moussaoui \\
+\noindent \large Studierichting: Informatica\\
+\noindent \large Oefeningenreeks 7A nr. 16.4\\
+
+\medskip
+
+\normalsize
+
+$f(x,y) = 
+\left\{ 
+\begin{array}{ll} 
+\dfrac{x^2y^8}{x^6+y^{12}} & \text{als } (x,y) \neq (0,0)\\[2ex] 
+0 & \text{als } (x,y) = (0,0) 
+\end{array} 
+\right.$ \\
+
+\textbf{Continuïteit}:\\
+
+Stel $x = 0$\\
+
+$\lim\limits_{y\rightarrow 0} f(0,y) = \lim\limits_{y\rightarrow 0} \dfrac{0}{y^{12}}=0$\\
+
+Stel $x = y^2$\\
+
+$\lim\limits_{y\rightarrow 0} f(y^2,y) = \lim\limits_{y\rightarrow 0} \dfrac{y^{12}}{2y^{12}}=\dfrac{1}{2}$\\
+
+$\Rightarrow f$ is niet continu in $(0,0) \Rightarrow f$ is niet differetieerbaar. \\
+
+\textbf{Partiële afgeleiden}:\\
+
+$\left\{ 
+\begin{array}{l} 
+\dfrac{\partial f}{\partial x}(0,0) = \lim\limits_{\lambda \rightarrow 0} \dfrac{f(\lambda,0) - f(0,0)}{\lambda} = \lim\limits_{\lambda \rightarrow 0} \dfrac{0}{\lambda^5} = 0 \\[2ex] 
+\dfrac{\partial f}{\partial y}(0,0) = \lim\limits_{\lambda \rightarrow 0} \dfrac{f(0,\lambda) - f(0,0)}{\lambda} = \lim\limits_{\lambda \rightarrow 0} \dfrac{0}{\lambda^{11}} = 0 
+\end{array} 
+\right.$ \\
+
+$\Rightarrow f$ is partieel afleidbaar in $(0,0)$\\
+
+\textbf{Afleidbaarheid}:\\
+
+Stel $\overline{h} = (h_1,h_2)$ met $h_1 \neq 0$ en $h_2 \neq 0$\\
+
+$Df(\overline{0}, \overline{h}) = \lim\limits_{\lambda \rightarrow 0} \dfrac{f(\lambda h_1, \lambda h_2) - f(0,0)}{\lambda}$\\
+
+$= \lim\limits_{\lambda \rightarrow 0} \dfrac{\dfrac{\lambda^{10} h_1^2 h_2^8}{\lambda^6 h_1^6+\lambda^{12}h_2^{12}}}{\lambda}$\\
+
+$=  \lim\limits_{\lambda \rightarrow 0} \dfrac{\lambda^{10} h_1^2 h_2^8}{\lambda^7 \left(h_1^6+\lambda^6h_2^{12}\right)}$\\
+
+$=  \lim\limits_{\lambda \rightarrow 0} \dfrac{\lambda^{3} h_1^2 h_2^8}{h_1^6+\lambda^6h_2^{12}}$\\
+
+$= \dfrac{0}{h_1^6}=0$
+
+Limiet bestaat, dus $f$ is afleidbaar in $(0,0)$\\
+
+
+\begin{thebibliography}{999}
+%\bibitem{a} Referentie
+\end{thebibliography}
+\end{document} 
