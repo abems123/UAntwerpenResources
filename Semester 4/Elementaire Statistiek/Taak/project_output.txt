@@ -1,0 +1,133 @@
+Project Elementaire Statistiek
+Studentennummer: 20246031 
+Significantieniveau alpha = 0.01 
+
+==================== 1. Sneeuwcondities ====================
+Waargenomen frequenties:
+, , lawine_alarm = licht
+
+                 sneeuwtype
+temperatuurklasse droog nat
+        gemiddeld    83  54
+        hoog         84  89
+        laag         70  48
+
+, , lawine_alarm = sterk
+
+                 sneeuwtype
+temperatuurklasse droog nat
+        gemiddeld    12   9
+        hoog          9  14
+        laag         22   6
+
+
+Verwachte frequenties onder volledige onderlinge onafhankelijkheid:
+, , lawine_alarm = licht
+
+                 sneeuwtype
+temperatuurklasse droog   nat
+        gemiddeld 75.74 59.51
+        hoog      93.95 73.82
+        laag      69.99 54.99
+
+, , lawine_alarm = sterk
+
+                 sneeuwtype
+temperatuurklasse droog   nat
+        gemiddeld 12.74 10.01
+        hoog      15.81 12.42
+        laag      11.77  9.25
+
+
+Chi-kwadraat teststatistiek: 19.57209 
+Vrijheidsgraden: 7 
+Kritieke waarde op 1%: 18.47531 
+p-waarde: 0.006572048 
+Minimale verwachte frequentie: 9.25056 
+Besluit: H0 wordt verworpen op 1%. De drie variabelen lijken niet volledig onderling onafhankelijk.
+
+==================== 2. Temperatuur ====================
+Samenvatting van my_temp:
+     Hoogte       Afstand_tot_vallei  Temperatuur     
+ Min.   : 927.0   Min.   :0.9506     Min.   :-8.5291  
+ 1st Qu.: 987.8   1st Qu.:2.2269     1st Qu.:-2.4941  
+ Median :1012.9   Median :5.6700     Median : 0.6006  
+ Mean   :1059.1   Mean   :4.5560     Mean   : 0.6382  
+ 3rd Qu.:1179.9   3rd Qu.:6.1440     3rd Qu.: 3.8435  
+ Max.   :1275.8   Max.   :7.0731     Max.   :10.2800  
+
+Correlatiematrix:
+                       Hoogte Afstand_tot_vallei Temperatuur
+Hoogte              1.0000000         0.50983270 -0.79791435
+Afstand_tot_vallei  0.5098327         1.00000000  0.03667026
+Temperatuur        -0.7979144         0.03667026  1.00000000
+
+Regressiemodel:
+
+Call:
+lm(formula = Temperatuur ~ Hoogte + Afstand_tot_vallei, data = my_temp)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-3.2165 -0.9885  0.0091  0.8189  3.7892 
+
+Coefficients:
+                     Estimate Std. Error t value Pr(>|t|)    
+(Intercept)        43.1734055  0.9213866   46.86   <2e-16 ***
+Hoogte             -0.0455486  0.0009538  -47.76   <2e-16 ***
+Afstand_tot_vallei  1.2518205  0.0482687   25.93   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 1.301 on 247 degrees of freedom
+Multiple R-squared:  0.9024,	Adjusted R-squared:  0.9016 
+F-statistic:  1142 on 2 and 247 DF,  p-value: < 2.2e-16
+
+
+Vergelijking met nulmodel via globale F-test:
+Analysis of Variance Table
+
+Model 1: Temperatuur ~ 1
+Model 2: Temperatuur ~ Hoogte + Afstand_tot_vallei
+  Res.Df    RSS Df Sum of Sq    F    Pr(>F)    
+1    249 4282.6                                
+2    247  417.9  2    3864.7 1142 < 2.2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+R-kwadraat: 0.90241 
+Aangepaste R-kwadraat: 0.9016198 
+Residual standard error: 1.300794 
+RMSE op de steekproef: 1.292965 
+MAE op de steekproef: 1.042021 
+99% betrouwbaarheidsintervallen voor de coefficienten:
+                         0.5 %      99.5 %
+(Intercept)        40.78159641 45.56521454
+Hoogte             -0.04802448 -0.04307266
+Afstand_tot_vallei  1.12652080  1.37712022
+==================== 3. Wind ====================
+Samenvatting windsnelheid:
+    Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+   1.074    9.693   11.889   62.168   14.124 5193.984 
+Standaardafwijking: 500.9666 
+Aantal observaties: 600 
+Grootste 10 waarden:
+ [1] 5193.98351 5110.71276 5092.94915 5013.17703 4960.66654 4876.82653   20.76257   20.02759   19.79520   19.68299
+
+Eenzijdige t-test met H0: mu = 11.7 en H1: mu > 11.7
+
+	One Sample t-test
+
+data:  windsnelheid
+t = 2.4676, df = 599, p-value = 0.00694
+alternative hypothesis: true mean is greater than 11.7
+99 percent confidence interval:
+ 14.46185      Inf
+sample estimates:
+mean of x 
+ 62.16767 
+
+Handmatig berekende testwaarde: 2.467631 
+Aanvaardingsgebied: -Inf 2.332589 
+p-waarde: 0.00693974 
+Besluit: H0 wordt verworpen op 1%. De gemiddelde windsnelheid is significant groter dan 11.7 km/h.
