@@ -1,0 +1,1554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark">
+<title>Cache Memory — Full Chapter Quiz</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap');
+
+:root{
+  --bg: #122019;
+  --bg-grid: #16261e;
+  --panel: #1a2a22;
+  --panel-2: #21362b;
+  --border: #2d453a;
+  --ink: #f2eee2;
+  --ink-dim: #b7c3ba;
+  --ink-faint: #96a69b;
+  --copper: #cb8a4a;
+  --copper-bright: #e6ac72;
+  --copper-ink: #1a1206;
+  --led-green: #74c47f;
+  --led-green-glow: rgba(116,196,127,0.5);
+  --led-red: #e26e5c;
+  --led-red-glow: rgba(226,110,92,0.5);
+  --led-amber: #e8bb52;
+  --led-amber-glow: rgba(232,187,82,0.5);
+  --sans: "IBM Plex Sans", -apple-system, "Segoe UI", Roboto, sans-serif;
+  --serif: "IBM Plex Serif", Georgia, "Times New Roman", serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", "Cascadia Code", Menlo, Consolas, monospace;
+  --radius: 14px;
+  --radius-sm: 9px;
+}
+
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:
+    linear-gradient(var(--bg-grid) 1px, transparent 1px) 0 0/100% 28px,
+    var(--bg);
+  color:var(--ink);
+  font-family:var(--sans);
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  min-height:100vh;
+}
+.app{
+  max-width:760px;
+  margin:0 auto;
+  padding:18px 18px 60px;
+}
+::selection{ background:var(--copper); color:var(--copper-ink); }
+button{ font-family:inherit; }
+a{ color:inherit; }
+
+/* focus visibility */
+button:focus-visible, input:focus-visible, textarea:focus-visible, [tabindex]:focus-visible{
+  outline:2px solid var(--copper-bright);
+  outline-offset:2px;
+}
+
+@media (prefers-reduced-motion: no-preference){
+  .screen.enter{ animation: fadeUp .32s ease both; }
+  .led-dot.pulse{ animation: ledPulse 1s ease-out 1; }
+  @keyframes fadeUp{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);} }
+  @keyframes ledPulse{ 0%{ box-shadow:0 0 0 0 var(--pulse-color,var(--led-green-glow)); } 100%{ box-shadow:0 0 0 10px rgba(0,0,0,0); } }
+}
+
+/* ---------- signature address-bar header ---------- */
+.addr-bar{
+  display:flex;
+  border:1px solid var(--border);
+  border-radius:10px;
+  overflow:hidden;
+  background:var(--panel);
+  margin-bottom:8px;
+}
+.addr-seg{
+  flex:1 1 0;
+  padding:9px 14px;
+  min-width:0;
+  border-right:1px solid var(--border);
+}
+.addr-seg:last-child{ border-right:none; }
+.addr-label{
+  display:block;
+  font-family:var(--mono);
+  font-size:9.5px;
+  letter-spacing:.14em;
+  color:var(--ink-faint);
+  text-transform:uppercase;
+  margin-bottom:2px;
+}
+.addr-val{
+  display:block;
+  font-family:var(--mono);
+  font-size:13px;
+  color:var(--copper-bright);
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.progress-track{
+  height:4px;
+  background:var(--border);
+  border-radius:3px;
+  margin-bottom:26px;
+  overflow:hidden;
+}
+.progress-fill{
+  height:100%;
+  background:var(--copper);
+  border-radius:3px;
+  transition:width .25s ease;
+}
+
+@media (max-width:480px){
+  .addr-label{ font-size:8.5px; }
+  .addr-val{ font-size:11px; }
+  .addr-seg{ padding:8px 8px; }
+}
+
+/* ---------- generic layout ---------- */
+.screen[hidden]{ display:none; }
+.kicker{
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--copper-bright);
+  margin:0 0 10px;
+}
+h1{
+  font-family:var(--sans);
+  font-weight:700;
+  letter-spacing:-.01em;
+  font-size:clamp(28px,7vw,40px);
+  margin:0 0 10px;
+}
+.subtitle{
+  font-family:var(--serif);
+  font-size:16px;
+  color:var(--ink-dim);
+  max-width:56ch;
+  margin:0 0 6px;
+}
+.help-line{
+  font-size:13.5px;
+  color:var(--ink-faint);
+  max-width:60ch;
+  margin:14px 0 28px;
+}
+
+.card{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:22px;
+  margin-bottom:16px;
+}
+
+/* ---------- topic picker ---------- */
+.picker-head{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  margin-bottom:14px;
+}
+.picker-head h2{
+  font-size:14px;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  font-family:var(--mono);
+  color:var(--ink-dim);
+  margin:0;
+}
+.picker-toggle{
+  font-family:var(--mono);
+  font-size:12px;
+  color:var(--copper-bright);
+  background:none;
+  border:none;
+  cursor:pointer;
+  text-decoration:underline;
+  padding:2px 0;
+}
+.topic-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  margin-bottom:6px;
+}
+@media (max-width:560px){ .topic-grid{ grid-template-columns:1fr; } }
+.topic-row{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 12px;
+  background:var(--panel-2);
+  border:1px solid var(--border);
+  border-radius:var(--radius-sm);
+  cursor:pointer;
+  min-height:44px;
+}
+.topic-row input{ accent-color:var(--copper); width:17px; height:17px; flex:none; cursor:pointer; }
+.topic-row span.name{ font-size:14px; flex:1; }
+.topic-row span.count{ font-family:var(--mono); font-size:11.5px; color:var(--ink-faint); }
+
+.opt-row{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 2px;
+  cursor:pointer;
+}
+.opt-row input{ accent-color:var(--copper); width:17px; height:17px; flex:none; cursor:pointer; }
+.opt-row span{ font-size:14px; color:var(--ink-dim); }
+
+.warn{
+  color:var(--led-red);
+  font-size:13px;
+  margin:6px 0 0;
+  font-family:var(--mono);
+}
+
+.btn{
+  font-family:var(--mono);
+  font-size:14px;
+  font-weight:500;
+  letter-spacing:.02em;
+  border-radius:var(--radius-sm);
+  padding:13px 20px;
+  border:1px solid transparent;
+  cursor:pointer;
+  min-height:46px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+}
+.btn-primary{
+  background:var(--copper);
+  color:var(--copper-ink);
+  width:100%;
+}
+.btn-primary:hover{ background:var(--copper-bright); }
+.btn-ghost{
+  background:transparent;
+  color:var(--ink);
+  border-color:var(--border);
+}
+.btn-ghost:hover{ border-color:var(--copper); color:var(--copper-bright); }
+.btn-row{ display:flex; flex-wrap:wrap; gap:10px; margin-top:6px; }
+.btn-row .btn{ flex:1 1 auto; }
+.btn:disabled{ opacity:.4; cursor:not-allowed; }
+
+/* ---------- quiz card ---------- */
+.tag-row{ display:flex; gap:8px; margin-bottom:14px; flex-wrap:wrap; }
+.pill{
+  font-family:var(--mono);
+  font-size:10.5px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  padding:4px 9px;
+  border-radius:999px;
+  border:1px solid var(--border);
+  color:var(--ink-dim);
+  background:var(--panel-2);
+}
+.pill.copper{ color:var(--copper-bright); border-color:var(--copper); }
+
+.prompt{
+  font-family:var(--serif);
+  font-size:18px;
+  line-height:1.55;
+  margin:0 0 20px;
+}
+
+.choice-list{ display:flex; flex-direction:column; gap:9px; }
+.choice-btn{
+  text-align:left;
+  background:var(--panel-2);
+  border:1px solid var(--border);
+  color:var(--ink);
+  border-radius:var(--radius-sm);
+  padding:13px 15px;
+  font-family:var(--sans);
+  font-size:14.5px;
+  cursor:pointer;
+  display:flex;
+  gap:11px;
+}
+.choice-btn:hover:not(:disabled){ border-color:var(--copper); }
+.choice-btn .letter{
+  font-family:var(--mono);
+  color:var(--ink-faint);
+  flex:none;
+}
+.choice-btn:disabled{ cursor:default; }
+.choice-btn.is-correct{ border-color:var(--led-green); background:rgba(116,196,127,0.12); }
+.choice-btn.is-correct .letter{ color:var(--led-green); }
+.choice-btn.is-wrong{ border-color:var(--led-red); background:rgba(226,110,92,0.12); }
+.choice-btn.is-wrong .letter{ color:var(--led-red); }
+
+.num-row{ display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+.num-row input{
+  font-family:var(--mono);
+  font-size:16px;
+  background:var(--panel-2);
+  border:1px solid var(--border);
+  color:var(--ink);
+  border-radius:var(--radius-sm);
+  padding:12px 14px;
+  width:140px;
+}
+.num-row input:disabled{ opacity:.7; }
+
+textarea{
+  width:100%;
+  font-family:var(--serif);
+  font-size:14.5px;
+  background:var(--panel-2);
+  border:1px solid var(--border);
+  color:var(--ink);
+  border-radius:var(--radius-sm);
+  padding:12px 14px;
+  resize:vertical;
+  min-height:90px;
+}
+
+.unsure-link{
+  display:inline-block;
+  margin-top:14px;
+  font-family:var(--mono);
+  font-size:12.5px;
+  color:var(--ink-faint);
+  background:none;
+  border:none;
+  text-decoration:underline;
+  cursor:pointer;
+  padding:4px 0;
+}
+.unsure-link:hover{ color:var(--copper-bright); }
+
+.feedback{
+  margin-top:20px;
+  padding-top:18px;
+  border-top:1px dashed var(--border);
+}
+.feedback-line{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:12px;
+  font-family:var(--mono);
+  font-size:13.5px;
+  letter-spacing:.03em;
+  text-transform:uppercase;
+}
+.led-dot{
+  width:11px; height:11px; border-radius:50%; flex:none;
+  background:var(--dot-color,var(--led-green));
+  box-shadow:0 0 8px 1px var(--dot-glow,var(--led-green-glow));
+}
+.feedback-line.hit{ color:var(--led-green); }
+.feedback-line.miss{ color:var(--led-red); }
+.feedback-line.skip{ color:var(--led-amber); }
+.explain{
+  font-family:var(--serif);
+  font-size:14.5px;
+  color:var(--ink-dim);
+  background:var(--panel-2);
+  border:1px solid var(--border);
+  border-radius:var(--radius-sm);
+  padding:14px 16px;
+  white-space:pre-line;
+}
+.model-answer-label{
+  font-family:var(--mono);
+  font-size:10.5px;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--copper-bright);
+  margin:0 0 6px;
+}
+
+/* ---------- results ---------- */
+.score-block{ text-align:left; margin-bottom:22px; }
+.score-num{
+  font-family:var(--mono);
+  font-size:clamp(40px,10vw,58px);
+  font-weight:600;
+  color:var(--copper-bright);
+  line-height:1;
+}
+.score-pct{ font-family:var(--mono); font-size:16px; color:var(--ink-dim); margin-left:8px; }
+.score-msg{ font-family:var(--serif); font-size:16px; color:var(--ink-dim); margin-top:8px; }
+
+.topic-bar-row{ margin-bottom:12px; }
+.topic-bar-top{ display:flex; justify-content:space-between; font-size:13px; margin-bottom:5px; }
+.topic-bar-top .tname{ color:var(--ink); }
+.topic-bar-top .tscore{ font-family:var(--mono); color:var(--ink-faint); }
+.bar-track{ height:7px; border-radius:4px; background:var(--panel-2); border:1px solid var(--border); overflow:hidden; }
+.bar-fill{ height:100%; border-radius:4px; }
+
+.review-toggle{
+  width:100%;
+  text-align:left;
+  background:var(--panel);
+  border:1px solid var(--border);
+  color:var(--ink);
+  border-radius:var(--radius);
+  padding:16px 20px;
+  font-family:var(--mono);
+  font-size:13px;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+  cursor:pointer;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.review-list{ margin-top:10px; display:flex; flex-direction:column; gap:8px; }
+.review-item{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:var(--radius-sm);
+  overflow:hidden;
+}
+.review-item-head{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:12px 14px;
+  cursor:pointer;
+}
+.review-item-head .mark{ flex:none; font-size:15px; }
+.review-item-head .qtext{ font-size:13.5px; color:var(--ink-dim); flex:1; }
+.review-item-body{
+  padding:0 14px 16px 40px;
+  display:none;
+}
+.review-item.open .review-item-body{ display:block; }
+.review-item-body .row{ font-size:13px; margin-bottom:6px; }
+.review-item-body .row b{ color:var(--ink); font-weight:600; }
+.review-item-body .explain{ margin-top:8px; }
+
+.footnote{
+  text-align:center;
+  font-family:var(--mono);
+  font-size:11px;
+  color:var(--ink-faint);
+  margin-top:34px;
+}
+</style>
+</head>
+<body>
+<div class="app" id="app">
+
+  <div class="addr-bar" id="addrBar">
+    <div class="addr-seg"><span class="addr-label">Section</span><span class="addr-val" id="segA">Cache Memory · Ch. 2</span></div>
+    <div class="addr-seg"><span class="addr-label">Progress</span><span class="addr-val" id="segB">Setup</span></div>
+    <div class="addr-seg"><span class="addr-label">Score</span><span class="addr-val" id="segC">—</span></div>
+  </div>
+  <div class="progress-track" id="progressTrack" style="display:none;"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+
+  <main id="main">
+
+    <!-- START SCREEN -->
+    <section class="screen enter" id="screen-start">
+      <p class="kicker">Operating Systems · 1500WETOPS</p>
+      <h1>Cache Memory quiz</h1>
+      <p class="subtitle" id="startSubtitle">Loading question bank…</p>
+      <p class="help-line">Most questions grade themselves instantly — pick an answer or type a number and you'll see right away whether it's a HIT (correct) or a MISS (incorrect), plus a short explanation. A handful of trade-off questions are marked <b>self-graded</b>: write your own answer, reveal the model answer, then mark yourself honestly. That's where comparisons like direct vs. associative mapping, or write-through vs. write-back, really sink in.</p>
+
+      <div class="card">
+        <div class="picker-head">
+          <h2>Choose what to practice</h2>
+          <button class="picker-toggle" id="toggleAllBtn" type="button">Select none</button>
+        </div>
+        <div class="topic-grid" id="topicGrid"></div>
+
+        <div style="margin-top:14px; border-top:1px solid var(--border); padding-top:10px;">
+          <label class="opt-row">
+            <input type="checkbox" id="optShuffle" checked>
+            <span>Shuffle question order (exam mode)</span>
+          </label>
+          <label class="opt-row">
+            <input type="checkbox" id="optShort" checked>
+            <span id="optShortLabel">Include self-graded trade-off questions</span>
+          </label>
+        </div>
+        <p class="warn" id="startWarn" style="display:none;">Select at least one topic to start.</p>
+      </div>
+
+      <button class="btn btn-primary" id="startBtn" type="button">Start quiz →</button>
+    </section>
+
+    <!-- QUIZ SCREEN -->
+    <section class="screen" id="screen-quiz" hidden>
+      <div class="card" id="quizCard"></div>
+    </section>
+
+    <!-- RESULTS SCREEN -->
+    <section class="screen" id="screen-results" hidden>
+      <div class="card">
+        <div class="score-block">
+          <span class="score-num" id="resScoreNum">0/0</span><span class="score-pct" id="resScorePct"></span>
+          <p class="score-msg" id="resScoreMsg"></p>
+        </div>
+        <div id="topicBreakdown"></div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-primary" id="retakeAllBtn" type="button">Retake full quiz</button>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-ghost" id="retakeMistakesBtn" type="button">Retake missed questions only</button>
+        <button class="btn btn-ghost" id="changeTopicsBtn" type="button">Change topics</button>
+      </div>
+
+      <button class="review-toggle" id="reviewToggle" type="button" style="margin-top:22px;">
+        <span>Review all answers</span><span id="reviewCaret">＋</span>
+      </button>
+      <div class="review-list" id="reviewList" style="display:none;"></div>
+
+      <p class="footnote">Built from every slide of the Cache Memory chapter — nothing skipped.</p>
+    </section>
+
+  </main>
+</div>
+
+<script>
+(function(){
+"use strict";
+
+/* ============================== DATA ============================== */
+
+var TOPICS = [
+  {key:"hier", name:"Storage & Memory Hierarchy"},
+  {key:"tech", name:"Memory Technology (SRAM/DRAM)"},
+  {key:"local", name:"Locality of Reference"},
+  {key:"connect", name:"Cache Connection"},
+  {key:"org", name:"Cache Organization"},
+  {key:"oper", name:"Cache Operation & Hit Ratio"},
+  {key:"map", name:"Mapping Functions"},
+  {key:"direct", name:"Direct Mapping"},
+  {key:"assoc", name:"Associative Mapping"},
+  {key:"setassoc", name:"Set-Associative Mapping"},
+  {key:"replace", name:"Replacement Algorithms"},
+  {key:"write", name:"Write Policies"},
+  {key:"design", name:"Modern Cache Designs"},
+  {key:"bench", name:"Benchmarking"}
+];
+
+var QUESTIONS = [
+
+/* ---------------- hier ---------------- */
+{id:"hier-1", topic:"hier", type:"choice",
+ prompt:"Moving from the top of the storage hierarchy (registers) down to magnetic tape, what happens to capacity, cost, and speed?",
+ choices:["Capacity increases; cost and speed decrease","Capacity decreases; cost and speed increase","Capacity, cost and speed all increase","Capacity, cost and speed all stay the same"],
+ correct:0,
+ explanation:"Moving down the pyramid: capacity goes up, but cost-per-bit and speed both go down. Moving up (toward registers): cost and speed go up, capacity goes down. You can never maximize all three at once — that tension is the whole reason a hierarchy exists."},
+
+{id:"hier-2", topic:"hier", type:"choice",
+ prompt:"True or false: registers, cache, and main memory are all volatile, while solid-state disk, hard disk, optical disk, and tape are all non-volatile.",
+ choices:["True","False"],
+ correct:0,
+ explanation:"That is exactly the split shown on the hierarchy diagram. Registers, cache and main memory lose their contents when power is removed (volatile); everything from solid-state disk downward keeps its contents without power (non-volatile)."},
+
+{id:"hier-3", topic:"hier", type:"choice",
+ prompt:"Which of these is built from semiconductor technology but is still classified as non-volatile, unlike registers, cache and main memory?",
+ choices:["Main memory","Registers","Solid-state disk (SSD)","Cache"],
+ correct:2,
+ explanation:"SSDs are flash-based semiconductor memory, so they sit inside the 'semiconductor memory' box on the diagram alongside registers/cache/main memory — but unlike those three, flash retains its contents without power, so it's grouped with the non-volatile devices."},
+
+{id:"hier-4", topic:"hier", type:"choice",
+ prompt:"Why can't a real computer just build all of its memory out of the fastest available technology (e.g. only registers/SRAM)?",
+ choices:["The fastest technologies are far more expensive per byte and have much lower density/capacity, making an all-fast system impractical","Fast memory physically cannot be wired to a CPU","Only slow memory is non-volatile","Processors run slower when paired with fast memory"],
+ correct:0,
+ explanation:"This is the question the lecture poses directly. The technology evolution tables show it clearly: SRAM stayed dramatically more expensive per MB than DRAM or disk throughout, so an all-SRAM system would be unaffordable and tiny in capacity."},
+
+{id:"hier-5", topic:"hier", type:"choice",
+ prompt:"What underlying principle is the actual reason a multi-level memory hierarchy works at all (i.e. why request frequency drops so much as you go lower)?",
+ choices:["Locality of reference","Moore's Law","Amdahl's Law","The pigeonhole principle"],
+ correct:0,
+ explanation:"Locality of reference is the justification for the entire hierarchy. Without it, a small cache near the CPU wouldn't help — every request would be equally likely to need slow, low-level storage."},
+
+/* ---------------- tech ---------------- */
+{id:"tech-1", topic:"tech", type:"choice",
+ prompt:"Which memory technology is used for cache, and which is used for main memory?",
+ choices:["SRAM for cache, DRAM for main memory","DRAM for cache, SRAM for main memory","SRAM for both","DRAM for both"],
+ correct:0,
+ explanation:"Stated directly on the Memory Technology Evolution slide: SRAM (faster, pricier) is used for cache; DRAM (denser, cheaper) is used for main memory."},
+
+{id:"tech-2", topic:"tech", type:"choice",
+ prompt:"What is the fundamental storage-mechanism difference between SRAM and DRAM?",
+ choices:["SRAM stores a bit in a flip-flop circuit (no refresh needed); DRAM stores a bit as charge on a capacitor (needs periodic refreshing)","SRAM needs refreshing; DRAM does not","They use an identical mechanism, just different voltages","DRAM uses flip-flops; SRAM uses capacitors"],
+ correct:0,
+ explanation:"A flip-flop (several transistors) holds its state as long as power is applied, so SRAM needs no refresh. A DRAM cell is one transistor plus a capacitor whose charge leaks away, so it must be refreshed regularly — which costs a bit of speed but saves a lot of space."},
+
+{id:"tech-3", topic:"tech", type:"choice",
+ prompt:"Compared to DRAM, SRAM is generally:",
+ choices:["Faster, more expensive per bit, and lower density","Slower, cheaper, and higher density","Faster, cheaper, and higher density","Identical in speed, cost and density"],
+ correct:0,
+ explanation:"This trade-off is exactly why SRAM is reserved for the small, fast cache while DRAM (denser, cheaper) is used for the much larger main memory."},
+
+{id:"tech-4", topic:"tech", type:"choice",
+ prompt:"Looking at the 1980→2010 evolution tables, which storage type saw the single largest reduction in cost per MB?",
+ choices:["SRAM (about 320×)","DRAM (about 130,000×)","Disk (about 1,600,000×)","All three improved by an identical factor"],
+ correct:2,
+ explanation:"Disk $/MB dropped from $500 to $0.0003 — roughly a 1,600,000× improvement, far outpacing SRAM's ~320× and even DRAM's ~130,000×. Disk's advantage has always been sheer density/cost, not speed."},
+
+{id:"tech-5", topic:"tech", type:"choice",
+ prompt:"True or false: between 1980 and 2010, DRAM's access time improved by roughly the same factor as its cost-per-MB did.",
+ choices:["True","False"],
+ correct:1,
+ explanation:"DRAM access time improved only about 9× (375ns → 40ns), while its cost per MB improved about 130,000×. Density and cost scaled vastly faster than raw speed — exactly why a fast cache sitting in front of DRAM is still necessary."},
+
+/* ---------------- local ---------------- */
+{id:"local-1", topic:"local", type:"choice",
+ prompt:"What is temporal locality?",
+ choices:["The tendency to access a memory location again soon after it was last accessed (e.g. loop counters, frequently used variables)","The tendency to access memory locations physically near a recently accessed one","The tendency to access every memory location exactly once","The tendency for newer hardware to run faster"],
+ correct:0,
+ explanation:"Temporal = time. If you used it a moment ago, you'll likely use it again very soon."},
+
+{id:"local-2", topic:"local", type:"choice",
+ prompt:"What is spatial locality?",
+ choices:["The tendency to access memory locations physically near a recently accessed one (e.g. sequential instruction fetch, array traversal)","The tendency to reuse the exact same address repeatedly over time","The tendency to access memory less often as a program runs","The tendency for cache lines to shrink"],
+ correct:0,
+ explanation:"Spatial = space/location. If you just touched an address, you're likely to touch its neighbors soon — which is exactly why cache brings in whole blocks, not single words."},
+
+{id:"local-3", topic:"local", type:"choice",
+ prompt:"A for-loop repeatedly re-reading the same loop-counter variable on every iteration is the clearest example of:",
+ choices:["Temporal locality","Spatial locality","Neither","Write-back"],
+ correct:0,
+ explanation:"Same address, reused again and again in a short time window — textbook temporal locality."},
+
+{id:"local-4", topic:"local", type:"choice",
+ prompt:"Sequentially reading through consecutive elements of an array is the clearest example of:",
+ choices:["Spatial locality","Temporal locality","Neither","Direct mapping"],
+ correct:0,
+ explanation:"Consecutive addresses accessed one after another — the program counter stepping through instructions works the same way."},
+
+{id:"local-5", topic:"local", type:"choice",
+ prompt:"Why does locality of reference matter specifically for cache design?",
+ choices:["It means a small, fast cache holding only recently/nearby-used data can satisfy most memory requests, without needing to be anywhere near as large as main memory","It guarantees cache and main memory always hold identical data","It removes the need for a valid bit on each line","It removes the need for any replacement algorithm"],
+ correct:0,
+ explanation:"If accesses were truly random, a small cache would rarely contain what's needed next. Locality is what makes 'small and fast near the CPU' actually work."},
+
+/* ---------------- connect ---------------- */
+{id:"connect-1", topic:"connect", type:"choice",
+ prompt:"Why isn't cache simply connected to the CPU over the same standard system bus used for I/O devices etc.?",
+ choices:["That bus is shared and comparatively slow, so cache instead gets a dedicated, fast path straight to the CPU","The standard bus can't carry binary data","Cache must always sit off-chip, far from the CPU","The standard bus is physically reserved for I/O devices only"],
+ correct:0,
+ explanation:"Putting cache on the shared bus would mean fighting for bandwidth with every other component. Instead, a fast on-chip bus connects L1 cache directly to the CPU."},
+
+{id:"connect-2", topic:"connect", type:"choice",
+ prompt:"What is transferred over the fast, on-chip bus between the CPU and (L1) cache?",
+ choices:["A single word at a time","An entire disk sector","A whole memory block (cache line) at a time","A full page table"],
+ correct:0,
+ explanation:"CPU ↔ cache moves at word granularity — exactly what the processor asked for, nothing more."},
+
+{id:"connect-3", topic:"connect", type:"choice",
+ prompt:"What is transferred over the slower, shared bus between cache and main memory?",
+ choices:["A block of several words (a cache line) at a time","One byte at a time","One bit at a time","An entire running program"],
+ correct:0,
+ explanation:"Cache ↔ memory moves at block granularity, bringing in a whole neighborhood of words in one slow-bus trip."},
+
+{id:"connect-4", topic:"connect", type:"choice",
+ prompt:"Using block transfers (instead of single-word transfers) between memory and cache is primarily meant to exploit:",
+ choices:["Spatial locality, while also reducing how often the slow shared bus needs to be used","Temporal locality only, with no effect on the bus","The valid bit","Random replacement"],
+ correct:0,
+ explanation:"One larger, less-frequent transfer captures neighboring words you're likely to need soon (spatial locality) and makes better use of an inherently slower bus than many tiny transfers would."},
+
+/* ---------------- org ---------------- */
+{id:"org-1", topic:"org", type:"choice",
+ prompt:"In the cache organization model, what do M, K and C represent?",
+ choices:["M = number of memory blocks, K = words per block, C = number of cache lines","M = number of cache lines, K = number of memory blocks, C = words per line","M = megabytes of memory, K = kilobytes of cache, C = cost","M = cache size, K = block count, C = word size in bits"],
+ correct:0,
+ explanation:"Memory is partitioned into M blocks of K words each; the (much smaller) cache holds C lines, each capable of storing one block."},
+
+{id:"org-2", topic:"org", type:"choice",
+ prompt:"Why is C << M (far fewer cache lines than memory blocks)?",
+ choices:["Cache is deliberately much smaller, faster and pricier than main memory, so it can only hold a small subset of blocks at any time","Memory blocks are physically bigger objects than cache lines","C and M must always be numerically equal","Because of the valid bit"],
+ correct:0,
+ explanation:"That's the whole cost/speed/capacity trade-off in miniature: cache buys speed by sacrificing capacity, so it can only ever hold a fraction of memory's blocks."},
+
+{id:"org-3", topic:"org", type:"choice",
+ prompt:"What is the purpose of the tag stored alongside each cache line?",
+ choices:["To identify which memory block is currently sitting in that line","To store the actual data word being cached","To pick which replacement algorithm is used","To record how long ago the line was accessed"],
+ correct:0,
+ explanation:"Since many different memory blocks can potentially occupy the same line over time, the tag is how the cache proves 'yes, this line really does hold the block you're asking for.'"},
+
+{id:"org-4", topic:"org", type:"choice",
+ prompt:"What does the extra valid ('in use') bit on a cache line indicate?",
+ choices:["Whether the line currently holds meaningful data at all (vs. being empty, e.g. right after power-on)","Whether the data has been modified since being loaded","Which CPU core owns the line","The cache's associativity"],
+ correct:0,
+ explanation:"A matching tag is useless if the line is actually empty — the valid bit is checked first to rule that out."},
+
+{id:"org-5", topic:"org", type:"choice",
+ prompt:"Why does cache transfer whole blocks instead of single words from memory?",
+ choices:["To exploit locality of reference and make efficient use of a comparatively slow shared bus (fewer, larger transfers beat many small ones)","Because memory hardware physically cannot address single words","Because the CPU cannot process single words","Purely to make tag comparison simpler"],
+ correct:0,
+ explanation:"Same idea as the cache-connection slides: block transfers trade a bit of wasted bandwidth (if locality is weak) for far fewer round trips on the slow bus."},
+
+/* ---------------- oper ---------------- */
+{id:"oper-1", topic:"oper", type:"choice",
+ prompt:"What distinguishes a cache 'hit' from a 'miss'?",
+ choices:["Hit = the requested word's block is already in cache; miss = it is not, and must be fetched from memory first","Hit = data was found on disk; miss = data was found in cache","Hit = a write operation; miss = a read operation","Hit = the valid bit is 0"],
+ correct:0,
+ explanation:"Straightforward but foundational: every mapping and replacement discussion that follows is really just about maximizing hits and minimizing misses."},
+
+{id:"oper-2", topic:"oper", type:"choice",
+ prompt:"The slides give a naive/default hit-ratio formula H = C/M. If a cache has C = 64 lines and memory has M = 8192 blocks, what does this formula give?",
+ choices:["64 / 8192 ≈ 0.78%","8192 / 64 = 128","50%","100%"],
+ correct:0,
+ explanation:"H = C/M = 64/8192 = 0.0078 ≈ 0.78%. This is a deliberately pessimistic baseline — it assumes every block is equally likely to be requested, ignoring locality entirely."},
+
+{id:"oper-3", topic:"oper", type:"choice",
+ prompt:"Is H = C/M a realistic estimate of real-world cache hit ratios?",
+ choices:["No — it's a pessimistic baseline assuming uniform random access; real hit ratios are far higher thanks to locality of reference","Yes, it matches what's observed in practice almost exactly","It only applies to write-back caches","It only applies to fully associative caches"],
+ correct:0,
+ explanation:"Real programs are nowhere near uniformly random in their access pattern, so actual hit ratios are typically well above 90%, not below 1%."},
+
+{id:"oper-4", topic:"oper", type:"choice",
+ prompt:"What happens as cache block size decreases, with total cache size held fixed?",
+ choices:["More (smaller) lines fit in the cache, but each fetch captures less of the surrounding spatial-locality benefit","Fewer lines fit, and the spatial-locality benefit per fetch increases","Nothing changes about hit rate","The tag field disappears entirely"],
+ correct:0,
+ explanation:"Smaller blocks mean more distinct lines available, but each miss only pulls in a small neighborhood of words — so you get less 'free' benefit from spatial locality per fetch."},
+
+{id:"oper-5", topic:"oper", type:"choice",
+ prompt:"What happens as cache block size increases, with total cache size held fixed?",
+ choices:["Fewer lines fit (more evictions), and eventually the spatial-locality benefit per fetch also drops once blocks exceed the useful 'reuse window'","More lines fit and the spatial-locality benefit keeps increasing without limit","Hit ratio always increases without limit","The tag field becomes unnecessary"],
+ correct:0,
+ explanation:"There's a sweet spot for block size. Too large, and you're both losing lines to fewer total slots AND wasting bandwidth dragging in words from the block that never actually get used before eviction."},
+
+/* ---------------- map ---------------- */
+{id:"map-1", topic:"map", type:"choice",
+ prompt:"What problem does a 'mapping function' solve?",
+ choices:["It decides which cache line(s) a given memory block is allowed to occupy","It decides which replacement algorithm the cache uses","It decides the write policy (write-through vs write-back)","It decides the processor's clock speed"],
+ correct:0,
+ explanation:"Mapping functions link block j (in memory) to line i (in cache) — that's their entire job, separate from replacement or write-policy decisions."},
+
+{id:"map-2", topic:"map", type:"choice",
+ prompt:"Which of these is NOT one of the three mapping functions covered in this chapter?",
+ choices:["Direct mapping","Associative mapping","Set-associative mapping","Priority mapping"],
+ correct:3,
+ explanation:"'Priority mapping' isn't a real cache mapping scheme — the three covered are direct, (fully) associative, and set-associative."},
+
+{id:"map-3", topic:"map", type:"choice",
+ prompt:"Ordering the three mapping schemes from LEAST to MOST flexible in where a block may be placed:",
+ choices:["Direct → set-associative → associative","Associative → set-associative → direct","Set-associative → direct → associative","They are all equally flexible"],
+ correct:0,
+ explanation:"Direct allows exactly one slot; set-associative allows k slots within one set; fully associative allows any line in the whole cache."},
+
+/* ---------------- direct ---------------- */
+{id:"direct-1", topic:"direct", type:"choice",
+ prompt:"What is the direct-mapping formula linking cache line i to memory block j (with C = 2^r lines)?",
+ choices:["i = j mod 2^r ( = C )","i = j × C","i = j + C","i = C mod j"],
+ correct:0,
+ explanation:"Block j always lands in the same single line i, determined purely by j mod C — no choice involved."},
+
+{id:"direct-2", topic:"direct", type:"choice",
+ prompt:"In direct mapping, a memory address of s+w bits is split into which three fields, from most- to least-significant?",
+ choices:["Tag (s−r bits) | Line index (r bits) | Word offset (w bits)","Word offset | Line index | Tag","Line index | Tag | Word offset","Tag | Word offset | Line index"],
+ correct:0,
+ explanation:"The top s−r bits act as the tag once you've already used the r index bits to pick the line; the low w bits then select the specific word inside that block."},
+
+{id:"direct-3", topic:"direct", type:"choice",
+ prompt:"What is the correct order of steps in the direct-mapping lookup procedure?",
+ choices:["1) Jump straight to the cache line given by the r index bits 2) Compare the stored tag to the address's (s−r) tag bits 3) If it matches, use the w offset bits to fetch the exact word","1) Compare all tags in the cache 2) Pick a line at random 3) Update the valid bit","1) Read all of memory 2) Compute the hit ratio 3) Return the block","1) Use the w bits to find the set 2) Use the r bits as the tag"],
+ correct:0,
+ explanation:"Direct mapping never needs to search — the index bits point straight at the one and only candidate line."},
+
+{id:"direct-4", topic:"direct", type:"numeric",
+ prompt:"A direct-mapped cache is 4 KB total, using 32-byte blocks. How many cache lines does it have? (Enter just the number.)",
+ correct:128,
+ explanation:"4096 bytes ÷ 32 bytes per block = 128 lines. Since 128 = 2^7, this cache needs r = 7 index bits."},
+
+{id:"direct-5", topic:"direct", type:"numeric",
+ prompt:"Using that same cache (32-byte blocks) and 4-byte floats, how many floats fit in one cache line? (Enter just the number.)",
+ correct:8,
+ explanation:"32 bytes ÷ 4 bytes per float = 8 floats per line — this is exactly the worked example from the slides (float a[1024], b[1024])."},
+
+{id:"direct-6", topic:"direct", type:"choice",
+ prompt:"Worked example: arrays a[1024] and b[1024] (summing a[i]*b[i]) in a direct-mapped cache. If a and b happen to sit right after each other in memory, so each access to a's block also brings in the matching part of b, what hit rate resulted, and why?",
+ choices:["87.5% — one miss per 8-float block also drags in the other array's data via spatial locality, leaving 7 of every 8 accesses as hits","0% — a and b always conflict for the same line","100% — there are never any misses in this scenario","50%, regardless of layout"],
+ correct:0,
+ explanation:"Per group of 8 elements: the first access misses (loading a whole line for both a[] and b[]), and the next 7 all hit — 7/8 = 87.5%. This is direct mapping performing about as well as it possibly can."},
+
+{id:"direct-7", topic:"direct", type:"choice",
+ prompt:"Worked example (the twist): in that same setup, if a and b instead happen to map to the SAME cache line index despite the cache otherwise being nearly empty, what hit rate resulted?",
+ choices:["0% — every access to a evicts b's block and vice-versa, a pattern called thrashing","87.5%, same as before, since layout doesn't matter","100%, since collisions are automatically resolved","It depends only on the size of the tag field"],
+ correct:0,
+ explanation:"This is the single most important direct-mapping exam point: a nearly-empty cache can still hit 0% hit rate if two frequently-used blocks happen to collide on the same index. Direct mapping offers zero flexibility to avoid that."},
+
+/* ---------------- assoc ---------------- */
+{id:"assoc-1", topic:"assoc", type:"choice",
+ prompt:"In (fully) associative mapping, where can a memory block be placed?",
+ choices:["In any cache line at all — complete freedom of placement","Only in exactly one specific line, like direct mapping","Only within its one designated 'set'","Nowhere — associative caches don't store blocks"],
+ correct:0,
+ explanation:"No restriction whatsoever on placement — the defining feature of full associativity."},
+
+{id:"assoc-2", topic:"assoc", type:"choice",
+ prompt:"How does associative mapping locate a requested word?",
+ choices:["By comparing the address's tag against every single cache line's tag, all in parallel","By checking lines one at a time until one happens to match","By jumping straight to one line using index bits","By checking only even-numbered lines"],
+ correct:0,
+ explanation:"Since the block could be anywhere, the hardware needs a comparator per line, checking all of them simultaneously to keep lookup fast."},
+
+{id:"assoc-3", topic:"assoc", type:"choice",
+ prompt:"Why does an associative-mapped address have no separate 'line index' field, unlike direct mapping?",
+ choices:["Because a block could be in any line, so the entire non-offset portion of the address (s bits) must serve as the tag for full comparison","Because associative caches don't use tags at all","Because there's no concept of a cache line in associative mapping","Because the word-offset field is removed instead"],
+ correct:0,
+ explanation:"There's no single 'right' line to index into, so nothing can be dropped from the tag — all s bits are needed to uniquely identify the block."},
+
+{id:"assoc-4", topic:"assoc", type:"choice",
+ prompt:"What is the main advantage of associative mapping over direct mapping?",
+ choices:["It eliminates the forced-collision thrashing problem, since any two blocks can coexist in cache regardless of their addresses","It needs no tag comparison at all","It's always cheaper to build in hardware","It never requires a replacement algorithm"],
+ correct:0,
+ explanation:"The direct-mapping worst case (two frequently-used blocks colliding on one index) simply can't happen here, since placement is unconstrained."},
+
+{id:"assoc-5", topic:"assoc", type:"choice",
+ prompt:"What is the main disadvantage of associative mapping?",
+ choices:["It needs expensive parallel comparator hardware for every single line, which scales poorly as cache size grows","It cannot hold more than 4 blocks total","It's slower than main memory itself for every access","It's incompatible with any replacement algorithm"],
+ correct:0,
+ explanation:"Comparing against every line in parallel is the price of full flexibility — practical only for fairly small numbers of lines, which is exactly why set-associative mapping exists as a middle ground."},
+
+/* ---------------- setassoc ---------------- */
+{id:"setassoc-1", topic:"setassoc", type:"choice",
+ prompt:"In set-associative mapping, how is the cache divided?",
+ choices:["Into v = 2^d sets, each containing k = C/v lines","Into exactly two equal halves, always","Into C completely separate independent caches","Into M sets, one per memory block"],
+ correct:0,
+ explanation:"This is the direct-mapping idea (index bits pick a bucket) combined with the associative idea (free placement within that bucket)."},
+
+{id:"setassoc-2", topic:"setassoc", type:"choice",
+ prompt:"Within a set-associative cache, a given memory block may be placed:",
+ choices:["In any of the k lines within its one specific assigned set, chosen via the d index (set) bits","In literally any line anywhere in the whole cache","Only in line 0 of every set","In two different sets simultaneously"],
+ correct:0,
+ explanation:"Set assignment is fixed (like direct mapping), but placement inside that set is free (like associative mapping)."},
+
+{id:"setassoc-3", topic:"setassoc", type:"choice",
+ prompt:"What is a 'k-way set-associative' cache?",
+ choices:["A set-associative cache where each set contains k lines, so up to k parallel tag comparisons are needed per lookup","A cache with k entirely separate hierarchy levels (L1…Lk)","A cache that can only ever be replaced k times total","A cache with k valid bits attached to every line"],
+ correct:0,
+ explanation:"'k-way' literally counts the lines per set — and therefore the number of tag comparators needed."},
+
+{id:"setassoc-4", topic:"setassoc", type:"choice",
+ prompt:"What special case of set-associative mapping do you get when k = 1 (exactly one line per set)?",
+ choices:["Direct mapping","Fully associative mapping","Write-through mapping","No caching at all"],
+ correct:0,
+ explanation:"With only one line per set, there's no choice of placement within the set — that's just direct mapping by another name."},
+
+{id:"setassoc-5", topic:"setassoc", type:"choice",
+ prompt:"What special case of set-associative mapping do you get when k = C (a single set containing the entire cache)?",
+ choices:["Fully associative mapping","Direct mapping","FIFO replacement","Write-back mapping"],
+ correct:0,
+ explanation:"One giant set spanning the whole cache means any block can go in any line — that's exactly full associativity."},
+
+{id:"setassoc-6", topic:"setassoc", type:"numeric",
+ prompt:"A set-associative cache has C = 256 total lines, organized into v = 4 sets. What is k, the associativity ('ways')? (Enter just the number.)",
+ correct:64,
+ explanation:"k = C/v = 256/4 = 64. In bit terms: C = 2^8 so r = 8; v = 2^2 so d = 2; k = 2^(r−d) = 2^6 = 64 — a 64-way set-associative cache."},
+
+{id:"setassoc-7", topic:"setassoc", type:"choice",
+ prompt:"The real-world PowerPC G3/4 example mentioned in the slides used what cache configuration?",
+ choices:["8-way set-associative, 2 × 32 KB","Fully associative, 1 × 64 KB","Direct-mapped, 1 × 16 KB","2-way set-associative, 4 × 8 KB"],
+ correct:0,
+ explanation:"Given as a concrete real-hardware example: k is kept small (8-way here) — just enough to substantially cut thrashing without full associativity's hardware cost."},
+
+/* ---------------- replace ---------------- */
+{id:"replace-1", topic:"replace", type:"choice",
+ prompt:"When is a replacement-algorithm decision actually needed?",
+ choices:["On a cache miss under associative or set-associative mapping, where there's a genuine choice of which line to evict (not applicable to direct mapping, which has no choice)","On every single cache hit","Only when the write policy is write-through","Only once the cache is completely empty"],
+ correct:0,
+ explanation:"Direct mapping never needs this — each block has exactly one possible slot. Choice only exists once a set (or the whole cache) can hold more than one candidate block."},
+
+{id:"replace-2", topic:"replace", type:"choice",
+ prompt:"What does the theoretical 'Optimal' (Belady's) replacement algorithm do, and why isn't it used in real hardware?",
+ choices:["It replaces the line that won't be needed again for the longest time (or ever); it's not implementable because it requires knowledge of future accesses, so it's used only as a theoretical benchmark","It replaces the newest line; it's simply too slow in hardware","It replaces a random line; it's too unpredictable to be called 'optimal'","It is in fact used in all modern CPUs"],
+ correct:0,
+ explanation:"You can only compute the truly optimal choice by knowing the future — impossible in real time, but useful as a yardstick to measure how close a real algorithm gets."},
+
+{id:"replace-3", topic:"replace", type:"choice",
+ prompt:"What are the main pros and cons of Random replacement?",
+ choices:["Pro: extremely simple, zero extra work on a hit; con: not intelligent, provably worst-case in certain access patterns, susceptible to thrashing","Pro: always mathematically optimal; con: too complex to build in hardware","Pro: never thrashes under any pattern; con: requires knowledge of the future","Pro: tracks access frequency perfectly; con: very slow"],
+ correct:0,
+ explanation:"Random needs no bookkeeping at all, which is its whole appeal — but it can be shown to be the worst possible choice for certain deliberately adversarial access patterns."},
+
+{id:"replace-4", topic:"replace", type:"choice",
+ prompt:"What does FIFO replacement do, and what assumption does it rely on?",
+ choices:["Evicts the oldest-resident line, assuming older lines are least likely to be needed again soon — an assumption that isn't always true","Evicts the most recently used line every time","Evicts a randomly chosen line each time","Evicts whichever line has been hit the most times"],
+ correct:0,
+ explanation:"FIFO only needs a single pointer to track age, but 'oldest = least useful' can easily be false — an old line that's still being reused constantly gets evicted anyway."},
+
+{id:"replace-5", topic:"replace", type:"choice",
+ prompt:"What is the central trade-off of true LRU (Least Recently Used) replacement?",
+ choices:["Excellent hit-rate performance (near-optimal, resists thrashing well) but expensive to implement: a stack-like structure needing k·log₂(k) bits per set, updated on every hit","Terrible performance, but completely free to implement","It requires no extra bits of bookkeeping at all","It only works together with direct mapping"],
+ correct:0,
+ explanation:"LRU is provably close to the best achievable in many realistic contexts, but tracking a full recency ordering — and updating it on hits, not just misses — is real hardware overhead."},
+
+{id:"replace-6", topic:"replace", type:"numeric",
+ prompt:"For an 8-line set (k = 8), how many bits per set does a full LRU stack implementation need? Use k·log₂(k). (Enter just the number.)",
+ correct:24,
+ explanation:"k·log₂(k) = 8 × log₂(8) = 8 × 3 = 24 bits per set for a complete recency ordering of 8 lines."},
+
+{id:"replace-7", topic:"replace", type:"choice",
+ prompt:"What is the goal of 'pseudo-LRU' algorithms, and what are its two variants from the slides?",
+ choices:["Approximate LRU's hit-rate performance with something closer to FIFO's simplicity; the variants are Tree-Based (TB) pseudo-LRU and Most-Recently-Used (MRU) pseudo-LRU","Guarantee perfectly optimal replacement using zero extra bits; the variants are Random and FIFO","Replace lines only during a write-back; the variants are Direct and Associative","There is only one variant: LRU-2"],
+ correct:0,
+ explanation:"Pseudo-LRU exists specifically because true LRU's bit cost and per-hit updates are expensive — these two variants trade a little accuracy for much cheaper hardware."},
+
+{id:"replace-8", topic:"replace", type:"numeric",
+ prompt:"For that same 8-line set, Tree-Based (TB) pseudo-LRU needs k−1 bits total. How many bits is that? (Enter just the number.)",
+ correct:7,
+ explanation:"k − 1 = 8 − 1 = 7 bits — far cheaper than true LRU's 24 bits for the same 8 lines, at the cost of only approximating the recency order rather than tracking it exactly."},
+
+{id:"replace-9", topic:"replace", type:"choice",
+ prompt:"In MRU-based pseudo-LRU, what happens on a cache hit to line i, and what happens if setting the last remaining zero-bit to one would leave no zero-bits at all?",
+ choices:["Bit i is set to 1; if that would leave zero '0' bits remaining anywhere in the set, all the OTHER bits are reset to 0 so there's always at least one eviction candidate","Bit i is set to 0, and nothing else happens","All bits in the set are reset to 1","The entire set is evicted immediately"],
+ correct:0,
+ explanation:"This reset rule is what keeps the algorithm from running out of '0' (evictable) candidates as more and more lines get touched."},
+
+{id:"replace-10", topic:"replace", type:"choice",
+ prompt:"What is the known weakness of MRU pseudo-LRU compared to true LRU?",
+ choices:["Because it only tracks a binary used/unused flag rather than a full recency ordering, it can sometimes evict a line that was actually used quite recently","It uses more bits in total than true LRU does","It cannot guarantee unused lines are ever removed from the cache","It's incompatible with set-associative caches"],
+ correct:0,
+ explanation:"A single used/unused bit can't distinguish 'used 2 accesses ago' from 'used 200 accesses ago' — that lost precision is the price of the cheaper implementation."},
+
+{id:"replace-11", topic:"replace", type:"numeric",
+ prompt:"For that same 8-line set, MRU pseudo-LRU needs k bits (one per line). How many bits is that? (Enter just the number.)",
+ correct:8,
+ explanation:"k = 8 bits — putting all three approaches side by side for an 8-line set: true LRU = 24 bits, Tree-Based pseudo-LRU = 7 bits, MRU pseudo-LRU = 8 bits. Both pseudo-LRU variants are dramatically cheaper than true LRU, which is exactly the point of using them."},
+
+/* ---------------- write ---------------- */
+{id:"write-1", topic:"write", type:"choice",
+ prompt:"Why can cache and main memory end up holding inconsistent data, and why is that actually dangerous?",
+ choices:["A CPU write updates the cached copy; if memory isn't updated too, other components that access memory directly (e.g. via DMA) may read stale, incorrect data","Because cache is non-volatile while memory is volatile","Because tags are stored differently in each of them","Because block size always differs between cache and memory"],
+ correct:0,
+ explanation:"The processor always checks cache first, so it never sees stale data — but a component using Direct Memory Access bypasses the CPU/cache entirely and could read main memory directly, seeing outdated values if the write policy hasn't pushed the update through yet."},
+
+{id:"write-2", topic:"write", type:"choice",
+ prompt:"What does the write-through policy do?",
+ choices:["Every cache write is immediately also written through to main memory","Writes are never sent to main memory at all","Writes are batched and sent to memory once per hour","Writes bypass the cache entirely and go straight to memory"],
+ correct:0,
+ explanation:"Simplest possible rule: cache write happens, memory write happens right alongside it, every single time."},
+
+{id:"write-3", topic:"write", type:"choice",
+ prompt:"What is the key trade-off of write-through?",
+ choices:["It's the simplest policy and keeps memory always consistent, but causes extra data-bus traffic since every write triggers a memory update","It gives the fastest possible writes with zero extra bus traffic","It requires a dirty bit and fairly complex logic","It's incompatible with set-associative caches"],
+ correct:0,
+ explanation:"Simplicity and correctness come at the cost of bandwidth — every write, no matter how small, generates a memory transaction."},
+
+{id:"write-4", topic:"write", type:"choice",
+ prompt:"What does write-back do, and by what mechanism?",
+ choices:["It flags modified lines with a dirty/update bit; memory is only updated later, when that line is evicted from cache (and the bit is found set)","It writes to memory immediately, then flags the cache line afterward","It never writes to memory under any circumstance","It copies the entire cache into memory on every clock cycle"],
+ correct:0,
+ explanation:"Memory updates are deferred and batched implicitly — you only ever pay the cost of a memory write at eviction time, and only if the line was actually modified."},
+
+{id:"write-5", topic:"write", type:"choice",
+ prompt:"Compared to write-through, write-back is generally:",
+ choices:["More efficient (far less bus traffic), but more complex, and leaves memory temporarily inconsistent with cache until eviction","Simpler overall, but slower on every single write","Identical in behavior in every respect","Only usable together with direct-mapped caches"],
+ correct:0,
+ explanation:"This is the classic pairing to contrast on an exam: write-through trades efficiency for simplicity/consistency; write-back trades simplicity/consistency for efficiency."},
+
+/* ---------------- design ---------------- */
+{id:"design-1", topic:"design", type:"choice",
+ prompt:"In a modern multi-level cache hierarchy, how do L1, L2 and L3 typically compare?",
+ choices:["L1: smallest & fastest, per core; L2: bigger but slower, often per core; L3: largest & slowest of the three, usually shared across cores","L1 is shared across all cores while L3 is private to each core","They are all identical in size and speed","L3 is always the fastest of the three levels"],
+ correct:0,
+ explanation:"Speed and privacy shrink as you go up in number: L1 closest & fastest & smallest, L3 furthest & slowest & largest (and typically shared)."},
+
+{id:"design-2", topic:"design", type:"choice",
+ prompt:"What's the difference between an 'inclusive' and an 'exclusive' multi-level cache design?",
+ choices:["Inclusive: a lower level's contents are duplicated in the higher level(s) too; exclusive: each level holds distinct data, giving more effective total capacity at the cost of added complexity","Inclusive caches skip tags entirely; exclusive caches skip replacement algorithms entirely","Inclusive means write-through only; exclusive means write-back only","There is no real difference between them"],
+ correct:0,
+ explanation:"Inclusive is simpler to keep coherent (a copy always exists in the outer level) but 'wastes' some capacity on duplication; exclusive avoids that waste but needs more careful bookkeeping."},
+
+{id:"design-3", topic:"design", type:"choice",
+ prompt:"What is a 'split cache', and what's its main advantage?",
+ choices:["Separate caches for instructions and data (typically at L1), allowing simultaneous retrieval of both at once","A cache physically split across two chips purely for cooling reasons","A cache split evenly between two different running programs","A cache that alternates between write-through and write-back every cycle"],
+ correct:0,
+ explanation:"With one shared cache, fetching an instruction and fetching data would have to take turns; splitting them lets both happen at the same time."},
+
+{id:"design-4", topic:"design", type:"choice",
+ prompt:"What is the main downside of a split cache design?",
+ choices:["Part of the total capacity may go underused depending on the program's actual instruction-vs-data access balance","It cannot support any replacement algorithm","It doubles the number of tags required per single line","It's always slower than an equivalent unified cache"],
+ correct:0,
+ explanation:"If a program is unusually instruction-heavy or data-heavy, the fixed 50/50-ish split can't flex to match, unlike a single unified cache that could allocate space either way."},
+
+{id:"design-5", topic:"design", type:"choice",
+ prompt:"What is a TLB, in the context of this lecture?",
+ choices:["A specialized cache (Translation Lookaside Buffer) used for virtual-memory address translation, covered in more depth in a later lecture","A backup copy of the L3 cache","A 'Total Load Balancer' used for scheduling across cores","The register that stores the write-back dirty bit"],
+ correct:0,
+ explanation:"The slides flag the TLB explicitly but defer the details to the virtual memory lecture — for this chapter, just know it's a cache used for address translation."},
+
+{id:"design-6", topic:"design", type:"choice",
+ prompt:"True or false: in modern multi-core CPUs, L3 cache is typically private to a single core while L1 is typically shared across all cores.",
+ choices:["True","False"],
+ correct:1,
+ explanation:"It's the reverse — L1 is small and private per core (fastest, closest to that core's execution units), while L3 is larger and typically shared across all cores on the chip."},
+
+/* ---------------- bench ---------------- */
+{id:"bench-1", topic:"bench", type:"choice",
+ prompt:"What is the core benchmarking procedure used to reverse-engineer a cache's hidden properties?",
+ choices:["Repeatedly access array elements using a fixed stride of 2^k, sweeping the stride from 1 up to the array's size, and repeating across arrays whose size doubles each time — while measuring average access time","Reading the manufacturer's hardware datasheet directly","Running the program once and timing only its total runtime","Filling the entire cache, then clearing it, and timing the clear operation"],
+ correct:0,
+ explanation:"Access time itself becomes the instrument: by systematically varying stride and array size, the resulting timing patterns reveal cache size, line size, and associativity without ever opening the hardware."},
+
+{id:"bench-2", topic:"bench", type:"choice",
+ prompt:"In the benchmarking sweep, how is cache SIZE identified from the results?",
+ choices:["Access time stays low and flat while array size is smaller than the cache (nothing gets evicted, so there are no misses); it jumps sharply once array size exceeds cache size","Access time stays constant no matter the array size","Cache size is read directly off the axis units of the graph","Cache size is identified by counting how many stride values were tested"],
+ correct:0,
+ explanation:"Once the array can no longer fit entirely inside the cache, looping back around finds earlier data already evicted — misses begin, and average access time rises."},
+
+{id:"bench-3", topic:"bench", type:"choice",
+ prompt:"With array size fixed larger than the cache, how is cache LINE size identified from the benchmarking results?",
+ choices:["As stride increases toward the line size, fewer accesses per line remain 'free' hits, so access time rises — plateauing at its worst value once stride equals the line size (every access now lands in a different line)","Line size has no relationship to stride and must be measured separately","Access time decreases as stride approaches the line size","Line size is always equal to the array size used in the test"],
+ correct:0,
+ explanation:"At stride = line size, literally every access falls in a fresh, never-before-touched line — the worst case, and therefore the point where access time saturates."},
+
+{id:"bench-4", topic:"bench", type:"choice",
+ prompt:"How is cache ASSOCIATIVITY (k) identified from the benchmarking results?",
+ choices:["By choosing strides that force several array elements into the same cache set: access time stays low as long as the number of colliding elements is ≤ k, and jumps once it exceeds k","By measuring cache size and simply dividing it by two","Associativity cannot be measured through benchmarking at all","By counting how many lines appear in the graph's legend"],
+ correct:0,
+ explanation:"Push more competing elements into one set than it can hold (k), and some of them are forced to evict each other — that's the signature you look for."},
+
+{id:"bench-5", topic:"bench", type:"numeric",
+ prompt:"Worked example: with a 256 KB array and a stride of 64 KB, 4 elements map into the same set, and all four still hit. What's the minimum number of ways (k) this tells you the set must support? (Enter just the number.)",
+ correct:4,
+ explanation:"All-hits with 4 colliding elements means the set can hold at least 4 lines — i.e. k ≥ 4."},
+
+{id:"bench-6", topic:"bench", type:"numeric",
+ prompt:"Continuing that example: at a stride of 32 KB, 8 elements now map into the same set, and misses start occurring. Combined with the previous result (k ≥ 4), what value of k (associativity) does this pin down? (Enter just the number.)",
+ correct:4,
+ explanation:"k ≥ 4 from the 64 KB stride, but k < 8 from the 32 KB stride (misses appear) — together these pin k at exactly 4, matching the '4-way set-associative' assumption stated for this benchmark."},
+
+{id:"bench-7", topic:"bench", type:"choice",
+ prompt:"In the worked example's timing graph, the three visible plateaus (~20ns, ~450ns, ~700ns) represented what, and what did they reveal about the system?",
+ choices:["L1 hit (~20ns), L1 miss but TLB hit (~450ns), and both L1 & TLB miss (~700ns) — only three levels appear, confirming there is no L2 cache in this system","Three different cache sizes being benchmarked at the same time","Three different replacement algorithms being compared side by side","Three different array data types being tested"],
+ correct:0,
+ explanation:"Each plateau corresponds to a distinct combination of hit/miss outcomes across the two lookup structures (L1 cache and TLB) actually present in this system."},
+
+{id:"bench-8", topic:"bench", type:"choice",
+ prompt:"If this same system DID have an L2 cache, what would you expect to see differently in the benchmark graph?",
+ choices:["An additional, intermediate timing plateau (an 'L1 miss, L2 hit' tier) appearing between the L1-hit and L1-miss timings","The graph would look completely identical either way","The stride (x-axis) would need to be removed entirely","All timings would collapse to match the L1-hit value"],
+ correct:0,
+ explanation:"Every real level in the memory hierarchy that gets exercised by the benchmark should show up as its own distinct timing plateau — an absent plateau is itself informative (as it was here, revealing 'no L2')."},
+
+/* ---------------- self-graded short-answer ---------------- */
+{id:"short-1", topic:"local", type:"short",
+ prompt:"In your own words: why does the memory hierarchy actually work in practice, given that most of it is made of slow, cheap storage?",
+ modelAnswer:"It works because of locality of reference. Programs tend to reuse the same data again very soon (temporal locality) and touch addresses near recently used ones (spatial locality — sequential instructions, array traversal). Because of this, the frequency of requests drops off sharply as you go lower in the pyramid, so a small, fast cache sitting near the CPU can satisfy the overwhelming majority of requests — the slow, cheap, high-capacity levels only get touched rarely."},
+
+{id:"short-2", topic:"map", type:"short",
+ prompt:"Compare direct, associative, and set-associative mapping: how does each place a block, and what's the trade-off between them?",
+ modelAnswer:"Direct mapping: each block has exactly one possible line (i = j mod C) — cheapest and fastest lookup (a single comparator), but two frequently-used blocks that collide on the same index can thrash the cache down to 0% hit rate even when it's otherwise empty.\nAssociative (fully associative) mapping: a block can go in any line at all, with all tags compared in parallel — this eliminates that forced-collision thrashing entirely, but needs expensive comparator hardware for every line, which doesn't scale as cache size grows.\nSet-associative mapping: the practical middle ground — the cache is divided into sets of k lines; a block is restricted to one set (like direct mapping) but can go in any of the k lines within it (like associative mapping). k=1 reduces to direct mapping, k=C reduces to full associativity; k is kept small in practice (e.g. 4-way, 8-way) to get most of the thrashing resistance at a fraction of the hardware cost."},
+
+{id:"short-3", topic:"replace", type:"short",
+ prompt:"Compare Random, FIFO, LRU, and pseudo-LRU replacement in terms of performance versus implementation cost.",
+ modelAnswer:"Optimal (Belady's) is the theoretical best — replace whatever won't be needed again for the longest time — but it needs future knowledge, so it's only ever used as a benchmark, never implemented.\nRandom: simplest possible, no bookkeeping on a hit, but not intelligent and can be provably worst-case in adversarial patterns.\nFIFO: evicts the oldest line, needs only a single pointer, but 'oldest = least useful' is often a false assumption.\nTrue LRU: near-best real-world performance, very effective against thrashing, but expensive — a stack-like structure needing k·log2(k) bits per set, updated on every hit, not just misses.\nPseudo-LRU (Tree-Based and MRU variants): designed to approximate LRU's performance with far fewer bits (e.g. k-1 or k bits per set instead of k·log2(k)) and cheaper updates, at the cost of sometimes evicting a line that was actually used fairly recently.\nOverall axis: implementation cost and hardware complexity trade off directly against how close you get to optimal hit-rate performance."},
+
+{id:"short-4", topic:"write", type:"short",
+ prompt:"Compare write-through and write-back write policies, including why the choice matters for things like DMA.",
+ modelAnswer:"Write-through sends every cache write straight to main memory too — simplest policy, memory is always consistent with cache, but it generates a memory transaction (and bus traffic) on every single write, which is inefficient.\nWrite-back only updates the cache immediately, flags the line as 'dirty' via an update bit, and defers the memory update until that line is evicted (checking the dirty bit first) — far less bus traffic and more efficient, but more complex, and it leaves memory temporarily stale.\nThat staleness matters because components like DMA controllers can read main memory directly, bypassing the CPU and cache entirely — if the write policy hasn't pushed an update through yet, a DMA read could return outdated data."},
+
+{id:"short-5", topic:"design", type:"short",
+ prompt:"Explain the trade-off between a split (instruction/data) cache and a unified cache.",
+ modelAnswer:"A split cache uses separate caches for instructions and data (typically at L1), which lets the CPU fetch an instruction and a piece of data at the exact same time instead of contending for one shared cache — a real throughput win for pipelined execution.\nThe downside is inflexibility: the split is fixed, so if a program's actual mix of instruction versus data accesses doesn't match that split, part of the total cache capacity goes underused. A unified cache can allocate its space flexibly between instructions and data, but can't serve both simultaneously from the same structure."},
+
+{id:"short-6", topic:"oper", type:"short",
+ prompt:"Explain what happens to cache performance as block size gets too small, and separately, as it gets too large.",
+ modelAnswer:"Too small: more (smaller) lines fit in the cache, but each miss only brings in a tiny neighborhood of words, so you capture less of the benefit of spatial locality per fetch — you end up missing more often on nearby data you would otherwise have gotten 'for free.'\nToo large: fewer lines fit in total (so more capacity-driven evictions happen), and eventually the block includes words far enough from the original request that they're never actually used before the line gets evicted anyway — wasting bus bandwidth for no hit-rate benefit.\nThere's a sweet spot in between; both extremes hurt hit rate and/or efficiency, which is why real cache line sizes (e.g. 32-256 bytes) sit in a fairly narrow practical range."}
+
+];
+
+/* ============================== STATE ============================== */
+
+var state = {
+  queue: [],
+  idx: 0,
+  answeredCurrent: false,
+  log: [],          // {id, topic, type, isCorrect, userAnswerText, correctAnswerText}
+  choiceOrder: []   // shuffled display order for the current question, array of original indices
+};
+
+var byId = {};
+QUESTIONS.forEach(function(q){ byId[q.id] = q; });
+
+var topicByKey = {};
+TOPICS.forEach(function(t){ topicByKey[t.key] = t; });
+
+function countByTopic(){
+  var c = {};
+  TOPICS.forEach(function(t){ c[t.key] = 0; });
+  QUESTIONS.forEach(function(q){ c[q.topic] = (c[q.topic]||0) + 1; });
+  return c;
+}
+function shortCount(){
+  return QUESTIONS.filter(function(q){ return q.type === "short"; }).length;
+}
+
+function shuffle(arr){
+  var a = arr.slice();
+  for(var i=a.length-1;i>0;i--){
+    var j = Math.floor(Math.random()*(i+1));
+    var tmp=a[i]; a[i]=a[j]; a[j]=tmp;
+  }
+  return a;
+}
+
+function el(tag, className, text){
+  var e = document.createElement(tag);
+  if(className) e.className = className;
+  if(text !== undefined && text !== null) e.textContent = text;
+  return e;
+}
+
+/* ============================== SCREEN HELPERS ============================== */
+
+function showScreen(name){
+  ["start","quiz","results"].forEach(function(s){
+    var node = document.getElementById("screen-"+s);
+    if(s===name){ node.hidden = false; node.classList.add("enter"); }
+    else { node.hidden = true; node.classList.remove("enter"); }
+  });
+  window.scrollTo({top:0, behavior:"auto"});
+}
+
+function setAddrBar(a,b,c){
+  document.getElementById("segA").textContent = a;
+  document.getElementById("segB").textContent = b;
+  document.getElementById("segC").textContent = c;
+}
+
+/* ============================== START SCREEN ============================== */
+
+function buildStartScreen(){
+  document.getElementById("startSubtitle").textContent =
+    QUESTIONS.length + " questions across " + TOPICS.length + " topics — from the storage hierarchy all the way through benchmarking. Nothing from the chapter is left out.";
+
+  document.getElementById("optShortLabel").textContent =
+    "Include self-graded trade-off questions (" + shortCount() + ")";
+
+  var counts = countByTopic();
+  var grid = document.getElementById("topicGrid");
+  grid.innerHTML = "";
+  TOPICS.forEach(function(t){
+    var row = el("label","topic-row");
+    var cb = document.createElement("input");
+    cb.type = "checkbox";
+    cb.checked = true;
+    cb.dataset.topic = t.key;
+    row.appendChild(cb);
+    row.appendChild(el("span","name",t.name));
+    row.appendChild(el("span","count","("+counts[t.key]+")"));
+    grid.appendChild(row);
+  });
+}
+
+document.getElementById("toggleAllBtn").addEventListener("click", function(){
+  var boxes = document.querySelectorAll("#topicGrid input[type=checkbox]");
+  var anyUnchecked = Array.prototype.some.call(boxes, function(b){ return !b.checked; });
+  boxes.forEach(function(b){ b.checked = anyUnchecked; });
+  this.textContent = anyUnchecked ? "Select none" : "Select all";
+});
+
+document.getElementById("startBtn").addEventListener("click", function(){
+  var selected = {};
+  document.querySelectorAll("#topicGrid input[type=checkbox]").forEach(function(b){
+    if(b.checked) selected[b.dataset.topic] = true;
+  });
+  var includeShort = document.getElementById("optShort").checked;
+  var doShuffle = document.getElementById("optShuffle").checked;
+
+  var pool = QUESTIONS.filter(function(q){
+    if(!selected[q.topic]) return false;
+    if(q.type === "short" && !includeShort) return false;
+    return true;
+  });
+
+  if(pool.length === 0){
+    document.getElementById("startWarn").style.display = "block";
+    return;
+  }
+  document.getElementById("startWarn").style.display = "none";
+
+  state.queue = doShuffle ? shuffle(pool) : pool.slice();
+  state.idx = 0;
+  state.log = [];
+  showScreen("quiz");
+  document.getElementById("progressTrack").style.display = "block";
+  renderQuestion();
+});
+
+/* ============================== QUIZ SCREEN ============================== */
+
+function currentQ(){ return state.queue[state.idx]; }
+
+function updateHeaderForQuiz(){
+  var q = currentQ();
+  var tname = topicByKey[q.topic] ? topicByKey[q.topic].name : q.topic;
+  setAddrBar(tname.toUpperCase(), "Q "+(state.idx+1)+" / "+state.queue.length, "Score "+scoreSoFar()+"/"+state.log.length);
+  var pct = Math.round((state.idx)/state.queue.length*100);
+  document.getElementById("progressFill").style.width = pct+"%";
+}
+
+function scoreSoFar(){
+  return state.log.filter(function(l){ return l.isCorrect; }).length;
+}
+
+function renderQuestion(){
+  state.answeredCurrent = false;
+  var q = currentQ();
+  updateHeaderForQuiz();
+
+  var card = document.getElementById("quizCard");
+  card.innerHTML = "";
+
+  var tagRow = el("div","tag-row");
+  tagRow.appendChild(el("span","pill copper", (topicByKey[q.topic]?topicByKey[q.topic].name:q.topic)));
+  if(q.type === "numeric") tagRow.appendChild(el("span","pill","Calculation"));
+  if(q.type === "short") tagRow.appendChild(el("span","pill","Self-graded"));
+  card.appendChild(tagRow);
+
+  card.appendChild(el("p","prompt", q.prompt));
+
+  if(q.type === "choice"){
+    renderChoice(card,q);
+  } else if(q.type === "numeric"){
+    renderNumeric(card,q);
+  } else if(q.type === "short"){
+    renderShort(card,q);
+  }
+}
+
+function renderChoice(card,q){
+  var order = q.choices.map(function(_,i){return i;});
+  order = shuffle(order);
+  state.choiceOrder = order;
+
+  var list = el("div","choice-list");
+  var letters = ["A","B","C","D"];
+  order.forEach(function(origIdx, displayIdx){
+    var btn = el("button","choice-btn");
+    btn.type = "button";
+    btn.appendChild(el("span","letter", letters[displayIdx]+")"));
+    btn.appendChild(el("span","", q.choices[origIdx]));
+    btn.dataset.origIdx = origIdx;
+    btn.addEventListener("click", function(){ selectChoice(q, origIdx); });
+    list.appendChild(btn);
+  });
+  card.appendChild(list);
+
+  var unsure = el("button","unsure-link","Not sure? Reveal the answer");
+  unsure.type = "button";
+  unsure.addEventListener("click", function(){ selectChoice(q, null); });
+  card.appendChild(unsure);
+}
+
+function selectChoice(q, chosenOrigIdx){
+  if(state.answeredCurrent) return;
+  state.answeredCurrent = true;
+  var isCorrect = chosenOrigIdx === q.correct;
+  var isSkip = chosenOrigIdx === null;
+
+  var buttons = document.querySelectorAll("#quizCard .choice-btn");
+  buttons.forEach(function(b){
+    b.disabled = true;
+    var oi = parseInt(b.dataset.origIdx,10);
+    if(oi === q.correct) b.classList.add("is-correct");
+    else if(oi === chosenOrigIdx) b.classList.add("is-wrong");
+  });
+  document.querySelector("#quizCard .unsure-link").style.display = "none";
+
+  logAndShowFeedback(q, isSkip ? "skip" : (isCorrect?"hit":"miss"),
+    isSkip ? "(skipped)" : q.choices[chosenOrigIdx],
+    q.choices[q.correct]);
+}
+
+function renderNumeric(card,q){
+  var row = el("div","num-row");
+  var input = document.createElement("input");
+  input.type = "number";
+  input.step = "any";
+  input.placeholder = "Your answer";
+  input.id = "numInput";
+  row.appendChild(input);
+  var submit = el("button","btn btn-primary","Submit");
+  submit.type = "button";
+  submit.style.width = "auto";
+  row.appendChild(submit);
+  card.appendChild(row);
+
+  function doSubmit(){
+    if(state.answeredCurrent) return;
+    var v = parseFloat(input.value);
+    if(isNaN(v)) { input.focus(); return; }
+    finishNumeric(q, v, false);
+  }
+  submit.addEventListener("click", doSubmit);
+  input.addEventListener("keydown", function(e){ if(e.key==="Enter") doSubmit(); });
+
+  var unsure = el("button","unsure-link","Not sure? Reveal the answer");
+  unsure.type = "button";
+  unsure.addEventListener("click", function(){ finishNumeric(q, null, true); });
+  card.appendChild(unsure);
+}
+
+function finishNumeric(q, value, isSkip){
+  if(state.answeredCurrent) return;
+  state.answeredCurrent = true;
+  var input = document.getElementById("numInput");
+  input.disabled = true;
+  document.querySelector("#quizCard .unsure-link").style.display = "none";
+
+  var isCorrect = !isSkip && Math.abs(value - q.correct) < 0.01;
+  logAndShowFeedback(q, isSkip ? "skip" : (isCorrect?"hit":"miss"),
+    isSkip ? "(skipped)" : String(value),
+    String(q.correct));
+}
+
+function renderShort(card,q){
+  var ta = document.createElement("textarea");
+  ta.placeholder = "Type your own answer here first (recommended) — then reveal the model answer below.";
+  card.appendChild(ta);
+
+  var revealBtn = el("button","btn btn-ghost","Reveal model answer");
+  revealBtn.type = "button";
+  revealBtn.style.marginTop = "12px";
+  card.appendChild(revealBtn);
+
+  revealBtn.addEventListener("click", function(){
+    revealBtn.remove();
+    ta.disabled = true;
+
+    var fb = el("div","feedback");
+    fb.appendChild(el("p","model-answer-label","Model answer"));
+    fb.appendChild(el("div","explain", q.modelAnswer));
+
+    var row = el("div","btn-row");
+    var rightBtn = el("button","btn btn-ghost","I got the key ideas ✓");
+    rightBtn.type="button";
+    var wrongBtn = el("button","btn btn-ghost","I missed this one ✗");
+    wrongBtn.type="button";
+    row.appendChild(rightBtn); row.appendChild(wrongBtn);
+    fb.appendChild(row);
+    card.appendChild(fb);
+
+    rightBtn.addEventListener("click", function(){ selfGrade(q,true,row); });
+    wrongBtn.addEventListener("click", function(){ selfGrade(q,false,row); });
+  });
+}
+
+function selfGrade(q, isCorrect, controlsRow){
+  if(state.answeredCurrent) return;
+  state.answeredCurrent = true;
+  controlsRow.innerHTML = "";
+
+  state.log.push({id:q.id, topic:q.topic, type:q.type, isCorrect:isCorrect,
+    userAnswerText: isCorrect ? "Self-assessed: got it" : "Self-assessed: missed it",
+    correctAnswerText: "(self-graded — see model answer above)"});
+
+  var line = el("div","feedback-line "+(isCorrect?"hit":"miss"));
+  var dot = el("span","led-dot pulse");
+  dot.style.setProperty("--dot-color", isCorrect?"var(--led-green)":"var(--led-red)");
+  dot.style.setProperty("--dot-glow", isCorrect?"var(--led-green-glow)":"var(--led-red-glow)");
+  dot.style.setProperty("--pulse-color", isCorrect?"var(--led-green-glow)":"var(--led-red-glow)");
+  line.appendChild(dot);
+  line.appendChild(document.createTextNode(isCorrect ? "Marked correct" : "Marked as a mistake — reviewed below"));
+  controlsRow.parentNode.insertBefore(line, controlsRow.parentNode.firstChild.nextSibling);
+
+  addNextButton();
+  updateHeaderForQuiz();
+}
+
+function logAndShowFeedback(q, kind, userText, correctText){
+  var isCorrect = (kind === "hit");
+  state.log.push({id:q.id, topic:q.topic, type:q.type, isCorrect:isCorrect,
+    userAnswerText:userText, correctAnswerText:correctText});
+
+  var card = document.getElementById("quizCard");
+  var fb = el("div","feedback");
+
+  var line = el("div","feedback-line "+kind);
+  var dot = el("span","led-dot pulse");
+  var color = kind==="hit" ? "var(--led-green)" : (kind==="miss" ? "var(--led-red)" : "var(--led-amber)");
+  var glow = kind==="hit" ? "var(--led-green-glow)" : (kind==="miss" ? "var(--led-red-glow)" : "var(--led-amber-glow)");
+  dot.style.setProperty("--dot-color", color);
+  dot.style.setProperty("--dot-glow", glow);
+  dot.style.setProperty("--pulse-color", glow);
+  line.appendChild(dot);
+  line.appendChild(document.createTextNode(kind==="hit"?"Hit — correct!":(kind==="miss"?"Miss — not quite":"Skipped — here's the answer")));
+  fb.appendChild(line);
+
+  fb.appendChild(el("div","explain", q.explanation));
+  card.appendChild(fb);
+
+  addNextButton();
+  updateHeaderForQuiz();
+}
+
+function addNextButton(){
+  var card = document.getElementById("quizCard");
+  var isLast = state.idx === state.queue.length-1;
+  var nextBtn = el("button","btn btn-primary", isLast ? "See results →" : "Next question →");
+  nextBtn.type="button";
+  nextBtn.style.marginTop = "18px";
+  nextBtn.addEventListener("click", function(){
+    if(isLast){ finishQuiz(); } else { state.idx++; renderQuestion(); }
+  });
+  card.appendChild(nextBtn);
+  if (typeof nextBtn.scrollIntoView === "function") {
+    nextBtn.scrollIntoView({block:"nearest"});
+  }
+}
+
+/* ============================== RESULTS SCREEN ============================== */
+
+function finishQuiz(){
+  document.getElementById("progressTrack").style.display = "none";
+  var total = state.log.length;
+  var score = scoreSoFar();
+  var pct = total ? Math.round(score/total*100) : 0;
+
+  setAddrBar("Results", score+"/"+total, pct+"%");
+
+  document.getElementById("resScoreNum").textContent = score+"/"+total;
+  document.getElementById("resScorePct").textContent = pct+"%";
+
+  var msg;
+  if(pct>=90) msg = "Excellent — this reads exam-ready. Skim the mistakes below just to be sure.";
+  else if(pct>=75) msg = "Good grasp overall — a handful of weak spots to shore up below.";
+  else if(pct>=50) msg = "Getting there. Revisit the topics below before the exam, then retake just those.";
+  else msg = "Worth another pass through the chapter — use the breakdown below to see exactly where to focus.";
+  document.getElementById("resScoreMsg").textContent = msg;
+
+  renderTopicBreakdown();
+  renderReviewList();
+
+  var mistakes = state.log.filter(function(l){ return !l.isCorrect; }).length;
+  var mBtn = document.getElementById("retakeMistakesBtn");
+  if(mistakes === 0){
+    mBtn.textContent = "No mistakes to retake 🎉";
+    mBtn.disabled = true;
+  } else {
+    mBtn.textContent = "Retake missed questions only ("+mistakes+")";
+    mBtn.disabled = false;
+  }
+
+  showScreen("results");
+}
+
+function renderTopicBreakdown(){
+  var box = document.getElementById("topicBreakdown");
+  box.innerHTML = "";
+  var byTopic = {};
+  state.log.forEach(function(l){
+    byTopic[l.topic] = byTopic[l.topic] || {correct:0,total:0};
+    byTopic[l.topic].total++;
+    if(l.isCorrect) byTopic[l.topic].correct++;
+  });
+  TOPICS.forEach(function(t){
+    var d = byTopic[t.key];
+    if(!d) return;
+    var row = el("div","topic-bar-row");
+    var top = el("div","topic-bar-top");
+    top.appendChild(el("span","tname", t.name));
+    top.appendChild(el("span","tscore", d.correct+"/"+d.total));
+    row.appendChild(top);
+    var track = el("div","bar-track");
+    var fill = el("div","bar-fill");
+    var pct = Math.round(d.correct/d.total*100);
+    fill.style.width = pct+"%";
+    fill.style.background = pct>=80 ? "var(--led-green)" : (pct>=50 ? "var(--led-amber)" : "var(--led-red)");
+    track.appendChild(fill);
+    row.appendChild(track);
+    box.appendChild(row);
+  });
+}
+
+function renderReviewList(){
+  var list = document.getElementById("reviewList");
+  list.innerHTML = "";
+  state.log.forEach(function(l){
+    var q = byId[l.id];
+    var item = el("div","review-item");
+    var head = el("div","review-item-head");
+    head.appendChild(el("span","mark", l.isCorrect ? "✅" : "❌"));
+    head.appendChild(el("span","qtext", q.prompt));
+    item.appendChild(head);
+
+    var body = el("div","review-item-body");
+    if(q.type !== "short"){
+      body.appendChild(el("div","row", null)).innerHTML = "<b>Your answer:</b> "+escapeText(l.userAnswerText);
+      body.appendChild(el("div","row", null)).innerHTML = "<b>Correct answer:</b> "+escapeText(l.correctAnswerText);
+    } else {
+      body.appendChild(el("div","row", l.isCorrect ? "You marked this: got the key ideas." : "You marked this: missed it."));
+    }
+    var explainBox = el("div","explain", q.type==="short" ? q.modelAnswer : q.explanation);
+    body.appendChild(explainBox);
+    item.appendChild(body);
+
+    head.addEventListener("click", function(){ item.classList.toggle("open"); });
+    list.appendChild(item);
+  });
+}
+
+function escapeText(s){
+  var d = document.createElement("div");
+  d.textContent = s;
+  return d.innerHTML;
+}
+
+document.getElementById("reviewToggle").addEventListener("click", function(){
+  var list = document.getElementById("reviewList");
+  var open = list.style.display !== "none";
+  list.style.display = open ? "none" : "flex";
+  document.getElementById("reviewCaret").textContent = open ? "＋" : "－";
+});
+
+document.getElementById("retakeAllBtn").addEventListener("click", function(){
+  var same = state.queue.map(function(q){return q;});
+  state.queue = shuffle(same);
+  state.idx = 0; state.log = [];
+  showScreen("quiz");
+  document.getElementById("progressTrack").style.display = "block";
+  renderQuestion();
+});
+
+document.getElementById("retakeMistakesBtn").addEventListener("click", function(){
+  var mistakeIds = state.log.filter(function(l){return !l.isCorrect;}).map(function(l){return l.id;});
+  var pool = mistakeIds.map(function(id){ return byId[id]; });
+  if(pool.length === 0) return;
+  state.queue = shuffle(pool);
+  state.idx = 0; state.log = [];
+  showScreen("quiz");
+  document.getElementById("progressTrack").style.display = "block";
+  renderQuestion();
+});
+
+document.getElementById("changeTopicsBtn").addEventListener("click", function(){
+  showScreen("start");
+});
+
+/* ============================== INIT ============================== */
+buildStartScreen();
+showScreen("start");
+
+})();
+</script>
+</body>
+</html>
