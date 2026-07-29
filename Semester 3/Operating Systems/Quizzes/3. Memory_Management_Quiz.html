@@ -1,0 +1,1353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark">
+<title>Memory Management — Full Chapter Quiz</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap');
+
+:root{
+  --bg: #122019;
+  --bg-grid: #16261e;
+  --panel: #1a2a22;
+  --panel-2: #21362b;
+  --border: #2d453a;
+  --ink: #f2eee2;
+  --ink-dim: #b7c3ba;
+  --ink-faint: #96a69b;
+  --copper: #cb8a4a;
+  --copper-bright: #e6ac72;
+  --copper-ink: #1a1206;
+  --led-green: #74c47f;
+  --led-green-glow: rgba(116,196,127,0.5);
+  --led-red: #e26e5c;
+  --led-red-glow: rgba(226,110,92,0.5);
+  --led-amber: #e8bb52;
+  --led-amber-glow: rgba(232,187,82,0.5);
+  --sans: "IBM Plex Sans", -apple-system, "Segoe UI", Roboto, sans-serif;
+  --serif: "IBM Plex Serif", Georgia, "Times New Roman", serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", "Cascadia Code", Menlo, Consolas, monospace;
+  --radius: 14px;
+  --radius-sm: 9px;
+}
+
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:
+    linear-gradient(var(--bg-grid) 1px, transparent 1px) 0 0/100% 28px,
+    var(--bg);
+  color:var(--ink);
+  font-family:var(--sans);
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  min-height:100vh;
+}
+.app{
+  max-width:760px;
+  margin:0 auto;
+  padding:18px 18px 60px;
+}
+::selection{ background:var(--copper); color:var(--copper-ink); }
+button{ font-family:inherit; }
+a{ color:inherit; }
+
+/* focus visibility */
+button:focus-visible, input:focus-visible, textarea:focus-visible, [tabindex]:focus-visible{
+  outline:2px solid var(--copper-bright);
+  outline-offset:2px;
+}
+
+@media (prefers-reduced-motion: no-preference){
+  .screen.enter{ animation: fadeUp .32s ease both; }
+  .led-dot.pulse{ animation: ledPulse 1s ease-out 1; }
+  @keyframes fadeUp{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);} }
+  @keyframes ledPulse{ 0%{ box-shadow:0 0 0 0 var(--pulse-color,var(--led-green-glow)); } 100%{ box-shadow:0 0 0 10px rgba(0,0,0,0); } }
+}
+
+/* ---------- signature address-bar header ---------- */
+.addr-bar{
+  display:flex;
+  border:1px solid var(--border);
+  border-radius:10px;
+  overflow:hidden;
+  background:var(--panel);
+  margin-bottom:8px;
+}
+.addr-seg{
+  flex:1 1 0;
+  padding:9px 14px;
+  min-width:0;
+  border-right:1px solid var(--border);
+}
+.addr-seg:last-child{ border-right:none; }
+.addr-label{
+  display:block;
+  font-family:var(--mono);
+  font-size:9.5px;
+  letter-spacing:.14em;
+  color:var(--ink-faint);
+  text-transform:uppercase;
+  margin-bottom:2px;
+}
+.addr-val{
+  display:block;
+  font-family:var(--mono);
+  font-size:13px;
+  color:var(--copper-bright);
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.progress-track{
+  height:4px;
+  background:var(--border);
+  border-radius:3px;
+  margin-bottom:26px;
+  overflow:hidden;
+}
+.progress-fill{
+  height:100%;
+  background:var(--copper);
+  border-radius:3px;
+  transition:width .25s ease;
+}
+
+@media (max-width:480px){
+  .addr-label{ font-size:8.5px; }
+  .addr-val{ font-size:11px; }
+  .addr-seg{ padding:8px 8px; }
+}
+
+/* ---------- generic layout ---------- */
+.screen[hidden]{ display:none; }
+.kicker{
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--copper-bright);
+  margin:0 0 10px;
+}
+h1{
+  font-family:var(--sans);
+  font-weight:700;
+  letter-spacing:-.01em;
+  font-size:clamp(28px,7vw,40px);
+  margin:0 0 10px;
+}
+.subtitle{
+  font-family:var(--serif);
+  font-size:16px;
+  color:var(--ink-dim);
+  max-width:56ch;
+  margin:0 0 6px;
+}
+.help-line{
+  font-size:13.5px;
+  color:var(--ink-faint);
+  max-width:60ch;
+  margin:14px 0 28px;
+}
+
+.card{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:22px;
+  margin-bottom:16px;
+}
+
+/* ---------- topic picker ---------- */
+.picker-head{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  margin-bottom:14px;
+}
+.picker-head h2{
+  font-size:14px;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  font-family:var(--mono);
+  color:var(--ink-dim);
+  margin:0;
+}
+.picker-toggle{
+  font-family:var(--mono);
+  font-size:12px;
+  color:var(--copper-bright);
+  background:none;
+  border:none;
+  cursor:pointer;
+  text-decoration:underline;
+  padding:2px 0;
+}
+.topic-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  margin-bottom:6px;
+}
+@media (max-width:560px){ .topic-grid{ grid-template-columns:1fr; } }
+.topic-row{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 12px;
+  background:var(--panel-2);
+  border:1px solid var(--border);
+  border-radius:var(--radius-sm);
+  cursor:pointer;
+  min-height:44px;
+}
+.topic-row input{ accent-color:var(--copper); width:17px; height:17px; flex:none; cursor:pointer; }
+.topic-row span.name{ font-size:14px; flex:1; }
+.topic-row span.count{ font-family:var(--mono); font-size:11.5px; color:var(--ink-faint); }
+
+.opt-row{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 2px;
+  cursor:pointer;
+}
+.opt-row input{ accent-color:var(--copper); width:17px; height:17px; flex:none; cursor:pointer; }
+.opt-row span{ font-size:14px; color:var(--ink-dim); }
+
+.warn{
+  color:var(--led-red);
+  font-size:13px;
+  margin:6px 0 0;
+  font-family:var(--mono);
+}
+
+.btn{
+  font-family:var(--mono);
+  font-size:14px;
+  font-weight:500;
+  letter-spacing:.02em;
+  border-radius:var(--radius-sm);
+  padding:13px 20px;
+  border:1px solid transparent;
+  cursor:pointer;
+  min-height:46px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+}
+.btn-primary{
+  background:var(--copper);
+  color:var(--copper-ink);
+  width:100%;
+}
+.btn-primary:hover{ background:var(--copper-bright); }
+.btn-ghost{
+  background:transparent;
+  color:var(--ink);
+  border-color:var(--border);
+}
+.btn-ghost:hover{ border-color:var(--copper); color:var(--copper-bright); }
+.btn-row{ display:flex; flex-wrap:wrap; gap:10px; margin-top:6px; }
+.btn-row .btn{ flex:1 1 auto; }
+.btn:disabled{ opacity:.4; cursor:not-allowed; }
+
+/* ---------- quiz card ---------- */
+.tag-row{ display:flex; gap:8px; margin-bottom:14px; flex-wrap:wrap; }
+.pill{
+  font-family:var(--mono);
+  font-size:10.5px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  padding:4px 9px;
+  border-radius:999px;
+  border:1px solid var(--border);
+  color:var(--ink-dim);
+  background:var(--panel-2);
+}
+.pill.copper{ color:var(--copper-bright); border-color:var(--copper); }
+
+.prompt{
+  font-family:var(--serif);
+  font-size:18px;
+  line-height:1.55;
+  margin:0 0 20px;
+}
+
+.choice-list{ display:flex; flex-direction:column; gap:9px; }
+.choice-btn{
+  text-align:left;
+  background:var(--panel-2);
+  border:1px solid var(--border);
+  color:var(--ink);
+  border-radius:var(--radius-sm);
+  padding:13px 15px;
+  font-family:var(--sans);
+  font-size:14.5px;
+  cursor:pointer;
+  display:flex;
+  gap:11px;
+}
+.choice-btn:hover:not(:disabled){ border-color:var(--copper); }
+.choice-btn .letter{
+  font-family:var(--mono);
+  color:var(--ink-faint);
+  flex:none;
+}
+.choice-btn:disabled{ cursor:default; }
+.choice-btn.is-correct{ border-color:var(--led-green); background:rgba(116,196,127,0.12); }
+.choice-btn.is-correct .letter{ color:var(--led-green); }
+.choice-btn.is-wrong{ border-color:var(--led-red); background:rgba(226,110,92,0.12); }
+.choice-btn.is-wrong .letter{ color:var(--led-red); }
+
+.num-row{ display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+.num-row input{
+  font-family:var(--mono);
+  font-size:16px;
+  background:var(--panel-2);
+  border:1px solid var(--border);
+  color:var(--ink);
+  border-radius:var(--radius-sm);
+  padding:12px 14px;
+  width:140px;
+}
+.num-row input:disabled{ opacity:.7; }
+
+textarea{
+  width:100%;
+  font-family:var(--serif);
+  font-size:14.5px;
+  background:var(--panel-2);
+  border:1px solid var(--border);
+  color:var(--ink);
+  border-radius:var(--radius-sm);
+  padding:12px 14px;
+  resize:vertical;
+  min-height:90px;
+}
+
+.unsure-link{
+  display:inline-block;
+  margin-top:14px;
+  font-family:var(--mono);
+  font-size:12.5px;
+  color:var(--ink-faint);
+  background:none;
+  border:none;
+  text-decoration:underline;
+  cursor:pointer;
+  padding:4px 0;
+}
+.unsure-link:hover{ color:var(--copper-bright); }
+
+.feedback{
+  margin-top:20px;
+  padding-top:18px;
+  border-top:1px dashed var(--border);
+}
+.feedback-line{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:12px;
+  font-family:var(--mono);
+  font-size:13.5px;
+  letter-spacing:.03em;
+  text-transform:uppercase;
+}
+.led-dot{
+  width:11px; height:11px; border-radius:50%; flex:none;
+  background:var(--dot-color,var(--led-green));
+  box-shadow:0 0 8px 1px var(--dot-glow,var(--led-green-glow));
+}
+.feedback-line.hit{ color:var(--led-green); }
+.feedback-line.miss{ color:var(--led-red); }
+.feedback-line.skip{ color:var(--led-amber); }
+.explain{
+  font-family:var(--serif);
+  font-size:14.5px;
+  color:var(--ink-dim);
+  background:var(--panel-2);
+  border:1px solid var(--border);
+  border-radius:var(--radius-sm);
+  padding:14px 16px;
+  white-space:pre-line;
+}
+.model-answer-label{
+  font-family:var(--mono);
+  font-size:10.5px;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--copper-bright);
+  margin:0 0 6px;
+}
+
+/* ---------- results ---------- */
+.score-block{ text-align:left; margin-bottom:22px; }
+.score-num{
+  font-family:var(--mono);
+  font-size:clamp(40px,10vw,58px);
+  font-weight:600;
+  color:var(--copper-bright);
+  line-height:1;
+}
+.score-pct{ font-family:var(--mono); font-size:16px; color:var(--ink-dim); margin-left:8px; }
+.score-msg{ font-family:var(--serif); font-size:16px; color:var(--ink-dim); margin-top:8px; }
+
+.topic-bar-row{ margin-bottom:12px; }
+.topic-bar-top{ display:flex; justify-content:space-between; font-size:13px; margin-bottom:5px; }
+.topic-bar-top .tname{ color:var(--ink); }
+.topic-bar-top .tscore{ font-family:var(--mono); color:var(--ink-faint); }
+.bar-track{ height:7px; border-radius:4px; background:var(--panel-2); border:1px solid var(--border); overflow:hidden; }
+.bar-fill{ height:100%; border-radius:4px; }
+
+.review-toggle{
+  width:100%;
+  text-align:left;
+  background:var(--panel);
+  border:1px solid var(--border);
+  color:var(--ink);
+  border-radius:var(--radius);
+  padding:16px 20px;
+  font-family:var(--mono);
+  font-size:13px;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+  cursor:pointer;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.review-list{ margin-top:10px; display:flex; flex-direction:column; gap:8px; }
+.review-item{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:var(--radius-sm);
+  overflow:hidden;
+}
+.review-item-head{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:12px 14px;
+  cursor:pointer;
+}
+.review-item-head .mark{ flex:none; font-size:15px; }
+.review-item-head .qtext{ font-size:13.5px; color:var(--ink-dim); flex:1; }
+.review-item-body{
+  padding:0 14px 16px 40px;
+  display:none;
+}
+.review-item.open .review-item-body{ display:block; }
+.review-item-body .row{ font-size:13px; margin-bottom:6px; }
+.review-item-body .row b{ color:var(--ink); font-weight:600; }
+.review-item-body .explain{ margin-top:8px; }
+
+.footnote{
+  text-align:center;
+  font-family:var(--mono);
+  font-size:11px;
+  color:var(--ink-faint);
+  margin-top:34px;
+}
+</style>
+</head>
+<body>
+<div class="app" id="app">
+
+  <div class="addr-bar" id="addrBar">
+    <div class="addr-seg"><span class="addr-label">Section</span><span class="addr-val" id="segA">Memory Management · Ch. 3</span></div>
+    <div class="addr-seg"><span class="addr-label">Progress</span><span class="addr-val" id="segB">Setup</span></div>
+    <div class="addr-seg"><span class="addr-label">Score</span><span class="addr-val" id="segC">—</span></div>
+  </div>
+  <div class="progress-track" id="progressTrack" style="display:none;"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+
+  <main id="main">
+
+    <!-- START SCREEN -->
+    <section class="screen enter" id="screen-start">
+      <p class="kicker">Operating Systems · 1500WETOPS</p>
+      <h1>Memory Management quiz</h1>
+      <p class="subtitle" id="startSubtitle">Loading question bank…</p>
+      <p class="help-line">Most questions grade themselves instantly — pick an answer or type a number and you'll see right away whether it's a HIT (correct) or a MISS (incorrect), plus a short explanation. A handful of trade-off questions are marked <b>self-graded</b>: write your own answer, reveal the model answer, then mark yourself honestly. That's where comparisons like fixed vs. dynamic partitioning, or paging vs. segmentation, really sink in.</p>
+
+      <div class="card">
+        <div class="picker-head">
+          <h2>Choose what to practice</h2>
+          <button class="picker-toggle" id="toggleAllBtn" type="button">Select none</button>
+        </div>
+        <div class="topic-grid" id="topicGrid"></div>
+
+        <div style="margin-top:14px; border-top:1px solid var(--border); padding-top:10px;">
+          <label class="opt-row">
+            <input type="checkbox" id="optShuffle" checked>
+            <span>Shuffle question order (exam mode)</span>
+          </label>
+          <label class="opt-row">
+            <input type="checkbox" id="optShort" checked>
+            <span id="optShortLabel">Include self-graded trade-off questions</span>
+          </label>
+        </div>
+        <p class="warn" id="startWarn" style="display:none;">Select at least one topic to start.</p>
+      </div>
+
+      <button class="btn btn-primary" id="startBtn" type="button">Start quiz →</button>
+    </section>
+
+    <!-- QUIZ SCREEN -->
+    <section class="screen" id="screen-quiz" hidden>
+      <div class="card" id="quizCard"></div>
+    </section>
+
+    <!-- RESULTS SCREEN -->
+    <section class="screen" id="screen-results" hidden>
+      <div class="card">
+        <div class="score-block">
+          <span class="score-num" id="resScoreNum">0/0</span><span class="score-pct" id="resScorePct"></span>
+          <p class="score-msg" id="resScoreMsg"></p>
+        </div>
+        <div id="topicBreakdown"></div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-primary" id="retakeAllBtn" type="button">Retake full quiz</button>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-ghost" id="retakeMistakesBtn" type="button">Retake missed questions only</button>
+        <button class="btn btn-ghost" id="changeTopicsBtn" type="button">Change topics</button>
+      </div>
+
+      <button class="review-toggle" id="reviewToggle" type="button" style="margin-top:22px;">
+        <span>Review all answers</span><span id="reviewCaret">＋</span>
+      </button>
+      <div class="review-list" id="reviewList" style="display:none;"></div>
+
+      <p class="footnote">Built from every slide of the Memory Management chapter — nothing skipped.</p>
+    </section>
+
+  </main>
+</div>
+
+<script>
+(function(){
+"use strict";
+
+/* ============================== DATA ============================== */
+
+var TOPICS = [
+  {key:"intro", name:"Why Memory Management"},
+  {key:"bind", name:"Address Binding"},
+  {key:"fixed", name:"Fixed Partitioning"},
+  {key:"dynamic", name:"Dynamic Partitioning & the 50% Rule"},
+  {key:"place", name:"Placement Algorithms"},
+  {key:"buddy", name:"Buddy System"},
+  {key:"paging", name:"Paging"},
+  {key:"seg", name:"Segmentation"}
+];
+
+var QUESTIONS = [
+
+/* ---------------- intro ---------------- */
+{id:"intro-1", topic:"intro", type:"choice",
+ prompt:"What are the four fundamental resources of a computer system that this chapter's introduction diagram is built around?",
+ choices:["Processor, memory, I/O devices, and the communication bus","CPU, cache, RAM, and disk","Kernel, user space, hardware, and software","Registers, ALU, control unit, and memory"],
+ correct:0,
+ explanation:"This is the same four-resource framework used to open the Cache Memory chapter and the Introduction session — here it's reused to zoom into resource #2 (memory) as this chapter's focus."},
+
+{id:"intro-2", topic:"intro", type:"choice",
+ prompt:"Why must the OS keep multiple processes resident in memory at the same time?",
+ choices:["To use up as much RAM as possible","To keep the processor busy — when one process blocks (e.g. on I/O), the CPU can switch to another ready process instead of idling","To reduce the number of files stored on disk","So the linker has more work to do"],
+ correct:1,
+ explanation:"Optimal processor utilization is the whole motivation for memory management: multiple processes sharing memory lets the CPU stay busy instead of sitting idle waiting on any one process."},
+
+{id:"intro-3", topic:"intro", type:"choice",
+ prompt:"According to this chapter's introduction, what two things must the OS constantly determine about memory?",
+ choices:["The clock speed and voltage of the CPU","Which processes are currently in memory, and how they are organized within it","The brand of RAM installed and its warranty status","How many monitors are currently connected"],
+ correct:1,
+ explanation:"These are the two standing questions memory management exists to answer — everything else in the chapter is really just different strategies for answering them."},
+
+{id:"intro-4", topic:"intro", type:"choice",
+ prompt:"What are the three main alternatives for organizing memory covered in this chapter?",
+ choices:["Partitioning, paging, and segmentation","Caching, buffering, and spooling","Scheduling, dispatching, and swapping","Compiling, linking, and loading"],
+ correct:0,
+ explanation:"This is the chapter's roadmap: partitioning first, then paging, then segmentation — with the OS reserving part of memory for itself and managing the rest for user processes."},
+
+/* ---------------- bind ---------------- */
+{id:"bind-1", topic:"bind", type:"choice",
+ prompt:"Address translation in this chapter is described as being handled primarily by which component, assisted by the linker?",
+ choices:["The loader","The scheduler","The disk controller","The cache"],
+ correct:0,
+ explanation:"The loader is what actually places a process into memory and performs (or arranges) the address translation, with the linker's earlier work assisting it."},
+
+{id:"bind-2", topic:"bind", type:"choice",
+ prompt:"A process is compiled straight to a fixed, absolute physical address, and can never load anywhere else without recompiling. Which binding time is this?",
+ choices:["Compile-time binding","Load-time binding","Run-time binding","Dynamic relocation"],
+ correct:0,
+ explanation:"Compile-time binding produces an absolute/physical address directly — the location is rigid."},
+
+{id:"bind-3", topic:"bind", type:"choice",
+ prompt:"At load-time binding, once the loader translates a relative address to an absolute one, what happens next?",
+ choices:["The location can still change at any moment","The location becomes fixed for the rest of execution","The process is immediately terminated","Translation never actually happens"],
+ correct:1,
+ explanation:"Load-time binding maps relative/logical addresses to absolute ones at load time; once that one-time translation happens, the location is fixed."},
+
+{id:"bind-4", topic:"bind", type:"choice",
+ prompt:"Which address-binding time is the only one that supports relocating a process while it is actually running?",
+ choices:["Compile-time","Load-time","Run-time","None of them support this"],
+ correct:2,
+ explanation:"Run-time binding keeps addresses relative/logical throughout execution and translates continuously (typically via a hardware relocation/base register), which is what allows moving a process mid-execution."},
+
+/* ---------------- fixed ---------------- */
+{id:"fixed-1", topic:"fixed", type:"choice",
+ prompt:"In fixed partitioning with equal-size partitions, what happens when a process is smaller than its assigned partition?",
+ choices:["External fragmentation occurs","Internal fragmentation occurs — the leftover space inside the partition is wasted","The process is automatically rejected","The partition splits into two smaller ones"],
+ correct:1,
+ explanation:"Internal fragmentation is wasted space inside an allocated partition — here, on average, about half the partition goes unused."},
+
+{id:"fixed-2", topic:"fixed", type:"choice",
+ prompt:"Fixed equal-size partitioning creates two hard limits on the system. What are they?",
+ choices:["Maximum CPU clock speed and maximum bus width","Maximum process-image size, and maximum number of processes resident at once","Maximum number of I/O devices and maximum disk size","Maximum page size and maximum frame size"],
+ correct:1,
+ explanation:"Since partitions are fixed in both size and number, a process can never be bigger than one partition, and you can never have more concurrent processes than you have partitions."},
+
+{id:"fixed-3", topic:"fixed", type:"choice",
+ prompt:"What does fixed equal-size partitioning have going for it, despite its fragmentation problem?",
+ choices:["It is extremely simple to implement — the OS just tracks which partition is free or occupied","It has zero internal fragmentation","It supports an unlimited number of processes","It eliminates the need for any address translation"],
+ correct:0,
+ explanation:"Simplicity is the real advantage here — a natural exam pairing is 'simple to manage' against 'wastes space and caps both process size and process count.'"},
+
+{id:"fixed-4", topic:"fixed", type:"choice",
+ prompt:"Moving from fixed equal-size to fixed variable-size partitioning reduces internal fragmentation, but introduces what new challenge?",
+ choices:["Deciding where to place each incoming process — a placement algorithm is now needed","The OS can no longer track free partitions at all","Processes can no longer be relocated, ever","Internal fragmentation actually gets worse"],
+ correct:0,
+ explanation:"With partitions of different sizes now available, the OS must decide which partition each new process should go into — hence the need for a placement algorithm."},
+
+{id:"fixed-5", topic:"fixed", type:"choice",
+ prompt:"With fixed variable-size partitioning, what does the 'wait until a partition is available' placement philosophy optimize for?",
+ choices:["Maximizing memory usage — you always get an efficient size match, at the cost of processes queuing longer","Maximizing the number of partitions actively in use","Minimizing the number of comparisons needed","Guaranteeing zero external fragmentation"],
+ correct:0,
+ explanation:"The trade-off is efficiency versus responsiveness: waiting for the right-sized partition uses memory efficiently, while 'take any sufficiently large partition' keeps more partitions busy sooner but can waste space."},
+
+{id:"fixed-6", topic:"fixed", type:"choice",
+ prompt:"Which of these does fixed variable-size partitioning improve on, compared to fixed equal-size partitioning?",
+ choices:["It allows larger processes to be accommodated and reduces internal-fragmentation losses","It eliminates the need for a placement algorithm entirely","It removes the limit on the number of resident processes","It converts internal fragmentation into external fragmentation"],
+ correct:0,
+ explanation:"Variable sizes mean less wasted space per partition on average, and room for processes that wouldn't have fit under a single fixed size — but placement now needs a real algorithm."},
+
+/* ---------------- dynamic ---------------- */
+{id:"dynamic-1", topic:"dynamic", type:"choice",
+ prompt:"Dynamic partitioning creates partitions on the fly, sized exactly to each process. What new fragmentation problem does this introduce?",
+ choices:["Internal fragmentation","External fragmentation — small, scattered, unusable holes between allocated blocks","Page faults","Segmentation faults"],
+ correct:1,
+ explanation:"Because dynamic partitions are cut exactly to size, as processes come and go you end up with leftover gaps between blocks that may be too small for the next process, even though total free space is fine."},
+
+{id:"dynamic-2", topic:"dynamic", type:"choice",
+ prompt:"When placing a new partition under dynamic partitioning, what must the OS make sure to do?",
+ choices:["Ensure adjacent free space gets merged/connected so holes don't proliferate unnecessarily","Always place the new process at the very end of memory","Convert the new process into two smaller processes","Ignore any existing holes entirely"],
+ correct:0,
+ explanation:"Coalescing adjacent free regions is what keeps external fragmentation from getting worse than it needs to be."},
+
+{id:"dynamic-3", topic:"dynamic", type:"choice",
+ prompt:"According to the 50% rule analysis of dynamic partitioning, what is the rough steady-state relationship between the number of holes (H) and the number of allocated processes (N)?",
+ choices:["H is roughly equal to N","H is roughly twice N","H is roughly half of N","H grows with the square of N"],
+ correct:2,
+ explanation:"Because each hole is counted as a neighbor by two different processes, and each process has on average about one hole-neighbor, the hole count works out to roughly N/2 — about half as many holes as processes."},
+
+{id:"dynamic-4", topic:"dynamic", type:"choice",
+ prompt:"In the 50% rule derivation, if a process being removed has holes on both sides (2 hole-neighbors), what happens to the hole count H?",
+ choices:["H increases by 1, a new hole appears","H stays exactly the same","H decreases by 1, since all three regions merge into one bigger hole","H doubles"],
+ correct:2,
+ explanation:"With a hole on each side, the freed space merges with both neighboring holes into a single larger hole — so what were 2 separate holes become 1, a net decrease of 1."},
+
+{id:"dynamic-5", topic:"dynamic", type:"numeric",
+ prompt:"Using the 50% rule as a rough estimate: if a system running dynamic partitioning currently has 60 allocated processes in steady state, roughly how many holes (H) would you expect? (Enter just the number.)",
+ correct:30,
+ explanation:"The 50% rule predicts H ≈ N/2. With N = 60 processes, that gives roughly 30 holes."},
+
+/* ---------------- place ---------------- */
+{id:"place-1", topic:"place", type:"choice",
+ prompt:"Which placement algorithm scans all free holes and selects the smallest one that is still big enough?",
+ choices:["First-fit","Best-fit","Next-fit","Worst-fit"],
+ correct:1,
+ explanation:"Best-fit optimizes for the tightest size match by checking every hole and picking the smallest sufficient one."},
+
+{id:"place-2", topic:"place", type:"choice",
+ prompt:"What is the main practical downside of best-fit?",
+ choices:["It is illegal to implement in most operating systems","It tends to leave many tiny, essentially unusable leftover holes behind","It never actually finds a big enough hole","It always causes internal fragmentation instead of external"],
+ correct:1,
+ explanation:"Because best-fit picks the tightest possible match, the sliver left over is often too small to be useful for anything else, so many tiny dead holes accumulate."},
+
+{id:"place-3", topic:"place", type:"choice",
+ prompt:"How does next-fit differ from first-fit?",
+ choices:["It searches backward from the end of memory","It resumes scanning from wherever the previous allocation left off, instead of restarting at the beginning each time","It ignores hole size entirely","It is functionally identical to first-fit"],
+ correct:1,
+ explanation:"Next-fit is like first-fit, but continues searching from the location of the last placement rather than always starting over from the top of memory."},
+
+{id:"place-4", topic:"place", type:"choice",
+ prompt:"What is the idea, and the risk, behind worst-fit?",
+ choices:["It picks the largest available hole, hoping to leave a still-useful leftover fragment — but this eats up big holes quickly and may block future large processes","It picks the smallest hole to guarantee zero waste, with no downside","It refuses to place any process, guaranteeing no fragmentation","It always picks the same hole regardless of size"],
+ correct:0,
+ explanation:"Worst-fit deliberately takes the biggest hole, leaving the largest possible fragment behind — but that means large holes disappear fast, which can strand a genuinely large process later with nowhere to go."},
+
+{id:"place-5", topic:"place", type:"choice",
+ prompt:"Which placement algorithms are generally fastest to compute, since they don't need to compare every hole in memory before deciding?",
+ choices:["Best-fit and worst-fit (both scan everything)","First-fit and next-fit (both stop at the first sufficient hole found)","None of them — all four require scanning the entire memory","Only best-fit is fast"],
+ correct:1,
+ explanation:"First-fit and next-fit both stop as soon as they find one sufficient hole; best-fit and worst-fit both need to check every hole to find the smallest or largest, respectively."},
+
+{id:"place-6", topic:"place", type:"numeric",
+ prompt:"Free holes exist in address order: A=5M, B=12M, C=6M, D=9M, E=20M. A process needs 8M. Under first-fit, scanning from the start, what size (in M) is the chosen hole? (Enter just the number.)",
+ correct:12,
+ explanation:"Scanning from the start: A (5M) is too small, so it's skipped. B (12M) is the first hole that's big enough, so first-fit stops there."},
+
+{id:"place-7", topic:"place", type:"numeric",
+ prompt:"Same setup — A=5M, B=12M, C=6M, D=9M, E=20M, request=8M. Under best-fit, what size (in M) is the chosen hole? (Enter just the number.)",
+ correct:9,
+ explanation:"Candidates big enough are B (12M), D (9M), and E (20M). The smallest of those is D at 9M, so best-fit picks that one."},
+
+{id:"place-8", topic:"place", type:"numeric",
+ prompt:"Same setup — A=5M, B=12M, C=6M, D=9M, E=20M, request=8M. Under worst-fit, what size (in M) is the chosen hole? (Enter just the number.)",
+ correct:20,
+ explanation:"Worst-fit picks the single largest hole overall that still satisfies the request — here that's E at 20M."},
+
+{id:"place-9", topic:"place", type:"numeric",
+ prompt:"Same setup, but the previous allocation ended between hole B and hole C, so a next-fit search resumes at hole C. What size (in M) is the chosen hole? (Enter just the number.)",
+ correct:9,
+ explanation:"Resuming at C: C (6M) is too small, so scanning continues to D (9M), which is big enough. It coincides with best-fit's answer here, but for a different reason — next-fit just found the first sufficient hole from its resume point, it didn't compare all holes."},
+
+/* ---------------- buddy ---------------- */
+{id:"buddy-1", topic:"buddy", type:"choice",
+ prompt:"In the buddy system, if no free block of the exact right size exists for a request of size k, what happens?",
+ choices:["The request is rejected outright","The next larger available block is recursively split in half, repeating until a block of size k (rounded up to a power of two) is reached","The OS compacts all of memory immediately","A brand new block is created outside the managed memory region"],
+ correct:1,
+ explanation:"The buddy system always works in powers of two — it keeps halving a larger free block until it reaches the smallest power-of-two size that still satisfies the request."},
+
+{id:"buddy-2", topic:"buddy", type:"choice",
+ prompt:"When a block is released in the buddy system, under what condition can it merge back into a larger block?",
+ choices:["Always, immediately, no conditions","Only if its specific buddy — the exact other half it was split from — is also completely free","Only once all of memory is empty","Released blocks can never merge again"],
+ correct:1,
+ explanation:"Buddy merging is very specific: a freed block can only rejoin with the one exact block it was originally split from, and only if that buddy is also currently free."},
+
+{id:"buddy-3", topic:"buddy", type:"choice",
+ prompt:"What is the approximate average memory utilization of the buddy system, due to always rounding requests up to the nearest power of two?",
+ choices:["About 50%","About 75%","About 90%","100% — no waste at all"],
+ correct:1,
+ explanation:"Rounding every request up to the next power of two wastes some space on average — the buddy system typically achieves around 75% utilization."},
+
+{id:"buddy-4", topic:"buddy", type:"choice",
+ prompt:"Given that ~75% utilization figure, what type of fragmentation does the buddy system primarily suffer from?",
+ choices:["External fragmentation only","Internal fragmentation, caused by rounding requests up to power-of-two block sizes","No fragmentation of any kind","Equal amounts of both internal and external"],
+ correct:1,
+ explanation:"Because buddies always merge back cleanly when both halves are free, there's essentially no external fragmentation — but rounding up to a power of two wastes space inside the allocated block, which is internal fragmentation."},
+
+{id:"buddy-5", topic:"buddy", type:"choice",
+ prompt:"Which of these are valid ways to implement the buddy system, as covered in this chapter?",
+ choices:["A single unsorted list covering all block sizes together","A separate free list per block size, or a tree structure representing the recursive splits","A hash table indexed by process name only","A round-robin CPU scheduler"],
+ correct:1,
+ explanation:"The two implementation strategies named are a list per block size, and a tree representing the halving structure."},
+
+{id:"buddy-6", topic:"buddy", type:"numeric",
+ prompt:"Starting from one free 1M block that only splits by halves (1M → 512K → 256K → 128K...), a request for 200K arrives. What is the smallest block size (in K) that can satisfy it? (Enter just the number.)",
+ correct:256,
+ explanation:"200K does not fit in a 128K block, so the system must round up to the next power of two that does fit, which is 256K."},
+
+{id:"buddy-7", topic:"buddy", type:"numeric",
+ prompt:"Same splitting rules. A request for 50K arrives. What is the smallest block size (in K) that can satisfy it? (Enter just the number.)",
+ correct:64,
+ explanation:"50K doesn't fit in a 32K block, so the system rounds up to the next power of two that does fit: 64K."},
+
+/* ---------------- paging ---------------- */
+{id:"paging-1", topic:"paging", type:"choice",
+ prompt:"In paging, what is a page?",
+ choices:["A fixed-size piece of the process image, the same size as a frame","A variable-size chunk of a process, sized to fit a logical unit","An entire process image in one piece","A block reserved exclusively for the OS kernel"],
+ correct:0,
+ explanation:"Paging divides the process image into pieces called pages that are exactly the same fixed size as memory's page frames."},
+
+{id:"paging-2", topic:"paging", type:"choice",
+ prompt:"What is a frame?",
+ choices:["A fixed-size block of physical memory, the same size as a page","A variable-size block of physical memory","A CPU register used for arithmetic","Another name for a segment"],
+ correct:0,
+ explanation:"A frame is a fixed-size slot of physical memory — memory is divided into frames the same way a process is divided into pages, so any page fits any frame."},
+
+{id:"paging-3", topic:"paging", type:"choice",
+ prompt:"Why is paging described as transparent to the programmer or compiler?",
+ choices:["Because the programmer must manually place every page","Because the process image still appears as one coherent, contiguous block, even though it is physically scattered across non-contiguous frames","Because paging does not use any lookup table","Because paging removes the need for a compiler entirely"],
+ correct:1,
+ explanation:"Even though the OS scatters a process's pages across arbitrary physical frames, the programmer or compiler never has to know or care — the process still looks like one unbroken block from their point of view."},
+
+{id:"paging-4", topic:"paging", type:"choice",
+ prompt:"What is paging's fragmentation profile?",
+ choices:["No external fragmentation; small internal fragmentation, since the last page may only be partly used","No internal fragmentation; large external fragmentation","Severe amounts of both internal and external fragmentation","Neither type occurs under paging"],
+ correct:0,
+ explanation:"Since any free frame fits any page, there is no external fragmentation — but a process's size may not divide evenly by the frame size, leaving a small amount of internal fragmentation in its last page."},
+
+{id:"paging-5", topic:"paging", type:"choice",
+ prompt:"After looking up the frame number in the page table, how is the final physical address actually formed?",
+ choices:["The frame number entirely replaces the logical address, discarding everything else","The frame number is placed in the high-order bits, and the original offset bits are appended unchanged in the low-order bits","The frame number and the offset are added together arithmetically","The offset bits are discarded and replaced with zeros"],
+ correct:1,
+ explanation:"Only the block-identifying part of the address changes, since page number becomes frame number — the offset within the block is never translated, because page size always equals frame size."},
+
+{id:"paging-6", topic:"paging", type:"choice",
+ prompt:"Which x86 page-table-entry bit exists specifically to protect kernel memory from being accessed while the CPU is in user mode?",
+ choices:["The P (present) bit","The U/S (user/supervisor) bit","The D (dirty) bit","The A (accessed) bit"],
+ correct:1,
+ explanation:"The U/S bit controls whether a page may be requested while in user mode, which is exactly what keeps user processes out of kernel memory."},
+
+{id:"paging-7", topic:"paging", type:"numeric",
+ prompt:"On 32-bit x86 paging, frames are 4096 bytes. How many bits does that require for the offset within a page? (Enter just the number.)",
+ correct:12,
+ explanation:"4096 = 2^12, so 12 bits are needed to address every byte within one frame — matching the 20-bit page number plus 12-bit offset equalling a 32-bit total address."},
+
+{id:"paging-8", topic:"paging", type:"numeric",
+ prompt:"An x86 page table entry is 4 bytes (32 bits) total, and 20 of those bits store the frame number. How many bits remain for flags like P, U/S, R/W, D, and A? (Enter just the number.)",
+ correct:12,
+ explanation:"32 total bits minus the 20 used for the frame's physical address leaves 12 bits for flags — matching the P/U-S/R-W/D/A bits (plus a few reserved/available bits) packed into that space."},
+
+/* ---------------- seg ---------------- */
+{id:"seg-1", topic:"seg", type:"choice",
+ prompt:"How does segmentation compare to paging?",
+ choices:["It is identical to paging in every respect","It is a similar idea — dividing the process into pieces — but segments are variable in size, typically matching a logical program unit","Segmentation removes the need for any table lookup at all","Segmentation only ever applies to the OS kernel, never to user processes"],
+ correct:1,
+ explanation:"Segmentation shares paging's basic idea of dividing a process into pieces, but each segment is sized to fit a meaningful logical unit — code, stack, a data structure — rather than a fixed generic size."},
+
+{id:"seg-2", topic:"seg", type:"choice",
+ prompt:"What is segmentation's fragmentation profile?",
+ choices:["No internal fragmentation; external fragmentation can occur, though generally less severe than with dynamic partitioning","No external fragmentation; severe internal fragmentation","Both types occur just as severely as with dynamic partitioning","Neither type occurs under segmentation"],
+ correct:0,
+ explanation:"Since each segment is sized exactly to its content, there is no wasted space inside a segment — but because segments vary in size, awkward leftover external gaps can still appear, just less often than in plain dynamic partitioning."},
+
+{id:"seg-3", topic:"seg", type:"choice",
+ prompt:"What check happens before a segmentation address translation is allowed to complete?",
+ choices:["offset < length (a bounds check)","offset > base","segment number must be negative","No check is ever performed"],
+ correct:0,
+ explanation:"The segment table entry stores a length; if the requested offset is not smaller than that length, the access is illegal — this is literally where the term 'segmentation fault' comes from."},
+
+{id:"seg-4", topic:"seg", type:"choice",
+ prompt:"A segment table entry has base = 4000 and length = 1200. A logical address requests offset = 1500. What happens?",
+ choices:["Physical address = 5500","Physical address = 2500","This is an illegal, out-of-bounds access, since 1500 exceeds the segment's length of 1200","The OS silently extends the segment to fit"],
+ correct:2,
+ explanation:"Because offset (1500) is not less than length (1200), the bounds check fails — this access is illegal, regardless of what a naive base-plus-offset sum would produce."},
+
+{id:"seg-5", topic:"seg", type:"choice",
+ prompt:"Why is x86 segmentation described as not fully transparent, unlike paging?",
+ choices:["Because segmentation does not use any tables at all","Because some segment registers are directly visible to and usable by the programmer","Because every segment is exactly the same fixed size","Because segmentation only functions in protected mode"],
+ correct:1,
+ explanation:"Unlike paging, where translation is completely invisible to the programmer, x86 segmentation exposes some of its segment registers directly to the programmer, breaking full transparency."},
+
+{id:"seg-6", topic:"seg", type:"numeric",
+ prompt:"A segment table entry has base = 4000 and length = 1200. A logical address requests offset = 900. What is the resulting physical address? (Enter just the number.)",
+ correct:4900,
+ explanation:"Since offset (900) is less than length (1200), the access is valid, and physical address = base + offset = 4000 + 900 = 4900."},
+
+{id:"seg-7", topic:"seg", type:"numeric",
+ prompt:"A segment table entry has base = 2000 and length = 500. A logical address requests offset = 350. What is the resulting physical address? (Enter just the number.)",
+ correct:2350,
+ explanation:"Since offset (350) is less than length (500), the access is valid, and physical address = base + offset = 2000 + 350 = 2350."},
+
+/* ---------------- self-graded short-answer ---------------- */
+{id:"short-1", topic:"bind", type:"short",
+ prompt:"In your own words: explain the three address-binding times (compile-time, load-time, run-time), and why only one of them supports relocating a process while it runs.",
+ modelAnswer:"Compile-time binding produces an absolute physical address directly, so the process must always load at that exact fixed location — rigid, and it can't move without recompiling. Load-time binding keeps relative addresses until the loader translates them to absolute addresses at load time; once translated, the location is fixed for the rest of execution. Run-time binding keeps addresses relative/logical throughout execution, translating continuously — typically with hardware help such as a base or relocation register — which is what lets the OS actually move the process around in physical memory while it's running. Only run-time binding supports that kind of relocation, because it's the only one that keeps re-translating addresses on every single access instead of settling on one location early."},
+
+{id:"short-2", topic:"dynamic", type:"short",
+ prompt:"Compare fixed (equal-size) and dynamic partitioning: how does each place processes, and what's the fragmentation trade-off between them?",
+ modelAnswer:"Fixed equal-size partitioning divides memory into a predetermined number of same-size partitions ahead of time, and assigns one to each process. It's simple to manage, but wastes space whenever a process is smaller than its partition (internal fragmentation, roughly half a partition on average), and hard-caps both the maximum process size and the maximum number of resident processes. Dynamic partitioning instead creates a partition on the fly, sized exactly to match each process, eliminating internal fragmentation entirely. But as processes come and go, this leaves scattered gaps between allocated blocks that may be too small for the next process even though total free memory is fine — external fragmentation. So the trade-off is: fixed partitioning is simple but wastes space inside partitions and hard-limits the system; dynamic partitioning uses space efficiently per-process but needs placement algorithms and eventually accumulates unusable holes between processes."},
+
+{id:"short-3", topic:"place", type:"short",
+ prompt:"Compare best-fit, first-fit, next-fit, and worst-fit placement algorithms — how does each choose a hole, and what's the downside of each?",
+ modelAnswer:"Best-fit scans every free hole and picks the smallest one that's still big enough, minimizing wasted space per allocation — but this tends to leave many tiny, essentially unusable slivers behind over time. First-fit scans from the start of memory and stops at the first hole big enough, which is fast and simple, but tends to fragment the front portion of memory since it's checked most often. Next-fit is like first-fit but resumes scanning from wherever the last allocation left off instead of restarting at the beginning — this spreads allocations more evenly across memory, but can end up eating into the last large hole (often near the end of memory) faster than first-fit would. Worst-fit deliberately picks the largest available hole, on the theory that leaving a big leftover fragment is more useful than a tiny one — but this consumes large holes quickly, which can leave no room for a genuinely large process later on."},
+
+{id:"short-4", topic:"buddy", type:"short",
+ prompt:"Explain how the buddy system's splitting and merging mechanism works, from a request through to release.",
+ modelAnswer:"Memory is managed as blocks whose sizes are always powers of two, between some maximum size (2^H, the whole managed region) and some minimum size (2^L). To satisfy a request of size k, the system looks for the smallest free block that's already the right size; if none exists, it takes the next larger free block and recursively splits it in half, continuing to split downward until a block of size k, rounded up to the nearest power of two, is reached — each split produces two 'buddy' halves, one used to keep splitting (or to satisfy the request) and one left aside as a separate free block. When a block is later released, the system checks whether its specific buddy — the exact other half it was originally split from — is also completely free. If so, the two merge back into the larger block they came from, and this merging can cascade upward again if that larger block's own buddy also happens to be free. This gives fast, localized merging (you only ever need to check one specific buddy, not scan all of memory), at the cost of internal fragmentation from always rounding up to a power of two — typically around 75% average memory utilization."},
+
+{id:"short-5", topic:"paging", type:"short",
+ prompt:"Explain why paging solves the fragmentation problem that dynamic partitioning suffered from, and what new (smaller) problem it introduces instead.",
+ modelAnswer:"Dynamic partitioning's problem was external fragmentation: because partitions were cut to variable, exact sizes, the gaps left behind as processes came and went were often the wrong shape or size for the next process, even when total free memory was sufficient. Paging solves this by dividing both memory and process images into small, fixed, equal-size pieces — page frames and pages. Since every page is exactly the same size as every frame, any free frame can hold any page; there's never a 'wrong shaped hole' problem, so external fragmentation disappears entirely. The trade-off is that paging reintroduces a much smaller version of internal fragmentation: a process's total size usually isn't an exact multiple of the frame size, so its last page is often only partially filled, wasting a small amount of space inside that final frame. Overall it's a good trade: a large, unpredictable external-fragmentation problem is exchanged for a small, bounded internal-fragmentation one."},
+
+{id:"short-6", topic:"seg", type:"short",
+ prompt:"Compare paging and segmentation: what determines the size of each piece, and how does that affect fragmentation and transparency?",
+ modelAnswer:"Paging divides a process into fixed-size pages, all identical regardless of what's actually inside them, matched to equally-sized physical frames. Because every piece is the same size, there's no external fragmentation (any frame fits any page), but there is a small amount of internal fragmentation, since a process's last page is often only partially used. Segmentation instead divides a process along its natural logical boundaries — code, stack, a particular data structure — so each segment is sized exactly to what it holds. That means no internal fragmentation at all, but because segments vary in size, external fragmentation can reappear (though generally less severely than with plain dynamic partitioning), since a freed segment-shaped hole might not exactly fit the next segment that needs placing. On transparency: paging's translation is completely invisible to the programmer, but real x86 segmentation exposes some of its segment registers directly to the programmer, so it isn't fully transparent the way paging is."}
+
+];
+
+/* ============================== STATE ============================== */
+
+var state = {
+  queue: [],
+  idx: 0,
+  answeredCurrent: false,
+  log: [],          // {id, topic, type, isCorrect, userAnswerText, correctAnswerText}
+  choiceOrder: []   // shuffled display order for the current question, array of original indices
+};
+
+var byId = {};
+QUESTIONS.forEach(function(q){ byId[q.id] = q; });
+
+var topicByKey = {};
+TOPICS.forEach(function(t){ topicByKey[t.key] = t; });
+
+function countByTopic(){
+  var c = {};
+  TOPICS.forEach(function(t){ c[t.key] = 0; });
+  QUESTIONS.forEach(function(q){ c[q.topic] = (c[q.topic]||0) + 1; });
+  return c;
+}
+function shortCount(){
+  return QUESTIONS.filter(function(q){ return q.type === "short"; }).length;
+}
+
+function shuffle(arr){
+  var a = arr.slice();
+  for(var i=a.length-1;i>0;i--){
+    var j = Math.floor(Math.random()*(i+1));
+    var tmp=a[i]; a[i]=a[j]; a[j]=tmp;
+  }
+  return a;
+}
+
+function el(tag, className, text){
+  var e = document.createElement(tag);
+  if(className) e.className = className;
+  if(text !== undefined && text !== null) e.textContent = text;
+  return e;
+}
+
+/* ============================== SCREEN HELPERS ============================== */
+
+function showScreen(name){
+  ["start","quiz","results"].forEach(function(s){
+    var node = document.getElementById("screen-"+s);
+    if(s===name){ node.hidden = false; node.classList.add("enter"); }
+    else { node.hidden = true; node.classList.remove("enter"); }
+  });
+  window.scrollTo({top:0, behavior:"auto"});
+}
+
+function setAddrBar(a,b,c){
+  document.getElementById("segA").textContent = a;
+  document.getElementById("segB").textContent = b;
+  document.getElementById("segC").textContent = c;
+}
+
+/* ============================== START SCREEN ============================== */
+
+function buildStartScreen(){
+  document.getElementById("startSubtitle").textContent =
+    QUESTIONS.length + " questions across " + TOPICS.length + " topics — from address binding all the way through segmentation. Nothing from the chapter is left out.";
+
+  document.getElementById("optShortLabel").textContent =
+    "Include self-graded trade-off questions (" + shortCount() + ")";
+
+  var counts = countByTopic();
+  var grid = document.getElementById("topicGrid");
+  grid.innerHTML = "";
+  TOPICS.forEach(function(t){
+    var row = el("label","topic-row");
+    var cb = document.createElement("input");
+    cb.type = "checkbox";
+    cb.checked = true;
+    cb.dataset.topic = t.key;
+    row.appendChild(cb);
+    row.appendChild(el("span","name",t.name));
+    row.appendChild(el("span","count","("+counts[t.key]+")"));
+    grid.appendChild(row);
+  });
+}
+
+document.getElementById("toggleAllBtn").addEventListener("click", function(){
+  var boxes = document.querySelectorAll("#topicGrid input[type=checkbox]");
+  var anyUnchecked = Array.prototype.some.call(boxes, function(b){ return !b.checked; });
+  boxes.forEach(function(b){ b.checked = anyUnchecked; });
+  this.textContent = anyUnchecked ? "Select none" : "Select all";
+});
+
+document.getElementById("startBtn").addEventListener("click", function(){
+  var selected = {};
+  document.querySelectorAll("#topicGrid input[type=checkbox]").forEach(function(b){
+    if(b.checked) selected[b.dataset.topic] = true;
+  });
+  var includeShort = document.getElementById("optShort").checked;
+  var doShuffle = document.getElementById("optShuffle").checked;
+
+  var pool = QUESTIONS.filter(function(q){
+    if(!selected[q.topic]) return false;
+    if(q.type === "short" && !includeShort) return false;
+    return true;
+  });
+
+  if(pool.length === 0){
+    document.getElementById("startWarn").style.display = "block";
+    return;
+  }
+  document.getElementById("startWarn").style.display = "none";
+
+  state.queue = doShuffle ? shuffle(pool) : pool.slice();
+  state.idx = 0;
+  state.log = [];
+  showScreen("quiz");
+  document.getElementById("progressTrack").style.display = "block";
+  renderQuestion();
+});
+
+/* ============================== QUIZ SCREEN ============================== */
+
+function currentQ(){ return state.queue[state.idx]; }
+
+function updateHeaderForQuiz(){
+  var q = currentQ();
+  var tname = topicByKey[q.topic] ? topicByKey[q.topic].name : q.topic;
+  setAddrBar(tname.toUpperCase(), "Q "+(state.idx+1)+" / "+state.queue.length, "Score "+scoreSoFar()+"/"+state.log.length);
+  var pct = Math.round((state.idx)/state.queue.length*100);
+  document.getElementById("progressFill").style.width = pct+"%";
+}
+
+function scoreSoFar(){
+  return state.log.filter(function(l){ return l.isCorrect; }).length;
+}
+
+function renderQuestion(){
+  state.answeredCurrent = false;
+  var q = currentQ();
+  updateHeaderForQuiz();
+
+  var card = document.getElementById("quizCard");
+  card.innerHTML = "";
+
+  var tagRow = el("div","tag-row");
+  tagRow.appendChild(el("span","pill copper", (topicByKey[q.topic]?topicByKey[q.topic].name:q.topic)));
+  if(q.type === "numeric") tagRow.appendChild(el("span","pill","Calculation"));
+  if(q.type === "short") tagRow.appendChild(el("span","pill","Self-graded"));
+  card.appendChild(tagRow);
+
+  card.appendChild(el("p","prompt", q.prompt));
+
+  if(q.type === "choice"){
+    renderChoice(card,q);
+  } else if(q.type === "numeric"){
+    renderNumeric(card,q);
+  } else if(q.type === "short"){
+    renderShort(card,q);
+  }
+}
+
+function renderChoice(card,q){
+  var order = q.choices.map(function(_,i){return i;});
+  order = shuffle(order);
+  state.choiceOrder = order;
+
+  var list = el("div","choice-list");
+  var letters = ["A","B","C","D"];
+  order.forEach(function(origIdx, displayIdx){
+    var btn = el("button","choice-btn");
+    btn.type = "button";
+    btn.appendChild(el("span","letter", letters[displayIdx]+")"));
+    btn.appendChild(el("span","", q.choices[origIdx]));
+    btn.dataset.origIdx = origIdx;
+    btn.addEventListener("click", function(){ selectChoice(q, origIdx); });
+    list.appendChild(btn);
+  });
+  card.appendChild(list);
+
+  var unsure = el("button","unsure-link","Not sure? Reveal the answer");
+  unsure.type = "button";
+  unsure.addEventListener("click", function(){ selectChoice(q, null); });
+  card.appendChild(unsure);
+}
+
+function selectChoice(q, chosenOrigIdx){
+  if(state.answeredCurrent) return;
+  state.answeredCurrent = true;
+  var isCorrect = chosenOrigIdx === q.correct;
+  var isSkip = chosenOrigIdx === null;
+
+  var buttons = document.querySelectorAll("#quizCard .choice-btn");
+  buttons.forEach(function(b){
+    b.disabled = true;
+    var oi = parseInt(b.dataset.origIdx,10);
+    if(oi === q.correct) b.classList.add("is-correct");
+    else if(oi === chosenOrigIdx) b.classList.add("is-wrong");
+  });
+  document.querySelector("#quizCard .unsure-link").style.display = "none";
+
+  logAndShowFeedback(q, isSkip ? "skip" : (isCorrect?"hit":"miss"),
+    isSkip ? "(skipped)" : q.choices[chosenOrigIdx],
+    q.choices[q.correct]);
+}
+
+function renderNumeric(card,q){
+  var row = el("div","num-row");
+  var input = document.createElement("input");
+  input.type = "number";
+  input.step = "any";
+  input.placeholder = "Your answer";
+  input.id = "numInput";
+  row.appendChild(input);
+  var submit = el("button","btn btn-primary","Submit");
+  submit.type = "button";
+  submit.style.width = "auto";
+  row.appendChild(submit);
+  card.appendChild(row);
+
+  function doSubmit(){
+    if(state.answeredCurrent) return;
+    var v = parseFloat(input.value);
+    if(isNaN(v)) { input.focus(); return; }
+    finishNumeric(q, v, false);
+  }
+  submit.addEventListener("click", doSubmit);
+  input.addEventListener("keydown", function(e){ if(e.key==="Enter") doSubmit(); });
+
+  var unsure = el("button","unsure-link","Not sure? Reveal the answer");
+  unsure.type = "button";
+  unsure.addEventListener("click", function(){ finishNumeric(q, null, true); });
+  card.appendChild(unsure);
+}
+
+function finishNumeric(q, value, isSkip){
+  if(state.answeredCurrent) return;
+  state.answeredCurrent = true;
+  var input = document.getElementById("numInput");
+  input.disabled = true;
+  document.querySelector("#quizCard .unsure-link").style.display = "none";
+
+  var isCorrect = !isSkip && Math.abs(value - q.correct) < 0.01;
+  logAndShowFeedback(q, isSkip ? "skip" : (isCorrect?"hit":"miss"),
+    isSkip ? "(skipped)" : String(value),
+    String(q.correct));
+}
+
+function renderShort(card,q){
+  var ta = document.createElement("textarea");
+  ta.placeholder = "Type your own answer here first (recommended) — then reveal the model answer below.";
+  card.appendChild(ta);
+
+  var revealBtn = el("button","btn btn-ghost","Reveal model answer");
+  revealBtn.type = "button";
+  revealBtn.style.marginTop = "12px";
+  card.appendChild(revealBtn);
+
+  revealBtn.addEventListener("click", function(){
+    revealBtn.remove();
+    ta.disabled = true;
+
+    var fb = el("div","feedback");
+    fb.appendChild(el("p","model-answer-label","Model answer"));
+    fb.appendChild(el("div","explain", q.modelAnswer));
+
+    var row = el("div","btn-row");
+    var rightBtn = el("button","btn btn-ghost","I got the key ideas ✓");
+    rightBtn.type="button";
+    var wrongBtn = el("button","btn btn-ghost","I missed this one ✗");
+    wrongBtn.type="button";
+    row.appendChild(rightBtn); row.appendChild(wrongBtn);
+    fb.appendChild(row);
+    card.appendChild(fb);
+
+    rightBtn.addEventListener("click", function(){ selfGrade(q,true,row); });
+    wrongBtn.addEventListener("click", function(){ selfGrade(q,false,row); });
+  });
+}
+
+function selfGrade(q, isCorrect, controlsRow){
+  if(state.answeredCurrent) return;
+  state.answeredCurrent = true;
+  controlsRow.innerHTML = "";
+
+  state.log.push({id:q.id, topic:q.topic, type:q.type, isCorrect:isCorrect,
+    userAnswerText: isCorrect ? "Self-assessed: got it" : "Self-assessed: missed it",
+    correctAnswerText: "(self-graded — see model answer above)"});
+
+  var line = el("div","feedback-line "+(isCorrect?"hit":"miss"));
+  var dot = el("span","led-dot pulse");
+  dot.style.setProperty("--dot-color", isCorrect?"var(--led-green)":"var(--led-red)");
+  dot.style.setProperty("--dot-glow", isCorrect?"var(--led-green-glow)":"var(--led-red-glow)");
+  dot.style.setProperty("--pulse-color", isCorrect?"var(--led-green-glow)":"var(--led-red-glow)");
+  line.appendChild(dot);
+  line.appendChild(document.createTextNode(isCorrect ? "Marked correct" : "Marked as a mistake — reviewed below"));
+  controlsRow.parentNode.insertBefore(line, controlsRow.parentNode.firstChild.nextSibling);
+
+  addNextButton();
+  updateHeaderForQuiz();
+}
+
+function logAndShowFeedback(q, kind, userText, correctText){
+  var isCorrect = (kind === "hit");
+  state.log.push({id:q.id, topic:q.topic, type:q.type, isCorrect:isCorrect,
+    userAnswerText:userText, correctAnswerText:correctText});
+
+  var card = document.getElementById("quizCard");
+  var fb = el("div","feedback");
+
+  var line = el("div","feedback-line "+kind);
+  var dot = el("span","led-dot pulse");
+  var color = kind==="hit" ? "var(--led-green)" : (kind==="miss" ? "var(--led-red)" : "var(--led-amber)");
+  var glow = kind==="hit" ? "var(--led-green-glow)" : (kind==="miss" ? "var(--led-red-glow)" : "var(--led-amber-glow)");
+  dot.style.setProperty("--dot-color", color);
+  dot.style.setProperty("--dot-glow", glow);
+  dot.style.setProperty("--pulse-color", glow);
+  line.appendChild(dot);
+  line.appendChild(document.createTextNode(kind==="hit"?"Hit — correct!":(kind==="miss"?"Miss — not quite":"Skipped — here's the answer")));
+  fb.appendChild(line);
+
+  fb.appendChild(el("div","explain", q.explanation));
+  card.appendChild(fb);
+
+  addNextButton();
+  updateHeaderForQuiz();
+}
+
+function addNextButton(){
+  var card = document.getElementById("quizCard");
+  var isLast = state.idx === state.queue.length-1;
+  var nextBtn = el("button","btn btn-primary", isLast ? "See results →" : "Next question →");
+  nextBtn.type="button";
+  nextBtn.style.marginTop = "18px";
+  nextBtn.addEventListener("click", function(){
+    if(isLast){ finishQuiz(); } else { state.idx++; renderQuestion(); }
+  });
+  card.appendChild(nextBtn);
+  if (typeof nextBtn.scrollIntoView === "function") {
+    nextBtn.scrollIntoView({block:"nearest"});
+  }
+}
+
+/* ============================== RESULTS SCREEN ============================== */
+
+function finishQuiz(){
+  document.getElementById("progressTrack").style.display = "none";
+  var total = state.log.length;
+  var score = scoreSoFar();
+  var pct = total ? Math.round(score/total*100) : 0;
+
+  setAddrBar("Results", score+"/"+total, pct+"%");
+
+  document.getElementById("resScoreNum").textContent = score+"/"+total;
+  document.getElementById("resScorePct").textContent = pct+"%";
+
+  var msg;
+  if(pct>=90) msg = "Excellent — this reads exam-ready. Skim the mistakes below just to be sure.";
+  else if(pct>=75) msg = "Good grasp overall — a handful of weak spots to shore up below.";
+  else if(pct>=50) msg = "Getting there. Revisit the topics below before the exam, then retake just those.";
+  else msg = "Worth another pass through the chapter — use the breakdown below to see exactly where to focus.";
+  document.getElementById("resScoreMsg").textContent = msg;
+
+  renderTopicBreakdown();
+  renderReviewList();
+
+  var mistakes = state.log.filter(function(l){ return !l.isCorrect; }).length;
+  var mBtn = document.getElementById("retakeMistakesBtn");
+  if(mistakes === 0){
+    mBtn.textContent = "No mistakes to retake 🎉";
+    mBtn.disabled = true;
+  } else {
+    mBtn.textContent = "Retake missed questions only ("+mistakes+")";
+    mBtn.disabled = false;
+  }
+
+  showScreen("results");
+}
+
+function renderTopicBreakdown(){
+  var box = document.getElementById("topicBreakdown");
+  box.innerHTML = "";
+  var byTopic = {};
+  state.log.forEach(function(l){
+    byTopic[l.topic] = byTopic[l.topic] || {correct:0,total:0};
+    byTopic[l.topic].total++;
+    if(l.isCorrect) byTopic[l.topic].correct++;
+  });
+  TOPICS.forEach(function(t){
+    var d = byTopic[t.key];
+    if(!d) return;
+    var row = el("div","topic-bar-row");
+    var top = el("div","topic-bar-top");
+    top.appendChild(el("span","tname", t.name));
+    top.appendChild(el("span","tscore", d.correct+"/"+d.total));
+    row.appendChild(top);
+    var track = el("div","bar-track");
+    var fill = el("div","bar-fill");
+    var pct = Math.round(d.correct/d.total*100);
+    fill.style.width = pct+"%";
+    fill.style.background = pct>=80 ? "var(--led-green)" : (pct>=50 ? "var(--led-amber)" : "var(--led-red)");
+    track.appendChild(fill);
+    row.appendChild(track);
+    box.appendChild(row);
+  });
+}
+
+function renderReviewList(){
+  var list = document.getElementById("reviewList");
+  list.innerHTML = "";
+  state.log.forEach(function(l){
+    var q = byId[l.id];
+    var item = el("div","review-item");
+    var head = el("div","review-item-head");
+    head.appendChild(el("span","mark", l.isCorrect ? "✅" : "❌"));
+    head.appendChild(el("span","qtext", q.prompt));
+    item.appendChild(head);
+
+    var body = el("div","review-item-body");
+    if(q.type !== "short"){
+      body.appendChild(el("div","row", null)).innerHTML = "<b>Your answer:</b> "+escapeText(l.userAnswerText);
+      body.appendChild(el("div","row", null)).innerHTML = "<b>Correct answer:</b> "+escapeText(l.correctAnswerText);
+    } else {
+      body.appendChild(el("div","row", l.isCorrect ? "You marked this: got the key ideas." : "You marked this: missed it."));
+    }
+    var explainBox = el("div","explain", q.type==="short" ? q.modelAnswer : q.explanation);
+    body.appendChild(explainBox);
+    item.appendChild(body);
+
+    head.addEventListener("click", function(){ item.classList.toggle("open"); });
+    list.appendChild(item);
+  });
+}
+
+function escapeText(s){
+  var d = document.createElement("div");
+  d.textContent = s;
+  return d.innerHTML;
+}
+
+document.getElementById("reviewToggle").addEventListener("click", function(){
+  var list = document.getElementById("reviewList");
+  var open = list.style.display !== "none";
+  list.style.display = open ? "none" : "flex";
+  document.getElementById("reviewCaret").textContent = open ? "＋" : "－";
+});
+
+document.getElementById("retakeAllBtn").addEventListener("click", function(){
+  var same = state.queue.map(function(q){return q;});
+  state.queue = shuffle(same);
+  state.idx = 0; state.log = [];
+  showScreen("quiz");
+  document.getElementById("progressTrack").style.display = "block";
+  renderQuestion();
+});
+
+document.getElementById("retakeMistakesBtn").addEventListener("click", function(){
+  var mistakeIds = state.log.filter(function(l){return !l.isCorrect;}).map(function(l){return l.id;});
+  var pool = mistakeIds.map(function(id){ return byId[id]; });
+  if(pool.length === 0) return;
+  state.queue = shuffle(pool);
+  state.idx = 0; state.log = [];
+  showScreen("quiz");
+  document.getElementById("progressTrack").style.display = "block";
+  renderQuestion();
+});
+
+document.getElementById("changeTopicsBtn").addEventListener("click", function(){
+  showScreen("start");
+});
+
+/* ============================== INIT ============================== */
+buildStartScreen();
+showScreen("start");
+
+})();
+</script>
+</body>
+</html>

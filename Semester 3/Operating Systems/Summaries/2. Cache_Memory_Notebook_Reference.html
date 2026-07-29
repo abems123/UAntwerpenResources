@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cache Memory — Notebook Reference</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500;700&family=Caveat:wght@600;700&display=swap');
+
+:root{
+  --paper: #FAF7EF;
+  --paper-2: #F3EEE0;
+  --grid: #D7E0EA;
+  --ink: #232A34;
+  --ink-soft: #565F6E;
+  --blue: #2454A6;
+  --blue-soft: #7C9BCB;
+  --blue-pale: #DCE6F5;
+  --red: #C0392B;
+  --yellow: #F5E08C;
+  --yellow-soft: #FBF3D0;
+  --hole: #E7E0D0;
+  --sans: "Space Grotesk", "Segoe UI", sans-serif;
+  --serif: "Lora", Georgia, serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+  --hand: "Caveat", cursive;
+}
+
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:
+    repeating-linear-gradient(var(--paper) 0 27px, var(--grid) 27px 28px),
+    var(--paper);
+  color:var(--ink);
+  font-family:var(--serif);
+  font-size:16px;
+  line-height:1.6;
+}
+
+.binder{
+  position:fixed; left:0; top:0; bottom:0; width:30px;
+  background-image: radial-gradient(circle, var(--hole) 6px, transparent 6.5px);
+  background-size: 100% 46px;
+  background-position: center 30px;
+  background-repeat: repeat-y;
+  border-right: 1px dashed #cfc6ae;
+  z-index:0;
+}
+@media (max-width:760px){ .binder{ display:none; } }
+
+.page{
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 26px 70px;
+  position:relative;
+  z-index:1;
+}
+@media (min-width:761px){ .page{ padding-left:64px; } }
+
+header.top{ margin-bottom: 30px; }
+.kicker{
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--blue);
+}
+h1.title{
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: clamp(34px, 8vw, 50px);
+  margin: 4px 0 6px;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+.subtitle{
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--ink-soft);
+  font-size: 15.5px;
+  border-bottom: 2px solid var(--ink);
+  display:inline-block;
+  padding-bottom: 4px;
+}
+
+section.block{
+  margin: 38px 0;
+  padding-top: 6px;
+}
+.sec-head{
+  display:flex;
+  align-items:center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+.sec-num{
+  font-family: var(--sans);
+  font-weight:700;
+  font-size: 20px;
+  width: 36px; height:36px;
+  border-radius: 60% 40% 55% 45% / 45% 55% 40% 60%;
+  border: 2.5px solid var(--blue);
+  display:flex; align-items:center; justify-content:center;
+  color: var(--blue);
+  flex: none;
+  transform: rotate(-3deg);
+}
+.sec-title{
+  font-family: var(--sans);
+  font-weight:700;
+  font-size: 22px;
+  color: var(--ink);
+}
+.sec-intro{
+  font-family: var(--serif);
+  color: var(--ink-soft);
+  font-size: 15.5px;
+  margin: 0 0 16px;
+  max-width: 62ch;
+}
+mark{
+  background: var(--yellow);
+  padding: 0 3px;
+  border-radius: 2px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.diagram-wrap{
+  background: rgba(255,255,255,0.45);
+  border: 1.5px solid #c9c0aa;
+  border-radius: 14px 8px 14px 10px / 8px 14px 8px 14px;
+  padding: 14px 10px 6px;
+  margin: 6px 0 16px;
+}
+.diagram-wrap svg{ width:100%; height:auto; display:block; }
+.cap{
+  text-align:center;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  color: var(--ink-soft);
+  margin: 2px 0 8px;
+}
+
+.formula-box{
+  display:inline-block;
+  font-family: var(--mono);
+  font-size: 14px;
+  background: var(--yellow-soft);
+  border: 1.5px solid #d8c98a;
+  border-radius: 10px 4px 10px 4px / 4px 10px 4px 10px;
+  padding: 8px 14px;
+  margin: 6px 8px 6px 0;
+}
+
+.note{
+  font-family: var(--hand);
+  font-size: 21px;
+  color: var(--red);
+  border: 2px solid var(--red);
+  border-radius: 40% 60% 55% 45% / 50% 40% 60% 50%;
+  padding: 8px 16px;
+  display:inline-block;
+  transform: rotate(-1.4deg);
+  margin: 10px 4px;
+  max-width: 100%;
+}
+.note::before{ content:"⚠ "; }
+
+.two-col{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+@media (max-width:600px){ .two-col{ grid-template-columns: 1fr; } }
+
+table.mini{
+  border-collapse: collapse;
+  font-family: var(--mono);
+  font-size: 13px;
+  margin: 8px 0 4px;
+  width:100%;
+}
+table.mini th, table.mini td{
+  border: 1px solid #cfc6ae;
+  padding: 6px 10px;
+  text-align:left;
+}
+table.mini th{ background: var(--blue-pale); color: var(--ink); }
+table.mini td.num{ text-align:right; }
+
+.radar{
+  border: 2px solid var(--blue);
+  border-radius: 16px 6px 16px 6px / 6px 16px 6px 16px;
+  padding: 18px 22px;
+  background: rgba(220,230,245,0.35);
+  margin-top: 44px;
+}
+.radar h3{
+  font-family: var(--hand);
+  color: var(--blue);
+  font-size: 26px;
+  margin: 0 0 10px;
+  transform: rotate(-1deg);
+}
+.radar ul{ margin:0; padding-left: 20px; }
+.radar li{ margin-bottom:7px; font-size: 14.5px; }
+
+footer.end{
+  text-align:center;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-soft);
+  margin-top: 50px;
+}
+</style>
+</head>
+<body>
+<div class="binder"></div>
+<div class="page">
+
+<header class="top">
+  <div class="kicker">1500WETOPS — Operating Systems</div>
+  <h1 class="title">Cache Memory</h1>
+  <div class="subtitle">the whole chapter, on two pages</div>
+</header>
+
+<!-- ============ 1. THE BIG PICTURE ============ -->
+<section class="block">
+  <div class="sec-head">
+    <div class="sec-num">1</div>
+    <div class="sec-title">The Big Picture</div>
+  </div>
+  <p class="sec-intro">Speed costs money and capacity costs speed. The hierarchy fakes having all three at once by betting on <mark>locality of reference</mark>.</p>
+
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 640 260" xmlns="http://www.w3.org/2000/svg">
+      <!-- pyramid bands, narrow at top to wide at bottom -->
+      <g font-family="JetBrains Mono, monospace" font-size="13" text-anchor="middle">
+        <rect x="250" y="26" width="140" height="34" rx="4" fill="#2454A6"/>
+        <text x="320" y="47" fill="white">registers</text>
+
+        <rect x="210" y="66" width="220" height="34" rx="4" fill="#3763B4"/>
+        <text x="320" y="87" fill="white">cache (SRAM)</text>
+
+        <rect x="170" y="106" width="300" height="34" rx="4" fill="#5580C6"/>
+        <text x="320" y="127" fill="white">main memory (DRAM)</text>
+
+        <rect x="130" y="146" width="380" height="34" rx="4" fill="#7C9BCB"/>
+        <text x="320" y="167" fill="#1a2333">solid-state disk</text>
+
+        <rect x="90" y="186" width="460" height="34" rx="4" fill="#AFC2E0"/>
+        <text x="320" y="207" fill="#1a2333">hard disk / optical / tape</text>
+      </g>
+      <!-- side arrows -->
+      <g stroke="#C0392B" stroke-width="2.5" fill="none">
+        <path d="M572 210 V60" marker-end="url(#arrowUp)"/>
+      </g>
+      <g stroke="#2454A6" stroke-width="2.5" fill="none">
+        <path d="M556 60 V210" marker-end="url(#arrowDown)"/>
+      </g>
+      <defs>
+        <marker id="arrowUp" markerWidth="8" markerHeight="8" refX="4" refY="0" orient="auto">
+          <path d="M0,4 L4,0 L8,4 Z" fill="#C0392B"/>
+        </marker>
+        <marker id="arrowDown" markerWidth="8" markerHeight="8" refX="4" refY="8" orient="auto">
+          <path d="M0,4 L4,8 L8,4 Z" fill="#2454A6"/>
+        </marker>
+      </defs>
+      <text x="600" y="45" font-family="JetBrains Mono" font-size="12" fill="#C0392B" text-anchor="middle">$</text>
+      <text x="600" y="228" font-family="JetBrains Mono" font-size="12" fill="#2454A6" text-anchor="middle">GB</text>
+      <text x="577" y="230" font-family="Lora" font-style="italic" font-size="11" fill="#C0392B" text-anchor="end">cost &amp; speed ↑</text>
+      <text x="522" y="230" font-family="Lora" font-style="italic" font-size="11" fill="#2454A6" text-anchor="end">capacity ↓</text>
+    </svg>
+  </div>
+  <p class="cap">going down: ↑ capacity · going up: ↑ cost &amp; speed — SRAM (no refresh, fast, $$) → cache · DRAM (refresh, cheap, dense) → main memory</p>
+
+  <div class="formula-box">temporal locality → reuse <b>same</b> address soon</div>
+  <div class="formula-box">spatial locality → reuse <b>nearby</b> address soon</div>
+</section>
+
+<!-- ============ 2. ANATOMY OF A CACHE ACCESS ============ -->
+<section class="block">
+  <div class="sec-head">
+    <div class="sec-num">2</div>
+    <div class="sec-title">Anatomy of a Cache Access</div>
+  </div>
+  <p class="sec-intro">CPU ↔ cache moves <mark>one word</mark> at a time on a fast on-chip bus. Cache ↔ memory moves <mark>one block</mark> at a time on a slower shared bus.</p>
+
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 640 250" xmlns="http://www.w3.org/2000/svg">
+      <g font-family="Space Grotesk, sans-serif" font-size="14" font-weight="700" text-anchor="middle">
+        <rect x="20" y="60" width="100" height="60" rx="8" fill="none" stroke="#232A34" stroke-width="2"/>
+        <text x="70" y="95" fill="#232A34">CPU</text>
+
+        <rect x="235" y="55" width="120" height="70" rx="8" fill="#DCE6F5" stroke="#2454A6" stroke-width="2"/>
+        <text x="295" y="95" fill="#2454A6">CACHE</text>
+
+        <rect x="470" y="40" width="150" height="100" rx="8" fill="none" stroke="#232A34" stroke-width="2"/>
+        <text x="545" y="95" fill="#232A34">MEMORY</text>
+      </g>
+      <g stroke="#2454A6" stroke-width="2.5" fill="none">
+        <path d="M120 82 H235" marker-end="url(#a2)"/>
+        <path d="M235 100 H120" marker-end="url(#a2)"/>
+      </g>
+      <g stroke="#C0392B" stroke-width="4" fill="none">
+        <path d="M355 75 H470" marker-end="url(#a3)"/>
+        <path d="M470 105 H355" marker-end="url(#a3)"/>
+      </g>
+      <defs>
+        <marker id="a2" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#2454A6"/></marker>
+        <marker id="a3" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#C0392B"/></marker>
+      </defs>
+      <text x="177" y="65" font-family="JetBrains Mono" font-size="12" fill="#2454A6" text-anchor="middle">word</text>
+      <text x="412" y="60" font-family="JetBrains Mono" font-size="12" fill="#C0392B" text-anchor="middle">block</text>
+
+      <!-- zoom lines to callout -->
+      <path d="M260 125 L150 175" stroke="#9aa3ad" stroke-width="1.5" stroke-dasharray="4 3"/>
+      <path d="M330 125 L470 175" stroke="#9aa3ad" stroke-width="1.5" stroke-dasharray="4 3"/>
+
+      <!-- one cache line, zoomed -->
+      <g font-family="JetBrains Mono" font-size="12.5" text-anchor="middle">
+        <rect x="150" y="175" width="40" height="46" fill="#F5E08C" stroke="#232A34"/>
+        <text x="170" y="202" fill="#232A34">V</text>
+        <rect x="190" y="175" width="120" height="46" fill="#DCE6F5" stroke="#232A34"/>
+        <text x="250" y="202" fill="#232A34">tag</text>
+        <rect x="310" y="175" width="160" height="46" fill="white" stroke="#232A34"/>
+        <text x="390" y="202" fill="#232A34">data (8 words)</text>
+      </g>
+      <text x="310" y="238" font-family="Lora" font-style="italic" font-size="12" fill="#565F6E" text-anchor="middle">one cache line</text>
+    </svg>
+  </div>
+  <div class="formula-box">M blocks (K words each) ≫ C lines → C ≪ M</div>
+  <div class="formula-box">naive hit ratio H = C / M <span style="color:#565F6E">(real ratio is much higher — locality!)</span></div>
+  <div class="note">block too small → less spatial payoff · too big → fewer lines, wasted fetch</div>
+</section>
+
+<!-- ============ 3. MAPPING FUNCTIONS ============ -->
+<section class="block">
+  <div class="sec-head">
+    <div class="sec-num">3</div>
+    <div class="sec-title">Mapping Functions</div>
+  </div>
+  <p class="sec-intro">Every address splits into <mark>tag | index | offset</mark>. The three schemes only differ in how big the index field is.</p>
+
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 640 300" xmlns="http://www.w3.org/2000/svg" font-family="JetBrains Mono, monospace">
+      <!-- Direct -->
+      <text x="10" y="24" font-family="Space Grotesk" font-weight="700" font-size="15" fill="#232A34">Direct</text>
+      <g font-size="12.5" text-anchor="middle">
+        <rect x="10" y="34" width="230" height="34" fill="#DCE6F5" stroke="#232A34"/>
+        <text x="125" y="56" fill="#232A34">tag (s−r)</text>
+        <rect x="240" y="34" width="90" height="34" fill="#F5E08C" stroke="#232A34"/>
+        <text x="285" y="56" fill="#232A34">index (r)</text>
+        <rect x="330" y="34" width="70" height="34" fill="white" stroke="#232A34"/>
+        <text x="365" y="56" fill="#232A34">off. (w)</text>
+      </g>
+      <text x="410" y="56" font-size="13" fill="#565F6E">i = j mod 2<tspan font-size="9" dy="-5">r</tspan><tspan dy="5">  ( = C )</tspan></text>
+
+      <!-- Set-Associative -->
+      <text x="10" y="110" font-family="Space Grotesk" font-weight="700" font-size="15" fill="#232A34">Set-Associative (k-way)</text>
+      <g font-size="12.5" text-anchor="middle">
+        <rect x="10" y="120" width="190" height="34" fill="#DCE6F5" stroke="#232A34"/>
+        <text x="105" y="142" fill="#232A34">tag (s−d)</text>
+        <rect x="200" y="120" width="130" height="34" fill="#F5E08C" stroke="#232A34"/>
+        <text x="265" y="142" fill="#232A34">set (d)</text>
+        <rect x="330" y="120" width="70" height="34" fill="white" stroke="#232A34"/>
+        <text x="365" y="142" fill="#232A34">off. (w)</text>
+      </g>
+      <text x="410" y="142" font-size="13" fill="#565F6E">v = 2<tspan font-size="9" dy="-5">d</tspan><tspan dy="5"> sets, k = C/v lines/set</tspan></text>
+
+      <!-- Associative -->
+      <text x="10" y="196" font-family="Space Grotesk" font-weight="700" font-size="15" fill="#232A34">Fully Associative</text>
+      <g font-size="12.5" text-anchor="middle">
+        <rect x="10" y="206" width="320" height="34" fill="#DCE6F5" stroke="#232A34"/>
+        <text x="170" y="228" fill="#232A34">tag (s) — no index field</text>
+        <rect x="330" y="206" width="70" height="34" fill="white" stroke="#232A34"/>
+        <text x="365" y="228" fill="#232A34">off. (w)</text>
+      </g>
+      <text x="410" y="228" font-size="13" fill="#565F6E">compare tag to ALL C lines</text>
+
+      <text x="10" y="280" font-family="Lora" font-style="italic" font-size="11.5" fill="#565F6E">k=1 → Direct &#160;·&#160; k=C → Associative &#160;·&#160; small k (4–8-way) is the sweet spot</text>
+    </svg>
+  </div>
+
+  <div class="note">direct-mapped cache can hit 0% even nearly empty — one collision, and it thrashes forever</div>
+
+  <p class="cap" style="margin-top:14px;">the collision, precisely:</p>
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 640 190" xmlns="http://www.w3.org/2000/svg" font-family="JetBrains Mono, monospace" font-size="12">
+      <text x="320" y="20" text-anchor="middle" font-family="Lora" font-style="italic" fill="#565F6E">memory, folded every "cache size" bytes onto the cache</text>
+      <g stroke="#9aa3ad" stroke-width="1.5">
+        <rect x="20" y="34" width="600" height="30" fill="none"/>
+        <line x1="220" y1="34" x2="220" y2="64" stroke-dasharray="3 3"/>
+        <line x1="420" y1="34" x2="420" y2="64" stroke-dasharray="3 3"/>
+      </g>
+      <text x="120" y="53" text-anchor="middle" fill="#565F6E">block 0..C</text>
+      <text x="320" y="53" text-anchor="middle" fill="#565F6E">block C..2C</text>
+      <text x="520" y="53" text-anchor="middle" fill="#565F6E">block 2C..3C</text>
+
+      <circle cx="90" cy="49" r="6" fill="#2454A6"/>
+      <circle cx="290" cy="49" r="6" fill="#C0392B"/>
+      <text x="90" y="80" text-anchor="middle" fill="#2454A6">a[i]</text>
+      <text x="290" y="80" text-anchor="middle" fill="#C0392B">b[i]  (offset = +1 cache size)</text>
+
+      <path d="M90 90 V130" stroke="#2454A6" stroke-width="2" fill="none" marker-end="url(#dArrow)"/>
+      <path d="M290 90 Q 200 120 155 130" stroke="#C0392B" stroke-width="2" fill="none" marker-end="url(#dArrow2)"/>
+      <defs>
+        <marker id="dArrow" markerWidth="7" markerHeight="7" refX="3.5" refY="6" orient="auto"><path d="M0,0 L7,0 L3.5,7 Z" fill="#2454A6"/></marker>
+        <marker id="dArrow2" markerWidth="7" markerHeight="7" refX="3.5" refY="6" orient="auto"><path d="M0,0 L7,0 L3.5,7 Z" fill="#C0392B"/></marker>
+      </defs>
+      <rect x="95" y="132" width="120" height="34" rx="6" fill="#F5E08C" stroke="#232A34"/>
+      <text x="155" y="154" text-anchor="middle" fill="#232A34" font-weight="700">SAME line!</text>
+      <text x="320" y="182" text-anchor="middle" font-family="Lora" font-style="italic" font-size="11.5" fill="#565F6E">offsets that are exact multiples of the cache size always collide</text>
+    </svg>
+  </div>
+</section>
+
+<!-- ============ 4. REPLACEMENT ALGORITHMS ============ -->
+<section class="block">
+  <div class="sec-head">
+    <div class="sec-num">4</div>
+    <div class="sec-title">Replacement Algorithms</div>
+  </div>
+  <p class="sec-intro">Only needed when there's a choice of line (associative / set-associative). Spectrum: cheap &amp; dumb ⟷ smart &amp; expensive.</p>
+
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 640 190" xmlns="http://www.w3.org/2000/svg" font-family="Space Grotesk, sans-serif">
+      <line x1="30" y1="90" x2="610" y2="90" stroke="#232A34" stroke-width="2.5" marker-end="url(#axisArrow)"/>
+      <defs><marker id="axisArrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#232A34"/></marker></defs>
+      <text x="30" y="115" font-size="11.5" fill="#565F6E" font-family="JetBrains Mono">cheap · dumb</text>
+      <text x="610" y="115" font-size="11.5" fill="#565F6E" text-anchor="end" font-family="JetBrains Mono">smart · costly</text>
+
+      <g text-anchor="middle" font-size="13">
+        <circle cx="90" cy="90" r="9" fill="#AFC2E0"/>
+        <text x="90" y="70" fill="#232A34">Random</text>
+
+        <circle cx="230" cy="90" r="9" fill="#7C9BCB"/>
+        <text x="230" y="70" fill="#232A34">FIFO</text>
+
+        <circle cx="400" cy="90" r="9" fill="#7C9BCB" stroke="#232A34" stroke-dasharray="2 2"/>
+        <text x="400" y="70" fill="#232A34">pseudo-LRU</text>
+        <text x="400" y="140" font-size="11.5" fill="#565F6E" font-family="JetBrains Mono">TB: k−1 bits</text>
+        <text x="400" y="156" font-size="11.5" fill="#565F6E" font-family="JetBrains Mono">MRU: k bits</text>
+
+        <circle cx="560" cy="90" r="10" fill="#2454A6"/>
+        <text x="560" y="70" fill="#232A34">LRU</text>
+        <text x="560" y="140" font-size="11.5" fill="#565F6E" font-family="JetBrains Mono">k·log₂k bits</text>
+        <text x="560" y="156" font-size="11.5" fill="#565F6E" font-family="JetBrains Mono">+ update on hit</text>
+      </g>
+      <g font-size="11" fill="#9aa3ad" font-family="Lora" font-style="italic">
+        <text x="230" y="35" text-anchor="middle">"Optimal" (Belady) floats above all of these — needs the future, theory only</text>
+      </g>
+    </svg>
+  </div>
+  <table class="mini">
+    <tr><th>k = 8 lines/set</th><th>bits needed</th><th>note</th></tr>
+    <tr><td>LRU</td><td class="num">24</td><td>k·log₂k, updates every hit</td></tr>
+    <tr><td>Tree-based pseudo-LRU</td><td class="num">7</td><td>k−1, updates log₂k bits</td></tr>
+    <tr><td>MRU pseudo-LRU</td><td class="num">8</td><td>1 bit/line, resets when full</td></tr>
+  </table>
+</section>
+
+<!-- ============ 5. WRITE POLICIES ============ -->
+<section class="block">
+  <div class="sec-head">
+    <div class="sec-num">5</div>
+    <div class="sec-title">Write Policies</div>
+  </div>
+  <p class="sec-intro">A CPU write updates cache. Does memory find out <mark>now</mark>, or <mark>later</mark>? Matters because DMA reads memory directly, bypassing the cache.</p>
+
+  <div class="two-col">
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 300 150" xmlns="http://www.w3.org/2000/svg" font-family="Space Grotesk, sans-serif" font-size="13">
+        <text x="150" y="20" text-anchor="middle" font-weight="700" fill="#232A34">WRITE-THROUGH</text>
+        <rect x="20" y="45" width="90" height="50" rx="6" fill="#DCE6F5" stroke="#2454A6" stroke-width="2"/>
+        <text x="65" y="75" text-anchor="middle" fill="#2454A6">cache</text>
+        <rect x="190" y="45" width="90" height="50" rx="6" fill="none" stroke="#232A34" stroke-width="2"/>
+        <text x="235" y="75" text-anchor="middle" fill="#232A34">memory</text>
+        <path d="M110 70 H190" stroke="#C0392B" stroke-width="3" marker-end="url(#wArrow)"/>
+        <defs><marker id="wArrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#C0392B"/></marker></defs>
+        <text x="150" y="115" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#565F6E">every write, right now</text>
+        <text x="150" y="132" text-anchor="middle" font-family="Lora" font-style="italic" font-size="10.5" fill="#565F6E">simple · consistent · more traffic</text>
+      </svg>
+    </div>
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 300 150" xmlns="http://www.w3.org/2000/svg" font-family="Space Grotesk, sans-serif" font-size="13">
+        <text x="150" y="20" text-anchor="middle" font-weight="700" fill="#232A34">WRITE-BACK</text>
+        <rect x="20" y="45" width="90" height="50" rx="6" fill="#DCE6F5" stroke="#2454A6" stroke-width="2"/>
+        <text x="65" y="70" text-anchor="middle" fill="#2454A6">cache</text>
+        <circle cx="95" cy="53" r="7" fill="#F5E08C" stroke="#232A34"/>
+        <text x="95" y="57" text-anchor="middle" font-size="9" fill="#232A34">D</text>
+        <rect x="190" y="45" width="90" height="50" rx="6" fill="none" stroke="#232A34" stroke-width="2"/>
+        <text x="235" y="75" text-anchor="middle" fill="#232A34">memory</text>
+        <path d="M110 70 H190" stroke="#2454A6" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#wArrow2)"/>
+        <defs><marker id="wArrow2" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#2454A6"/></marker></defs>
+        <text x="150" y="115" text-anchor="middle" font-family="JetBrains Mono" font-size="11" fill="#565F6E">only on eviction, if dirty (D)</text>
+        <text x="150" y="132" text-anchor="middle" font-family="Lora" font-style="italic" font-size="10.5" fill="#565F6E">efficient · briefly inconsistent</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6. MODERN DESIGNS ============ -->
+<section class="block">
+  <div class="sec-head">
+    <div class="sec-num">6</div>
+    <div class="sec-title">Modern Designs</div>
+  </div>
+  <p class="sec-intro">Real chips stack several caches, and sometimes split them by content.</p>
+
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 640 190" xmlns="http://www.w3.org/2000/svg" font-family="Space Grotesk, sans-serif" font-size="13">
+      <rect x="10" y="60" width="60" height="60" rx="6" fill="none" stroke="#232A34" stroke-width="2"/>
+      <text x="40" y="95" text-anchor="middle">CPU</text>
+
+      <rect x="95" y="70" width="60" height="40" rx="5" fill="#2454A6"/>
+      <text x="125" y="94" text-anchor="middle" fill="white" font-size="12">L1</text>
+
+      <rect x="170" y="60" width="80" height="60" rx="5" fill="#5580C6"/>
+      <text x="210" y="94" text-anchor="middle" fill="white" font-size="12">L2</text>
+
+      <rect x="265" y="45" width="120" height="90" rx="6" fill="#7C9BCB"/>
+      <text x="325" y="94" text-anchor="middle" fill="#1a2333" font-size="12">L3 (shared)</text>
+
+      <rect x="410" y="30" width="200" height="120" rx="6" fill="none" stroke="#232A34" stroke-width="2"/>
+      <text x="510" y="94" text-anchor="middle">MAIN MEMORY</text>
+
+      <g stroke="#565F6E" stroke-width="1.5" fill="none">
+        <path d="M70 90 H95"/><path d="M155 90 H170"/><path d="M250 90 H265"/><path d="M385 90 H410"/>
+      </g>
+      <text x="325" y="160" text-anchor="middle" font-family="Lora" font-style="italic" font-size="12" fill="#565F6E">smaller &amp; faster near the CPU · larger &amp; slower (often shared) further away</text>
+    </svg>
+  </div>
+
+  <div class="two-col">
+    <div class="formula-box" style="width:100%;">inclusive: outer level duplicates inner (simple, wastes space)</div>
+    <div class="formula-box" style="width:100%;">exclusive: distinct data per level (more usable space, complex)</div>
+  </div>
+  <div class="diagram-wrap" style="max-width:340px; margin-top:10px;">
+    <svg viewBox="0 0 300 110" xmlns="http://www.w3.org/2000/svg" font-family="Space Grotesk, sans-serif" font-size="12.5">
+      <rect x="10" y="30" width="80" height="50" rx="5" fill="#DCE6F5" stroke="#2454A6" stroke-width="2"/>
+      <text x="50" y="59" text-anchor="middle" fill="#2454A6">I$</text>
+      <rect x="100" y="30" width="80" height="50" rx="5" fill="#DCE6F5" stroke="#2454A6" stroke-width="2"/>
+      <text x="140" y="59" text-anchor="middle" fill="#2454A6">D$</text>
+      <rect x="210" y="35" width="70" height="40" rx="5" fill="none" stroke="#232A34" stroke-width="2"/>
+      <text x="245" y="59" text-anchor="middle">CPU</text>
+      <path d="M180 55 H210" stroke="#565F6E" stroke-width="1.5"/>
+      <path d="M90 55 H100" stroke="#565F6E" stroke-width="1.5"/>
+      <text x="150" y="100" text-anchor="middle" font-family="Lora" font-style="italic" font-size="11.5" fill="#565F6E">split L1: fetch instr + data at once</text>
+    </svg>
+  </div>
+</section>
+
+<!-- ============ 7. BENCHMARKING ============ -->
+<section class="block">
+  <div class="sec-head">
+    <div class="sec-num">7</div>
+    <div class="sec-title">Benchmarking (reading the graph)</div>
+  </div>
+  <p class="sec-intro">Sweep stride &amp; array size, time the average access. Every hidden cache property shows up as a <mark>flat-then-jump</mark> step.</p>
+
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 640 260" xmlns="http://www.w3.org/2000/svg" font-family="JetBrains Mono, monospace" font-size="11.5">
+      <line x1="50" y1="220" x2="610" y2="220" stroke="#232A34" stroke-width="2"/>
+      <line x1="50" y1="220" x2="50" y2="20" stroke="#232A34" stroke-width="2"/>
+      <text x="330" y="248" text-anchor="middle" fill="#565F6E">stride (log scale) →</text>
+      <text x="22" y="120" fill="#565F6E" transform="rotate(-90 22 120)" text-anchor="middle">access time</text>
+
+      <path d="M60 205 H230 L260 90 H400 L430 45 H600"
+            fill="none" stroke="#2454A6" stroke-width="3"/>
+
+      <line x1="245" y1="210" x2="245" y2="30" stroke="#C0392B" stroke-width="1" stroke-dasharray="3 3"/>
+      <line x1="415" y1="210" x2="415" y2="30" stroke="#C0392B" stroke-width="1" stroke-dasharray="3 3"/>
+
+      <text x="140" y="200" text-anchor="middle" fill="#2454A6">~20ns</text>
+      <text x="140" y="214" text-anchor="middle" fill="#565F6E">L1 hit</text>
+
+      <text x="330" y="85" text-anchor="middle" fill="#2454A6">~450ns</text>
+      <text x="330" y="99" text-anchor="middle" fill="#565F6E">L1 miss, TLB hit</text>
+
+      <text x="515" y="40" text-anchor="middle" fill="#2454A6">~700ns</text>
+      <text x="515" y="54" text-anchor="middle" fill="#565F6E">L1 + TLB miss</text>
+    </svg>
+  </div>
+  <p class="cap">3 plateaus here = 3 real levels exercised (no L2 → no 4th step). Same "jump" logic, different swept variable, reveals:</p>
+  <table class="mini">
+    <tr><th>vary…</th><th>jump means…</th><th>reveals</th></tr>
+    <tr><td>array size</td><td>array no longer fits</td><td>cache size</td></tr>
+    <tr><td>stride (large array)</td><td>every access = new line</td><td>line size</td></tr>
+    <tr><td>stride (forcing collisions)</td><td>too many elements/set</td><td>associativity k</td></tr>
+  </table>
+</section>
+
+<div class="radar">
+  <h3>say these out loud before the exam</h3>
+  <ul>
+    <li><b>SRAM vs DRAM</b> — flip-flop/no refresh/fast/$$ vs capacitor/refresh/cheap/dense</li>
+    <li><b>Direct vs Set-Assoc vs Associative</b> — cheap+thrash-prone vs balanced vs flexible+costly comparators</li>
+    <li><b>Random / FIFO / LRU / pseudo-LRU</b> — bit cost ↔ hit-rate performance trade-off</li>
+    <li><b>Write-through vs Write-back</b> — always consistent+traffic vs efficient+briefly stale</li>
+    <li><b>Inclusive vs Exclusive</b>, <b>Split vs Unified</b> cache</li>
+  </ul>
+</div>
+
+<footer class="end">— Cache Memory, Chapter 2 · nothing skipped —</footer>
+
+</div>
+</body>
+</html>

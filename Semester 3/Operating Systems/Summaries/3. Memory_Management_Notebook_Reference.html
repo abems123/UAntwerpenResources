@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Memory Management — Notebook Reference</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500;700&family=Caveat:wght@600;700&display=swap');
+
+:root{
+  --paper: #FAF7EF;
+  --paper-2: #F3EEE0;
+  --grid: #D7E0EA;
+  --ink: #232A34;
+  --ink-soft: #565F6E;
+  --blue: #2454A6;
+  --blue-soft: #7C9BCB;
+  --blue-pale: #DCE6F5;
+  --red: #C0392B;
+  --yellow: #F5E08C;
+  --yellow-soft: #FBF3D0;
+  --hole: #E7E0D0;
+  --sans: "Space Grotesk", "Segoe UI", sans-serif;
+  --serif: "Lora", Georgia, serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+  --hand: "Caveat", cursive;
+}
+
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:
+    repeating-linear-gradient(var(--paper) 0 27px, var(--grid) 27px 28px),
+    var(--paper);
+  color:var(--ink);
+  font-family:var(--serif);
+  font-size:16px;
+  line-height:1.6;
+}
+
+.binder{
+  position:fixed; left:0; top:0; bottom:0; width:30px;
+  background-image: radial-gradient(circle, var(--hole) 6px, transparent 6.5px);
+  background-size: 100% 46px;
+  background-position: center 30px;
+  background-repeat: repeat-y;
+  border-right: 1px dashed #cfc6ae;
+  z-index:0;
+}
+@media (max-width:760px){ .binder{ display:none; } }
+
+.page{
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 26px 70px;
+  position:relative;
+  z-index:1;
+}
+@media (min-width:761px){ .page{ padding-left:64px; } }
+
+header.top{ margin-bottom: 30px; }
+.kicker{
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--blue);
+}
+h1.title{
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: clamp(34px, 8vw, 50px);
+  margin: 4px 0 6px;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+.subtitle{
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--ink-soft);
+  font-size: 15.5px;
+  border-bottom: 2px solid var(--ink);
+  display:inline-block;
+  padding-bottom: 4px;
+}
+
+section.block{
+  margin: 38px 0;
+  padding-top: 6px;
+}
+.sec-head{
+  display:flex;
+  align-items:center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+.sec-num{
+  font-family: var(--sans);
+  font-weight:700;
+  font-size: 20px;
+  width: 36px; height:36px;
+  border-radius: 60% 40% 55% 45% / 45% 55% 40% 60%;
+  border: 2.5px solid var(--blue);
+  display:flex; align-items:center; justify-content:center;
+  color: var(--blue);
+  flex: none;
+  transform: rotate(-3deg);
+}
+.sec-title{
+  font-family: var(--sans);
+  font-weight:700;
+  font-size: 22px;
+  color: var(--ink);
+}
+.sec-intro{
+  font-family: var(--serif);
+  color: var(--ink-soft);
+  font-size: 15.5px;
+  margin: 0 0 16px;
+  max-width: 62ch;
+}
+mark{
+  background: var(--yellow);
+  padding: 0 3px;
+  border-radius: 2px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.diagram-wrap{
+  background: rgba(255,255,255,0.45);
+  border: 1.5px solid #c9c0aa;
+  border-radius: 14px 8px 14px 10px / 8px 14px 8px 14px;
+  padding: 14px 10px 6px;
+  margin: 6px 0 16px;
+}
+.diagram-wrap svg{ width:100%; height:auto; display:block; }
+.cap{
+  text-align:center;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  color: var(--ink-soft);
+  margin: 2px 0 8px;
+}
+
+.formula-box{
+  display:inline-block;
+  font-family: var(--mono);
+  font-size: 14px;
+  background: var(--yellow-soft);
+  border: 1.5px solid #d8c98a;
+  border-radius: 10px 4px 10px 4px / 4px 10px 4px 10px;
+  padding: 8px 14px;
+  margin: 6px 8px 6px 0;
+}
+
+.note{
+  font-family: var(--hand);
+  font-size: 21px;
+  color: var(--red);
+  border: 2px solid var(--red);
+  border-radius: 40% 60% 55% 45% / 50% 40% 60% 50%;
+  padding: 8px 16px;
+  display:inline-block;
+  transform: rotate(-1.4deg);
+  margin: 10px 4px;
+  max-width: 100%;
+}
+.note::before{ content:"⚠ "; }
+
+.two-col{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+@media (max-width:600px){ .two-col{ grid-template-columns: 1fr; } }
+
+table.mini{
+  border-collapse: collapse;
+  font-family: var(--mono);
+  font-size: 13px;
+  margin: 8px 0 4px;
+  width:100%;
+}
+table.mini th, table.mini td{
+  border: 1px solid #cfc6ae;
+  padding: 6px 10px;
+  text-align:left;
+}
+table.mini th{ background: var(--blue-pale); color: var(--ink); }
+table.mini td.num{ text-align:right; }
+
+.radar{
+  border: 2px solid var(--blue);
+  border-radius: 16px 6px 16px 6px / 6px 16px 6px 16px;
+  padding: 18px 22px;
+  background: rgba(220,230,245,0.35);
+  margin-top: 44px;
+}
+.radar h3{
+  font-family: var(--hand);
+  color: var(--blue);
+  font-size: 26px;
+  margin: 0 0 10px;
+  transform: rotate(-1deg);
+}
+.radar ul{ margin:0; padding-left: 20px; }
+.radar li{ margin-bottom:7px; font-size: 14.5px; }
+
+footer.end{
+  text-align:center;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-soft);
+  margin-top: 50px;
+}
+</style>
+</head>
+<body>
+<div class="binder"></div>
+<div class="page">
+
+<header class="top">
+  <div class="kicker">1500WETOPS — Operating Systems</div>
+  <h1 class="title">Memory Management</h1>
+  <div class="subtitle">the whole chapter, one page</div>
+</header>
+
+<!-- ============ 1. WHY MEMORY MANAGEMENT ============ -->
+<section class="block">
+  <div class="sec-head">
+    <div class="sec-num">1</div>
+    <div class="sec-title">Why Memory Management</div>
+  </div>
+  <p class="sec-intro">Keeping the processor busy means several processes have to share <mark>memory</mark> at once — the OS must always know which ones, and how they're arranged.</p>
+
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 640 230" xmlns="http://www.w3.org/2000/svg" font-family="Space Grotesk, sans-serif" font-size="14" font-weight="700" text-anchor="middle">
+      <rect x="30" y="140" width="580" height="16" rx="4" fill="#232A34"/>
+      <text x="320" y="182" font-family="JetBrains Mono, monospace" font-weight="400" font-size="12" fill="#565F6E">4 · communication bus</text>
+
+      <rect x="30" y="30" width="160" height="70" rx="8" fill="none" stroke="#232A34" stroke-width="2"/>
+      <text x="110" y="70" fill="#232A34">PROCESSOR</text>
+
+      <rect x="450" y="30" width="160" height="70" rx="8" fill="none" stroke="#232A34" stroke-width="2"/>
+      <text x="530" y="70" fill="#232A34">I/O DEVICES</text>
+
+      <rect x="240" y="170" width="160" height="56" rx="8" fill="#DCE6F5" stroke="#2454A6" stroke-width="2.5"/>
+      <text x="320" y="203" fill="#2454A6">MEMORY</text>
+
+      <g stroke="#565F6E" stroke-width="1.5" fill="none">
+        <path d="M110 100 V140"/>
+        <path d="M530 100 V140"/>
+        <path d="M320 156 V170"/>
+      </g>
+      <text x="110" y="118" font-family="JetBrains Mono, monospace" font-weight="400" font-size="10.5" fill="#565F6E">1</text>
+      <text x="530" y="118" font-family="JetBrains Mono, monospace" font-weight="400" font-size="10.5" fill="#565F6E">3</text>
+      <text x="320" y="163" font-family="JetBrains Mono, monospace" font-weight="400" font-size="10.5" fill="#2454A6">2</text>
+    </svg>
+  </div>
+  <p class="cap">the OS as resource manager — this chapter is entirely about box 2</p>
+
+  <div class="formula-box">OS must always know: <b>(1)</b> which processes are in memory <b>(2)</b> how they're arranged</div>
+</section>
+
+<!-- ============ 2. ADDRESS BINDING ============ -->
+<section class="block">
+  <div class="sec-head">
+    <div class="sec-num">2</div>
+    <div class="sec-title">Address Binding</div>
+  </div>
+  <p class="sec-intro">A logical address becomes a real one at exactly one of three moments. Bind early and get <mark>rigidity</mark>; bind late and get <mark>flexibility</mark>.</p>
+
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 640 190" xmlns="http://www.w3.org/2000/svg" font-family="JetBrains Mono, monospace">
+      <line x1="30" y1="110" x2="610" y2="110" stroke="#232A34" stroke-width="2.5" marker-end="url(#bArrow)"/>
+      <defs><marker id="bArrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#232A34"/></marker></defs>
+      <text x="30" y="135" font-size="11.5" fill="#565F6E">rigid</text>
+      <text x="610" y="135" font-size="11.5" fill="#565F6E" text-anchor="end">flexible</text>
+
+      <g text-anchor="middle" font-size="13" font-family="Space Grotesk, sans-serif" font-weight="700">
+        <circle cx="110" cy="110" r="9" fill="#AFC2E0"/>
+        <text x="110" y="90" fill="#232A34">compile time</text>
+        <text x="110" y="160" font-family="JetBrains Mono, monospace" font-weight="400" font-size="11" fill="#565F6E">absolute addr.</text>
+
+        <circle cx="320" cy="110" r="9" fill="#7C9BCB"/>
+        <text x="320" y="90" fill="#232A34">load time</text>
+        <text x="320" y="160" font-family="JetBrains Mono, monospace" font-weight="400" font-size="11" fill="#565F6E">rel. → abs., then fixed</text>
+
+        <circle cx="530" cy="110" r="10" fill="#2454A6"/>
+        <text x="530" y="90" fill="#232A34">run time</text>
+        <text x="530" y="160" font-family="JetBrains Mono, monospace" font-weight="400" font-size="11" fill="#565F6E">relative, always</text>
+      </g>
+      <text x="530" y="45" text-anchor="middle" font-family="Lora, Georgia, serif" font-style="italic" font-size="11.5" fill="#C0392B">only this one can relocate mid-run</text>
+    </svg>
+  </div>
+  <p class="cap">translation handled by the loader, assisted by the linker</p>
+
+  <div class="formula-box">run-time binding needs a hardware relocation/base register — it re-translates <b>every</b> access</div>
+  <div class="note">why does run-time binding need hardware help? because it's the only one re-translating on every single access, not once</div>
+</section>
+
+<!-- ============ 3. MEMORY ORGANIZATION ============ -->
+<section class="block">
+  <div class="sec-head">
+    <div class="sec-num">3</div>
+    <div class="sec-title">Memory Organization</div>
+  </div>
+  <p class="sec-intro">Three ways to slice up memory for processes — the rest of this page is just these three, in order.</p>
+
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 640 100" xmlns="http://www.w3.org/2000/svg" font-family="Space Grotesk, sans-serif" font-size="13" font-weight="700" text-anchor="middle">
+      <g stroke="#232A34" stroke-width="2" fill="none">
+        <rect x="20" y="20" width="60" height="18"/><rect x="80" y="20" width="30" height="18"/><rect x="110" y="20" width="80" height="18"/>
+      </g>
+      <text x="105" y="60" fill="#232A34">Partitioning</text>
+      <path d="M225 29 H265" stroke="#565F6E" stroke-width="2" marker-end="url(#rArrow)"/>
+
+      <g stroke="#232A34" stroke-width="2" fill="none">
+        <rect x="280" y="20" width="18" height="18"/><rect x="298" y="20" width="18" height="18"/><rect x="316" y="20" width="18" height="18"/>
+        <rect x="280" y="38" width="18" height="18"/><rect x="298" y="38" width="18" height="18"/><rect x="316" y="38" width="18" height="18"/>
+      </g>
+      <text x="317" y="76" fill="#232A34">Paging</text>
+      <path d="M365 29 H405" stroke="#565F6E" stroke-width="2" marker-end="url(#rArrow)"/>
+
+      <g stroke="#232A34" stroke-width="2" fill="none">
+        <rect x="420" y="20" width="40" height="18"/><rect x="460" y="20" width="16" height="18"/><rect x="476" y="20" width="65" height="18"/>
+      </g>
+      <text x="510" y="60" font-family="JetBrains Mono, monospace" font-size="9" font-weight="400" fill="#565F6E">code · stk · data</text>
+      <text x="480" y="76" fill="#232A34">Segmentation</text>
+      <defs><marker id="rArrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#565F6E"/></marker></defs>
+    </svg>
+  </div>
+  <p class="cap">fixed &amp; dynamic partitioning first, then paging, then segmentation</p>
+</section>
+
+<!-- ============ 4. FIXED PARTITIONING ============ -->
+<section class="block">
+  <div class="sec-head">
+    <div class="sec-num">4</div>
+    <div class="sec-title">Fixed Partitioning</div>
+  </div>
+  <p class="sec-intro">Carve memory into slots ahead of time. Equal slots waste space inside them (<mark>internal fragmentation</mark>); variable slots waste less but need a placement rule.</p>
+
+  <div class="two-col">
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg" font-family="Space Grotesk, sans-serif" font-size="13">
+        <text x="150" y="20" text-anchor="middle" font-weight="700" fill="#232A34">EQUAL-SIZE</text>
+        <g stroke="#232A34" stroke-width="2" fill="none">
+          <rect x="15" y="35" width="270" height="46"/>
+          <line x1="82" y1="35" x2="82" y2="81"/><line x1="150" y1="35" x2="150" y2="81"/><line x1="218" y1="35" x2="218" y2="81"/>
+        </g>
+        <rect x="90" y="41" width="50" height="34" fill="#DCE6F5" stroke="#2454A6" stroke-width="1.5"/>
+        <text x="115" y="62" text-anchor="middle" font-size="10.5" fill="#2454A6">p2</text>
+        <rect x="140" y="41" width="10" height="34" fill="#F5E08C" stroke="#C0392B" stroke-width="1"/>
+        <text x="48" y="62" text-anchor="middle" font-size="10.5" fill="#565F6E">p1</text>
+        <text x="184" y="62" text-anchor="middle" font-size="10.5" fill="#565F6E">p3</text>
+        <text x="251" y="62" text-anchor="middle" font-size="10.5" fill="#565F6E">p4</text>
+        <text x="150" y="100" text-anchor="middle" font-family="Lora, Georgia, serif" font-style="italic" font-size="11" fill="#C0392B">same waste, every time</text>
+        <text x="150" y="130" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#565F6E">2 hard caps: max size, max #procs</text>
+      </svg>
+    </div>
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg" font-family="Space Grotesk, sans-serif" font-size="13">
+        <text x="150" y="20" text-anchor="middle" font-weight="700" fill="#232A34">VARIABLE-SIZE</text>
+        <g stroke="#232A34" stroke-width="2" fill="none">
+          <rect x="15" y="35" width="270" height="46"/>
+          <line x1="55" y1="35" x2="55" y2="81"/><line x1="150" y1="35" x2="150" y2="81"/><line x1="205" y1="35" x2="205" y2="81"/>
+        </g>
+        <rect x="20" y="41" width="30" height="34" fill="#DCE6F5" stroke="#2454A6" stroke-width="1.5"/>
+        <rect x="60" y="41" width="85" height="34" fill="#DCE6F5" stroke="#2454A6" stroke-width="1.5"/>
+        <rect x="155" y="41" width="45" height="34" fill="#DCE6F5" stroke="#2454A6" stroke-width="1.5"/>
+        <rect x="210" y="41" width="70" height="34" fill="#DCE6F5" stroke="#2454A6" stroke-width="1.5"/>
+        <text x="150" y="100" text-anchor="middle" font-family="Lora, Georgia, serif" font-style="italic" font-size="11" fill="#2454A6">less waste — but which slot for whom?</text>
+        <text x="150" y="130" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#565F6E">needs a placement algorithm →</text>
+      </svg>
+    </div>
+  </div>
+
+  <div class="note">"advantages/disadvantages of fixed partitioning" is asked almost every year — simple to manage vs. internal fragmentation + two hard caps</div>
+</section>
+
+<!-- ============ 5. DYNAMIC PARTITIONING & THE 50% RULE ============ -->
+<section class="block">
+  <div class="sec-head">
+    <div class="sec-num">5</div>
+    <div class="sec-title">Dynamic Partitioning &amp; the 50% Rule</div>
+  </div>
+  <p class="sec-intro">Cut each partition exactly to fit — internal fragmentation vanishes, but the gaps left behind (<mark>holes</mark>) become their own problem.</p>
+
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 640 170" xmlns="http://www.w3.org/2000/svg" font-family="JetBrains Mono, monospace" font-size="12" text-anchor="middle">
+      <g stroke="#2454A6" stroke-width="2">
+        <rect x="20" y="40" width="110" height="60" fill="#DCE6F5"/>
+        <rect x="170" y="40" width="130" height="60" fill="#DCE6F5"/>
+        <rect x="365" y="40" width="95" height="60" fill="#DCE6F5"/>
+        <rect x="530" y="40" width="90" height="60" fill="#DCE6F5"/>
+      </g>
+      <g stroke="#9aa3ad" stroke-width="1.5" stroke-dasharray="3 3" fill="none">
+        <rect x="130" y="40" width="40" height="60"/>
+        <rect x="300" y="40" width="65" height="60"/>
+        <rect x="460" y="40" width="70" height="60"/>
+      </g>
+      <text x="75" y="75" fill="#2454A6">P1</text>
+      <text x="235" y="75" fill="#2454A6">P2</text>
+      <text x="412" y="75" fill="#2454A6">P3</text>
+      <text x="575" y="75" fill="#2454A6">P4</text>
+      <text x="150" y="127" fill="#565F6E">hole</text>
+      <text x="332" y="127" fill="#565F6E">hole</text>
+      <text x="495" y="127" fill="#565F6E">hole</text>
+      <text x="320" y="152" font-family="Caveat, cursive" font-weight="700" font-size="19" fill="#C0392B">H ≈ N / 2 !</text>
+    </svg>
+  </div>
+  <p class="cap">each hole is shared by 2 neighbouring processes → about half as many holes as processes</p>
+
+  <div class="formula-box">50% rule: expected holes <b>H ≈ N / 2</b> in steady state</div>
+  <div class="note">fixed ↔ dynamic is THE classic pair: internal fragmentation traded for external fragmentation</div>
+</section>
+
+<!-- ============ 6. PLACEMENT ALGORITHMS ============ -->
+<section class="block">
+  <div class="sec-head">
+    <div class="sec-num">6</div>
+    <div class="sec-title">Placement Algorithms</div>
+  </div>
+  <p class="sec-intro">Same five holes every time — <mark>A5 · B12 · C6 · D9 · E20</mark>, request = 8 — four rules, four different winners.</p>
+
+  <div class="two-col">
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 300 110" xmlns="http://www.w3.org/2000/svg" font-family="JetBrains Mono, monospace" font-size="10.5" text-anchor="middle">
+        <text x="15" y="16" font-family="Space Grotesk, sans-serif" font-weight="700" font-size="13" text-anchor="start" fill="#232A34">BEST-FIT</text>
+        <g stroke="#232A34" stroke-width="1.5">
+          <rect x="15" y="26" width="17" height="26" fill="none"/><rect x="32" y="26" width="40" height="26" fill="none"/>
+          <rect x="72" y="26" width="20" height="26" fill="none"/><rect x="92" y="26" width="30" height="26" fill="#F5E08C" stroke="#232A34" stroke-width="2"/>
+          <rect x="122" y="26" width="67" height="26" fill="none"/>
+        </g>
+        <text x="107" y="43" font-weight="700">D9</text>
+        <text x="150" y="80" font-family="Lora, Georgia, serif" font-style="italic" font-size="11" fill="#2454A6">picks D — smallest that still fits</text>
+      </svg>
+    </div>
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 300 110" xmlns="http://www.w3.org/2000/svg" font-family="JetBrains Mono, monospace" font-size="10.5" text-anchor="middle">
+        <text x="15" y="16" font-family="Space Grotesk, sans-serif" font-weight="700" font-size="13" text-anchor="start" fill="#232A34">FIRST-FIT</text>
+        <g stroke="#232A34" stroke-width="1.5">
+          <rect x="15" y="26" width="17" height="26" fill="none"/><rect x="32" y="26" width="40" height="26" fill="#F5E08C" stroke="#232A34" stroke-width="2"/>
+          <rect x="72" y="26" width="20" height="26" fill="none"/><rect x="92" y="26" width="30" height="26" fill="none"/>
+          <rect x="122" y="26" width="67" height="26" fill="none"/>
+        </g>
+        <text x="52" y="43" font-weight="700">B12</text>
+        <text x="150" y="80" font-family="Lora, Georgia, serif" font-style="italic" font-size="11" fill="#2454A6">picks B — first one scanning from the top</text>
+      </svg>
+    </div>
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 300 110" xmlns="http://www.w3.org/2000/svg" font-family="JetBrains Mono, monospace" font-size="10.5" text-anchor="middle">
+        <text x="15" y="16" font-family="Space Grotesk, sans-serif" font-weight="700" font-size="13" text-anchor="start" fill="#232A34">NEXT-FIT</text>
+        <g stroke="#232A34" stroke-width="1.5">
+          <rect x="15" y="26" width="17" height="26" fill="none"/><rect x="32" y="26" width="40" height="26" fill="none"/>
+          <rect x="72" y="26" width="20" height="26" fill="none"/><rect x="92" y="26" width="30" height="26" fill="#F5E08C" stroke="#232A34" stroke-width="2"/>
+          <rect x="122" y="26" width="67" height="26" fill="none"/>
+        </g>
+        <path d="M82 18 l-6 6 h12 z" fill="#C0392B"/>
+        <text x="107" y="43" font-weight="700">D9</text>
+        <text x="150" y="80" font-family="Lora, Georgia, serif" font-style="italic" font-size="11" fill="#2454A6">resumes at C, picks D — first fit from there</text>
+      </svg>
+    </div>
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 300 110" xmlns="http://www.w3.org/2000/svg" font-family="JetBrains Mono, monospace" font-size="10.5" text-anchor="middle">
+        <text x="15" y="16" font-family="Space Grotesk, sans-serif" font-weight="700" font-size="13" text-anchor="start" fill="#232A34">WORST-FIT</text>
+        <g stroke="#232A34" stroke-width="1.5">
+          <rect x="15" y="26" width="17" height="26" fill="none"/><rect x="32" y="26" width="40" height="26" fill="none"/>
+          <rect x="72" y="26" width="20" height="26" fill="none"/><rect x="92" y="26" width="30" height="26" fill="none"/>
+          <rect x="122" y="26" width="67" height="26" fill="#F5E08C" stroke="#232A34" stroke-width="2"/>
+        </g>
+        <text x="155" y="43" font-weight="700">E20</text>
+        <text x="150" y="80" font-family="Lora, Georgia, serif" font-style="italic" font-size="11" fill="#2454A6">picks E — biggest hole available</text>
+      </svg>
+    </div>
+  </div>
+
+  <table class="mini">
+    <tr><th>algorithm</th><th>picks</th><th>downside</th></tr>
+    <tr><td>best-fit</td><td class="num">smallest that fits</td><td>leaves tiny useless slivers</td></tr>
+    <tr><td>first-fit</td><td class="num">first that fits</td><td>fragments the front of memory</td></tr>
+    <tr><td>next-fit</td><td class="num">first fit, from last spot</td><td>eats the last big hole fastest</td></tr>
+    <tr><td>worst-fit</td><td class="num">biggest available</td><td>starves future large processes</td></tr>
+  </table>
+</section>
+
+<!-- ============ 7. BUDDY SYSTEM ============ -->
+<section class="block">
+  <div class="sec-head">
+    <div class="sec-num">7</div>
+    <div class="sec-title">Buddy System</div>
+  </div>
+  <p class="sec-intro">Only ever split memory exactly in half. Merging back only works if your exact other half — your <mark>buddy</mark> — is free too.</p>
+
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 640 220" xmlns="http://www.w3.org/2000/svg" font-family="JetBrains Mono, monospace" font-size="12.5" text-anchor="middle">
+      <g stroke="#2454A6" stroke-width="2">
+        <rect x="20" y="14" width="600" height="34" rx="4" fill="#2454A6"/>
+        <rect x="20" y="62" width="300" height="34" rx="4" fill="#3763B4"/>
+        <rect x="320" y="62" width="300" height="34" rx="4" fill="none"/>
+        <rect x="20" y="110" width="150" height="34" rx="4" fill="#5580C6"/>
+        <rect x="170" y="110" width="150" height="34" rx="4" fill="none" stroke="#7C9BCB"/>
+        <rect x="20" y="158" width="75" height="34" rx="4" fill="#7C9BCB"/>
+        <rect x="95" y="158" width="75" height="34" rx="4" fill="none" stroke="#AFC2E0"/>
+      </g>
+      <text x="320" y="35" fill="white">1M</text>
+      <text x="170" y="83" fill="white">512K</text>
+      <text x="470" y="83" fill="#565F6E">512K · free</text>
+      <text x="95" y="131" fill="white">256K</text>
+      <text x="245" y="131" fill="#565F6E">256K · free</text>
+      <text x="57" y="179" fill="white" font-size="11">128K in use</text>
+      <text x="132" y="179" fill="#565F6E" font-size="11">128K · free</text>
+      <path d="M57 192 V202 H132 V192" stroke="#C0392B" stroke-width="1.5" fill="none"/>
+      <text x="20" y="215" text-anchor="start" font-family="Caveat, cursive" font-weight="700" font-size="15" fill="#C0392B">buddies — both must be free to merge ↑</text>
+    </svg>
+  </div>
+  <p class="cap">2<sup>L</sup> ≤ block size ≤ 2<sup>H</sup> — always a power of two</p>
+
+  <div class="formula-box">merge only if the exact buddy is also free · avg. utilisation ≈ <b>75%</b></div>
+  <div class="note">that 75% is internal fragmentation from rounding up — the price of fast, no-scan merging</div>
+</section>
+
+<!-- ============ 8. PAGING ============ -->
+<section class="block">
+  <div class="sec-head">
+    <div class="sec-num">8</div>
+    <div class="sec-title">Paging</div>
+  </div>
+  <p class="sec-intro">Chop memory <i>and</i> the process into identical fixed pieces. Any piece fits any slot, so <mark>external fragmentation</mark> disappears.</p>
+
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 640 250" xmlns="http://www.w3.org/2000/svg" font-family="JetBrains Mono, monospace" font-size="12.5" text-anchor="middle">
+      <text x="200" y="18" font-family="Lora, Georgia, serif" font-style="italic" font-size="11" fill="#565F6E">logical address</text>
+      <g stroke="#232A34" stroke-width="2">
+        <rect x="100" y="26" width="180" height="38" fill="#DCE6F5"/>
+        <rect x="280" y="26" width="110" height="38" fill="white"/>
+      </g>
+      <text x="190" y="50" fill="#2454A6">page # (n)</text>
+      <text x="335" y="50" fill="#232A34">offset (m)</text>
+
+      <path d="M190 64 V96" stroke="#2454A6" stroke-width="2.5" fill="none" marker-end="url(#pArrow)"/>
+      <path d="M335 64 V80 H500 V180" stroke="#9aa3ad" stroke-width="1.5" stroke-dasharray="4 3" fill="none"/>
+      <defs><marker id="pArrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#2454A6"/></marker></defs>
+
+      <rect x="90" y="100" width="200" height="80" rx="6" fill="none" stroke="#232A34" stroke-width="2"/>
+      <text x="190" y="116" font-family="Lora, Georgia, serif" font-style="italic" font-size="10.5" fill="#565F6E">page table</text>
+      <text x="140" y="138" fill="#565F6E">0 → 5</text>
+      <rect x="120" y="145" width="80" height="20" fill="#F5E08C"/>
+      <text x="140" y="160" font-weight="700" fill="#232A34">1 → 2</text>
+      <text x="140" y="180" fill="#565F6E">2 → 9</text>
+
+      <path d="M200 155 H500 V180" stroke="#2454A6" stroke-width="2.5" fill="none" marker-end="url(#pArrow)"/>
+
+      <text x="410" y="200" font-family="Lora, Georgia, serif" font-style="italic" font-size="11" fill="#565F6E">physical address</text>
+      <g stroke="#232A34" stroke-width="2">
+        <rect x="340" y="208" width="180" height="38" fill="#F5E08C"/>
+        <rect x="520" y="208" width="110" height="38" fill="white"/>
+      </g>
+      <text x="430" y="232" fill="#232A34">frame # = 2</text>
+      <text x="575" y="232" fill="#232A34">same offset</text>
+    </svg>
+  </div>
+  <p class="cap">physical = frame# (looked up) + offset (unchanged) — page size always equals frame size</p>
+
+  <div class="formula-box">logical = page# (n) + offset (m) · physical = frame# + <b>same</b> offset</div>
+  <div class="note">paging kills external fragmentation, but a sliver of internal fragmentation sneaks back — the last page is rarely full</div>
+</section>
+
+<!-- ============ 9. SEGMENTATION ============ -->
+<section class="block">
+  <div class="sec-head">
+    <div class="sec-num">9</div>
+    <div class="sec-title">Segmentation</div>
+  </div>
+  <p class="sec-intro">Same idea as paging, but cut along the program's natural seams — and now there's a <mark>bounds check</mark> before every access.</p>
+
+  <div class="diagram-wrap">
+    <svg viewBox="0 0 640 260" xmlns="http://www.w3.org/2000/svg" font-family="JetBrains Mono, monospace" font-size="12.5" text-anchor="middle">
+      <text x="200" y="18" font-family="Lora, Georgia, serif" font-style="italic" font-size="11" fill="#565F6E">logical address</text>
+      <g stroke="#232A34" stroke-width="2">
+        <rect x="90" y="26" width="150" height="38" fill="#DCE6F5"/>
+        <rect x="240" y="26" width="110" height="38" fill="white"/>
+      </g>
+      <text x="165" y="50" fill="#2454A6">segment # (n)</text>
+      <text x="295" y="50" fill="#232A34">offset (m)</text>
+
+      <path d="M165 64 V96" stroke="#2454A6" stroke-width="2.5" fill="none" marker-end="url(#sArrow)"/>
+      <path d="M295 64 V78 H470 V128" stroke="#9aa3ad" stroke-width="1.5" stroke-dasharray="4 3" fill="none"/>
+      <defs><marker id="sArrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#2454A6"/></marker></defs>
+
+      <rect x="70" y="100" width="220" height="70" rx="6" fill="none" stroke="#232A34" stroke-width="2"/>
+      <text x="180" y="116" font-family="Lora, Georgia, serif" font-style="italic" font-size="10" fill="#565F6E">segment table (base, length)</text>
+      <text x="110" y="138" font-size="11" text-anchor="start" fill="#565F6E">0 → 4000, 1200</text>
+      <rect x="100" y="145" width="175" height="20" fill="#F5E08C"/>
+      <text x="110" y="160" font-size="11" text-anchor="start" font-weight="700" fill="#232A34">1 → 7000, 300</text>
+
+      <path d="M180 170 V196" stroke="#2454A6" stroke-width="2.5" fill="none" marker-end="url(#sArrow)"/>
+      <path d="M470 128 V196" stroke="#9aa3ad" stroke-width="1.5" stroke-dasharray="4 3" fill="none"/>
+
+      <path d="M260 200 l55 -28 l55 28 l-55 28 z" fill="none" stroke="#232A34" stroke-width="2"/>
+      <text x="315" y="196" font-size="10.5" fill="#232A34">offset &lt;</text>
+      <text x="315" y="209" font-size="10.5" fill="#232A34">length?</text>
+
+      <path d="M370 200 H430" stroke="#2454A6" stroke-width="2.5" fill="none" marker-end="url(#sArrow)"/>
+      <text x="390" y="192" font-size="10.5" fill="#2454A6">yes</text>
+      <rect x="432" y="176" width="190" height="46" rx="6" fill="#F5E08C" stroke="#232A34" stroke-width="1.5"/>
+      <text x="527" y="204" font-size="11.5" fill="#232A34">phys = base + offset</text>
+
+      <path d="M315 228 V244" stroke="#C0392B" stroke-width="2.5" fill="none" marker-end="url(#sArrow2)"/>
+      <defs><marker id="sArrow2" markerWidth="7" markerHeight="7" refX="3.5" refY="6" orient="auto"><path d="M0,0 L7,0 L3.5,7 Z" fill="#C0392B"/></marker></defs>
+      <text x="335" y="238" font-size="10.5" fill="#C0392B">no</text>
+      <rect x="200" y="246" width="230" height="0" fill="none"/>
+      <text x="315" y="258" font-size="11" fill="#C0392B">illegal — segmentation fault</text>
+    </svg>
+  </div>
+  <p class="cap">the bounds check is the one mechanical difference from paging's translation</p>
+
+  <div class="formula-box">valid only if <b>offset &lt; length</b> · then physical = <b>base + offset</b></div>
+  <div class="note">paging ↔ segmentation mirror each other: small internal/no external vs. no internal/some external — and segmentation exposes registers to the programmer, not fully transparent like paging</div>
+</section>
+
+<div class="radar">
+  <h3>say these out loud before the exam</h3>
+  <ul>
+    <li><b>Fixed vs Dynamic partitioning</b> — internal fragmentation vs external fragmentation</li>
+    <li><b>Compile-time vs Load-time vs Run-time binding</b> — rigid, fixed-after-load, or flexible-but-needs-hardware</li>
+    <li><b>Best-fit / First-fit / Next-fit / Worst-fit</b> — tight-but-slivers vs fast-but-front-heavy vs spread-out vs biggest-first</li>
+    <li><b>Paging vs Segmentation</b> — small internal/no external vs no internal/some external, and transparent vs not</li>
+    <li><b>Buddy system's own trade-off</b> — fast no-scan merging bought with ~75% utilisation</li>
+  </ul>
+</div>
+
+<footer class="end">— Memory Management, Chapter 3 · nothing skipped —</footer>
+
+</div>
+</body>
+</html>
