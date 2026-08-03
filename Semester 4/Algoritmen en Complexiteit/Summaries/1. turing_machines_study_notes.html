@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Turing Machines — Study Notes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Source+Sans+3:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F7F5F0;
+    --bg-panel:#FFFFFF;
+    --grid:#E7E2D4;
+    --ink:#211F1A;
+    --ink-soft:#5B5748;
+    --rule:#DCD6C6;
+
+    --teal:#0E6B64;    --teal-tint:#E3F1EE;   --teal-line:#BBD9D3;
+    --indigo:#33408A;  --indigo-tint:#E9EAF7; --indigo-line:#C7CAEB;
+    --amber:#93650E;   --amber-tint:#F6EEDC;  --amber-line:#E4CE9B;
+    --rose:#8A3A46;    --rose-tint:#F5E7E9;   --rose-line:#DFB9C0;
+    --gray:#55606B;    --gray-tint:#EAEDEF;   --gray-line:#C7D0D8;
+    --green:#1E7A4C;   --green-tint:#E5F3EA;  --green-line:#B9DDC7;
+    --red:#A23B3B;     --red-tint:#F7E9E9;    --red-line:#E3B7B7;
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:'Source Sans 3', sans-serif; font-size:16px; line-height:1.55;
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+  .wrap{ max-width: 880px; margin: 0 auto; padding: 48px 28px 100px; }
+
+  h1,h2,h3{ font-family:'Fraunces', serif; font-weight:700; color:var(--ink); margin:0 0 .3em; }
+  h1{ font-size: 2.5rem; letter-spacing:-.01em; }
+  h2{ font-size: 1.55rem; margin-top:0; }
+  h3{ font-size: 1.1rem; font-weight:600; color:var(--ink); }
+  p{ margin:.5em 0; }
+  code, .mono{ font-family:'IBM Plex Mono', monospace; }
+  .tag{
+    font-family:'IBM Plex Mono', monospace; font-size:.72rem; letter-spacing:.02em;
+    color:var(--ink-soft); border:1px solid var(--rule); background:var(--bg-panel);
+    padding:2px 7px; border-radius:20px; white-space:nowrap;
+  }
+
+  /* header */
+  header.top{ border-bottom: 3px solid var(--ink); padding-bottom: 22px; margin-bottom:10px; }
+  header.top .eyebrow{ font-family:'IBM Plex Mono', monospace; font-size:.82rem; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px;}
+  header.top .sub{ color:var(--ink-soft); font-size:1.02rem; margin-top:6px; }
+
+  /* nav pills */
+  nav.map{ display:flex; flex-wrap:wrap; gap:8px; margin:22px 0 40px; }
+  nav.map a{
+    text-decoration:none; font-family:'IBM Plex Mono', monospace; font-size:.78rem;
+    color:var(--ink); background:var(--bg-panel); border:1px solid var(--rule);
+    padding:6px 11px; border-radius:6px;
+  }
+  nav.map a b{ color:var(--indigo); }
+
+  /* section */
+  section.part{ margin: 56px 0; }
+  section.part .head{ display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; margin-bottom: 6px;}
+  section.part .head .num{ font-family:'IBM Plex Mono', monospace; color:var(--ink-soft); font-size:1rem; }
+  .lede{ color:var(--ink-soft); font-size:.98rem; margin-bottom: 18px; }
+
+  /* callout boxes */
+  .box{ border-radius:8px; padding:16px 18px; margin:16px 0; border:1px solid; }
+  .box h4{ margin:0 0 8px; font-family:'IBM Plex Mono', monospace; font-size:.75rem; text-transform:uppercase; letter-spacing:.08em; font-weight:600; }
+  .def{ background:var(--teal-tint); border-color:var(--teal-line); }
+  .def h4{ color:var(--teal); }
+  .thm{ background:var(--indigo-tint); border-color:var(--indigo-line); }
+  .thm h4{ color:var(--indigo); }
+  .ex{ background:var(--amber-tint); border-color:var(--amber-line); }
+  .ex h4{ color:var(--amber); }
+  .tip{ background:var(--rose-tint); border-color:var(--rose-line); }
+  .tip h4{ color:var(--rose); }
+
+  .box p, .box li{ margin:.35em 0; }
+  .box ul{ margin:.4em 0; padding-left:1.2em; }
+
+  .grid2{ display:grid; grid-template-columns: 1fr 1fr; gap:16px; }
+  @media(max-width:680px){ .grid2{ grid-template-columns:1fr; } }
+
+  figure{ margin: 18px 0; text-align:center; }
+  figure svg{ max-width:100%; height:auto; display:block; margin:0 auto; }
+  figcaption{ font-size:.82rem; color:var(--ink-soft); margin-top:6px; font-style:italic;}
+
+  .divider{ margin: 44px 0; }
+
+  table.small{ border-collapse:collapse; width:100%; font-size:.92rem; margin:10px 0;}
+  table.small th, table.small td{ border:1px solid var(--rule); padding:6px 10px; text-align:left;}
+  table.small th{ background:var(--gray-tint); font-family:'IBM Plex Mono', monospace; font-weight:600; font-size:.78rem; text-transform:uppercase; letter-spacing:.03em;}
+
+  .checklist{ list-style:none; padding:0; margin:0; }
+  .checklist li{ padding:8px 0 8px 30px; position:relative; border-bottom:1px dashed var(--rule); font-size:.96rem;}
+  .checklist li:last-child{ border-bottom:none; }
+  .checklist li::before{ content:"□"; position:absolute; left:0; color:var(--indigo); font-size:1.1rem; top:6px;}
+  .checklist b{ font-family:'IBM Plex Mono', monospace; font-weight:600; }
+
+  footer{ margin-top:70px; padding-top:20px; border-top:1px solid var(--rule); color:var(--ink-soft); font-size:.85rem; }
+
+  @media print{
+    body{ background:#fff; background-image:none; }
+    .wrap{ max-width:100%; padding:10px 6px; }
+    .box{ break-inside:avoid; }
+    section.part{ break-inside:avoid-page; margin:26px 0;}
+    nav.map{ display:none; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <div class="eyebrow">1001WETALC · Algoritmen en Complexiteit</div>
+    <h1>Turing Machines</h1>
+    <div class="sub">Study notes for the full chapter (97 slides, 7 parts) — anchored to Sipser, <em>Introduction to the Theory of Computation</em>, §3.1–3.3 &amp; §7.1.</div>
+  </header>
+
+  <nav class="map">
+    <a href="#s1"><b>1</b> Deterministic TM</a>
+    <a href="#s2"><b>2</b> Deciders</a>
+    <a href="#s3"><b>3</b> Time complexity</a>
+    <a href="#s4"><b>4</b> Big-O</a>
+    <a href="#s5"><b>5</b> Decision problems</a>
+    <a href="#s6"><b>6</b> Multi-tape TM</a>
+    <a href="#s7"><b>7</b> Non-det. TM</a>
+    <a href="#tk">Te kennen ✓</a>
+  </nav>
+
+  <!-- ================= SECTION 1 ================= -->
+  <section class="part" id="s1">
+    <div class="head"><h2>1 · Deterministic Turing Machines</h2><span class="tag">slides II-3–21 · Sipser §3.1</span></div>
+    <p class="lede">The base model everything else in the course extends. A TM = finite control + infinite tape + head + accept/reject states. Church-Turing thesis: algorithm = Turing machine.</p>
+
+    <div class="box def">
+      <h4>Definition — the 7-tuple</h4>
+      <p><span class="mono">M = (Q, Σ, Γ, δ, q₀, q_accept, q_reject)</span></p>
+      <ul>
+        <li><b>Q</b>: finite states · <b>Σ</b>: input alphabet, ⊢,⊔∉Σ · <b>Γ</b>: tape alphabet, Σ∪{⊢,⊔}⊆Γ</li>
+        <li><b>δ : Q×Γ → Q×Γ×{←,□,→}</b> — a <em>partial function</em>. δ(q,a)=(q′,b,D): write b, move per D, switch to q′.</li>
+      </ul>
+    </div>
+
+    <div class="box tip">
+      <h4>Doesn't quite match Sipser 1-for-1</h4>
+      <ul>
+        <li>Sipser's δ only has <b>{L,R}</b> — no "stay" (<span class="mono">□</span>). It's a convenience: simulate it with one extra state.</li>
+        <li>Sipser has no <span class="mono">⊢</span> symbol — he just says "stay put if you'd move off the left edge." This deck uses a real left-marker instead: ⊢ sits at position 0, can't be overwritten, can't be passed.</li>
+      </ul>
+    </div>
+
+    <p><b>Configurations</b>: state + tape + head position, written as one string <span class="mono">C = ⊢uqv</span> (head sits on <em>v</em>'s first symbol). <b>Leads-to</b>: for a,b,c∈Γ, u,v∈Γ*, qᵢ,qⱼ∈Q — <span class="mono">uaqᵢbv</span> leads to <span class="mono">uqⱼacv</span> (←), <span class="mono">uacqⱼv</span> (→), or <span class="mono">uaqⱼcv</span> (□), depending which of the three δ(qᵢ,b) gives. Start config on w: <span class="mono">⊢q₀w</span>. q_accept/q_reject are <b>halting states</b>.</p>
+
+    <div class="box ex">
+      <h4>Worked example — even number of 0's</h4>
+      <p><span class="mono">δ(q0,0)=(q1,⊔,→) · δ(q0,1)=(q0,⊔,→) · δ(q1,0)=(q0,⊔,→) · δ(q1,1)=(q1,⊔,→) · δ(q0,⊔)=(accept,⊔,→) · δ(q1,⊔)=(reject,⊔,→)</span></p>
+      <p>q0 = "even 0's so far" (also the start state), q1 = "odd". 1's don't change state; 0's flip it. Blanking as you go means the head only ever moves right.</p>
+    </div>
+
+    <figure>
+      <svg viewBox="0 0 680 420" role="img" aria-label="State diagram of the even-zeros Turing machine">
+        <defs><marker id="a1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#33322C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+        <line x1="110" y1="150" x2="164" y2="150" stroke="#33322C" stroke-width="1.2" marker-end="url(#a1)"/>
+        <text x="106" y="144" text-anchor="end" font-size="12" fill="#5B5748" font-family="IBM Plex Mono, monospace">start</text>
+        <path d="M182,120 C168,72 232,72 218,120" fill="none" stroke="#33322C" stroke-width="1.2" marker-end="url(#a1)"/>
+        <text x="200" y="52" text-anchor="middle" font-size="12" fill="#5B5748" font-family="IBM Plex Mono, monospace">1 ↦ ⊔, →</text>
+        <path d="M462,120 C448,72 512,72 498,120" fill="none" stroke="#33322C" stroke-width="1.2" marker-end="url(#a1)"/>
+        <text x="480" y="52" text-anchor="middle" font-size="12" fill="#5B5748" font-family="IBM Plex Mono, monospace">1 ↦ ⊔, →</text>
+        <line x1="234" y1="150" x2="446" y2="150" stroke="#33322C" stroke-width="1.2" marker-start="url(#a1)" marker-end="url(#a1)"/>
+        <text x="340" y="132" text-anchor="middle" font-size="12" fill="#5B5748" font-family="IBM Plex Mono, monospace">0 ↦ ⊔, →</text>
+        <line x1="200" y1="184" x2="200" y2="346" stroke="#33322C" stroke-width="1.2" marker-end="url(#a1)"/>
+        <text x="213" y="269" text-anchor="start" font-size="12" fill="#5B5748" font-family="IBM Plex Mono, monospace">⊔ ↦ ⊔, →</text>
+        <line x1="480" y1="184" x2="480" y2="346" stroke="#33322C" stroke-width="1.2" marker-end="url(#a1)"/>
+        <text x="493" y="269" text-anchor="start" font-size="12" fill="#5B5748" font-family="IBM Plex Mono, monospace">⊔ ↦ ⊔, →</text>
+        <g><circle cx="200" cy="150" r="34" fill="#EAEDEF" stroke="#55606B" stroke-width="1.2"/><text x="200" y="150" text-anchor="middle" dominant-baseline="central" font-size="15" font-family="IBM Plex Mono, monospace">q0</text></g>
+        <g><circle cx="480" cy="150" r="34" fill="#EAEDEF" stroke="#55606B" stroke-width="1.2"/><text x="480" y="150" text-anchor="middle" dominant-baseline="central" font-size="15" font-family="IBM Plex Mono, monospace">q1</text></g>
+        <g><circle cx="200" cy="380" r="34" fill="#E5F3EA" stroke="#1E7A4C" stroke-width="1.2"/><text x="200" y="380" text-anchor="middle" dominant-baseline="central" font-size="14" font-family="IBM Plex Mono, monospace">accept</text></g>
+        <g><circle cx="480" cy="380" r="34" fill="#F7E9E9" stroke="#A23B3B" stroke-width="1.2"/><text x="480" y="380" text-anchor="middle" dominant-baseline="central" font-size="14" font-family="IBM Plex Mono, monospace">reject</text></g>
+      </svg>
+      <figcaption>Even-zeros decider — try tracing w = 00010 by hand (answer: accept, four 0's).</figcaption>
+    </figure>
+
+    <p><b>Acceptance</b>: chain C₁,…,Cₖ, C₁ the start config, each leads to the next, Cₖ accepting. <span class="mono">L(M) = {w ∈ Σ* | M accepts w}</span>. A language is <b>Turing-recognizable</b> if some TM accepts it — e.g. A_TM (recognizable but not decidable — proved in <em>Machines en berekenbaarheid</em>, assumed background here).</p>
+  </section>
+
+  <!-- ================= SECTION 2 ================= -->
+  <section class="part" id="s2">
+    <div class="head"><h2>2 · Algorithms &amp; Deciders</h2><span class="tag">slides II-22–26 · Sipser §3.3</span></div>
+
+    <div class="box def">
+      <h4>Definition</h4>
+      <p>Algorithm = TM that halts on <em>every</em> input = a <b>decider</b>. A language is <b>Turing-decidable</b> (recursive) if a decider accepts it. From here on: <b>every TM we discuss is assumed to be a decider.</b></p>
+    </div>
+
+    <figure>
+      <svg viewBox="0 0 680 300" role="img" aria-label="Nested hierarchy of language classes">
+        <rect x="60" y="30" width="560" height="240" rx="22" fill="#E9EAF7" stroke="#33408A" stroke-width="1.2"/>
+        <text x="340" y="58" text-anchor="middle" font-size="14" font-family="IBM Plex Mono, monospace" fill="#33408A">Herkenbare talen (recognizable)</text>
+        <rect x="150" y="95" width="380" height="140" rx="14" fill="#E3F1EE" stroke="#0E6B64" stroke-width="1.2"/>
+        <text x="340" y="118" text-anchor="middle" font-size="13" font-family="IBM Plex Mono, monospace" fill="#0E6B64">Beslisbare talen (decidable)</text>
+        <rect x="240" y="150" width="200" height="60" rx="10" fill="#F6EEDC" stroke="#93650E" stroke-width="1.2"/>
+        <text x="340" y="182" text-anchor="middle" font-size="12" font-family="IBM Plex Mono, monospace" fill="#93650E">Regular &amp; CFG</text>
+        <text x="340" y="285" text-anchor="middle" font-size="12" font-family="IBM Plex Mono, monospace" fill="#5B5748">buiten de cirkel: onherkenbare talen</text>
+      </svg>
+      <figcaption>Regular/CFG ⊆ decidable ⊆ recognizable ⊆ all languages. A_TM lives in the recognizable-but-not-decidable ring.</figcaption>
+    </figure>
+
+    <div class="box ex">
+      <h4>Second example — palindrome decider M<sub>p</sub></h4>
+      <ol style="margin:.3em 0; padding-left:1.3em;">
+        <li>Empty word → accept.</li>
+        <li>Remember first symbol, blank it, scan to the end.</li>
+        <li>If last symbol matches, blank it too — else reject.</li>
+        <li>If nothing's left (blank to the left of head) → accept.</li>
+        <li>Else, return to just after where this pass started, repeat.</li>
+      </ol>
+      <p>This is the machine used as the running example for the rest of the chapter — it's a decider because each round strips 2 symbols, so it can't run forever.</p>
+    </div>
+  </section>
+
+  <!-- ================= SECTION 3 ================= -->
+  <section class="part" id="s3">
+    <div class="head"><h2>3 · Time Complexity</h2><span class="tag">slides II-27–32 · Sipser §7.1</span></div>
+    <div class="box def">
+      <h4>Definitions</h4>
+      <ul>
+        <li><b>step</b> of M = one instruction of δ executed</li>
+        <li><span class="mono">time_M(w)</span> = number of steps M takes on w</li>
+        <li><span class="mono">t_M(n) = max{ time_M(w) : |w|=n }</span> — <b>worst case</b> over all inputs of length n</li>
+      </ul>
+    </div>
+    <p>M<sub>p</sub> re-analyzed step by step: empty-check (1) + scan-to-end (n) + compare (1) + mismatch-check (1) + scan-back (n), repeated n/2 times → <span class="mono">t(n) ≤ (n/2)(2n+2) = n²+n</span>. Quadratic — and (spoiler for part 6) that's basically unavoidable on one tape.</p>
+  </section>
+
+  <!-- ================= SECTION 4 ================= -->
+  <section class="part" id="s4">
+    <div class="head"><h2>4 · Asymptotic Analysis</h2><span class="tag">slides II-33–36 · Sipser §7.1</span></div>
+    <div class="box def">
+      <h4>Big-O / Big-Ω / Big-Θ</h4>
+      <ul>
+        <li><b>O</b> (upper bound): f(n)=O(g(n)) if ∃c,n₀: ∀n≥n₀, f(n) ≤ c·g(n)</li>
+        <li><b>Ω</b> (lower bound): f(n)=Ω(g(n)) if g(n)=O(f(n)) — just the reverse of O</li>
+        <li><b>Θ</b> (tight): both O(g(n)) and Ω(g(n)) at once (mentioned elsewhere, not this slide)</li>
+      </ul>
+    </div>
+    <p>M<sub>p</sub> once more, now in O-notation: steps 1/3/4 cost O(1), steps 2/5 cost O(n), repeated O(n) times → O(n)·O(n) = O(n²). <b>Definition:</b> M runs in time O(t(n)) if t_M(n) is of order O(t(n)). So: M<sub>p</sub> runs in O(n²).</p>
+  </section>
+
+  <!-- ================= SECTION 5 ================= -->
+  <section class="part" id="s5">
+    <div class="head"><h2>5 · Decision Problems</h2><span class="tag">slides II-37–43</span></div>
+    <div class="box def">
+      <h4>Definition</h4>
+      <p>Decision problem for L: given w∈Σ*, decide yes/no whether w∈L. <b>Complexity of a language</b>: L is decided by M in O(t(n)) if L=L(M) and t_M(n)=O(t(n)) — this becomes a property of the <em>problem</em>, not of one machine.</p>
+    </div>
+    <div class="box tip">
+      <h4>Careful phrasing</h4>
+      <p>"Efficient" = <b>polynomial time</b> (defined properly in the next file). The slide states flatly that SAT "can't be solved efficiently" — really shorthand for <em>SAT is NP-complete, and believed (not proven) to have no polynomial algorithm</em>. P vs NP is still open.</p>
+    </div>
+    <table class="small">
+      <tr><th>Concept</th><th>Formalized as</th></tr>
+      <tr><td>Problem</td><td>Decision problem — is w∈L?</td></tr>
+      <tr><td>Algorithm</td><td>Decider — a TM that always halts</td></tr>
+      <tr><td>Complexity</td><td>Asymptotic complexity — steps, cells used, ...</td></tr>
+    </table>
+    <p>TMs can also <b>compute functions</b> (one q_halt instead of accept/reject, output = tape up to first blank) — mentioned, not the course's focus. Church-Turing thesis: all these TM variants have equal <em>power</em>. But not equal <em>speed</em> — which is exactly why parts 6 and 7 exist.</p>
+  </section>
+
+  <!-- ================= SECTION 6 ================= -->
+  <section class="part" id="s6">
+    <div class="head"><h2>6 · Multi-tape Turing Machines</h2><span class="tag">slides II-44–80 · Sipser §3.2 / §7.1</span></div>
+    <p class="lede">The longest, densest part of the deck. Same tuple, vectorized over k tapes: <span class="mono">δ: Q×Γᵏ → Q×Γᵏ×{←,□,→}ᵏ</span>. Only tape 1 gets the input; all k heads start at position 1.</p>
+
+    <div class="box ex">
+      <h4>Payoff — 2-tape palindrome decider in O(n)</h4>
+      <p>Copy tape1→tape2 (O(n)) · reset head 1 to the start (O(n)) · move head 1 right / head 2 left together, comparing (O(1) × O(n)) · accept once they meet. Total: <b>O(n)</b> — versus O(n²) on one tape.</p>
+    </div>
+
+    <p><b>Theorem (power):</b> anything decidable by a k-tape TM is decidable by a 1-tape TM. <b>Simulation idea</b> (formal transition tables skipped — not exam-expected, just the idea): lay the k tapes end-to-end on one physical tape, separated by real <span class="mono">#</span> symbols; mark head positions with "tilde" copies of symbols; scan once to read all k heads into the state, scan again to write + shift + move; repeat.</p>
+
+    <div class="box thm">
+      <h4>Theorem (cost)</h4>
+      <p>k-tape O(t(n)) (t(n)≥n) ⟹ 1-tape O(t(n)²). Why: init O(n); per simulated step, two full passes of O(t(n)) each (only O(t(n)) cells are ever touched); k is constant. O(t(n))·O(t(n)) = O(t(n)²).</p>
+    </div>
+
+    <p><b>Can this be avoided? No</b> — proved with palindromes again: 2 tapes give O(n), but <em>any</em> 1-tape TM needs <b>Ω(n²)</b>, via <b>crossing sequences</b> (the one "Te kennen" item with no Sipser citation — the deck's figure traces to Hennie's 1965 paper).</p>
+
+    <figure>
+      <svg viewBox="0 0 680 330" role="img" aria-label="Illustration of a crossing sequence">
+        <defs><marker id="a2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#33322C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+        <line x1="170" y1="235" x2="170" y2="55" stroke="#33322C" stroke-width="1.2" marker-end="url(#a2)"/>
+        <text x="170" y="44" text-anchor="middle" font-size="12" fill="#5B5748" font-family="IBM Plex Mono, monospace">time</text>
+        <rect x="100" y="255" width="480" height="30" rx="6" fill="#EAEDEF" stroke="#55606B" stroke-width="1"/>
+        <text x="340" y="270" text-anchor="middle" dominant-baseline="central" font-size="12" font-family="IBM Plex Mono, monospace" fill="#5B5748">tape</text>
+        <line x1="340" y1="45" x2="340" y2="285" stroke="#8A8470" stroke-width="1" stroke-dasharray="3,4"/>
+        <text x="325" y="300" text-anchor="end" font-size="11.5" fill="#5B5748" font-family="IBM Plex Mono, monospace">position i</text>
+        <text x="355" y="300" text-anchor="start" font-size="11.5" fill="#5B5748" font-family="IBM Plex Mono, monospace">position i+1</text>
+        <line x1="320" y1="215" x2="360" y2="195" stroke="#33322C" stroke-width="1.3" marker-end="url(#a2)"/><text x="375" y="205" font-size="13" font-family="IBM Plex Mono, monospace">q1</text>
+        <line x1="360" y1="165" x2="320" y2="145" stroke="#33322C" stroke-width="1.3" marker-end="url(#a2)"/><text x="375" y="155" font-size="13" font-family="IBM Plex Mono, monospace">q2</text>
+        <line x1="320" y1="115" x2="360" y2="95" stroke="#33322C" stroke-width="1.3" marker-end="url(#a2)"/><text x="375" y="105" font-size="13" font-family="IBM Plex Mono, monospace">q3</text>
+        <line x1="360" y1="65" x2="320" y2="60" stroke="#33322C" stroke-width="1.3" marker-end="url(#a2)"/><text x="375" y="70" font-size="13" font-family="IBM Plex Mono, monospace">q4</text>
+        <text x="520" y="90" text-anchor="middle" font-size="14" font-family="IBM Plex Mono, monospace" font-weight="600" fill="#33408A">Ci(x) = (q1,q2,q3,q4)</text>
+      </svg>
+      <figcaption>Every time the head crosses this one boundary, note the state. Read bottom-to-top: the crossing sequence.</figcaption>
+    </figure>
+
+    <div class="box thm">
+      <h4>Crossing-sequence proof — the idea</h4>
+      <ol style="margin:.3em 0; padding-left:1.3em;">
+        <li><b>Splicing lemma:</b> if C<sub>i</sub>(x) = C<sub>j</sub>(y), glue x's left part to y's right part — M can't tell the swap happened (all it learns across the boundary is that one state-list), so if x,y are accepted, the splice is too.</li>
+        <li><b>The trap:</b> build L_n = { w #<sup>n/2</sup> w<sup>r</sup> } — 2<sup>n/4</sup> genuine palindromes. If two different ones ever shared a crossing sequence in the middle "#" band, splicing gives a non-palindrome M would wrongly accept. So all of them need pairwise-disjoint crossing sequences there.</li>
+        <li><b>Counting squeeze:</b> only |Q| states exist (fixed), so fitting 2<sup>n/4</sup> distinct sequences forces the sequences to be long: shortest one needed is already Ω(n).</li>
+        <li><b>Conclusion:</b> some word forces every crossing sequence across the Θ(n)-wide middle band to be Ω(n) long → total steps ≥ Θ(n)·Ω(n) = <b>Ω(n²)</b>.</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ================= SECTION 7 ================= -->
+  <section class="part" id="s7">
+    <div class="head"><h2>7 · Non-deterministic Turing Machines</h2><span class="tag">slides II-81–97 · Sipser §3.2 / §7.1</span></div>
+    <div class="box def">
+      <h4>The one change: δ is a relation</h4>
+      <p><span class="mono">δ ⊆ Q×Γ×Q×Γ×{←,□,→}</span> — for one (state, symbol) pair, several rules can apply at once; the machine may follow any of them. Think DFA vs NFA.</p>
+    </div>
+
+    <figure>
+      <svg viewBox="0 0 680 330" role="img" aria-label="Computation tree of a non-deterministic Turing machine">
+        <line x1="340" y1="80" x2="200" y2="134" stroke="#33322C" stroke-width="1.2"/>
+        <line x1="340" y1="80" x2="480" y2="134" stroke="#33322C" stroke-width="1.2"/>
+        <line x1="200" y1="176" x2="110" y2="245" stroke="#33322C" stroke-width="1.2"/>
+        <line x1="200" y1="176" x2="290" y2="245" stroke="#33322C" stroke-width="1.2"/>
+        <line x1="480" y1="176" x2="390" y2="245" stroke="#33322C" stroke-width="1.2"/>
+        <line x1="480" y1="176" x2="570" y2="245" stroke="#33322C" stroke-width="1.2"/>
+        <g><circle cx="340" cy="55" r="26" fill="#EAEDEF" stroke="#55606B" stroke-width="1.2"/><text x="340" y="55" text-anchor="middle" dominant-baseline="central" font-size="11" font-family="IBM Plex Mono, monospace">start</text></g>
+        <g><circle cx="200" cy="155" r="22" fill="#EAEDEF" stroke="#55606B" stroke-width="1.2"/><text x="200" y="155" text-anchor="middle" dominant-baseline="central" font-size="12">…</text></g>
+        <g><circle cx="480" cy="155" r="22" fill="#EAEDEF" stroke="#55606B" stroke-width="1.2"/><text x="480" y="155" text-anchor="middle" dominant-baseline="central" font-size="12">…</text></g>
+        <g><circle cx="110" cy="270" r="26" fill="#F7E9E9" stroke="#A23B3B" stroke-width="1.2"/><text x="110" y="270" text-anchor="middle" dominant-baseline="central" font-size="11" font-family="IBM Plex Mono, monospace">reject</text></g>
+        <g><circle cx="290" cy="270" r="26" fill="#E5F3EA" stroke="#1E7A4C" stroke-width="1.2"/><text x="290" y="270" text-anchor="middle" dominant-baseline="central" font-size="11" font-family="IBM Plex Mono, monospace">accept</text></g>
+        <g><circle cx="390" cy="270" r="26" fill="#F7E9E9" stroke="#A23B3B" stroke-width="1.2"/><text x="390" y="270" text-anchor="middle" dominant-baseline="central" font-size="11" font-family="IBM Plex Mono, monospace">reject</text></g>
+        <g><circle cx="570" cy="270" r="26" fill="#F7E9E9" stroke="#A23B3B" stroke-width="1.2"/><text x="570" y="270" text-anchor="middle" dominant-baseline="central" font-size="11" font-family="IBM Plex Mono, monospace">reject</text></g>
+        <text x="340" y="315" text-anchor="middle" font-size="12.5" fill="#5B5748" font-family="IBM Plex Mono, monospace">one accepting branch is enough</text>
+      </svg>
+      <figcaption>The computation tree — every branch is a possible choice.</figcaption>
+    </figure>
+
+    <div class="box tip">
+      <h4>Two different quantifiers — don't blur them</h4>
+      <ul>
+        <li><b>Accept</b> = <em>some</em> branch reaches accept (existential — one lucky path is enough)</li>
+        <li><b>Decider</b> = <em>every</em> branch halts (universal — all of them, no exceptions)</li>
+        <li><b>time_M(w)</b> = the <em>max</em> over every branch (not just the accepting one)</li>
+      </ul>
+    </div>
+
+    <div class="box thm">
+      <h4>Equivalence (power) and the cost (time)</h4>
+      <p>Same languages decidable as a normal TM — but simulating one deterministically costs roughly <b>2<sup>t(n)</sup></b> instead of t(n). Idea: 3 deterministic tapes (clean input copy · scratch tape for trying one path · an "address" tape naming which path), enumerated shortest-path-first (breadth-first) so a short accepting path is never missed behind an infinite one.</p>
+    </div>
+
+    <div class="box thm">
+      <h4>P and NP, in one paragraph</h4>
+      <p><b>P</b> = decidable in polynomial time by a normal TM. <b>NP</b> = decidable in polynomial time by a non-deterministic TM — equivalently, "yes" answers have a short proof/hint a normal TM can check fast. P ⊆ NP always. Whether P = NP is open — the biggest unsolved question in the field. This exponential NTM-simulation gap is that question in miniature: find a much better simulation, and you've resolved it.</p>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ================= COMPLEXITY GROWTH CHART ================= -->
+  <figure>
+    <svg viewBox="0 0 680 300" role="img" aria-label="Growth comparison of n, n squared, and 2 to the n">
+      <line x1="70" y1="250" x2="640" y2="250" stroke="#55606B" stroke-width="1.2"/>
+      <line x1="70" y1="250" x2="70" y2="30" stroke="#55606B" stroke-width="1.2"/>
+      <text x="655" y="255" font-size="11" fill="#5B5748" font-family="IBM Plex Mono, monospace">n</text>
+      <text x="55" y="28" text-anchor="end" font-size="11" fill="#5B5748" font-family="IBM Plex Mono, monospace">steps</text>
+      <polyline points="70,250 640,120" fill="none" stroke="#0E6B64" stroke-width="2.2"/>
+      <text x="560" y="128" font-size="13" fill="#0E6B64" font-family="IBM Plex Mono, monospace">O(n)</text>
+      <path d="M70,250 C 300,245 480,190 640,60" fill="none" stroke="#33408A" stroke-width="2.2"/>
+      <text x="560" y="55" font-size="13" fill="#33408A" font-family="IBM Plex Mono, monospace">O(n²)</text>
+      <path d="M70,250 C 300,249 420,235 500,150 C 560,90 590,45 610,32" fill="none" stroke="#A23B3B" stroke-width="2.2"/>
+      <text x="440" y="30" font-size="13" fill="#A23B3B" font-family="IBM Plex Mono, monospace">O(2ⁿ)</text>
+    </svg>
+    <figcaption>The whole chapter's engineering payoff in one picture: linear vs. quadratic (tapes) vs. exponential (non-determinism, simulated).</figcaption>
+  </figure>
+
+  <div class="divider"></div>
+
+  <!-- ================= TE KENNEN ================= -->
+  <section class="part" id="tk">
+    <div class="head"><h2>Te kennen ✓</h2><span class="tag">slide II-97</span></div>
+    <ul class="checklist">
+      <li><b>Sipser 3.1</b> — Formalism of a Turing machine (definition, configurations, leads-to, acceptance)</li>
+      <li><b>Sipser 3.2</b> — Variants of a TM (multi-tape, non-deterministic)</li>
+      <li><b>Sipser 3.3</b> — Deciders and algorithms</li>
+      <li><b>Sipser 7.1</b> — Worst-case analysis (Big-O, Big-Ω)</li>
+      <li><b>Sipser 7.1</b> — Simulating k-tape by 1-tape, and non-deterministic by deterministic — and the resulting complexity gap</li>
+      <li>Crossing sequences — understand the idea; know palindromes can't be decided in linear time on 1 tape</li>
+    </ul>
+  </section>
+
+  <footer>
+    Compiled from <em>1-Turing_Machines.pdf</em> (1001WETALC · Algoritmen en Complexiteit). All slide references (e.g. <span class="tag">II-7</span>) point back to the original deck for cross-checking.
+  </footer>
+
+</div>
+</body>
+</html>
