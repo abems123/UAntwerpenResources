@@ -1,0 +1,621 @@
+<!DOCTYPE html><html lang='en'><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width,initial-scale=1.0'><meta name='color-scheme' content='dark'><title>Operating Systems — Full Theory Exam Quiz</title><style>
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&display=swap');
+
+:root{
+  --bg: #122019;
+  --bg-grid: #16261e;
+  --panel: #1a2a22;
+  --panel-2: #21362b;
+  --border: #2d453a;
+  --ink: #f2eee2;
+  --ink-dim: #b7c3ba;
+  --ink-faint: #96a69b;
+  --copper: #cb8a4a;
+  --copper-bright: #e6ac72;
+  --copper-ink: #1a1206;
+  --led-green: #74c47f;
+  --led-green-glow: rgba(116,196,127,0.5);
+  --led-red: #e26e5c;
+  --led-red-glow: rgba(226,110,92,0.5);
+  --led-amber: #e8bb52;
+  --led-amber-glow: rgba(232,187,82,0.5);
+  --sans: "IBM Plex Sans", -apple-system, "Segoe UI", Roboto, sans-serif;
+  --serif: "IBM Plex Serif", Georgia, "Times New Roman", serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", "Cascadia Code", Menlo, Consolas, monospace;
+  --radius: 14px;
+  --radius-sm: 9px;
+}
+
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:
+    linear-gradient(var(--bg-grid) 1px, transparent 1px) 0 0/100% 28px,
+    var(--bg);
+  color:var(--ink);
+  font-family:var(--sans);
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  min-height:100vh;
+}
+.app{
+  max-width:760px;
+  margin:0 auto;
+  padding:18px 18px 60px;
+}
+::selection{ background:var(--copper); color:var(--copper-ink); }
+button{ font-family:inherit; }
+a{ color:inherit; }
+
+/* focus visibility */
+button:focus-visible, input:focus-visible, textarea:focus-visible, [tabindex]:focus-visible{
+  outline:2px solid var(--copper-bright);
+  outline-offset:2px;
+}
+
+@media (prefers-reduced-motion: no-preference){
+  .screen.enter{ animation: fadeUp .32s ease both; }
+  .led-dot.pulse{ animation: ledPulse 1s ease-out 1; }
+  @keyframes fadeUp{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);} }
+  @keyframes ledPulse{ 0%{ box-shadow:0 0 0 0 var(--pulse-color,var(--led-green-glow)); } 100%{ box-shadow:0 0 0 10px rgba(0,0,0,0); } }
+}
+
+/* ---------- signature address-bar header ---------- */
+.addr-bar{
+  display:flex;
+  border:1px solid var(--border);
+  border-radius:10px;
+  overflow:hidden;
+  background:var(--panel);
+  margin-bottom:8px;
+}
+.addr-seg{
+  flex:1 1 0;
+  padding:9px 14px;
+  min-width:0;
+  border-right:1px solid var(--border);
+}
+.addr-seg:last-child{ border-right:none; }
+.addr-label{
+  display:block;
+  font-family:var(--mono);
+  font-size:9.5px;
+  letter-spacing:.14em;
+  color:var(--ink-faint);
+  text-transform:uppercase;
+  margin-bottom:2px;
+}
+.addr-val{
+  display:block;
+  font-family:var(--mono);
+  font-size:13px;
+  color:var(--copper-bright);
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.progress-track{
+  height:4px;
+  background:var(--border);
+  border-radius:3px;
+  margin-bottom:26px;
+  overflow:hidden;
+}
+.progress-fill{
+  height:100%;
+  background:var(--copper);
+  border-radius:3px;
+  transition:width .25s ease;
+}
+
+@media (max-width:480px){
+  .addr-label{ font-size:8.5px; }
+  .addr-val{ font-size:11px; }
+  .addr-seg{ padding:8px 8px; }
+}
+
+/* ---------- generic layout ---------- */
+.screen[hidden]{ display:none; }
+.kicker{
+  font-family:var(--mono);
+  font-size:11px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--copper-bright);
+  margin:0 0 10px;
+}
+h1{
+  font-family:var(--sans);
+  font-weight:700;
+  letter-spacing:-.01em;
+  font-size:clamp(28px,7vw,40px);
+  margin:0 0 10px;
+}
+.subtitle{
+  font-family:var(--serif);
+  font-size:16px;
+  color:var(--ink-dim);
+  max-width:56ch;
+  margin:0 0 6px;
+}
+.help-line{
+  font-size:13.5px;
+  color:var(--ink-faint);
+  max-width:60ch;
+  margin:14px 0 28px;
+}
+
+.card{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:22px;
+  margin-bottom:16px;
+}
+
+/* ---------- topic picker ---------- */
+.picker-head{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  margin-bottom:14px;
+}
+.picker-head h2{
+  font-size:14px;
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  font-family:var(--mono);
+  color:var(--ink-dim);
+  margin:0;
+}
+.picker-toggle{
+  font-family:var(--mono);
+  font-size:12px;
+  color:var(--copper-bright);
+  background:none;
+  border:none;
+  cursor:pointer;
+  text-decoration:underline;
+  padding:2px 0;
+}
+.topic-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  margin-bottom:6px;
+}
+@media (max-width:560px){ .topic-grid{ grid-template-columns:1fr; } }
+.topic-row{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 12px;
+  background:var(--panel-2);
+  border:1px solid var(--border);
+  border-radius:var(--radius-sm);
+  cursor:pointer;
+  min-height:44px;
+}
+.topic-row input{ accent-color:var(--copper); width:17px; height:17px; flex:none; cursor:pointer; }
+.topic-row span.name{ font-size:14px; flex:1; }
+.topic-row span.count{ font-family:var(--mono); font-size:11.5px; color:var(--ink-faint); }
+
+.opt-row{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 2px;
+  cursor:pointer;
+}
+.opt-row input{ accent-color:var(--copper); width:17px; height:17px; flex:none; cursor:pointer; }
+.opt-row span{ font-size:14px; color:var(--ink-dim); }
+
+.warn{
+  color:var(--led-red);
+  font-size:13px;
+  margin:6px 0 0;
+  font-family:var(--mono);
+}
+
+.btn{
+  font-family:var(--mono);
+  font-size:14px;
+  font-weight:500;
+  letter-spacing:.02em;
+  border-radius:var(--radius-sm);
+  padding:13px 20px;
+  border:1px solid transparent;
+  cursor:pointer;
+  min-height:46px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+}
+.btn-primary{
+  background:var(--copper);
+  color:var(--copper-ink);
+  width:100%;
+}
+.btn-primary:hover{ background:var(--copper-bright); }
+.btn-ghost{
+  background:transparent;
+  color:var(--ink);
+  border-color:var(--border);
+}
+.btn-ghost:hover{ border-color:var(--copper); color:var(--copper-bright); }
+.btn-row{ display:flex; flex-wrap:wrap; gap:10px; margin-top:6px; }
+.btn-row .btn{ flex:1 1 auto; }
+.btn:disabled{ opacity:.4; cursor:not-allowed; }
+
+/* ---------- quiz card ---------- */
+.tag-row{ display:flex; gap:8px; margin-bottom:14px; flex-wrap:wrap; }
+.pill{
+  font-family:var(--mono);
+  font-size:10.5px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  padding:4px 9px;
+  border-radius:999px;
+  border:1px solid var(--border);
+  color:var(--ink-dim);
+  background:var(--panel-2);
+}
+.pill.copper{ color:var(--copper-bright); border-color:var(--copper); }
+
+.prompt{
+  font-family:var(--serif);
+  font-size:18px;
+  line-height:1.55;
+  margin:0 0 20px;
+}
+
+.choice-list{ display:flex; flex-direction:column; gap:9px; }
+.choice-btn{
+  text-align:left;
+  background:var(--panel-2);
+  border:1px solid var(--border);
+  color:var(--ink);
+  border-radius:var(--radius-sm);
+  padding:13px 15px;
+  font-family:var(--sans);
+  font-size:14.5px;
+  cursor:pointer;
+  display:flex;
+  gap:11px;
+}
+.choice-btn:hover:not(:disabled){ border-color:var(--copper); }
+.choice-btn .letter{
+  font-family:var(--mono);
+  color:var(--ink-faint);
+  flex:none;
+}
+.choice-btn:disabled{ cursor:default; }
+.choice-btn.is-correct{ border-color:var(--led-green); background:rgba(116,196,127,0.12); }
+.choice-btn.is-correct .letter{ color:var(--led-green); }
+.choice-btn.is-wrong{ border-color:var(--led-red); background:rgba(226,110,92,0.12); }
+.choice-btn.is-wrong .letter{ color:var(--led-red); }
+
+.num-row{ display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+.num-row input{
+  font-family:var(--mono);
+  font-size:16px;
+  background:var(--panel-2);
+  border:1px solid var(--border);
+  color:var(--ink);
+  border-radius:var(--radius-sm);
+  padding:12px 14px;
+  width:140px;
+}
+.num-row input:disabled{ opacity:.7; }
+
+textarea{
+  width:100%;
+  font-family:var(--serif);
+  font-size:14.5px;
+  background:var(--panel-2);
+  border:1px solid var(--border);
+  color:var(--ink);
+  border-radius:var(--radius-sm);
+  padding:12px 14px;
+  resize:vertical;
+  min-height:90px;
+}
+
+.unsure-link{
+  display:inline-block;
+  margin-top:14px;
+  font-family:var(--mono);
+  font-size:12.5px;
+  color:var(--ink-faint);
+  background:none;
+  border:none;
+  text-decoration:underline;
+  cursor:pointer;
+  padding:4px 0;
+}
+.unsure-link:hover{ color:var(--copper-bright); }
+
+.feedback{
+  margin-top:20px;
+  padding-top:18px;
+  border-top:1px dashed var(--border);
+}
+.feedback-line{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:12px;
+  font-family:var(--mono);
+  font-size:13.5px;
+  letter-spacing:.03em;
+  text-transform:uppercase;
+}
+.led-dot{
+  width:11px; height:11px; border-radius:50%; flex:none;
+  background:var(--dot-color,var(--led-green));
+  box-shadow:0 0 8px 1px var(--dot-glow,var(--led-green-glow));
+}
+.feedback-line.hit{ color:var(--led-green); }
+.feedback-line.miss{ color:var(--led-red); }
+.feedback-line.skip{ color:var(--led-amber); }
+.explain{
+  font-family:var(--serif);
+  font-size:14.5px;
+  color:var(--ink-dim);
+  background:var(--panel-2);
+  border:1px solid var(--border);
+  border-radius:var(--radius-sm);
+  padding:14px 16px;
+  white-space:pre-line;
+}
+.model-answer-label{
+  font-family:var(--mono);
+  font-size:10.5px;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--copper-bright);
+  margin:0 0 6px;
+}
+
+/* ---------- results ---------- */
+.score-block{ text-align:left; margin-bottom:22px; }
+.score-num{
+  font-family:var(--mono);
+  font-size:clamp(40px,10vw,58px);
+  font-weight:600;
+  color:var(--copper-bright);
+  line-height:1;
+}
+.score-pct{ font-family:var(--mono); font-size:16px; color:var(--ink-dim); margin-left:8px; }
+.score-msg{ font-family:var(--serif); font-size:16px; color:var(--ink-dim); margin-top:8px; }
+
+.topic-bar-row{ margin-bottom:12px; }
+.topic-bar-top{ display:flex; justify-content:space-between; font-size:13px; margin-bottom:5px; }
+.topic-bar-top .tname{ color:var(--ink); }
+.topic-bar-top .tscore{ font-family:var(--mono); color:var(--ink-faint); }
+.bar-track{ height:7px; border-radius:4px; background:var(--panel-2); border:1px solid var(--border); overflow:hidden; }
+.bar-fill{ height:100%; border-radius:4px; }
+
+.review-toggle{
+  width:100%;
+  text-align:left;
+  background:var(--panel);
+  border:1px solid var(--border);
+  color:var(--ink);
+  border-radius:var(--radius);
+  padding:16px 20px;
+  font-family:var(--mono);
+  font-size:13px;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+  cursor:pointer;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.review-list{ margin-top:10px; display:flex; flex-direction:column; gap:8px; }
+.review-item{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:var(--radius-sm);
+  overflow:hidden;
+}
+.review-item-head{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:12px 14px;
+  cursor:pointer;
+}
+.review-item-head .mark{ flex:none; font-size:15px; }
+.review-item-head .qtext{ font-size:13.5px; color:var(--ink-dim); flex:1; }
+.review-item-body{
+  padding:0 14px 16px 40px;
+  display:none;
+}
+.review-item.open .review-item-body{ display:block; }
+.review-item-body .row{ font-size:13px; margin-bottom:6px; }
+.review-item-body .row b{ color:var(--ink); font-weight:600; }
+.review-item-body .explain{ margin-top:8px; }
+
+.footnote{
+  text-align:center;
+  font-family:var(--mono);
+  font-size:11px;
+  color:var(--ink-faint);
+  margin-top:34px;
+}
+</style></head><body>
+<div class="app" id="app">
+  <div class="addr-bar" id="addrBar">
+    <div class="addr-seg"><span class="addr-label">Section</span><span class="addr-val" id="segA">OS Theory · All Chapters</span></div>
+    <div class="addr-seg"><span class="addr-label">Progress</span><span class="addr-val" id="segB">Setup</span></div>
+    <div class="addr-seg"><span class="addr-label">Score</span><span class="addr-val" id="segC">—</span></div>
+  </div>
+  <div class="progress-track" id="progressTrack" style="display:none;"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+
+  <main id="main">
+    <section class="screen enter" id="screen-start">
+      <p class="kicker">Operating Systems · Theory Exam Preparation</p>
+      <h1>Full Theory Exam Bank</h1>
+      <p class="subtitle" id="startSubtitle">Loading question bank…</p>
+      <p class="help-line">
+        This bank is intentionally large. It combines recurring theory-exam themes with the terminology and concepts in the course slides.
+        Questions are self-graded: write your answer first, reveal the model answer, then mark yourself honestly.
+        Focus especially on questions marked <b>HIGH PRIORITY</b>.
+      </p>
+
+      <div class="card">
+        <div class="picker-head">
+          <h2>Choose what to practice</h2>
+          <button class="picker-toggle" id="toggleAllBtn" type="button">Select none</button>
+        </div>
+        <div class="topic-grid" id="topicGrid"></div>
+
+        <div style="margin-top:14px; border-top:1px solid var(--border); padding-top:10px;">
+          <label class="opt-row">
+            <input type="checkbox" id="optShuffle" checked>
+            <span>Shuffle question order (exam mode)</span>
+          </label>
+          <label class="opt-row">
+            <input type="checkbox" id="optPriority" checked>
+            <span>Include all questions; HIGH PRIORITY are exact/repeated exam themes</span>
+          </label>
+        </div>
+        <p class="warn" id="startWarn" style="display:none;">Select at least one topic to start.</p>
+      </div>
+
+      <button class="btn btn-primary" id="startBtn" type="button">Start quiz →</button>
+    </section>
+
+    <section class="screen" id="screen-quiz" hidden>
+      <div class="card" id="quizCard"></div>
+    </section>
+
+    <section class="screen" id="screen-results" hidden>
+      <div class="card">
+        <div class="score-block">
+          <span class="score-num" id="resScoreNum">0/0</span><span class="score-pct" id="resScorePct"></span>
+          <p class="score-msg" id="resScoreMsg"></p>
+        </div>
+        <div id="topicBreakdown"></div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-primary" id="retakeAllBtn" type="button">Retake full quiz</button>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-ghost" id="retakeMistakesBtn" type="button">Retake missed questions only</button>
+        <button class="btn btn-ghost" id="changeTopicsBtn" type="button">Change topics</button>
+      </div>
+      <button class="review-toggle" id="reviewToggle" type="button" style="margin-top:22px;">
+        <span>Review all answers</span><span id="reviewCaret">＋</span>
+      </button>
+      <div class="review-list" id="reviewList" style="display:none;"></div>
+      <p class="footnote">Comprehensive theory bank — built from the uploaded OS exam history and course slides.</p>
+    </section>
+  </main>
+</div>
+
+<script>
+(function(){
+"use strict";
+var TOPICS = [{"key": "intro", "name": "Overview & Introduction"}, {"key": "proc", "name": "Processes & Threads"}, {"key": "cache", "name": "Cache Memory"}, {"key": "mem", "name": "Memory Management"}, {"key": "vm", "name": "Virtual Memory"}, {"key": "sched", "name": "Processor Scheduling"}, {"key": "rt", "name": "Real-Time Scheduling"}, {"key": "disk", "name": "Disk Management"}, {"key": "conc", "name": "Concurrency"}, {"key": "fs", "name": "Filesystems"}];
+var QUESTIONS = [{"id": "intro-1", "topic": "intro", "type": "short", "priority": "HIGH", "prompt": "Define an operating system and explain its two main roles.", "modelAnswer": "An operating system is the software layer between applications/users and hardware. Its two main roles are to provide services to programs and to manage/protect hardware resources such as CPU, memory, storage and I/O devices."}, {"id": "intro-2", "topic": "intro", "type": "short", "priority": "HIGH", "prompt": "Why is resource management a central responsibility of an operating system?", "modelAnswer": "Because multiple programs compete for finite hardware resources. The OS decides how resources are allocated, coordinates their use, and protects one program from interfering with another."}, {"id": "intro-3", "topic": "intro", "type": "short", "priority": "HIGH", "prompt": "Explain the difference between user mode and kernel mode and why both are needed.", "modelAnswer": "User mode restricts programs from executing privileged operations. Kernel mode gives the OS the privileges needed to manage hardware and system resources. The separation protects the system from faulty or malicious user programs."}, {"id": "intro-4", "topic": "intro", "type": "short", "priority": "HIGH", "prompt": "What is a system call, and what happens when a user program makes one?", "modelAnswer": "A system call is the interface through which a user program requests an OS service. Execution switches from user mode to kernel mode, the OS performs the requested service, and control eventually returns to the program in user mode."}, {"id": "intro-5", "topic": "intro", "type": "short", "priority": "HIGH", "prompt": "What is an interrupt, and why is it useful to an operating system?", "modelAnswer": "An interrupt is an event that causes the CPU to temporarily transfer control to an interrupt handler. It lets hardware or software notify the OS that attention is required, for example when I/O completes."}, {"id": "intro-6", "topic": "intro", "type": "short", "priority": "HIGH", "prompt": "Distinguish an interrupt, a system call and a context switch.", "modelAnswer": "An interrupt is an event that transfers control to an interrupt handler. A system call is an intentional request from a program for an OS service and normally causes a user-to-kernel mode switch. A context switch changes the running execution context by saving one thread/process state and restoring another."}, {"id": "intro-7", "topic": "intro", "type": "short", "priority": "HIGH", "prompt": "What is the difference between a mode switch and a context switch?", "modelAnswer": "A mode switch changes privilege level, for example user mode to kernel mode, and can happen while the same process/thread continues executing. A context switch changes which process or thread is executing and requires saving/restoring CPU state."}, {"id": "intro-8", "topic": "intro", "type": "short", "priority": "HIGH", "prompt": "Why does an OS need protection mechanisms in a multiprogramming system?", "modelAnswer": "Independent programs must not be able to overwrite OS memory, execute arbitrary privileged operations, or corrupt another process. Protection mechanisms such as privilege levels and address-space protection enforce these boundaries."}, {"id": "proc-1", "topic": "proc", "type": "short", "priority": "HIGH", "prompt": "Define a program, a process and a thread.", "modelAnswer": "A program is a passive set of instructions. A process is a program in execution together with its execution state and resources. A thread is an execution unit within a process; threads of one process share the process resources but have their own execution state."}, {"id": "proc-2", "topic": "proc", "type": "short", "priority": "HIGH", "prompt": "What information is typically stored in a Process Control Block (PCB)?", "modelAnswer": "The PCB contains information needed by the OS for process management, such as process state, program counter/register context, scheduling information, memory-management information, accounting information and I/O/resource information."}, {"id": "proc-3", "topic": "proc", "type": "short", "priority": "HIGH", "prompt": "Describe the main process states and the transitions between them.", "modelAnswer": "A process can be New, Ready, Running, Blocked/Waiting and Terminated. New becomes Ready when admitted; Ready becomes Running when scheduled; Running becomes Ready when preempted; Running becomes Blocked when it waits for an event such as I/O; Blocked becomes Ready when that event occurs; Running becomes Terminated when execution finishes."}, {"id": "proc-4", "topic": "proc", "type": "short", "priority": "HIGH", "prompt": "Why does a process move from Running to Blocked when it requests I/O?", "modelAnswer": "The process cannot continue its useful execution until the I/O completes. Instead of wasting the CPU while waiting, the OS blocks it and schedules another ready process."}, {"id": "proc-5", "topic": "proc", "type": "short", "priority": "HIGH", "prompt": "Why does completion of an I/O operation normally cause Blocked → Ready rather than Blocked → Running?", "modelAnswer": "The process is now able to execute, but the CPU may already be occupied by another process. Therefore it becomes Ready and waits for the scheduler to select it."}, {"id": "proc-6", "topic": "proc", "type": "short", "priority": "HIGH", "prompt": "What is a context switch and what state must be saved?", "modelAnswer": "A context switch changes the CPU from one execution context to another. The OS saves the current context, including the program counter and relevant registers/state, and restores the saved context of the next process or thread."}, {"id": "proc-7", "topic": "proc", "type": "short", "priority": "HIGH", "prompt": "Give three differences between a multiprocess system and a multithreaded system.", "modelAnswer": "Processes have separate address spaces/resources and therefore stronger isolation, while threads in one process share an address space/resources. Process creation and switching are generally more expensive than thread operations. Communication between processes usually needs explicit IPC, while threads can communicate through shared memory."}, {"id": "proc-8", "topic": "proc", "type": "short", "priority": "HIGH", "prompt": "Compare User-Level Threads (ULTs) and Kernel-Level Threads (KLTs). Give three differences.", "modelAnswer": "ULT management is performed by a user-level library, so thread operations can be fast and scheduling can be application-specific, but a blocking system call can block the whole process and the kernel does not schedule ULTs independently. KLTs are managed by the kernel, so threads can be scheduled independently and can execute on multiple processors, but management has higher OS overhead."}, {"id": "proc-9", "topic": "proc", "type": "short", "priority": "HIGH", "prompt": "Give one scenario where ULTs can be preferable and one where KLTs can be preferable.", "modelAnswer": "ULTs are attractive when very fast thread management and application-specific scheduling matter and blocking kernel calls are controlled. KLTs are preferable when true parallelism on multiple processors or independent blocking behavior is important."}, {"id": "proc-10", "topic": "proc", "type": "short", "priority": "HIGH", "prompt": "What is the relationship between a process and its threads?", "modelAnswer": "The process provides the resource and address-space context; its threads provide the execution contexts. Threads of the same process share code, global data, heap and other process resources, while each thread has its own program counter, registers and stack."}, {"id": "proc-11", "topic": "proc", "type": "short", "priority": "HIGH", "prompt": "Why can a single blocked KLT leave other threads of the same process runnable, while this may not happen with ULTs?", "modelAnswer": "The kernel knows about KLTs and can schedule the other threads independently. With ULTs, the kernel may see only one process; if that process enters a blocking kernel operation, the kernel can block the whole process."}, {"id": "proc-12", "topic": "proc", "type": "short", "priority": "HIGH", "prompt": "Explain the difference between scheduling at process level and scheduling at thread level.", "modelAnswer": "Process-level scheduling chooses among processes as the schedulable units. Thread-level scheduling allows individual threads to be selected, which can provide finer-grained concurrency and, with KLTs, parallel execution on multiple processors."}, {"id": "cache-1", "topic": "cache", "type": "short", "priority": "HIGH", "prompt": "Why is a cache placed between the CPU and main memory?", "modelAnswer": "The CPU is much faster than main memory. A small, fast cache stores recently or nearby used data so many accesses can be served without waiting for main memory."}, {"id": "cache-2", "topic": "cache", "type": "short", "priority": "HIGH", "prompt": "Define cache hit and cache miss.", "modelAnswer": "A cache hit occurs when the requested block is already in the cache. A cache miss occurs when it is not, so the block must be obtained from a lower memory level."}, {"id": "cache-3", "topic": "cache", "type": "short", "priority": "HIGH", "prompt": "Explain temporal locality and spatial locality and give an example of each.", "modelAnswer": "Temporal locality means recently accessed data is likely to be accessed again soon, such as a loop variable. Spatial locality means nearby addresses are likely to be accessed soon, such as sequential array elements."}, {"id": "cache-4", "topic": "cache", "type": "short", "priority": "HIGH", "prompt": "Why does locality of reference make a memory hierarchy effective?", "modelAnswer": "Programs tend to reuse recently accessed data and access nearby addresses. Therefore a small cache can contain a large fraction of the data likely to be requested next, despite being much smaller than main memory."}, {"id": "cache-5", "topic": "cache", "type": "short", "priority": "HIGH", "prompt": "Explain the role of a cache block/line.", "modelAnswer": "A cache line holds a block of several words from main memory. Fetching a whole block exploits spatial locality and reduces the number of transfers over the slower memory connection."}, {"id": "cache-6", "topic": "cache", "type": "short", "priority": "HIGH", "prompt": "What information is stored with a cache line and what is the purpose of each part?", "modelAnswer": "A cache line stores the data block plus metadata such as a tag and a valid bit. The tag identifies which memory block is present, while the valid bit indicates whether the line contains meaningful cached data."}, {"id": "cache-7", "topic": "cache", "type": "short", "priority": "HIGH", "prompt": "Explain Direct Mapping and give one advantage and one disadvantage.", "modelAnswer": "Each memory block has exactly one possible cache line, typically using i = j mod C. It is simple, cheap and fast to look up, but blocks that map to the same line can conflict and thrash even when much of the cache is unused."}, {"id": "cache-8", "topic": "cache", "type": "short", "priority": "HIGH", "prompt": "Explain Fully Associative Mapping and give its main trade-off.", "modelAnswer": "A memory block can be placed in any cache line, so the cache compares the requested tag against all relevant lines in parallel. This removes forced index conflicts, but requires expensive comparator hardware and a replacement policy."}, {"id": "cache-9", "topic": "cache", "type": "short", "priority": "HIGH", "prompt": "Explain Set-Associative Mapping and the meaning of the k-value.", "modelAnswer": "The cache is divided into sets. A memory block maps to one set, but can occupy any of the k lines in that set. k is the number of lines per set, also called the associativity or number of ways."}, {"id": "cache-10", "topic": "cache", "type": "short", "priority": "HIGH", "prompt": "What happens to set-associative mapping when k = 1 and when k = C?", "modelAnswer": "k = 1 gives direct mapping because each set contains one line. k = C gives fully associative mapping because there is one set containing the whole cache."}, {"id": "cache-11", "topic": "cache", "type": "short", "priority": "HIGH", "prompt": "What is the trade-off when increasing the number of lines per set k?", "modelAnswer": "Higher associativity reduces conflict misses because a block has more possible positions within its set, but it requires more parallel tag comparisons and more complex/expensive replacement hardware."}, {"id": "cache-12", "topic": "cache", "type": "short", "priority": "HIGH", "prompt": "When is a cache replacement algorithm needed?", "modelAnswer": "A replacement decision is needed on a miss when the mapping allows multiple possible victim lines, such as fully associative or set-associative mapping. Direct mapping has no replacement choice because the target line is fixed."}, {"id": "cache-13", "topic": "cache", "type": "short", "priority": "HIGH", "prompt": "Compare Optimal, FIFO, LRU and Random replacement.", "modelAnswer": "Optimal replaces the block whose next use is farthest in the future, but future accesses are unknown, so it is theoretical. FIFO evicts the oldest resident block and is simple but can make poor choices. LRU evicts the least recently used block and exploits temporal locality but needs expensive bookkeeping. Random needs little bookkeeping but makes no locality-based choice."}, {"id": "cache-14", "topic": "cache", "type": "short", "priority": "HIGH", "prompt": "What is Belady's anomaly?", "modelAnswer": "Belady's anomaly is the counterintuitive situation where increasing the number of cache/page frames can increase the number of misses or page faults. FIFO is the classic replacement algorithm associated with this anomaly."}, {"id": "cache-15", "topic": "cache", "type": "short", "priority": "HIGH", "prompt": "Compare write-through and write-back cache policies.", "modelAnswer": "Write-through updates main memory on every cache write, keeping memory current but generating more bus traffic. Write-back updates the cache first and writes a modified line to memory only when it is evicted, reducing traffic but requiring a dirty bit and more complex handling."}, {"id": "cache-16", "topic": "cache", "type": "short", "priority": "HIGH", "prompt": "Why can cache coherency become a problem in a multicore system?", "modelAnswer": "Different cores can have cached copies of the same memory block. If one core writes its copy, other cores may still hold stale copies, so a cache-coherency protocol is needed to keep the views consistent."}, {"id": "cache-17", "topic": "cache", "type": "short", "priority": "HIGH", "prompt": "Explain the basic idea of MESI cache coherency.", "modelAnswer": "Each cache line is tracked as Modified, Exclusive, Shared or Invalid. These states indicate whether a core has the only clean copy, a modified private copy, a shared clean copy, or no valid copy, and the protocol coordinates reads/writes between caches."}, {"id": "cache-18", "topic": "cache", "type": "short", "priority": "HIGH", "prompt": "How would MSI differ from MESI, and what is the main trade-off?", "modelAnswer": "MSI has Modified, Shared and Invalid states and lacks MESI's Exclusive state. Without Exclusive, a private clean line cannot be distinguished from a shared clean line, so some transitions may require more coherence traffic. MESI can avoid unnecessary invalidation/write traffic for lines known to be exclusive."}, {"id": "mem-1", "topic": "mem", "type": "short", "priority": "HIGH", "prompt": "What are the three main memory-organization alternatives covered in the course?", "modelAnswer": "Partitioning, paging and segmentation."}, {"id": "mem-2", "topic": "mem", "type": "short", "priority": "HIGH", "prompt": "Distinguish compile-time, load-time and run-time address translation.", "modelAnswer": "Compile-time translation produces fixed physical addresses. Load-time translation maps relative/logical addresses when the process is loaded, after which its location is fixed. Run-time translation keeps logical/virtual addresses flexible and translates them while the program executes."}, {"id": "mem-3", "topic": "mem", "type": "short", "priority": "HIGH", "prompt": "Explain Fixed Partitioning with fixed-size partitions and its main disadvantages.", "modelAnswer": "Physical memory is divided into fixed-size partitions and each process image is assigned one. It causes internal fragmentation because a process may not fill its partition, and it limits the maximum process size and the number of processes that can fit."}, {"id": "mem-4", "topic": "mem", "type": "short", "priority": "HIGH", "prompt": "How can fixed partitioning with variable-size partitions reduce the problems of fixed-size partitions?", "modelAnswer": "Partitions can have different sizes, allowing larger processes and reducing internal fragmentation. However, choosing where a process should be placed becomes important, leading to placement algorithms."}, {"id": "mem-5", "topic": "mem", "type": "short", "priority": "HIGH", "prompt": "Explain Dynamic Partitioning.", "modelAnswer": "Partitions are created dynamically to match the memory required by processes as they are added and removed. This reduces internal fragmentation compared with fixed-size partitions, but creates external fragmentation and requires placement decisions."}, {"id": "mem-6", "topic": "mem", "type": "short", "priority": "HIGH", "prompt": "Compare fixed partitioning and dynamic partitioning.", "modelAnswer": "Fixed partitioning has simple allocation but can waste space inside partitions and restrict process sizes. Dynamic partitioning matches allocations more closely to process sizes, but free space becomes fragmented and allocation/deallocation becomes more complex."}, {"id": "mem-7", "topic": "mem", "type": "short", "priority": "HIGH", "prompt": "Explain First-Fit, Next-Fit, Best-Fit and Worst-Fit.", "modelAnswer": "First-Fit chooses the first sufficiently large free hole. Next-Fit continues searching from the position of the previous allocation. Best-Fit chooses the smallest hole that is large enough. Worst-Fit chooses the largest available hole."}, {"id": "mem-8", "topic": "mem", "type": "short", "priority": "HIGH", "prompt": "What is internal fragmentation?", "modelAnswer": "Internal fragmentation is unused space inside memory that has already been allocated to a process or object. The allocated block is larger than what is actually needed."}, {"id": "mem-9", "topic": "mem", "type": "short", "priority": "HIGH", "prompt": "What is external fragmentation?", "modelAnswer": "External fragmentation is free memory that exists but is split into separate non-contiguous holes, so a sufficiently large contiguous request may fail even though the total free space is large enough."}, {"id": "mem-10", "topic": "mem", "type": "short", "priority": "HIGH", "prompt": "What is the 50-percent rule for dynamic partitioning?", "modelAnswer": "Under the assumptions used in the course, external fragmentation produces roughly one free hole for every two allocated blocks, so the number of free holes is approximately 50% of the number of allocated blocks. It is a statistical rule of thumb, not an exact invariant."}, {"id": "mem-11", "topic": "mem", "type": "short", "priority": "HIGH", "prompt": "How can external fragmentation be reduced or eliminated in a partitioning system?", "modelAnswer": "Compaction can combine scattered free holes into a larger contiguous region, although it costs time and requires relocation support. Using paging also removes the need for large contiguous physical allocations."}, {"id": "mem-12", "topic": "mem", "type": "short", "priority": "HIGH", "prompt": "Explain Paging and its role in memory management.", "modelAnswer": "Paging divides a process's virtual address space into fixed-size pages and physical memory into fixed-size frames. Pages can be placed in any available frame, so a process does not need one contiguous physical region."}, {"id": "mem-13", "topic": "mem", "type": "short", "priority": "HIGH", "prompt": "Explain Segmentation and its role in memory management.", "modelAnswer": "Segmentation divides a process according to logical program units such as code, data or stack. Each segment can have its own size and protection, and a logical address identifies a segment plus an offset within it."}, {"id": "mem-14", "topic": "mem", "type": "short", "priority": "HIGH", "prompt": "Compare the address-translation procedures for paging and segmentation.", "modelAnswer": "Paging uses a page number and offset; the page number indexes a page table to obtain a frame number, which is combined with the offset. Segmentation uses a segment identifier and offset; the segment table provides the segment's base and limit, and the offset is checked against the limit before forming the physical address."}, {"id": "mem-15", "topic": "mem", "type": "short", "priority": "HIGH", "prompt": "What is the key advantage of paging over contiguous allocation?", "modelAnswer": "A process can be spread over non-contiguous physical frames, so external fragmentation of large contiguous regions is avoided and memory can be allocated flexibly."}, {"id": "vm-1", "topic": "vm", "type": "short", "priority": "HIGH", "prompt": "What is virtual memory and why is it useful?", "modelAnswer": "Virtual memory gives each process a virtual address space that can be larger than the physical memory currently allocated to it. Only the pages needed at a given time must be resident in main memory; the rest can remain in secondary storage."}, {"id": "vm-2", "topic": "vm", "type": "short", "priority": "HIGH", "prompt": "Explain demand paging.", "modelAnswer": "Pages are loaded into physical memory when they are first needed rather than loading the entire process in advance. An access to a non-resident page causes a page fault and the OS loads the required page."}, {"id": "vm-3", "topic": "vm", "type": "short", "priority": "HIGH", "prompt": "What is a page fault?", "modelAnswer": "A page fault occurs when a process references a virtual page whose page-table entry indicates that the page is not currently resident in physical memory. The OS must handle the fault and make the page available before the instruction can continue."}, {"id": "vm-4", "topic": "vm", "type": "short", "priority": "HIGH", "prompt": "Describe the page-fault handling sequence.", "modelAnswer": "The hardware detects a non-present page and traps to the OS. The OS finds a free frame or selects a victim page, writes the victim back if necessary, loads the requested page from secondary storage, updates the page table, and restarts the interrupted instruction."}, {"id": "vm-5", "topic": "vm", "type": "short", "priority": "HIGH", "prompt": "What is a page-table present/valid bit?", "modelAnswer": "It indicates whether the referenced page is currently resident in physical memory. If it is clear and the page is referenced, a page fault is generated."}, {"id": "vm-6", "topic": "vm", "type": "short", "priority": "HIGH", "prompt": "Why can a single-level page table become too large?", "modelAnswer": "The virtual address space may contain an enormous number of pages even if a process uses only a small fraction of them. A single-level table would need an entry for every possible virtual page, wasting memory on unused regions."}, {"id": "vm-7", "topic": "vm", "type": "short", "priority": "HIGH", "prompt": "Explain how a two-level page table translates a virtual address.", "modelAnswer": "The virtual address is divided into a level-1 index, level-2 index and page offset. The level-1 entry identifies the level-2 table; the level-2 entry identifies the physical frame; the unchanged offset selects the byte within that frame."}, {"id": "vm-8", "topic": "vm", "type": "short", "priority": "HIGH", "prompt": "Why do multilevel page tables save memory compared with a single-level page table?", "modelAnswer": "Only the lower-level tables corresponding to used regions of the virtual address space need to exist. Unused virtual regions therefore do not require full page-table storage."}, {"id": "vm-9", "topic": "vm", "type": "short", "priority": "HIGH", "prompt": "What is the main disadvantage of multilevel page tables?", "modelAnswer": "Address translation may require multiple memory accesses to walk the page tables, so translation can be slower than a single-level lookup unless the result is cached, for example in a TLB."}, {"id": "vm-10", "topic": "vm", "type": "short", "priority": "HIGH", "prompt": "What is an inverted page table?", "modelAnswer": "Instead of having an entry for every virtual page of every process, an inverted page table has entries associated with physical frames. Each entry identifies which process and virtual page currently occupies that frame."}, {"id": "vm-11", "topic": "vm", "type": "short", "priority": "HIGH", "prompt": "How is a virtual address translated using an inverted page table?", "modelAnswer": "The system uses the process identifier and virtual page number to search the inverted table for the entry representing that page. When a matching frame entry is found, the frame number plus the original page offset forms the physical address."}, {"id": "vm-12", "topic": "vm", "type": "short", "priority": "HIGH", "prompt": "What is the main advantage of an inverted page table?", "modelAnswer": "Its size depends primarily on the number of physical frames rather than the total size of all virtual address spaces, which can save substantial memory for large virtual address spaces."}, {"id": "vm-13", "topic": "vm", "type": "short", "priority": "HIGH", "prompt": "What is a TLB and why is it needed?", "modelAnswer": "A Translation Lookaside Buffer is a small cache of recent virtual-page-to-physical-frame translations. It avoids repeating the full page-table lookup for frequently used pages and therefore speeds up address translation."}, {"id": "vm-14", "topic": "vm", "type": "short", "priority": "HIGH", "prompt": "What can happen during translation when a TLB and multilevel page tables are both present?", "modelAnswer": "A TLB hit can provide the frame number immediately. On a TLB miss, the page tables are walked. If the required page-table structures or requested page are not resident, one or more page faults can occur; after the OS resolves them, translation can continue and the TLB can be updated."}, {"id": "vm-15", "topic": "vm", "type": "short", "priority": "HIGH", "prompt": "What is a Resident Set Policy?", "modelAnswer": "It is the policy that determines how many physical frames a process receives and which of its pages are kept resident. It controls the size and composition of the process's resident set."}, {"id": "vm-16", "topic": "vm", "type": "short", "priority": "HIGH", "prompt": "What is the Active Working Set and why is it useful?", "modelAnswer": "The active working set is the set of pages referenced by a process during a recent time window. Keeping enough frames for the active working set helps maintain locality and reduces excessive page faults and thrashing."}, {"id": "vm-17", "topic": "vm", "type": "short", "priority": "HIGH", "prompt": "What is thrashing?", "modelAnswer": "Thrashing is a state where the system spends most of its time handling page faults and moving pages between main memory and secondary storage rather than executing useful work. CPU utilization can fall because processes repeatedly wait for paging I/O."}, {"id": "vm-18", "topic": "vm", "type": "short", "priority": "HIGH", "prompt": "Compare local and global page replacement.", "modelAnswer": "With local replacement, a process can choose a victim only from its own resident pages. With global replacement, a process can take a frame currently occupied by another process, which can improve global utilization but can also increase another process's page-fault rate."}, {"id": "vm-19", "topic": "vm", "type": "short", "priority": "HIGH", "prompt": "Compare FIFO and LRU page replacement.", "modelAnswer": "FIFO removes the page that has been resident the longest and is simple but can remove heavily reused pages and can exhibit Belady's anomaly. LRU removes the page that has not been used for the longest time, exploiting temporal locality, but requires more bookkeeping."}, {"id": "vm-20", "topic": "vm", "type": "short", "priority": "HIGH", "prompt": "What is the Optimal page-replacement algorithm and why is it not implementable?", "modelAnswer": "Optimal replaces the page whose next use is farthest in the future, or that will never be used again. It gives the minimum possible number of page faults for a reference string, but real systems do not know future references."}, {"id": "vm-21", "topic": "vm", "type": "short", "priority": "HIGH", "prompt": "Explain Segmented FIFO and its motivation compared with FIFO and LRU.", "modelAnswer": "Segmented FIFO divides resident pages into multiple FIFO queues/segments and promotes or moves pages according to their reuse. It tries to retain some of the simplicity of FIFO while capturing recency information better than plain FIFO, without the full bookkeeping cost of LRU."}, {"id": "sched-1", "topic": "sched", "type": "short", "priority": "HIGH", "prompt": "What are long-term, medium-term and short-term scheduling?", "modelAnswer": "Long-term scheduling controls which jobs/processes are admitted into the active system. Medium-term scheduling controls suspension/swapping and can temporarily remove processes from memory. Short-term scheduling chooses which ready process gets the CPU next."}, {"id": "sched-2", "topic": "sched", "type": "short", "priority": "HIGH", "prompt": "Why is short-term scheduling invoked much more frequently than long-term scheduling?", "modelAnswer": "Short-term scheduling makes CPU-allocation decisions whenever execution changes, such as after preemption, blocking or termination. Long-term admission decisions occur much less often."}, {"id": "sched-3", "topic": "sched", "type": "short", "priority": "HIGH", "prompt": "Define the main scheduling performance metrics used in the course.", "modelAnswer": "Common metrics include completion time, turnaround time, waiting time, response time, lateness and deadline-related measures. The appropriate metric depends on the scheduling problem being optimized."}, {"id": "sched-4", "topic": "sched", "type": "short", "priority": "HIGH", "prompt": "Explain FIFO/FCFS scheduling and give its main advantage and disadvantage.", "modelAnswer": "Processes are served in arrival order. It is simple and fair in arrival order, but a long job at the front can delay many short jobs, producing poor average completion or waiting times."}, {"id": "sched-5", "topic": "sched", "type": "short", "priority": "HIGH", "prompt": "Explain Round Robin scheduling and the role of the quantum.", "modelAnswer": "Ready processes are served cyclically, each receiving at most a fixed time quantum before being preempted. A small quantum improves responsiveness but causes more context-switch overhead; a large quantum approaches FIFO behavior."}, {"id": "sched-6", "topic": "sched", "type": "short", "priority": "HIGH", "prompt": "What is Short Process Next (SPN)?", "modelAnswer": "SPN is non-preemptive scheduling that selects the ready job with the smallest processing time. When all jobs are available at time zero, it is optimal for minimizing the sum of completion times."}, {"id": "sched-7", "topic": "sched", "type": "short", "priority": "HIGH", "prompt": "For what scheduling problem is SPN optimal, and what is the basic proof idea?", "modelAnswer": "SPN is optimal for 1||ΣCj, the single-machine batch problem minimizing total completion time. The proof uses an adjacent-exchange argument: if a longer job is before a shorter job, swapping them reduces the sum of completion times, so an optimal schedule must order jobs by increasing processing time."}, {"id": "sched-8", "topic": "sched", "type": "short", "priority": "HIGH", "prompt": "Give a situation where SPN is not optimal.", "modelAnswer": "If release times are present, a short job that has not yet arrived cannot necessarily be scheduled before a currently available longer job. Thus plain non-preemptive SPN is not generally optimal for problems with release times."}, {"id": "sched-9", "topic": "sched", "type": "short", "priority": "HIGH", "prompt": "What is Weighted Short Process Next (WSPN), and what problem does it optimize?", "modelAnswer": "WSPN orders jobs using the processing-time/weight ratio pj/wj, known as Smith's rule. It is optimal for 1||ΣwjCj, minimizing weighted completion time."}, {"id": "sched-10", "topic": "sched", "type": "short", "priority": "HIGH", "prompt": "What is Shortest Remaining Time Next (SRTN)?", "modelAnswer": "SRTN is the preemptive version of shortest-job scheduling. At each scheduling decision, the process with the smallest remaining processing time is selected, and a newly arriving shorter job can preempt the current one."}, {"id": "sched-11", "topic": "sched", "type": "short", "priority": "HIGH", "prompt": "For what scheduling problem is SRTN optimal?", "modelAnswer": "SRTN is optimal for 1|rj,pmtn|ΣCj: a single machine, release times, preemption allowed, minimizing the sum of completion times."}, {"id": "sched-12", "topic": "sched", "type": "short", "priority": "HIGH", "prompt": "Give the basic exchange argument used to prove SRTN optimality.", "modelAnswer": "If an optimal schedule executes a job with longer remaining processing time while a shorter remaining job is available, exchanging the order so the shorter remaining job executes first cannot increase the sum of completion times. Repeating such exchanges transforms the schedule into SRTN without worsening the objective."}, {"id": "sched-13", "topic": "sched", "type": "short", "priority": "HIGH", "prompt": "Why is non-preemptive SRTN not generally optimal when release times exist?", "modelAnswer": "Without preemption, once a job starts it must finish. A longer job that starts before a short job arrives can delay the short job, so the preemptive exchange argument no longer applies. The non-preemptive problem is harder and the simple SRTN rule is not optimal in general."}, {"id": "sched-14", "topic": "sched", "type": "short", "priority": "HIGH", "prompt": "Explain Multilevel Feedback Queue scheduling.", "modelAnswer": "Processes are placed in multiple priority queues, typically with FIFO or Round Robin behavior within each queue. Processes that consume CPU time can be moved toward lower-priority queues, while interactive or I/O-bound behavior can keep a process at higher priority depending on the variant."}, {"id": "sched-15", "topic": "sched", "type": "short", "priority": "HIGH", "prompt": "Which processes does a Multilevel Feedback Queue tend to favor?", "modelAnswer": "It tends to favor short, interactive and I/O-bound processes because they frequently yield or block and therefore remain in higher-priority queues. CPU-bound processes tend to move to lower-priority queues."}, {"id": "sched-16", "topic": "sched", "type": "short", "priority": "HIGH", "prompt": "Give two advantages and two disadvantages of Multilevel Feedback Queue scheduling.", "modelAnswer": "Advantages include good responsiveness for interactive jobs and the ability to approximate shortest-job behavior without knowing burst times in advance. Disadvantages include many tuning parameters and the possibility of starvation for low-priority CPU-bound jobs unless aging or another protection mechanism is used."}, {"id": "sched-17", "topic": "sched", "type": "short", "priority": "HIGH", "prompt": "A dynamic priority increases while a process waits and changes while it runs. Explain how priority-growth rules can reproduce familiar scheduling disciplines.", "modelAnswer": "The relative rate at which waiting and running priorities change determines which processes gain priority. Particular parameter choices can reproduce behaviors equivalent to FIFO/FCFS or LIFO, as shown in the course's dynamic-priority exercise."}, {"id": "sched-18", "topic": "sched", "type": "short", "priority": "HIGH", "prompt": "What is the difference between preemptive and non-preemptive scheduling?", "modelAnswer": "Preemptive scheduling allows the OS to interrupt a running process and assign the CPU elsewhere. Non-preemptive scheduling lets the running process keep the CPU until it finishes or blocks."}, {"id": "sched-19", "topic": "sched", "type": "short", "priority": "HIGH", "prompt": "Explain the scheduling notation 1|rj,pmtn|ΣCj.", "modelAnswer": "It describes a single-machine scheduling problem with release times rj, preemption allowed, and an objective of minimizing the sum of completion times ΣCj."}, {"id": "rt-1", "topic": "rt", "type": "short", "priority": "HIGH", "prompt": "What is Earliest Deadline First (EDF)?", "modelAnswer": "EDF is a dynamic-priority scheduling algorithm that always gives priority to the ready task with the earliest deadline."}, {"id": "rt-2", "topic": "rt", "type": "short", "priority": "HIGH", "prompt": "For which basic scheduling problem is EDF optimal?", "modelAnswer": "For the single-machine preemptive problem with release times, EDF is optimal for minimizing maximum lateness under the course's standard conditions. In real-time scheduling, EDF is also optimal for feasibility of preemptive jobs when the stated feasibility assumptions hold."}, {"id": "rt-3", "topic": "rt", "type": "short", "priority": "HIGH", "prompt": "What is the main proof idea for EDF optimality?", "modelAnswer": "Use an adjacent-exchange argument. If a schedule contains two available jobs with d_i > d_j but i is executed before j, swapping them so the earlier-deadline job goes first does not worsen the maximum lateness. Repeating swaps transforms an optimal schedule into EDF order."}, {"id": "rt-4", "topic": "rt", "type": "short", "priority": "HIGH", "prompt": "What does EDF optimize in a deadline-feasibility problem?", "modelAnswer": "EDF prioritizes the earliest deadlines and, under the appropriate preemptive conditions, can meet all deadlines whenever a feasible schedule exists. It is therefore optimal for deadline feasibility in that setting."}, {"id": "rt-5", "topic": "rt", "type": "short", "priority": "HIGH", "prompt": "What is the difference between EDF and Rate Monotonic Scheduling (RMS)?", "modelAnswer": "EDF uses dynamic priorities based on absolute deadlines. RMS uses fixed priorities based on task periods: shorter period means higher priority."}, {"id": "rt-6", "topic": "rt", "type": "short", "priority": "HIGH", "prompt": "What is RMS designed for?", "modelAnswer": "RMS is a static-priority algorithm for periodic real-time tasks. It assigns higher priority to tasks with shorter periods and is optimal among fixed-priority scheduling policies for the relevant periodic-task model."}, {"id": "rt-7", "topic": "rt", "type": "short", "priority": "HIGH", "prompt": "What is the utilization bound commonly associated with RMS?", "modelAnswer": "For n periodic tasks, the sufficient utilization bound is n(2^(1/n) − 1). If total utilization is at or below this bound, RMS guarantees deadline feasibility under the course assumptions."}, {"id": "rt-8", "topic": "rt", "type": "short", "priority": "HIGH", "prompt": "Why can RMS be used even though EDF can achieve better utilization?", "modelAnswer": "RMS uses fixed priorities, which can simplify implementation, analysis and certification. EDF can be more utilization-efficient, but dynamic priorities may be less convenient in some real-time systems."}, {"id": "rt-9", "topic": "rt", "type": "short", "priority": "HIGH", "prompt": "What is the Moore-Hodgson algorithm trying to optimize?", "modelAnswer": "It minimizes the number of late jobs, ΣUj, for the appropriate single-machine scheduling problem under its stated assumptions."}, {"id": "rt-10", "topic": "rt", "type": "short", "priority": "HIGH", "prompt": "What is the main idea of Moore-Hodgson?", "modelAnswer": "Order jobs by earliest due date and build the schedule in that order. When a deadline becomes infeasible, remove the job with the largest processing time among the jobs considered so far; that job becomes late, and the remaining on-time jobs continue."}, {"id": "rt-11", "topic": "rt", "type": "short", "priority": "HIGH", "prompt": "When is Moore-Hodgson optimal?", "modelAnswer": "It is optimal under the course's stated single-machine, non-preemptive assumptions for minimizing the number of tardy jobs, ΣUj. The exact conditions from the course must be stated when proving/applying the result."}, {"id": "disk-1", "topic": "disk", "type": "short", "priority": "HIGH", "prompt": "Why are disk scheduling algorithms needed?", "modelAnswer": "Disk requests compete for the mechanical positioning resources of a disk. Scheduling the order of requests can reduce seek and movement time, improving average response time and throughput."}, {"id": "disk-2", "topic": "disk", "type": "short", "priority": "HIGH", "prompt": "What are the main components of hard-disk access time?", "modelAnswer": "Access time includes seek time to move the head to the required track, rotational latency while waiting for the desired sector to rotate under the head, and the data-transfer time."}, {"id": "disk-3", "topic": "disk", "type": "short", "priority": "HIGH", "prompt": "Explain FIFO disk scheduling and give its main advantage and disadvantage.", "modelAnswer": "FIFO services disk requests in arrival order. It is simple and fair in arrival order, but it can cause large and unnecessary head movement and therefore poor performance."}, {"id": "disk-4", "topic": "disk", "type": "short", "priority": "HIGH", "prompt": "Explain SSTF and its main advantage and disadvantage.", "modelAnswer": "Shortest Seek Time First chooses the request closest to the current head position. It often reduces seek time, but requests far from the current position can starve and the head movement can remain biased toward a region."}, {"id": "disk-5", "topic": "disk", "type": "short", "priority": "HIGH", "prompt": "Explain SCAN.", "modelAnswer": "SCAN moves the disk head in one direction, servicing requests encountered along the way, continues toward an end, then reverses direction and services requests in the opposite direction. It is often called the elevator algorithm."}, {"id": "disk-6", "topic": "disk", "type": "short", "priority": "HIGH", "prompt": "Explain C-SCAN and the weakness of SCAN that it addresses.", "modelAnswer": "C-SCAN services requests in one direction only; after reaching the end, the head returns to the beginning without servicing requests on the return path. This gives a more uniform waiting-time distribution than SCAN."}, {"id": "disk-7", "topic": "disk", "type": "short", "priority": "HIGH", "prompt": "Explain LOOK and how it differs from SCAN.", "modelAnswer": "LOOK behaves like SCAN but does not travel all the way to the physical end of the disk when no pending request exists there. It reverses at the last request in the current direction, reducing unnecessary movement."}, {"id": "disk-8", "topic": "disk", "type": "short", "priority": "HIGH", "prompt": "Explain C-LOOK.", "modelAnswer": "C-LOOK is the cyclic version of LOOK: the head services requests in one direction until the last request in that direction, then jumps back to the first pending request at the other end without servicing requests during the return."}, {"id": "disk-9", "topic": "disk", "type": "short", "priority": "HIGH", "prompt": "Compare SCAN and LOOK.", "modelAnswer": "Both move the head in one direction and then reverse, providing more balanced service than SSTF. LOOK is more efficient because it reverses at the last pending request instead of traveling to the physical disk boundary."}, {"id": "disk-10", "topic": "disk", "type": "short", "priority": "HIGH", "prompt": "Explain VSCAN and the role of its parameter R.", "modelAnswer": "VSCAN combines aspects of SSTF and LOOK using a parameter R between 0 and 1. In the course, VSCAN(0) corresponds to SSTF and VSCAN(1) corresponds to LOOK, with intermediate values providing a tunable trade-off."}, {"id": "disk-11", "topic": "disk", "type": "short", "priority": "HIGH", "prompt": "Explain FSCAN.", "modelAnswer": "FSCAN uses two request buffers. While SCAN is servicing the requests in one buffer, new requests are placed in the other buffer. This prevents newly arriving requests from continually changing the current SCAN sweep."}, {"id": "disk-12", "topic": "disk", "type": "short", "priority": "HIGH", "prompt": "Compare VSCAN and FSCAN in terms of their purpose.", "modelAnswer": "Both aim to avoid weaknesses of purely local request selection. VSCAN continuously balances SSTF-like locality against LOOK-like directional service, while FSCAN separates current requests from newly arriving ones to prevent starvation-like interference during a sweep."}, {"id": "disk-13", "topic": "disk", "type": "short", "priority": "HIGH", "prompt": "Explain RAID 0 and its main trade-off.", "modelAnswer": "RAID 0 stripes data across multiple disks to increase parallelism and capacity, but provides no redundancy. Failure of one disk can make the striped data set unusable."}, {"id": "disk-14", "topic": "disk", "type": "short", "priority": "HIGH", "prompt": "Explain RAID 1 and its main trade-off.", "modelAnswer": "RAID 1 mirrors data on paired disks. It provides redundancy and can improve read performance, but usable capacity is roughly half of raw capacity because every block is duplicated."}, {"id": "disk-15", "topic": "disk", "type": "short", "priority": "HIGH", "prompt": "Compare RAID 3 and RAID 4.", "modelAnswer": "Both use one dedicated parity disk and strip data across the remaining disks. RAID 3 uses synchronized disk heads and fine-grained striping, while RAID 4 uses larger/longer stripes and independent disk access. The dedicated parity disk can become a bottleneck for writes."}, {"id": "disk-16", "topic": "disk", "type": "short", "priority": "HIGH", "prompt": "Explain RAID 5 and why distributed parity is useful.", "modelAnswer": "RAID 5 distributes parity information across all disks rather than keeping it on one dedicated parity disk. This spreads parity-write load and allows the array to survive one disk failure."}, {"id": "disk-17", "topic": "disk", "type": "short", "priority": "HIGH", "prompt": "Explain RAID 6 and its failure tolerance.", "modelAnswer": "RAID 6 extends RAID 5 with two independent parity values, allowing the array to survive two disk failures. It uses more redundancy capacity and has more parity-processing overhead."}, {"id": "disk-18", "topic": "disk", "type": "short", "priority": "HIGH", "prompt": "Compare RAID 0+1 and RAID 1+0 (RAID 10).", "modelAnswer": "RAID 0+1 first creates striped sets and then mirrors those sets; a disk failure can degrade an entire striped side. RAID 1+0 first creates mirrored pairs and then stripes across the pairs, so it generally tolerates more failure patterns and is more robust."}, {"id": "disk-19", "topic": "disk", "type": "short", "priority": "HIGH", "prompt": "For a six-disk RAID 1+0 system with 4 TB disks, how much usable storage is available and why?", "modelAnswer": "There are three mirrored pairs, and each pair provides 4 TB of usable capacity. Therefore usable capacity is 3 × 4 TB = 12 TB because one disk in each pair is used for the mirror."}, {"id": "disk-20", "topic": "disk", "type": "short", "priority": "HIGH", "prompt": "For a six-disk RAID 5+0 system using two RAID-5 groups of three 4-TB disks, how much usable capacity is available?", "modelAnswer": "Each three-disk RAID-5 group provides the capacity of two disks because one disk's worth is used for distributed parity. Two groups therefore provide 2 × 2 × 4 TB = 16 TB."}, {"id": "disk-21", "topic": "disk", "type": "short", "priority": "HIGH", "prompt": "How does failure tolerance differ between six-disk RAID 1+0 and RAID 5+0 in the configuration above?", "modelAnswer": "RAID 1+0 can tolerate one failed disk in each mirrored pair, so up to three disks can fail if they are in different pairs. Each three-disk RAID-5 group tolerates one failure, so RAID 5+0 can tolerate up to two failures provided they occur one per RAID-5 group."}, {"id": "conc-1", "topic": "conc", "type": "short", "priority": "HIGH", "prompt": "What is concurrency and why can it cause incorrect program behavior?", "modelAnswer": "Concurrency means multiple processes or threads can make progress during overlapping periods. When they share resources, the exact interleaving of operations can change the result and can produce races or inconsistent state."}, {"id": "conc-2", "topic": "conc", "type": "short", "priority": "HIGH", "prompt": "What is a critical section?", "modelAnswer": "A critical section is a section of code that accesses shared data or resources and must be executed under mutual exclusion so that conflicting operations cannot occur simultaneously."}, {"id": "conc-3", "topic": "conc", "type": "short", "priority": "HIGH", "prompt": "What is mutual exclusion?", "modelAnswer": "Mutual exclusion guarantees that at most one process/thread executes a particular critical section at a time."}, {"id": "conc-4", "topic": "conc", "type": "short", "priority": "HIGH", "prompt": "What is busy waiting and why is it undesirable?", "modelAnswer": "Busy waiting repeatedly checks a condition while continuing to consume CPU time. It wastes processor time that could instead be used to execute another runnable process."}, {"id": "conc-5", "topic": "conc", "type": "short", "priority": "HIGH", "prompt": "What is a semaphore?", "modelAnswer": "A semaphore is a synchronization primitive containing a value and atomic wait/signal operations. Counting semaphores can represent multiple available resources; binary semaphores can be used for mutual exclusion."}, {"id": "conc-6", "topic": "conc", "type": "short", "priority": "HIGH", "prompt": "How can a binary semaphore enforce mutual exclusion?", "modelAnswer": "Initialize it to 1. A thread performs wait before entering the critical section and signal after leaving it. Because wait and signal are atomic, only one thread can acquire the semaphore at a time."}, {"id": "conc-7", "topic": "conc", "type": "short", "priority": "HIGH", "prompt": "What is the difference between a binary and a counting semaphore?", "modelAnswer": "A binary semaphore has two logical states and is commonly used for mutual exclusion. A counting semaphore can represent multiple available instances of a resource and can therefore have values greater than one."}, {"id": "conc-8", "topic": "conc", "type": "short", "priority": "HIGH", "prompt": "Explain the producer-consumer problem.", "modelAnswer": "Producers add items to a shared bounded buffer while consumers remove them. Synchronization must prevent producers from inserting into a full buffer, consumers from removing from an empty buffer, and concurrent operations from corrupting shared buffer state."}, {"id": "conc-9", "topic": "conc", "type": "short", "priority": "HIGH", "prompt": "Explain the readers-writers problem.", "modelAnswer": "Multiple readers may access shared data simultaneously, but a writer needs exclusive access. A correct solution must protect the shared state and choose a policy for reader/writer priority to avoid undesirable starvation."}, {"id": "conc-10", "topic": "conc", "type": "short", "priority": "HIGH", "prompt": "What is a deadlock?", "modelAnswer": "A deadlock is a state in which a set of processes are permanently waiting for events or resources that can only be produced or released by other processes in the same set, so none can proceed."}, {"id": "conc-11", "topic": "conc", "type": "short", "priority": "HIGH", "prompt": "What are the four necessary conditions for deadlock?", "modelAnswer": "Mutual exclusion, hold and wait, no preemption, and circular wait must all be present for a deadlock to be possible."}, {"id": "conc-12", "topic": "conc", "type": "short", "priority": "HIGH", "prompt": "What is a safe state and how is it related to deadlock?", "modelAnswer": "A safe state has at least one ordering of processes in which every process can obtain its remaining resources and finish. An unsafe state does not guarantee deadlock has already occurred, but it means the system can no longer guarantee avoiding deadlock with the current allocation."}, {"id": "conc-13", "topic": "conc", "type": "short", "priority": "HIGH", "prompt": "How does the Banker's algorithm prevent deadlock?", "modelAnswer": "Before granting a request, it tentatively allocates the resources and checks whether the resulting state is safe. The request is granted only if a safe completion sequence still exists; otherwise it is delayed."}, {"id": "conc-14", "topic": "conc", "type": "short", "priority": "HIGH", "prompt": "What is the purpose of wait and signal operations in semaphore-based synchronization?", "modelAnswer": "wait attempts to acquire/decrement the semaphore and may block when the resource is unavailable. signal releases/increments the semaphore and can wake a waiting process when appropriate."}, {"id": "fs-1", "topic": "fs", "type": "short", "priority": "HIGH", "prompt": "What are the main functions of a filesystem?", "modelAnswer": "A filesystem organizes persistent data into files and directories, provides operations for creating, reading, writing and deleting files, manages storage allocation/free space, and maintains metadata and protection information."}, {"id": "fs-2", "topic": "fs", "type": "short", "priority": "HIGH", "prompt": "What is continuous allocation?", "modelAnswer": "A file occupies a contiguous sequence of disk blocks. The filesystem stores the starting block and the file length or end information, allowing direct calculation of a block's location."}, {"id": "fs-3", "topic": "fs", "type": "short", "priority": "HIGH", "prompt": "Give the main advantages and disadvantages of continuous allocation.", "modelAnswer": "It provides excellent sequential and direct access performance because blocks are contiguous and seek movement is small. Its disadvantages are external fragmentation and the difficulty of growing files when adjacent free space is unavailable."}, {"id": "fs-4", "topic": "fs", "type": "short", "priority": "HIGH", "prompt": "What is linked (chained) allocation?", "modelAnswer": "Each file is a linked list of disk blocks that can be located anywhere. Each block contains or is associated with a pointer to the next block, so the file need not be contiguous."}, {"id": "fs-5", "topic": "fs", "type": "short", "priority": "HIGH", "prompt": "Give the main advantages and disadvantages of linked allocation.", "modelAnswer": "It avoids external fragmentation and makes file growth easy because any free block can be linked. Sequential access is efficient, but random/direct access is poor because the chain must be followed, and pointer storage introduces overhead and reliability concerns."}, {"id": "fs-6", "topic": "fs", "type": "short", "priority": "HIGH", "prompt": "How can design choices reduce disadvantages of linked allocation?", "modelAnswer": "A File Allocation Table can keep the block links in a separate structure, reducing pointer overhead in data blocks and making sequential traversal faster. Clustering multiple blocks can also reduce the number of link traversals."}, {"id": "fs-7", "topic": "fs", "type": "short", "priority": "HIGH", "prompt": "What is indexed allocation?", "modelAnswer": "A separate index block contains pointers to the data blocks of a file. The file's logical block number can therefore be used to find the corresponding data-block pointer without following a chain through every previous block."}, {"id": "fs-8", "topic": "fs", "type": "short", "priority": "HIGH", "prompt": "Compare indexed allocation with linked allocation.", "modelAnswer": "Indexed allocation supports much better direct access because the index can jump directly to a file block. It requires index-block storage and possibly multiple index levels for large files, whereas linked allocation has simpler growth but poor random access."}, {"id": "fs-9", "topic": "fs", "type": "short", "priority": "HIGH", "prompt": "How does a UNIX inode organize file allocation?", "modelAnswer": "Each file/directory has an inode containing metadata and pointers to its data blocks. The inode uses direct pointers for small files and indirect, double-indirect and possibly triple-indirect pointers to address progressively larger files."}, {"id": "fs-10", "topic": "fs", "type": "short", "priority": "HIGH", "prompt": "What is the advantage of the UNIX inode's multilevel pointer scheme?", "modelAnswer": "Small files need only a small amount of metadata and can be accessed through direct pointers, while large files can grow using indirect pointer blocks. This balances efficiency for small files with support for large files."}, {"id": "fs-11", "topic": "fs", "type": "short", "priority": "HIGH", "prompt": "What is the difference between a hard link and a soft link?", "modelAnswer": "A hard link refers directly to the same underlying file/inode, so multiple directory entries can refer to one inode. A soft link is a separate file containing a pathname/reference to another file; it can therefore refer across filesystem boundaries and can become dangling."}, {"id": "fs-12", "topic": "fs", "type": "short", "priority": "HIGH", "prompt": "Which inode information is relevant to hard links?", "modelAnswer": "The inode maintains a link count indicating how many directory entries refer to it. The file's data and metadata remain associated with the inode until the link count reaches zero and no process still has the file open."}, {"id": "fs-13", "topic": "fs", "type": "short", "priority": "HIGH", "prompt": "What is free-space management and why is it important?", "modelAnswer": "Free-space management records which disk blocks are available for allocation. It is necessary so the filesystem can efficiently allocate new file blocks and reuse blocks released by deleted or truncated files."}, {"id": "fs-14", "topic": "fs", "type": "short", "priority": "HIGH", "prompt": "Compare bitmap-based and linked-list free-space management.", "modelAnswer": "A bitmap uses one bit or a small representation per block and makes it easy to find runs of free blocks. A linked list stores free blocks as a chain, which can be simple but is less convenient for finding large contiguous runs."}, {"id": "fs-15", "topic": "fs", "type": "short", "priority": "HIGH", "prompt": "What are the advantages and disadvantages of keeping a free-block linked list sorted?", "modelAnswer": "A sorted list can make newly allocated blocks closer together, improving sequential access. However, freeing a block requires inserting it at the correct position rather than simply adding it at the front, increasing deallocation cost."}, {"id": "fs-16", "topic": "fs", "type": "short", "priority": "HIGH", "prompt": "Why does a sorted free-block list make more sense in a static system than in a highly dynamic system?", "modelAnswer": "In a static system with many reads and few writes/deallocations, the improved locality and sequential performance can outweigh the insertion cost. In a dynamic system with frequent allocation and deallocation, the cost of maintaining the sorted order can dominate."}, {"id": "fs-17", "topic": "fs", "type": "short", "priority": "HIGH", "prompt": "What is journaling and what problem does it solve?", "modelAnswer": "Journaling records intended filesystem metadata or data changes in a journal before or around applying them to the main filesystem structures. After a crash, the journal helps the filesystem recover consistently instead of leaving partially completed updates."}, {"id": "fs-18", "topic": "fs", "type": "short", "priority": "HIGH", "prompt": "Why is transaction ordering important in filesystem journaling?", "modelAnswer": "Filesystem updates often involve several related structures, such as an inode, allocation bitmap and data block. Writing them in an unsafe order can leave inconsistent references after a crash; journaling groups or orders the changes so recovery can restore a valid state."}, {"id": "fs-19", "topic": "fs", "type": "short", "priority": "HIGH", "prompt": "What is the basic allocation/free-space relationship in FAT?", "modelAnswer": "FAT uses a table to record the chain of blocks/clusters belonging to files. Free-space information is represented through unused FAT entries or a corresponding free-cluster mechanism, while the table itself also provides the linked allocation structure."}];
+
+var state = {queue:[], idx:0, answeredCurrent:false, log:[]};
+var byId = {};
+QUESTIONS.forEach(function(q){byId[q.id]=q;});
+var topicByKey = {};
+TOPICS.forEach(function(t){topicByKey[t.key]=t;});
+
+function shuffle(arr){var a=arr.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+function el(tag,cls,text){var e=document.createElement(tag);if(cls)e.className=cls;if(text!==undefined)e.textContent=text;return e;}
+function showScreen(name){["start","quiz","results"].forEach(function(s){var n=document.getElementById("screen-"+s);if(s===name){n.hidden=false;n.classList.add("enter");}else{n.hidden=true;n.classList.remove("enter");}});window.scrollTo({top:0,behavior:"auto"});}
+function setAddr(a,b,c){document.getElementById("segA").textContent=a;document.getElementById("segB").textContent=b;document.getElementById("segC").textContent=c;}
+function score(){return state.log.filter(function(x){return x.isCorrect;}).length;}
+function currentQ(){return state.queue[state.idx];}
+
+function buildStart(){
+  document.getElementById("startSubtitle").textContent=QUESTIONS.length+" theory questions across "+TOPICS.length+" chapters.";
+  var counts={};TOPICS.forEach(function(t){counts[t.key]=0;});QUESTIONS.forEach(function(q){counts[q.topic]++;});
+  var grid=document.getElementById("topicGrid");grid.innerHTML="";
+  TOPICS.forEach(function(t){
+    var row=el("label","topic-row");var cb=document.createElement("input");cb.type="checkbox";cb.checked=true;cb.dataset.topic=t.key;
+    row.appendChild(cb);row.appendChild(el("span","name",t.name));row.appendChild(el("span","count","("+counts[t.key]+")"));grid.appendChild(row);
+  });
+}
+document.getElementById("toggleAllBtn").addEventListener("click",function(){
+  var b=document.querySelectorAll("#topicGrid input[type=checkbox]");var any=Array.prototype.some.call(b,function(x){return !x.checked;});
+  b.forEach(function(x){x.checked=any;});this.textContent=any?"Select none":"Select all";
+});
+document.getElementById("startBtn").addEventListener("click",function(){
+  var selected={};document.querySelectorAll("#topicGrid input[type=checkbox]").forEach(function(b){if(b.checked)selected[b.dataset.topic]=true;});
+  var pool=QUESTIONS.filter(function(q){return !!selected[q.topic];});
+  if(!pool.length){document.getElementById("startWarn").style.display="block";return;}
+  document.getElementById("startWarn").style.display="none";
+  state.queue=document.getElementById("optShuffle").checked?shuffle(pool):pool.slice();
+  state.idx=0;state.log=[];showScreen("quiz");document.getElementById("progressTrack").style.display="block";renderQuestion();
+});
+
+function renderQuestion(){
+  state.answeredCurrent=false;var q=currentQ();var t=topicByKey[q.topic].name;
+  setAddr(t.toUpperCase(),"Q "+(state.idx+1)+" / "+state.queue.length,"Score "+score()+"/"+state.log.length);
+  document.getElementById("progressFill").style.width=Math.round(state.idx/state.queue.length*100)+"%";
+  var card=document.getElementById("quizCard");card.innerHTML="";
+  var tags=el("div","tag-row");tags.appendChild(el("span","pill copper",t));tags.appendChild(el("span","pill",q.priority+" PRIORITY"));tags.appendChild(el("span","pill","SELF-GRADED"));card.appendChild(tags);
+  card.appendChild(el("p","prompt",q.prompt));renderShort(card,q);
+}
+function renderShort(card,q){
+  var ta=document.createElement("textarea");ta.placeholder="Write your answer first — then reveal the model answer.";card.appendChild(ta);
+  var reveal=el("button","btn btn-ghost","Reveal model answer");reveal.type="button";reveal.style.marginTop="12px";card.appendChild(reveal);
+  reveal.addEventListener("click",function(){
+    reveal.remove();ta.disabled=true;
+    var fb=el("div","feedback");fb.appendChild(el("p","model-answer-label","Model answer"));fb.appendChild(el("div","explain",q.modelAnswer));
+    var row=el("div","btn-row");var yes=el("button","btn btn-ghost","I got the key ideas ✓");var no=el("button","btn btn-ghost","I missed this one ✗");
+    yes.type=no.type="button";row.appendChild(yes);row.appendChild(no);fb.appendChild(row);card.appendChild(fb);
+    yes.addEventListener("click",function(){finishShort(q,true,row,fb);});
+    no.addEventListener("click",function(){finishShort(q,false,row,fb);});
+  });
+}
+function finishShort(q,ok,row,fb){
+  if(state.answeredCurrent)return;state.answeredCurrent=true;row.innerHTML="";
+  state.log.push({id:q.id,topic:q.topic,isCorrect:ok,userAnswerText:ok?"Self-assessed: got it":"Self-assessed: missed it"});
+  var line=el("div","feedback-line "+(ok?"hit":"miss"));var dot=el("span","led-dot pulse");line.appendChild(dot);
+  line.appendChild(document.createTextNode(ok?"Marked correct":"Marked as a mistake — reviewed above"));fb.insertBefore(line,fb.children[1]);
+  addNext();
+}
+function addNext(){
+  var card=document.getElementById("quizCard");var last=state.idx===state.queue.length-1;
+  var b=el("button","btn btn-primary",last?"See results →":"Next question →");b.type="button";b.style.marginTop="18px";
+  b.addEventListener("click",function(){if(last)finishQuiz();else{state.idx++;renderQuestion();}});card.appendChild(b);
+}
+function finishQuiz(){
+  document.getElementById("progressTrack").style.display="none";var total=state.log.length,s=score(),p=total?Math.round(s/total*100):0;
+  setAddr("Results",s+"/"+total,p+"%");
+  document.getElementById("resScoreNum").textContent=s+"/"+total;document.getElementById("resScorePct").textContent=p+"%";
+  document.getElementById("resScoreMsg").textContent=p>=90?"Excellent — review only the misses.":p>=75?"Good grasp — shore up the weak topics.":p>=50?"Solid start — retake the misses before the exam.":"Use the breakdown to target the weakest chapters, then retake them.";
+  renderBreakdown();renderReview();var misses=state.log.filter(function(x){return !x.isCorrect;}).length;
+  var mb=document.getElementById("retakeMistakesBtn");mb.disabled=!misses;mb.textContent=misses?"Retake missed questions only ("+misses+")":"No mistakes to retake 🎉";
+  showScreen("results");
+}
+function renderBreakdown(){
+  var box=document.getElementById("topicBreakdown");box.innerHTML="";var d={};
+  state.log.forEach(function(x){d[x.topic]=d[x.topic]||{c:0,t:0};d[x.topic].t++;if(x.isCorrect)d[x.topic].c++;});
+  TOPICS.forEach(function(t){if(!d[t.key])return;var r=el("div","topic-bar-row"),top=el("div","topic-bar-top");top.appendChild(el("span","tname",t.name));top.appendChild(el("span","tscore",d[t.key].c+"/"+d[t.key].t));r.appendChild(top);
+    var tr=el("div","bar-track"),fi=el("div","bar-fill"),pp=Math.round(d[t.key].c/d[t.key].t*100);fi.style.width=pp+"%";fi.style.background=pp>=80?"var(--led-green)":pp>=50?"var(--led-amber)":"var(--led-red)";tr.appendChild(fi);r.appendChild(tr);box.appendChild(r);});
+}
+function renderReview(){
+  var list=document.getElementById("reviewList");list.innerHTML="";
+  state.log.forEach(function(x){var q=byId[x.id],item=el("div","review-item"),head=el("div","review-item-head");head.appendChild(el("span","mark",x.isCorrect?"✅":"❌"));head.appendChild(el("span","qtext",q.prompt));item.appendChild(head);
+    var body=el("div","review-item-body");body.appendChild(el("div","row",x.isCorrect?"You marked this correct.":"You marked this as a mistake."));body.appendChild(el("div","explain",q.modelAnswer));item.appendChild(body);
+    head.addEventListener("click",function(){item.classList.toggle("open");});list.appendChild(item);});
+}
+document.getElementById("reviewToggle").addEventListener("click",function(){var l=document.getElementById("reviewList");var open=l.style.display!=="none";l.style.display=open?"none":"flex";document.getElementById("reviewCaret").textContent=open?"＋":"－";});
+document.getElementById("retakeAllBtn").addEventListener("click",function(){state.queue=shuffle(state.queue);state.idx=0;state.log=[];showScreen("quiz");document.getElementById("progressTrack").style.display="block";renderQuestion();});
+document.getElementById("retakeMistakesBtn").addEventListener("click",function(){var ids=state.log.filter(function(x){return !x.isCorrect;}).map(function(x){return x.id;});if(!ids.length)return;state.queue=shuffle(ids.map(function(id){return byId[id];}));state.idx=0;state.log=[];showScreen("quiz");document.getElementById("progressTrack").style.display="block";renderQuestion();});
+document.getElementById("changeTopicsBtn").addEventListener("click",function(){showScreen("start");});
+buildStart();showScreen("start");
+})();
+</script>
+</body></html>

@@ -1,0 +1,6 @@
+OS examenvragen van het vervangexamen van vrijdag:
+1. 3 differences between ULTs and KLTs. indicate one scenario in which one is better
+2. Explain Direct mapping. give one advantage and one disadvantage
+3. Explain Inverted PTs, explain how we go from virtual adress to physical address. explain the advantage compared to other techniques
+4. Explain the similarities between SCAN and LOOK
+5. How does Continuous Allocation work in the context of filesystem. give one advantage and one disadvantage
