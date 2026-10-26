@@ -1,0 +1,1370 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+	<head>
+		<title>
+			Critique of "Put it in the contract: The lessons of Ariane" - Ken Garlington 16 Mar 98
+		</title>
+		<META Name="description"
+
+Content=".. a critique of the _Put it in the contract: The lessons of Ariane_
+
+paper, which principally challenges two fundamental points:
+
+(1) That DBC/Eiffel would have been sufficient to prevent the
+
+destruction of the Ariane 5, and<p>
+
+(2)That DBC/Eiffel would have been necessary to prevent its
+
+destruction.">
+	</head>
+	<body bgcolor="#ffffff">
+
+
+<!--
+<center>
+
+See also these related Web pages: 
+
+<strong>
+
+[ <a href="http://www.yahoo.com/Computers_and_Internet/Programming_Languages/Eiffel/">Eiffel</a> | 
+
+<a href="http://www.yahoo.com/Computers_and_Internet/Programming_Languages/Ada/">Ada</a> | 
+
+<a href="http://www.irisa.fr/pampa/EPEE/Ariane5-comments.html">Jézéquel</a> | 
+
+<a href="http://www.progsoc.uts.edu.au/~geldridg">Eldridge</a> | 
+
+<a href="http://users.deltanet.com/~tegan/home.html">Plumlee</a> ]
+
+</strong>
+
+</center>
+
+<p>
+
+
+
+<hr>
+-->
+		<center>
+			<h2>Critique of "Put it in the contract: The lessons of Ariane"</h2>
+			Ken Garlington (<a href="mailto:kennieg@flash.net">kennieg@flash.net</a>)<br>
+			7 August 1997
+			Revised 16 March 1998
+		</center>
+		<blockquote>
+			<blockquote>
+				<center>
+					<h3>Abstract</h3>
+				</center>
+				After the crash of the Ariane 5 rocket, an inquiry board was establish to determine the
+				cause of the incident and to propose corrective actions for future launches. The board
+				determined that a software fault within the on-board inertial reference system (IRS) was
+				to blame. Based on the factors which caused the fault, the board made several
+				recommendations with regard to better documentation, more external reviews, more
+				complete testing, better communication among the involved companies, and so forth.
+				Proponents of the Design by Contract (DBC) methodology and its implementation
+				language, Eiffel, have made a simpler proposal: that the use of this method would have
+				probably prevented the software fault. This paper examines the claims of DBC advocates
+				with respect to real-time safety-critical systems such as the Ariane 5 IRS. It concludes
+				that there is not enough evidence to suggest that DBC/Eiffel adequately addresses the types
+				of problems associated with the Ariane 5 loss, and that the parts of DBC/Eiffel which may
+				have had some benefit (e.g., reviews) are also features of other common approaches
+				to software development. This paper also notes several potential
+				drawbacks to using DBC/Eiffel for real-time safety-critical systems.
+			</blockquote>
+		</blockquote>
+		<a name="toc"></a>
+		<h3>Table of Contents</h3>
+		<blockquote>
+			<dl>
+				<dt><a href="#s1">1.</a> <p>Introduction</p>
+				<dt><a href="#s2">2.</a> <p>The central claim</p>
+				<dt><a href="#s3">3.</a> <p>Would DBC/Eiffel have been sufficient to avoid the failure?</p>
+				<dd><em><a href="#s3.1">3.1</a> The documentation effect</em>
+				<dl>
+					<dd><em><a href="#s3.1.1">3.1.1</a> Would the critical assertion have been documented (correctly) in the original code?
+					</em>
+					<dd><em><a href="#s3.1.2">3.1.2</a> Would the review team have had the expertise to detect the assertion violation?
+					</em>
+					<dd><em><a href="#s3.1.3">3.1.3</a> Would the review team have read the code?</em>
+					<dd><em><a href="#s3.1.4">3.1.4</a> Would the review team have fully reviewed the critical assertion?</em>
+					<dd><em><a href="#s3.1.5">3.1.5</a> Would the review team have had the necessary information to detect the error?
+					</em>
+					<dd><em><a href="#s3.1.6">3.1.6</a> Adverse effects of documenting assertions</em>
+				</dl>
+				<dd><em><a href="#s3.2">3.2</a> The testing effect</em>
+				<dl>
+					<dd><em><a href="#s3.2.1">3.2.1</a> Ariane V testing limitations</em>
+					<dd><em><a href="#s3.2.2">3.2.2</a> Adverse effects of testing with assertions</em>
+					<p>
+				</dl>
+				<dd><em><a href="#s3.3">3.3</a> The execution effect</em>
+				<dt><a href="#s4">4.</a> Was DBC/Eiffel necessary to avoid the failure?
+				<dt><a href="#s5">5.</a> Other issues
+				<dt><a href="#s6">6.</a> Non-issues
+				<dt><a href="#s7">7.</a> Conclusions
+				<dt><a href="#ack">Acknowledgements</a>
+				<dt><a href="#about">About the author</a>
+				<dt><a href="#rev">Revisions</a>
+				<dt><a href="#a1">Appendix A:</a> Scaling in Ada
+				<dt><a href="#footnotes">Footnotes</a>
+			</dl>
+		</blockquote>
+		<a name="s1"></a>
+		<h2>1. Introduction</h2>
+		<blockquote>
+			On June 4, 1996, the first flight of the Ariane 5 rocket ended in failure.
+			Approximately 40 seconds after initiation of the flight sequence, Ariane 5
+			veered off of its flight path, broke up and exploded. The European Space
+			Agency (ESA) and French National Center for Space Studies (CNES),
+			in cooperation with other agencies, established an inquiry board
+			to determine the cause of the accident, to establish if the system
+			had been adequately tested before use, and to recommended
+			corrective actions for the Ariane 5 system. This inquiry determined
+			that the actions of the software inside the on-board Inertial
+			Reference System (IRS) caused the catastrophe [<a href="#f1">1</a>].
+			(For the sake of brevity, the results of the inquiry board are described
+			as <em>"<a href="#f1">the inquiry</a>"</em> elsewhere in this critique.)
+			<p>
+			The following year, Jean-Marc Jézéquel of IRISA and Bertrand Meyer
+			of ISE co-wrote a paper [<a href="#f2">2</a>] titled
+			<em>"Put it in the contract: The lessons of Ariane"</em>.
+			This paper attempts to make the case for the use of the Design by
+			Contract (DBC) methodology and Eiffel language as a corrective
+			action for the Ariane 5 IRS fault. (This paper will subsequently
+			be described as <em>"<a href="#f2">the Eiffel paper</a>"</em>.)
+			<p>
+			This critique analyzes <a href="#f2">the Eiffel paper</a>, principally to challenge
+			two fundamental points:
+			<ul>
+				<li>That DBC/Eiffel would have been <em>sufficient</em> to prevent the
+				destruction of the Ariane 5, and
+				<p>
+				<li>That DBC/Eiffel would have been <em>necessary</em> to prevent its destruction.
+			</ul>
+			The conclusion is that neither condition is adequately established in
+			<a href="#f2">the Eiffel paper</a>.
+			<p>
+			In addition, some other concerns with the paper are expressed, and
+			finally some <em>"non-issues"</em> which have been raised in the
+			past to these arguments are addressed.
+		</blockquote>
+		<a name="s2"></a>
+		<h2>2. The central claim</h2>
+		<blockquote>
+			What, exactly, does <a href="#f2">the Eiffel paper</a> claim? The paper states:
+			<blockquote>
+				<em>Does this mean that the [Ariane 5] crash would automatically have
+					been avoided had the mission used a language and method supporting
+					built-in assertions and Design by Contract? Although it is always risky
+					to draw such after-the-fact conclusions, the answer is probably yes...
+				</em>
+			</blockquote>
+			Note three important factors with respect to this statement:
+			<ul>
+				<li>It does not say that DBC/Eiffel might have helped. It makes a more
+				aggressive claim: that these techniques would probably have saved
+				Ariane 5. As a result, it seems fair to hold <a href="#f2">the Eiffel paper</a> to a
+				reasonably strong standard of proof regarding this claim. Conversely,
+				this critique does not need to show that it is impossible for DBC/Eiffel
+				to have saved Ariane 5; only that there are significant doubts about the
+				outcome.
+				<p>
+				<li>Although some have suggested that <a href="#f2">the Eiffel paper</a>'s recommendations
+				can be implemented in other languages [<a href="#f3">3</a>],
+				it is clear that this paper is based on a specific <em>"language and method"</em>.
+				The Eiffel-centric aspect of this claim is reinforced elsewhere in the
+				Eiffel paper [<a href="#f4">4</a>] and in other statements by the authors
+				[<a href="#f5">5</a>]. Thus, it appears reasonable to discuss the proposed
+				solution in terms of Eiffel assertions, rather than the broader topic of
+				<em>"good methodology"</em>.
+				<p>
+				<li><a href="#f1">The inquiry</a> established several causes for the IRS software fault. However,
+				nothing in <a href="#f2">the Eiffel paper</a> suggests that any action beyond the use of DBC/Eiffel
+				was required to avoid the fault. Thus, it seems logical to assume that all other
+				aspects of the Ariane 5 development effort (in particular, decisions regarding
+				the specification and the associated testing approach) would have been the same.
+			</ul>
+		</blockquote>
+		<a name="s3"></a>
+		<h2>3. Would DBC/Eiffel have been sufficient to avoid the failure?</h2>
+		<blockquote>
+			<a href="#f2">The Eiffel paper</a> states three ways in which DBC/Eiffel would have
+			significantly altered the results of the Ariane 5 development effort:
+			<ul>
+				<li>The use of Eiffel assertions as part of a manual review of the code in
+				order to detect errors (the <em>"documentation effect"</em>),
+				<p>
+				<li>The use of such assertions during the testing stage (to be turned off
+				after testing, but before operational use) to detect errors (the
+				<em>"testing effect"</em>), and
+				<p>
+				<li>The use of such assertions during execution to detect (and presumably
+				compensate for) errors (the <em>"execution effect"</em>).
+			</ul>
+			Each of these claims is analyzed in detail in the following subsections.
+			This critique asserts that, for each claim, there is insufficient evidence
+			to conclude that the Ariane 5 incident would have been avoided. Furthermore,
+			for each type of use, there are associated risks that could <em>increase</em>
+			the risk of error.
+		</blockquote>
+		<a name="s3.1"></a>
+		<h3>3.1 The documentation effect</h3>
+		<blockquote>
+			The <a href="#f2"> Eiffel paper</a> states:
+			<blockquote>
+				<em>...most importantly the assertions are a prime component of the
+					software and its documentation (<em>short form</em>, produced automatically
+					by tools). In an environment such as that of Ariane where there is so much
+					emphasis on quality control and thorough validation of everything, they would
+					be the QA team's primary focus of attention. Any team worth its salt would
+					have checked systematically that every call satisfies the precondition. That
+					would have immediately revealed that the Ariane 5 calling software did not
+					meet the expectation of the Ariane 4 routines that it called.
+				</em>
+			</blockquote>
+			For this statement to be true, the following chain of events must occur:
+			<ul>
+				<li>The critical assertion would have to be documented (correctly)
+				in the code.
+				<p>
+				<li>The review team would need the proper expertise to detect the problem.
+				<p>
+				<li>The review team would have to review the code, as opposed to other
+				documentation.
+				<p>
+				<li>The review team would have to select the critical assertion from the
+				total set of assertions, and
+				<p>
+				<li>The review team would need the proper source information regarding
+				Ariane 5 to realize that a problem existed.
+			</ul>
+			If any of these events failed to materialize, the documentation effect
+			of the assertion would be nullified. For all of these events, the case
+			can be made that factors specific to the Ariane development effort could
+			have caused such a failure in the process.
+		</blockquote>
+		<a name="s3.1.1"></a>
+		<h3>3.1.1  Would the critical assertion have been documented (correctly) in the original code?</h3>
+		<blockquote>
+			First, would the critical assertion have been documented in the code
+			at all? Although <a href="#f2">the Eiffel paper</a> (with hindsight) describes this
+			assertion as a <em>"fundamental constraint"</em>, <a href="#f1">the inquiry</a> notes
+			that the Ariane development team considered this particular condition
+			improbable [<a href="#f6">6</a>]. Thus, there is a reasonable
+			expectation that the development team might not have included such a
+			constraint in their system.
+			<p>
+			Some Eiffel advocates have claimed that the use of DBC/Eiffel causes
+			even improbable assertions to be included in the
+			code. However, this claim should be
+			viewed with some skepticism. Consider, for example, attempting to show
+			that an object did not modify any data it was not supposed to modify. In
+			theory, this would require each object to specify assertions for all
+			unused data within the system, showing that the data had not
+			been affected during the execution of the object. It is more likely that Eiffel
+			assertions are written in terms of conditions that the developer
+			reasonably expects might occur.  Note also that documenting all
+			improbable events, even if possible, will cause other
+			problems (described later in <a href="#s3.1.4">3.1.4</a>).
+			<p>
+			In addition to documenting the assertion, the programmer must document
+			it correctly. In other words, the same individual who likely has
+			introduced a software design fault within the system may be called upon to
+			write the protection for that fault. In this context, an incorrect
+			assertion seems to be a possibility that cannot be discounted.
+			(Presumably, the process could be changed to have the assertions
+			written by someone independent of the developer, but this is not
+			discussed in <a href="#f2">the Eiffel paper</a>. Even in this case, common-mode errors
+			are quite possible [<a href="#f8">7</a>])
+			<p>
+			Interestingly, the specific assertion proposed in <a href="#f2">the Eiffel paper</a> as
+			the solution to the Ariane IRS design fault is neither correct nor
+			complete. Here is the exact proposal:
+			<blockquote>
+				<em>...any software element that has such a fundamental constraint
+					should state it explicitly, as part of a mechanism present in the
+					programming language, as in the Eiffel construct 
+
+
+
+<pre>
+
+   convert (horizontal_bias: INTEGER): INTEGER is 
+
+      require 
+
+         horizontal_bias &lt;= Maximum_bias 
+
+      do 
+
+         ... 
+
+
+
+      ensure 
+
+         ... 
+
+
+
+      end 
+
+</pre>
+					where the precondition states clearly and precisely what the input
+					must satisfy to be acceptable.
+				</em>
+			</blockquote>
+			First, note that the routine converts the horizontal bias (BH) variable
+			from an integer value to another integer value. However, the IRS error
+			occurred when the computed BH was converted from a floating-point value
+			to an integer [<a href="#f9">8</a>]. Thus, the fault would
+			have occurred before this precondition would have been evaluated (whether
+			by a reviewer or during execution of the code). As a result, this
+			precondition as worded would not have detected the design fault.
+			<p>
+			Assuming that horizontal_bias is changed to a floating-point value,
+			the next question has to do with the specification of Maximum_bias.
+			A likely candidate for this value is 32,767.0, since this is the maximum
+			positive value that can be stored in a 16-bit integer. However, if the
+			<em>"convert"</em> routine scales the value (i.e., uses the integer
+			value 32,767 to represent the largest expected value for horizontal_bias),
+			then the actual Maximum_bias would need to be computed in terms of
+			32,767.0 multiplied by an appropriate scaling value. Additional
+			confusion could occur if Maximum_bias is derived from the system
+			specification, and is not written in terms of the actual scaling
+			being performed. If the scaling is in error (does not cover all
+			possible values), then Maximum_bias may be too broad and thus miss
+			the potential conversion error.
+			<p>
+			Assuming that both horizontal_bias and Maximum_bias are specified
+			correctly, there is still the question of completeness. As noted,
+			Maximum_bias would be written in terms of the largest desired positive
+			value. What about negative values? If the conversion of horizontal_bias
+			yields a 16-bit integer smaller than -32,768 (on some architectures,
+			-32,767), Ariane 5 would have experienced the same failure as if
+			horizontal_bias was too big. However, the precondition proposed would
+			permit any negative value to be treated as valid. Therefore, it is not
+			complete with respect to conversion failures.
+			<p>
+			Note that, given the use of horizontal_bias as an error term
+			[<a href="#f10">9</a>], it should always be greater than or equal
+			to zero. If the precondition is just written in terms of avoiding
+			values less than -32,768, it would still permit invalid horizontal
+			biases to be converted. However, it is unclear whether the assertion
+			in the conversion routine should be limited to protecting against
+			invalid conversions, or should also consider the meaning of
+			horizontal_bias within the system.
+			<p>
+			In summary, the <a href="#f2">Eiffel paper</a> does not provide compelling evidence
+			to support the claim that this specific assertion would have been
+			included by the Ariane team. It is easy to identify the need for
+			such an assertion after the fact, but circumstances specific to
+			the Ariane development effort imply that the inclusion of the
+			proper assertion was far from certain. Furthermore, as can be
+			seen by the paper's example, there is also the possibility that
+			the assertion would have been improperly specified (although there
+			is no way to quantify this possibility). <a href="#a1">Appendix A</a>
+			provides more insight into the issues related to scaling.
+		</blockquote>
+		<a name="s3.1.2"></a>
+		<h3>3.1.2  Would the review team have had the expertise to detect the assertion violation?</h3>
+		<blockquote>
+			Even if the assertion was properly defined, it would not have
+			provided any benefit if the right personnel did not review the
+			assertion for correctness. The <a href="#f2">Eiffel paper</a> speaks of a
+			"QA team" performing this function. However, it is the
+			author's experience that QA teams, while uniformly diligent in
+			their efforts, do not always have the experience and knowledge
+			base to determine difficult technical questions. This is due, in
+			part, to the requirement in some methodologies that the QA team
+			be composed of individuals who are not also responsible for
+			development of the system [<a href="#f11">10</a>].
+			This independence is useful, but it can cause the QA team to be
+			more effective in catching process failures vs. technical faults.
+			<p>
+			More critically, it is unclear that any team within the subcontractor
+			responsible for the IRS development had the necessary expertise to
+			determine the fault that lie within their system. This fault was not an
+			internal contradiction within the IRS design. It was a fault in the
+			operation of the IRS within the larger Ariane 5 system [<a href="#f12">11</a>].
+			The total system was the responsibility of a different
+			company [<a href="#f13">12</a>]. As a result, the IRS vendor might not have had the
+			total expertise base available to properly analyze such an assertion.
+			<a href="#f1">The inquiry</a> suggests that the relationship between the companies was
+			not as efficient as it could have been [<a href="#f14">13</a>], and also suggests that
+			experts from outside the project should have been brought in to
+			provide adequate analysis capabilities [<a href="#f15">14</a>].
+			<p>
+			Overall, despite the Dilbert-esque assertion that all that was
+			needed was a review team <em>"worth its salt,"</em> it is far from
+			clear that circumstances specific to the Ariane 5 program were
+			conducive to having the right people on the right team available
+			to review the IRS software design for the Ariane 5. Thus, the evidence
+			presented in the paper is insufficient to show that a proper team
+			would have been available.
+		</blockquote>
+		<a name="s3.1.3"></a>
+		<h3>3.1.3 Would the review team have read the code?</h3>
+		<blockquote>
+			<a href="#f2">The Eiffel paper</a> asserts:
+			<blockquote>
+				<em>The requirement that the horizontal bias should fit on 16 bits was in
+					fact stated in an obscure part of a document. But in the code itself it
+					was nowhere to be found!
+				</em>
+			</blockquote>
+			This statement implies that <a href="#f1">the inquiry</a> found that documenting such assertions
+			in the code was preferable to other documents. Although it is true that the
+			decision was not specified directly in the code, <a href="#f1">the inquiry</a>'s statement is
+			ambiguous as to whether it was actually clearly stated in the documentation,
+			either [<a href="#f16">15</a>]. Furthermore, <a href="#f1">the inquiry</a>'s statement appears to address
+			documentation of the justification to not provide a handler for an overflow,
+			vs. a <em>"requirement that the horizontal bias should fit on 16 bits."</em>
+			<p>
+			Nonetheless, <a href="#f1">the inquiry</a> does make it clear in its recommendations that
+			documentation be included in such reviews, and no mention is made that the
+			source code is the preferred location for such data [<a href="#f17">16</a>].
+			Is there any reason to believe that the code is not the preferred location
+			for this information? It is the author's experience that non-programmers,
+			particularly senior systems architects of the type described in
+			<a href="#s3.1.2">section 3.1.2</a> above, often prefer to read
+			English documentation over source code. (For some reason, test engineers
+			do not always share this bias.) Of course, this preference can be mitigated
+			somewhat by the ability of the source language to be easily read by
+			non-programmers, but nothing in <a href="#f2">the Eiffel paper</a> addresses this issue.
+			<p>
+			Overall, <a href="#f2">the Eiffel paper</a> assumes that source code is the best place to
+			document such assertions, but does not provide justification for this in
+			the context of the Ariane 5 review team described in
+			<a href="#s3.1.2">section 3.1.2</a>.
+			On the other hand, there is at least anecdotal evidence that the code may
+			not be the preferred place to document such assertions. While there may be
+			justifications for including assertions in source code in general
+			(better for programmers to review, less chance of documentation
+			<em>"drift"</em> from the source), these advantages may not have been as
+			useful for the specific issue under discussion.
+		</blockquote>
+		<a name="s3.1.4"></a>
+		<h3>3.1.4  Would the review team have fully reviewed the critical assertion?</h3>
+		<blockquote>
+			Assuming that the right team is looking at the code, and that the code
+			contains the right assertion, it is still possible that the team would
+			not have adequately reviewed the critical assertion. Putting aside the
+			team's likely bias toward looking for the reaction of the software to
+			hardware failures vs. software design faults [<a href="#f18">17</a>],
+			there is also the issue of the inherent difficulty of performing manual
+			reviews of complex systems, as <a href="#f1">the inquiry</a> acknowledges [<a href="#f19">18</a>].
+			There are at least two types of complexity involved here:
+			<ul>
+				<li>The number of assertions to be reviewed. When there are
+				<em>"thousands of problems and potential failures"</em> [<a href="#f19">18</a>]
+				to be considered, it is very easy to miss a critical issue.
+				Ironically, the addition of assertions to cover
+				<em>"improbable"</em> cases, in order to answer the criticism
+				described in <a href="#s3.1.1">3.1.1</a>, makes this problem much worse. Even one of the authors of <a href="#f2"> the Eiffel paper</a> has indicated that the scalability of such review is an "open question" [<a href="#f19a">19</a>].
+				<p>
+				<li>The complexity of analyzing individual assertions. The specific
+				assertion required in the Ariane case is a good example of such
+				complexity. The goal of the reviewer is to ensure that horizontal
+				bias will not exceed the maximum bias. However, the actual range
+				of horizontal bias for the Ariane 5 environment is not necessarily
+				directly specified in the requirements. It is a calculated value,
+				whose actual range would have to be determined in part by the
+				flight profile [<a href="#f12">11</a>] and possibly other factors. Although <a href="#f1">the inquiry</a>
+				does not state the complexity of this calculation, even a fairly
+				simple calculation may be error-prone when done manually. Furthermore,
+				the necessary calculation is not stated in the assertion as it is
+				presented in the paper; the reviewer would have to trace back through
+				all calculations involving horizontal bias (and ancestor values) to
+				ensure that the appropriate actual range was created. It is interesting to note that the flaws in <a href="#f2"> the Eiffel paper's</a> suggested solution, as described in <a href="#s3.1.1">3.1.1</a>, were not (to the author's knowledge) identified until a year after it's publication.
+			</ul>
+			Given that non-trivial work may be required for each assertion,
+			and that there are many assertions to be reviewed, the chance for
+			a reviewer error or oversight cannot be discounted. No empirical
+			evidence is provided in <a href="#f2">the Eiffel paper</a> as to the accuracy of
+			reviews for a system of this size and complexity. Therefore, the
+			case is not made that a manual review would have detected the fault.
+		</blockquote>
+		<a name="s3.1.5"></a>
+		<h3>3.1.5 Would the review team have had the necessary information to detect the error?</h3>
+		<blockquote>
+			Finally, as noted in <a href="#s3.1.4">section 3.1.4</a> above, the actual range of
+			horizontal bias is to be calculated based in part on the Ariane 5
+			flight profile. However, this profile was deliberately left out
+			of the IRS specification [<a href="#f20">20</a>]. Therefore, the necessary data to
+			evaluate this assertion were not available to the IRS developer.
+			More to the point, the deliberate omission of this data reflects
+			the (incorrect) assumption that the profiles were not
+			significantly different. Would a reviewer, having to analyze a
+			large set of assertions, have spent much time questioning a
+			mutually-accepted decision of this type? There is nothing in
+			<a href="#f2">the Eiffel paper</a> which suggests that (s)he would in fact press
+			the issue. As a result, it is reasonable to assume that this
+			assertion would not have been a focus area of the review,
+			although again in hindsight it was obviously a <em>"fundamental
+				constraint."
+			</em> Therefore, the incorrect assumption would
+			likely not have been challenged, and the Ariane disaster would
+			still have occurred.
+			<p>
+			This effect may be mitigated somewhat if the reviewer is from
+			the prime contractor and has direct access to the Ariane 5
+			flight profile, as described in <a href="#s3.1.2">3.1.2</a>. However, keep in mind
+			that the prime contractor participated in the original decision
+			to leave out flight profile, and thus may already be biased
+			against this as a source of error. In fact, it is possible that
+			the same senior engineer or manager that left out the relevant
+			data is the one performing the review of the IRS code!
+		</blockquote>
+		<a name="s3.1.6"></a>
+		<h3>3.1.6 Adverse effects of documenting assertions</h3>
+		<blockquote>
+			There is a line of reasoning that says,
+			<em>"Even if DBC/assertions would have been of minimal use, why not
+				include them anyway just in case they do some good?"
+			</em>
+			Such a statement assumes there are no adverse impacts to including
+			assertions in code for documentation purposes. However, there are
+			always adverse effects to including additional code:
+			<ul>
+				<li>As with any other project, there are management pressures to
+				meet cost and schedule drivers. Additional effort, therefore, is
+				discouraged unless justified.
+				<p>
+				<li>More importantly, all projects have finite time and other
+				resources available. Time spent on writing and analyzing assertions
+				is time not spent elsewhere. If the work that is not performed as a
+				result would have been more valuable (in terms of its effect on the
+				safety and integrity of the system) than the time spent with assertions,
+				then the resulting system may be less safe.
+			</ul>
+			There is a growing consensus in the safety-critical software field
+			that simpler software tends to be safer software [<a href="#f21">21</a>].
+			With this philosophy, additional code such as assertions should only
+			be added where there is a clear benefit to the overall safety of the
+			particular system being developed.
+		</blockquote>
+		<a name="s3.2"></a>
+		<h3>3.2 The testing effect</h3>
+		<blockquote>
+			<a href="#f2">The Eiffel paper</a> states:
+			<blockquote>
+				<em>Assertions (preconditions and post-conditions in particular) can
+					be automatically turned on during testing, through a simple compiler
+					option. The error might have been caught then.
+				</em>
+			</blockquote>
+			However, it is unlikely that, in the context of the Ariane 5 program,
+			the use of assertions during testing would have provided much benefit.
+			Even <a href="#f2">the Eiffel paper</a> itself tends to be less enthusiastic about the
+			value of testing [<a href="#f22">22</a>]
+			vs. the manual reviews described earlier. (Note that this is not to
+			say that, with the appropriate changes in the Ariane process, a
+			reasonable test could not have been conducted; see <a href="#s4.2">section 4.2</a>.)
+		</blockquote>
+		<a name="s3.2.1"></a>
+		<h3>3.2.1 Ariane V testing limitations</h3>
+		<blockquote>
+			There were two key problems in the Ariane 5 test program:
+			<ul>
+				<li>As noted earlier, the Ariane 5 flight profile was not included
+				in the IRS system specification. Therefore, the IRS contractor did
+				not have the proper data with which to perform a test. Testing with
+				the Ariane 4 flight data would not have violated the assertion
+				[<a href="#f23">23</a>], and thus the error would not have been detected.
+				<p>
+				<li>Integrated system testing at the prime contractor, using the
+				proper test environment and data, would have been able to detect
+				the error. However, the prime contractor decided against performing
+				these tests, preferring instead to assume that their experience
+				with this IRS on Ariane 4 was sufficient, along with the
+				vendor's qualification tests, to qualify the IRS in the total system
+			</ul>
+			Thus, without other changes in the Ariane test philosophy (which
+			are not called for in <a href="#f2">the Eiffel paper</a>), the assertions would not
+			have been tested in the proper conditions and thus would not have
+			detected the fault.
+		</blockquote>
+		<a name="s3.2.2"></a>
+		<h3>3.2.2 Adverse effects of testing with assertions</h3>
+		<blockquote>
+			Assume for a moment that the proper testing environment and data
+			had been available. Putting aside for the moment the question as
+			to whether assertions would have been necessary to detect the fault
+			(see <a href="#s4.2">section 4.2</a>), are there any disadvantages to using assertions
+			during testing, then disabling them for the operational system?
+			In the author's experience, there are some concerns about using
+			this approach for safety-critical systems:
+			<ul>
+				<li>The addition of code at the object level obviously affects
+				the time it takes for an object to complete execution. Particularly
+				for real-time systems (such as the Ariane IRS), differences in
+				timing between the system being tested and the operational system
+				may cause timing faults, such as race conditions or deadlock, to go
+				undetected. Such timing faults are serious failures in real-time
+				systems, and a test which is hindered from detected them loses
+				some of its effectiveness. (See [<a href="#f31">31</a>] for a
+				further discussion of timing faults.)
+				<p>
+				<li>In addition, the differences in object code between the
+				tested and operational systems raise the issue of errors in the
+				object code for the operational system. Such errors are most
+				likely to occur due to an error in the compilation environment,
+				although it is possible that other factors, such as human error
+				(e.g. specifying the wrong version of a file when the code is
+				recompiled) can be involved. For example, the author has documented
+				cases where Ada compilers generate the correct code when exceptions
+				are not suppressed, but generate incorrect code (beyond the
+				language's definition of <em>"erroneous"</em>) when they are
+				suppressed. This is not entirely unexpected; given the number of
+				user-selectable options present with most compilation environments,
+				it is difficult if not impossible to perform adequate toolset testing over
+				all combinations of options. Nothing in <a href="#f2">the Eiffel paper</a> indicates
+				that Eiffel compilers are any better (or worse) than other compilers
+				in this area. Although this is a fault of the implementation, not
+				the language or methodology, it is nonetheless a practical
+				limitation for safety-critical systems, where one object code
+				error can have devastating results.
+			</ul>
+			One possible approach to resolving this issue is to completely
+			test the system twice; once with assertions on and another time
+			with assertions suppressed. However, the adverse factors described
+			in <a href="#s3.1.6">section 3.1.6</a> then come into play:
+			By adding to the test time in this manner, other useful test
+			techniques (which might have greater value) are not performed.
+			Generally, it is difficult to completely test such systems once,
+			never mind twice! This effect is worse for safety-critical systems
+			that perform object-code branch coverage testing, since this
+			testing is completely invalidated when the object code
+			changes [<a href="#f25">25</a>].
+			<P>
+			Overall, there are significant limitations to using this technique
+			for safety-critical systems, and in particular real-time systems
+			such as the Ariane 5 IRS.
+		</blockquote>
+		<a name="s3.3"></a>
+		<h3>3.3 The execution effect</h3>
+		<blockquote>
+			The final option is to not disable the assertions after testing,
+			but to leave them on during execution. <a href="#f2">The Eiffel paper</a> describes
+			this option as follows:
+			<blockquote>
+				<em>Assertions can remain turned on during execution, triggering
+					an exception if violated. Given the performance constraints on
+					such a mission, however, this would probably not have been the case.
+				</em>
+			</blockquote>
+			There are three basic objections to this approach in safety-critical
+			systems, and in particular real-time systems:
+			<ul>
+				<li>As <a href="#f2">the Eiffel paper</a> notes, throughput is an issue. This was particularly true of the
+				Ariane IRS [<a href="#f26">26</a>].
+				<p>
+				<li>As described in <a href="#s3.1.6">section 3.1.6</a>, an argument can be made that adding
+				code adds the risk of introducing the very design errors one is attempting
+				to protect against.
+				<p>
+				<li>Most importantly, nothing in <a href="#f2">the Eiffel paper</a> discusses the very
+				difficult issue of the proper way to react if the assertion is
+				violated. Although <a href="#f2">the Eiffel paper</a> implies that no handlers were
+				within the system [<a href="#f27">27</a>], <a href="#f1">the inquiry</a>
+				makes it clear that an exception hander was properly invoked per
+				the system specification, but that the system specification was
+				based on an incorrect view of the nature of the fault and so the
+				handler took inappropriate actions [<a href="#f28">28</a>]. It is the author's
+				experience that, particularly for real-time systems that can
+				neither turn to a human operator nor shut down in the face of
+				faults, that writing the proper actions in such an exception
+				handler can be very difficult. <a href="#f1">The inquiry</a> makes recommendations
+				about how to handle such a fault [<a href="#f29">29</a>],
+				although their solution could have obscured the random faults with
+				which the original IRS design was overly-concerned. One possible solution would have been to "saturate" the integer representation of horizontal_bias, so that any floating-point value which is too large ends up as the largest possible integer value. (Unfortunately, this means that the error term no longer represents the actual error in the system, which could have had adverse effects to the user of the IRS data.) It should also
+				be noted that turning to a human operator is not always a safe
+				option, as in the recent case of the corrupted Internet address
+				database [<a href="#f30">30</a>].
+			</ul>
+			Thus, <a href="#f2">the Eiffel paper</a> is correct in dismissing this approach
+			as a valid option for the Ariane 5 case.
+		</blockquote>
+		<a name="s4"></a>
+		<h2>4. Was DBC/Eiffel necessary to avoid the failure?</h2>
+		<blockquote>
+			Assuming that the reader concurs that a compelling case for
+			DBC/Eiffel is not made in the context of the Ariane 5 incident,
+			should the conclusion be drawn that nothing could be done? Not
+			at all! For example, <a href="#f1">the inquiry</a> makes it clear that, even
+			with no reviews and with the code exactly as implemented, it was
+			quite reasonable to perform an integrated system test that would
+			have clearly exposed the problem [<a href="#f24">24</a>].
+			It is the author's experience, as confirmed by <a href="#f1">the inquiry</a>, that
+			such integrated system testing should be a mandatory part of any
+			safety-critical qualification. Although <a href="#f2">the Eiffel paper</a> is
+			quite correct that testing is not a panacea [<a href="#f22">22</a>],
+			in this particular case there is high confidence that the
+			problem would have been caught:
+			<ul>
+				<li>The fault occurred in the normal processing mode, within
+				the normal flight profile, without any previous unusual events
+				(e.g. other failures) preceding it. Thus, it is very likely that
+				this scenario would have been tested.
+				<p>
+				<li>The response of the system to the test case (complete shutdown)
+				is sufficiently obvious to be observed by test personnel.
+				<p>
+			</ul>
+			In addition to the testing effect, the documentation effect could
+			have been addressed without the introduction of DBC/Eiffel.
+			As described earlier, <a href="#f1">the inquiry</a> indicates the use of
+			<em>"justification documents"</em> to describe the necessary
+			review information [<a href="#f17">17</a>]. Such documents do not
+			require the use of a particular language, or even a code-based documentation
+			approach such as DBC. With respect to code-based documentation,
+			the Ada-Based Design Approach for Real-Time Systems is
+			an example of a competing methodology that also incorporates
+			the specification of assertions (and more generally assumptions),
+			although comments are used rather than executable code [<a href="#f31">31</a>].
+			As to language, <a href="#f2">the Eiffel paper</a> itself notes that the IRS
+			implementation language, Ada, would have been adequate for
+			handling the Ariane case, if code-based assertions were to be used. [<a href="#f32">32</a>].
+			<p>
+			Thus, it can be concluded that, for this particular case alone,
+			DBC/Eiffel was not necessary. This does not mean that
+			DBC/Eiffel is unnecessary for detection of any software fault,
+			of course, just the fault described in <a href="#f2">the Eiffel paper</a>.
+		</blockquote>
+		<a name="s5"></a>
+		<h2>5. Other issues</h2>
+		<blockquote>
+			There are other aspects of <a href="#f2">the Eiffel paper</a> that, although not
+			related directly to the core argument, distract from its
+			effectiveness:
+			<ul>
+				<li>Lack of peer review. <a href="#f2">the Eiffel paper</a> would have been much
+				stronger if it could have cited evidence that <a href="#f1">the inquiry</a> board,
+				the Ariane developers, or others in the general safety-critical
+				community had read the paper and agreed with its findings. It
+				should be noted that, since the publication of the paper, comments
+				the author has read from persons identified as familiar with the
+				IRS domain have not been positive [<a href="#f33">33</a>].
+				<p>
+				<li>Lack of empirical data. There does not appear to be any
+				evidence that DBC/Eiffel has been successfully used in a system
+				like the Ariane IRS, much less that it produced significantly
+				improved safety or reliability. By itself, this is not particularly
+				damaging: All new ideas have to have a first user. However, the
+				approach used in the development of Ada, where the language team
+				funded the development of prototypes in relevant domains to test
+				it's effectiveness, should be considered by the Eiffel team. More
+				to the point, no relevant evidence from any other domain is
+				presented in <a href="#f2">the Eiffel paper</a>. There should be some results from
+				controlled studies showing the advantage of DBC/Eiffel over the
+				methodology and tools used for the Ariane project, even if not
+				related to the Ariane domain. In particular, there must be some
+				data with respect to the reliability of the Eiffel compilation
+				system, at a minimum. No data of this type is used to support
+				<a href="#f2">the Eiffel paper</a>'s assertions.
+				<p>
+				<li>Appeals to authority. Quoting Demarco (particularly when his
+				assessment that <em>"almost no other defense would have been
+					likely to catch"
+				</em> the problem is contradicted by <a href="#f1">the inquiry</a>)
+				gives <a href="#f2">the Eiffel paper</a> a <em>"sales"</em> feel, rather than a
+				scholarly work. The quoting of one of <a href="#f2">the Eiffel paper</a>'s authors
+				(Meyer) in support of his own paper seems particularly odd. Again,
+				quotes from a relevant source would have been more powerful, in
+				the author's opinion.
+				<p>
+				<li><em>"A technical issue, not a management issue."</em> There are legitimate differences of interpretation with words such as "process," "methodology," etc. However, reading the inquiry's report and recommendations, it is clear that they disagreed with at least some aspects of what would be considered "process" and "management approach." See, for example, the discussions on testing strategy, and the recommendation on close cooperation between the various companies involved. However, <a href="#f2">the Eiffel paper</a> seems to dismiss those issues out of hand [<a href="#f34">34</a>]. It is difficult to reconcile such a position with the inquiry on this point.
+			</ul>
+		</blockquote>
+		<a name="s6"></a>
+		<h2>6. Non-issues</h2>
+		<blockquote>
+			Elements of this criticism have been aired in various Internet
+			forums, and at times objections have been raised that cannot be
+			dealt with in the context of the previous sections. These objections
+			are addressed here.
+			<ul>
+				<li>"Casuistry."  It would not be appropriate to use the criticisms
+				here to say in the general case that assertions have no value,
+				anywhere (<em>"casuistry"</em>), but this criticism does not attempt
+				to do this. It focuses on the specific claim in <a href="#f2">the Eiffel paper</a> in
+				the context of the Ariane IRS fault.
+				<p>
+				<li>Utility of DBC/Eiffel in other domains. Several Eiffel advocates
+				will attest that they like the use of Eiffel for their domain. Eiffel
+				may be very useful in some domains, however Ariane is a real-time
+				embedded safety-critical system and has unique properties (as
+				described above). Again, this is a specific, not a general, criticism
+				of DBC/Eiffel.
+				<p>
+				<li>Ada vs. Eiffel. Some Eiffel advocates have attempted to cast
+				these arguments as a <em>"language war."</em> They note that many
+				of these criticisms apply equally well to Ada as Eiffel. They are
+				correct. The author has, in fact, publicly criticized the use of
+				Ada exceptions on the same grounds as Eiffel assertions, within
+				the same context (real-time safety-critical systems). However, the
+				statement <em>"Ada has these problems, too"</em> does not in any
+				way contradict the arguments against the use of Eiffel assertions
+				in the Ariane context. If nothing else, such statements indicate
+				that the criticisms are valid for Eiffel.
+			</ul>
+		</blockquote>
+		<a name="s7"></a>
+		<h2>7. Conclusions</h2>
+		<blockquote>
+			In the specific case of the Ariane IRS design fault, there is not
+			clear and compelling evidence that DBC/Eiffel assertions were likely
+			to have uncovered the fault prior to operational use, either through
+			their documentation, test, or execution value. Furthermore, alternative
+			means were available to the Ariane team to isolate the particular
+			fault, even without the use of DBC/Eiffel. Therefore, although there
+			may be a compelling claim to use DBC/Eiffel in real-time safety-critical
+			systems, the Ariane case (and <a href="#f2">the Eiffel paper</a> describing this case)
+			does not support such a claim.
+			<p>
+			The failure of software to meet the requirements (documented or perceived) in a given operating environment can occur from many types of faults in the software and system. It is reasonable to expect that DBC/Eiffel may well help in identifying, eliminating, and/or recovering from some of these types of faults. However, some types of faults are very difficult to deal with at the software design and implementation level. Issues such as cooperation between multiple development organizations on large projects, the adequacy of planning  for future changes to systems, ensuring the use of rigorous software engineering practices in a cost- and schedule-conscious business environment, and the need for constant vigilance in identifying and correcting faulty assumptions about the fundamental requirements of a new system are difficult to resolve. It is not surprising, therefore, that the inquiry made multiple recommendations in the areas of process and management organization and planning. Faults that arise from such sources cannot be solved by any single approach, but a broad-based, multi-disciplinary attack that encompasses the full life cycle of the system. Specific software methodologies such as DBC/Eiffel are, at best, a small part of the overall solution and should not be over-emphasized in any high-quality software development project.
+		</blockquote>
+		<a name="ack"></a>
+		<h2>Acknowledgements</h2>
+		<blockquote>
+			The author would like to thank the following for their contributions to this paper:
+			Geoff Eldridge,
+			Ron Kohl,
+			Samuel A. Mize,
+			Phlip C Plumlee, and
+			Robert S. White.
+		</blockquote>
+		<a name="about"></a>
+		<h2>About the author</h2>
+		<blockquote>
+			Ken Garlington has been developing software for safety-critical
+			real-time flight control systems since 1984, including the F-16,
+			F-16 Ada flight controls ground demonstrator, F-111, A-12, YF-22A,
+			F-22, and Joint Strike Fighter systems. More than one of these
+			projects has included the integration of an inertial reference
+			system with the flight controls system, as was done for Ariane.
+			<p>
+			The opinions in this paper are those of the author, and should
+			not be construed as an official position of his employer,
+			Lockheed Martin.
+		</blockquote>
+		<a name="rev"></a>
+		<h2>Revisions</h2>
+		<blockquote>
+			This paper was originally distributed 7 August 1997.
+			<p>
+			Revision 1 was produced 16 March 1998 in response to comments made by Dr. Peter Ladkin. It corrected typos in Dr. Leveson's and Dr. Jézéquel's name, added a pointer to Dr. Jézéquel's web page on this discussion (in part to validate that I have his name spelled correctly!) and added a reference to the SPC's ADARTS methodology as a source for reading more about deadlock and other types of timing errors (including justification for treating deadlock as a type of timing error).
+		</blockquote>
+		<a name="a1"></a>
+		<h2>Appendix A: Scaling in Ada</h2>
+		The following Ada implementation is provided to help the reader understand the process of converting floating-point values to fixed values using scaling. This technique is often used in airborne systems to meet external interface requirements.
+		To compile and execute this example, download the GNAT Ada compiler from <a href="http://www.gnat.com">http://www.gnat.com</a>.
+		<blockquote>
+
+<pre>
+
+-- file generic_scaling.ads
+
+generic
+
+  type Unscaled_Type is digits &lt;>; -- floating-point type
+
+  type Scaled_Type   is range &lt;>;  -- integer type
+
+
+
+  -- Both types should support at least two values
+
+  -- (scaling makes no real sense otherwise).
+
+  -- GNAT raises Assert_Failure if assertions enabled.
+
+ 
+
+  pragma Assert (Unscaled_Type'Last > Unscaled_Type'First);
+
+  pragma Assert (Scaled_Type'Last > Scaled_Type'First);
+
+
+
+package Generic_Scaling is
+
+
+
+  -- Scaled maps floats to integers such that:
+
+  --   Unscaled_Type'First -> Scaled_Type'First,
+
+  --   Unscaled_Type'Last -> Scaled_Type'Last,
+
+  --   and intermediate values are roughly interpolated.
+
+  -- Rounding can cause slight differences in last bit.
+
+
+
+  function Scaled ( Unscaled : Unscaled_Type ) return
+
+    Scaled_Type;
+
+
+
+  -- (Note: the spec above introduces two assertions:
+
+  --   a precondition that Unscaled is in Unscaled_Type,
+
+  --   and a postcondition that the result is in Scaled_Type.
+
+  --   Constraint_Error is raised if not suppressed.)
+
+
+
+private
+
+
+
+  -- The formula for mapping Unscaled_Type range A .. B to
+
+  -- Scaled_Type range C .. D is (Unscaled-A)/(B-A)*(D-C)+C.
+
+  -- With E=(D-C)/(B-A), and F=-(A*E)+C, this is optimized to
+
+  -- Scaled=Unscaled*E+F.
+
+
+
+  -- Need a float type for computations
+
+  type Compute_Type is new Unscaled_Type'Base;
+
+
+
+  -- Check at instantiation if A-F are in Compute_Type
+
+  -- (Constraint_Error raised if not suppressed.)
+
+
+
+  A : constant Compute_Type := Compute_Type(Unscaled_Type'First);
+
+  B : constant Compute_Type := Compute_Type(Unscaled_Type'Last);
+
+  C : constant Compute_Type := Compute_Type(Scaled_Type'First);
+
+  D : constant Compute_Type := Compute_Type(Scaled_Type'Last);
+
+  E : constant Compute_Type := (D-C)/(B-A);
+
+  F : constant Compute_Type := -(A*E)+C;
+
+
+
+end Generic_Scaling;
+
+
+
+-- file generic_scaling.adb
+
+package body Generic_Scaling is
+
+
+
+  function Scaled ( Unscaled : Unscaled_Type ) return
+
+    Scaled_Type is
+
+  begin
+
+    return Scaled_Type(Compute_Type(Unscaled)*E+F);
+
+  end Scaled;
+
+
+
+end Generic_Scaling;
+
+
+
+-- file hz_bias_scaling.adb
+
+with Generic_Scaling;
+
+with Ada.Text_IO;
+
+procedure HZ_Bias_Scaling is
+
+
+
+  type HZ_Bias_Type is new Float range -25.0 .. 25.0;
+
+  Max_Ariane_4 : constant HZ_Bias_Type := 20.0;   
+
+
+
+  type HZ_IO_Type is range -32768 .. 32_767;
+
+
+
+  package HZ_IO_Format is new Generic_Scaling
+
+    (HZ_Bias_Type, HZ_IO_Type);
+
+
+
+  package HZ_IO is new Ada.Text_IO.Integer_IO(HZ_IO_Type);
+
+
+
+begin
+
+
+
+  -- Scaling test cases (results may vary slightly
+
+  -- depending on rounding)
+
+  HZ_IO.Put(HZ_IO_Format.Scaled(HZ_Bias_Type'First));
+
+  Ada.Text_IO.New_Line;
+
+    -- should output -32768
+
+
+
+  HZ_IO.Put(HZ_IO_Format.Scaled(HZ_Bias_Type'Last));
+
+  Ada.Text_IO.New_Line;
+
+    -- should output 32767
+
+
+
+  HZ_IO.Put(HZ_IO_Format.Scaled(Max_Ariane_4));
+
+  Ada.Text_IO.New_Line;
+
+    -- should output 26214
+
+
+
+  -- If checks enabled, this should raise Constraint_Error
+
+  -- else results depend on hardware (e.g. 16-bit
+
+  -- machines will usually generate interrupt)
+
+  HZ_IO.Put(HZ_IO_Format.Scaled(Max_Ariane_4*2.0));
+
+  Ada.Text_IO.New_Line;
+
+
+
+end HZ_Bias_Scaling;
+
+</pre>
+		</blockquote>
+		<a name="footnotes"/>
+		<h2>Footnotes</h2>
+		<blockquote>
+			<ol>
+				<a name="f1"/>
+				<li><!--[1]--> The public version of the Ariane 5 inquiry report is located
+				on the World Wide Web at
+				<a href="http://sunnyday.mit.edu/accidents/Ariane5accidentreport.html">http://sunnyday.mit.edu/accidents/Ariane5accidentreport.html</a>.
+				Subsequent footnotes will reference this report as <em>"(Inquiry)"</em>.
+				<p>
+				<a name="f2"/>
+				<li><!--[2]--> The version of this paper being critiqued is located on the
+				World Wide Web at
+				<a href="http://www.eiffel.com/doc/manuals/technology/contract/ariane/index.html">http://www.eiffel.com/doc/manuals/technology/contract/ariane/index.html</a>.
+				Subsequent footnotes will reference this report as <em>"(Eiffel)"</em>.
+				A slightly different version of this article was published in IEEE Computer magazine, January 1997 (Vol. 30 No. 1). An on-line version of the IEEE Computer article is at <a
+
+href="http://pascal.computer.org:80/dynaweb/co/co1997/@Generic__BookTextView/9060;hf=0">
+					http://pascal.computer.org:80/dynaweb/co/co1997/@Generic__BookTextView/9060;hf=0
+				</a>.
+				<p>
+				<a name="f3"/>
+				<li><!--[3]--> See the post on Internet newsgroup comp.lang.eiffel "Re: Papers on the Ariane-5 crash and Design by Contract," Jean-Marc Jézéquel, 1997/03/18: <em>"Ada's subtype declarations are a kind of contract, that could be documented as such. Design by contract is not specific to Eiffel. You can do it with any language, just because it is a way of designing!"
+				</em>
+				<p>
+				<a name="f4"/>
+				<li><!--[4]--> (Eiffel) See the two paragraphs that begin <em>"From CORBA to C++..."</em>, particularly the reference to
+				<em>"Eiffel-like assertions."</em>
+				<p>
+				<a name="f5"/>
+				<li><!--[5]--> See the post on Internet newsgroup comp.lang.eiffel, "Re: Papers on the Ariane-5 crash and Design by Contract", Bertrand Meyer, 1997/03/22. To be fair, Meyer indicates that there are two adequate languages: Eiffel and Sather, although Sather is not addressed  in the Eiffel paper.
+				<p>
+				<a name="f6"/>
+				<li><!--[6]--> (Inquiry) <em>"The reason for the three remaining variables,
+					including the one denoting horizontal bias, being unprotected was that
+					further reasoning indicated that they were either physically limited or
+					that there was a large margin of safety, a reasoning which in the case
+					of the variable BH turned out to be faulty. It is important to note that
+					the decision to protect certain variables but not others was taken
+					jointly by project partners at several contractual levels."
+				</em>
+				<p>
+				<a name="f8"/>
+				<li><!--[7]-->See, for example, the work of Leveson and Knight
+				on common-mode errors in N-version programs. References are at <a href="http://www.cs.washington.edu/research/projects/safety/www/index.html"> http://www.cs.washington.edu/research/projects/safety/www/index.html</a>.
+				<p>
+				<a name="f9"/>
+				<li><!--[8]--> (Inquiry) <em>"The internal SRI software exception
+					was caused during execution of a data conversion from 64-bit
+					floating point to 16-bit signed integer value. The floating point
+					number which was converted had a value greater than what could be
+					represented by a 16-bit signed integer."
+				</em> The paper does not
+				provide further explanation as to the reason for this conversion.
+				However, such a conversion is commonly used to convert internally
+				calculated values to a format suitable for output on a 16-bit data
+				bus. Given the use of horizontal bias as a measurement of the error
+				in the horizontal measurement, this would seem to be a likely value
+				to output to other systems.
+				<p>
+				<a name="f10"/>
+				<li><!--[9]--> (Inquiry) <em>"The Operand Error occurred due to an
+					unexpected high value of an internal alignment function result
+					called BH, Horizontal Bias, related to the horizontal velocity
+					sensed by the platform. This value is calculated as an indicator
+					for alignment precision over time."
+				</em>
+				<p>
+				<a name="f11"/>
+				<li><!--[10]--> See, for example, the US Department of Defense
+				software standards DoD-STD-2167 and DoD-STD-2168, which were used
+				in the same time-frame as the original Ariane software development.
+				<p>
+				<a name="f12"/>
+				<li><!--[11]--> (Inquiry) <em>"Ariane 5 has a high initial
+					acceleration and a trajectory which leads to a build-up of horizontal
+					velocity which is five times more rapid than for Ariane 4. The higher
+					horizontal velocity of Ariane 5 generated, within the 40-second
+					time-frame, the excessive value [BH] which caused the inertial system
+					computers to cease operation."
+				</em> It is important to note from this
+				statement that BH is computed from the measured horizontal velocities;
+				it is not itself a measured value.
+				<p>
+				<a name="f13"/>
+				<li><!--[12]--> <a href="#f1">The inquiry</a> refers to the prime contractor as the
+				<em>"Industrial Architect"</em>, and does not refer to any of
+				the parties by name. However, Aviation Week and Space Technology
+				ran articles contemporaneously with the incident, and (if memory
+				serves) identified the IRS supplier as Sextant and the prime contractor
+				as Arianespace, along with a description of their respective roles. An editorial on the Sextant/Arianespace relationship was published in AW&ST the week of August 6, 1996.
+				<p>
+				<a name="f14"/>
+				<li><!--[13]--> (Inquiry) <em>"A more transparent organisation of
+					the cooperation among the partners in the Ariane 5 programme must
+					be considered. Close engineering cooperation, with clear cut
+					authority and responsibility, is needed to achieve system coherence,
+					with simple and clear interfaces between partners."
+				</em>
+				<p>
+				<a name="f15"/>
+				<li><!--[14]--> (Inquiry) <em>"the overriding means of preventing
+					failures are the reviews which are an integral part of the design
+					and qualification process, and which are carried out at all levels
+					and involve all major partners in the project (as well as external
+					experts).... Solutions to potential problems in the on-board computer
+					software, paying particular attention to on-board computer switch
+					over, shall be proposed by the project team and reviewed by a group
+					of external experts."
+				</em>
+				<p>
+				<a name="f16"/>
+				<li><!--[15]--> (Inquiry) <em>"...three of the variables were
+					left unprotected. No reference to justification of this decision
+					was found directly in the source code. Given the large amount of
+					documentation associated with any industrial application, the
+					assumption, although agreed, was essentially obscured, though not
+					deliberately, from any external review."
+				</em>
+				<p>
+				<a name="f17"/>
+				<li><!--[16]--> (Inquiry) <em>"Give the justification documents
+					the same attention as code. Improve the technique for keeping code
+					and its justifications consistent.... The Board has also noted that
+					the systems specification [i.e. the Software Requirements
+					Specification document] of the SRI does not indicate operational
+					restrictions that emerge from the chosen implementation. Such a
+					declaration of limitation, which should be mandatory for every
+					mission-critical device, would have served to identify any
+					non-compliance with the trajectory of Ariane 5.... Include
+					external (to the project) participants when reviewing
+					specifications, code and justification documents."
+				</em>
+				<p>
+				<a name="f18"/>
+				<li><!--[17]--> (Inquiry) <em>"An underlying theme in the
+					development of Ariane 5 is the bias towards the mitigation of
+					random failure. The supplier of the SRI was only following the
+					specification given to it, which stipulated that in the event
+					of any detected exception the processor was to be stopped. The
+					exception which occurred was not due to random failure but a
+					design error. The exception was detected, but inappropriately
+					handled because the view had been taken that software should be
+					considered correct until it is shown to be at fault. The Board
+					has reason to believe that this view is also accepted in other
+					areas of Ariane 5 software design."
+				</em>
+				<p>
+				<a name="f19"/>
+				<li><!--[18]--> (Inquiry) <em>"In a programme of this size,
+					literally thousands of problems and potential failures are successfully
+					handled in the review process and it is obviously not easy to detect
+					software design errors of the type which were the primary technical
+					cause of the 501 failure."
+				</em>
+				<p>
+				<a name="f19a"/>
+				<li><!--[19]--> See Internet newsgroup comp.lang.eiffel post "Re: Papers on the Ariane-5 crash and Design by Contract," Jean-Marc Jézéquel, 1997/03/18: <em>"...at least in the case of Ariane 501, simple assertions (a la Eiffel and other languages) would have been expressive enough to specify the fatal hidden assumption.  Whether the last point scales up to a full sized mission critical system is still an open question. I'm quite confident it is so, but I've only my own experience with telco systems to back it up."
+				</em>
+				<p>
+				<a name="f20"/>
+				<li><!--[20]--> (Inquiry) <em>"There is no evidence that any
+					trajectory data were used to analyse the behaviour of the
+					unprotected variables, and it is even more important to note
+					that it was jointly agreed not to include the Ariane 5 trajectory
+					data in the SRI requirements and specification."
+				</em>
+				<p>
+				<a name="f21"/>
+				<li><!--[21]--> See, for example, Leveson's excellent book
+				<em>"Safeware"</em>. The US Air Force software safety handbook
+				AFISC SSH 1-1 has a similar philosophy. Various integrity models
+				(e.g. Musa) also relate the probability of residual errors to
+				the size of the software.
+				<p>
+				<a name="f22"/>
+				<li><!--[22]--> (Eiffel) <em>"But if one can test more one
+					cannot test all. Testing, we all know, can show the presence of
+					errors, not their absence."
+				</em>
+				<p>
+				<a name="f23"/>
+				<li><!--[23]--> (Inquiry) <em>"In Ariane 4 flights using the same
+					type of inertial reference system there has been no such failure
+					because the trajectory during the first 40 seconds of flight is
+					such that the particular variable related to horizontal velocity
+					cannot reach, with an adequate operational margin, a value beyond
+					the limit present in the software."
+				</em>
+				<p>
+				<a name="f24"/>
+				<li><!--[24]--> (Inquiry) See the several paragraphs that begin:
+				<em>"In order to understand the explanations given for the
+					decision not to have the SRIs in the closed-loop simulation..."
+				</em>
+				It is also interesting to note that <em>"Post-flight simulations have
+					been carried out on a computer with software of the inertial reference
+					system and with a simulated environment, including the actual
+					trajectory data from the Ariane 501 flight. These simulations have
+					faithfully reproduced the chain of events leading to the failure of
+					the inertial reference systems."
+				</em>
+				<p>
+				<a name="f25"/>
+				<li><!--[25]--> See, for example, the US Federal Aviation
+				Administration's software process DO-178B, or AFISC SSH 1-1.
+				Beizer also provides justification for the utility of structural testing.
+				<p>
+				<a name="f26"/>
+				<li><!--[26]--> (Inquiry) <em>"It has been stated to the Board that
+					not all the conversions were protected because a maximum workload
+					target of 80% had been set for the SRI computer."
+				</em>
+				<p>
+				<a name="f27"/>
+				<li><!--[27]--> (Eiffel) <em>"...in the Ariane 5 flight it caused an
+					exception, which was not caught... There was no explicit exception
+					handler to catch the exception, so it followed the usual fate of uncaught
+					exceptions and crashed the entire software, hence the on-board computers,
+					hence the mission."
+				</em>
+				<p>
+				<a name="f28"/>
+				<li><!--[28]--> (Inquiry) <em>"The specification of the
+					exception-handling mechanism also contributed to the failure.
+					In the event of any kind of exception, the system specification
+					stated that: the failure should be indicated on the databus, the
+					failure context should be stored in an EEPROM memory (which was
+					recovered and read out for Ariane 501), and finally, the SRI
+					processor should be shut down.... From this point of view exception
+					- or error - handling mechanisms are designed for a random hardware
+					failure which can quite rationally be handled by a backup system....
+					An underlying theme in the development of Ariane 5 is the bias
+					towards the mitigation of random failure. The supplier of the
+					SRI was only following the specification given to it, which
+					stipulated that in the event of any detected exception the processor
+					was to be stopped. The exception which occurred was not due to
+					random failure but a design error. The exception was detected, but
+					inappropriately handled because the view had been taken that software
+					should be considered correct until it is shown to be at fault."
+				</em>
+				<p>
+				<a name="f29"/>
+				<li><!--[29]--> (Inquiry) <em>"For example the computers within the SRIs could
+					have continued to provide their best estimates of the required attitude
+					information."
+				</em> <a href="#f1">The inquiry</a> does not state the algorithm to use to do this.
+				<p>
+				<a name="f30"/>
+				<li><!--[30]--> This story was covered in several newspapers as well as in the
+				RISKS journal
+				(either July 18 or July 19, 1997). A program which failed to properly convert an
+				Ingress database generated alarms to the operator, who for some reason failed to
+				see them. The resulting corrupted database causes widespread Internet disruptions
+				for several hours.
+				<p>
+				See: <a href="http://catless.ncl.ac.uk/Risks/19.25.html#subj1">
+					Partial failure of Internet root nameservers
+				</a> -
+				<a href="http://catless.ncl.ac.uk/Risks">The Risks Digest</a> in
+				<a href="http://catless.ncl.ac.uk/Risks/19.25.html">Vol.19 Issue.25</a> (18 Jul 97)
+				<p>
+				<a name="f31"/>
+				<li><!--[31]--> See the Software Productivity Consortium web site at
+				<a href="http://www.software.org">http://www.software.org</a> for more information
+				on ADARTS.
+				<p>
+				<a name="f32"/>
+				<li><!--[32]--> (Eiffel) <em>"Although one may criticize the Ada exception
+					mechanism, it could have been used here to catch the exception."
+				</em>
+				<p>
+				<a name="f33"/>
+				<li><!--[33]-->See, for example, the following posts made on the Internet newsgroup comp.lang.ada: "Re: Ariane 5 failure," Marin David Condic, 1996/10/28; "Re: Trust but verify (was Re: Papers on the Ariane-5 crash and Design by Contract," Robert S. White, 1997/03/26; and "Re: Papers on the Ariane-5 crash and Design by Contract", John McCabe, 1997/03/20.
+				<p>
+				<a name="f34"/>
+				<li><!--[34]--> (Eiffel) <em>"Everything indicates that the software process was carefully organized and planned. The ESA's software people knew what they were doing and applied widely accepted industry practices .... it is clear from its report that systematic documentation, validation and management procedures were in place.... The contention often made in the software engineering literature that most software problems are primarily management problems is not borne out here."
+				</em>
+			</ol>
+		</blockquote>
+		<p>
+		<center>
+			See also these related Web pages:
+			<strong>
+				[ <a href="http://www.yahoo.com/Computers_and_Internet/Programming_Languages/Eiffel/">Eiffel</a> |
+				<a href="http://www.yahoo.com/Computers_and_Internet/Programming_Languages/Ada/">Ada</a> |
+				<a href="http://www.irisa.fr/pampa/EPEE/Ariane5-comments.html">Jézéquel</a> |
+				<a href="http://www.progsoc.uts.edu.au/~geldridg">Eldridge</a> |
+				<a href="http://users.deltanet.com/~tegan/home.html">Plumlee</a> ]
+			</strong>
+		</center>
+		<p>
+		<hr>
+		This page is <a href="http://www.flash.net/~kennieg/ariane.html">
+			http://www.flash.net/~kennieg/ariane.html
+		</a><br>
+		Last Modified 16 March 1998
+	</body>
+</html>
+

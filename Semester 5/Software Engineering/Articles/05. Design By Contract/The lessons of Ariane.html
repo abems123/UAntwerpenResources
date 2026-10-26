@@ -1,0 +1,424 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+	<head>
+		<title>The lessons of Ariane</title>
+		<meta name="GENERATOR" content=
+  "Mozilla/3.01Gold (X11; I; SunOS 5.5 sun4m) [Netscape]">
+		<link rev="made" href="mailto:webmaster@eiffel.com">
+	</head>
+	<body bgcolor="#FFFFFF">
+		<p><!-- document en Anglais --><a href=
+  "http://www.irisa.fr/newtree/Welcomee.html">
+				<img src=
+  "../ICONS/irisa2.gif" border="0" height="40" width="140" align=
+  "left" alt="irisa">
+			</a> <a href="../Pampa_anglais.html">
+				<img src=
+  "../ICONS/pampa2.gif" border="0" height="40" width="81" align=
+  "right" alt="pampa">
+			</a><br>
+			<br>
+			<br>
+		</p>
+		<hr>
+		<br>
+		<br>
+		<h1><font color="#008000">Put it in the contract: The lessons of
+				Ariane
+			</font><br>
+			<br>
+		</h1>
+		<h2 align="center"><font color="#0000F0">Jean-Marc
+				J&eacute;z&eacute;quel, IRISA<br>
+				Bertrand Meyer, ISE
+			</font>
+		</h2>
+		<h2><font color="#008000">Note</font></h2>
+		<p>This article appeared in a slightly different form in
+			<i>Computer</i> (IEEE), as part of the Object-Oriented
+			department, in January of 1997 (vol. 30, no. 2, pages
+			129-130).
+		</p>
+		<p>See the end of the page for the <a href="#comments">reader
+				comments
+			</a> sent to the magazine in response to the article.
+		</p>
+		<p>See also an <a href="Ariane5-comments.html">extract of the
+				large discussion
+			</a> that took place on comp.lang.eiffel and
+			related newsgroup.
+		</p>
+		<h2><font color="#008000">Keywords</font></h2>
+		<div style="margin-left: 2em">
+			<p><font size="-1">Contracts, Ariane, Eiffel, reliable
+					software, correctness, specification,
+				</font>
+			</p>
+		</div>
+		<h2><font color="#008000">How not to test your
+				software
+			</font>
+		</h2>
+		<p>Several earlier columns in <i>IEEE Computer</i> have
+			emphasized the importance of <a href=
+  "http://www.eiffel.com/doc/manuals/technology/contract/index.html">
+				Design by Contract
+			</a> for constructing reliable software. A
+			$500-million software error provides a sobering reminder that
+			this principle is not just a pleasant academic ideal.
+		</p>
+		<p>On June 4, 1996, the maiden flight of the European Ariane 5
+			launcher crashed about 40 seconds after takeoff. Media reports
+			indicated that the amount lost was half a billion dollars --
+			uninsured.
+		</p>
+		<p>The CNES (French National Center for Space Studies) and the
+			European Space Agency immediately appointed an international
+			inquiry board, made of respected experts from major European
+			countries, who produced their report in hardly more than a month.
+			with which they handled the disaster. The committee's report is
+			available on the Web in these two places:
+		</p>
+		<ul>
+			<li><a href=
+    "http://www.esrin.esa.it/htdocs/tidc/Press/Press96/ariane5rep.html">
+					(English)
+					http://www.esrin.esa.it/htdocs/tidc/Press/Press96/ariane5rep.html
+				</a><br>
+			</li>
+			<li><a href=
+    "http://www.cnes.fr/actualites/news/rapport_501.html">(French)
+					http://www.cnes.fr/actualites/news/rapport_501.html
+				</a>.
+			</li>
+		</ul>
+		<p>It is a remarkably short, simple, clear and forceful
+			document.
+		</p>
+		<p>Its conclusion: the explosion was the result of a software
+			error -- possibly the costliest in history (at least in dollar
+			terms, since earlier cases have caused loss of life).
+		</p>
+		<p>Particularly vexing is the realization that the error came
+			from a piece of the software that was <i>not</i> needed during
+			the crash. It has to do with the Inertial Reference System, for
+			which we will keep the acronym SRI used in the report, if only to
+			avoid the unpleasant connotation that the reverse acronym could
+			evoke for US readers. Before lift-off certain computations are
+			performed to align the SRI. Normally they should be stopped at -9
+			seconds, but in the unlikely event of a hold in the countdown
+			resetting the SRI could, at least in earlier versions of Ariane,
+			take several hours; so the computation continues for 50 seconds
+			after the start of flight mode -- well into the flight period.
+			After takeoff, of course, this computation is useless; but in the
+			Ariane 5 flight it caused an exception, which was not caught and
+			-- boom.
+		</p>
+		<p>The exception was due to a floating-point error: a conversion
+			from a 64-bit integer to a 16-bit unsigned integer, which should
+			only have been applied to a number less than 2^16, was
+			erroneously applied to a greater number, representing the
+			"horizontal bias" of the flight. There was no explicit exception
+			handler to catch the exception, so it followed the usual fate of
+			uncaught exceptions and crashed the entire software, hence the
+			on-board computers, hence the mission.
+		</p>
+		<p>This is the kind of trivial error that we are all familiar
+			with (raise your hand if you have never done anything of the
+			sort), although fortunately the consequences are usually less
+			expensive. How in the world can it have remained undetected, and
+			produced such a horrendous outcome?
+		</p>
+		<h3><font color="#008000">Is this just incompetence?</font></h3>
+		<p>No. Everything indicates that the software process was
+			carefully organized and planned. The ESA's software people knew
+			what they were doing and applied widely accepted industry
+			practices.
+		</p>
+		<h3><font color="#008000">Is it an outrageous software management
+				problem?
+			</font>
+		</h3>
+		<p>No. Obviously something went wrong in the validation and
+			verification process (otherwise there would not have a story to
+			write), and the Inquiry Board makes a number of recommendations
+			to improve the process, it is clear from its report that
+			systematic documentation, validation and management procedures
+			were in place.
+		</p>
+		<p>The contention often made in the software engineering
+			literature that most software problems are primarily management
+			problems is not borne out here. The problem is technical. (Of
+			course one can always argue that good management will spot
+			technical problems early enough.)
+		</p>
+		<h3><font color="#008000">Is it the programming language's
+				fault?
+			</font>
+		</h3>
+		<p>Although one may criticize the Ada exception mechanism, it
+			could have been used here to catch the exception. In fact,
+			quoting the report:
+		</p>
+		<div style="margin-left: 2em">
+			<p><i>Not all the conversions were protected because a maximum
+					workload target of 80% had been set for the SRI computer. To
+					determine the vulnerability of unprotected code, an analysis
+					was performed on every operation which could give rise to an
+					... operand error. This led to protection being added to four
+					of [seven] variables... in the Ada code. However, three of the
+					variables were left unprotected."
+				</i>
+			</p>
+		</div>
+		<p>In other words the potential problem of failed arithmetic
+			conversions was recognized. Unfortunately, the fatal exception
+			was among the three that were not monitored, not the four that
+			were.
+		</p>
+		<h3><font color="#008000">Is it a design error?</font></h3>
+		<p>Why was the exception not monitored? The analysis revealed
+			that overflow (a horizontal bias not fitting in a 16-bit integer)
+			could not occur. Was the analysis wrong? No! It was right --
+			<i>for the Ariane 4 trajectory</i>. For Ariane 5, with other
+			trajectory parameters, it does not hold any more.
+		</p>
+		<h3><font color="#008000">Is it an implementation
+				error?
+			</font>
+		</h3>
+		<p>Although one may criticize the removal of a protection to
+			achieve more performance (the 80% workload target), it was
+			justified by the theoretical analysis. Engineering is making
+			compromises. If you have proved that a condition cannot happen,
+			you are entitled not to check for it. If every program checked
+			for all possible and impossible events, no useful instruction
+			would ever get executed!
+		</p>
+		<h3><font color="#008000">Is it a testing error?</font></h3>
+		<p>Not really. Not surprisingly, the Inquiry Board's report
+			recommends better testing procedures, and testing the whole
+			system rather than parts of it (in the Ariane 5 case the SRI and
+			the flight software were tested separately). But if one can test
+			more one cannot test all. Testing, we all know, can show the
+			presence of errors, not their absence. And the only fully
+			"realistic" test is to launch; this is what happened, although
+			the launch was not really intended as a $500-million test of the
+			software.
+		</p>
+		<h3><font color="#008000">So what is it?</font></h3>
+		<p><b>It is a reuse error</b>. The SRI horizontal bias module was
+			reused from a 10-year-old software, the software from Ariane
+			4.
+		</p>
+		<p>But this is not the full story:</p>
+		<h3><font color="#008000">It is a reuse specification
+				error
+			</font>
+		</h3>
+		<p>The truly unacceptable part is the absence of any kind of
+			precise specification associated with a reusable module.
+		</p>
+		<p>The requirement that the horizontal bias should fit on 16 bits
+			was in fact stated in an obscure part of a document. But in the
+			code itself it was nowhere to be found!
+		</p>
+		<p>&gt;From the principle of Design by Contract expounded by
+			earlier columns, we know that <i>any</i> software element that
+			has such a fundamental constraint should state it explicitly, as
+			part of a mechanism present in the programming language, as in
+			the Eiffel construct
+		</p>
+		<div style="margin-left: 2em">
+			<p><i>convert</i> (<i>horizontal_bias</i>: <i>INTEGER</i>):
+				<i>INTEGER</i> <b><font color="#0000FF">is</font></b>
+			</p>
+			<div style="margin-left: 2em">
+				<p><b><font color="#0000FF">require</font></b></p>
+				<div style="margin-left: 2em">
+					<p><i>horizontal_bias</i> &lt;= <i>Maximum_bias</i></p>
+				</div>
+				<p><b><font color="#0000FF">do</font></b><br></p>
+				<div style="margin-left: 2em">
+					<p>...</p>
+				</div>
+				<p><br>
+					<b><font color="#0000FF">ensure</font></b><br>
+				</p>
+				<div style="margin-left: 2em">
+					<p>...</p>
+				</div>
+				<p><br>
+					<b><font color="#0000FF">end</font></b>
+				</p>
+			</div>
+		</div>
+		<p>where the precondition states clearly and precisely what the
+			input must satisfy to be acceptable.
+		</p>
+		<p>Does this mean that the crash would automatically have been
+			avoided had the mission used a language and method supporting
+			built-in assertions and Design by Contract? Although it is always
+			risky to draw such after-the-fact conclusions, the answer is
+			probably yes:
+		</p>
+		<ul>
+			<li>Assertions (preconditions and postconditions in particular)
+				can be automatically turned on during testing, through a simple
+				compiler option. The error might have been caught then.<br>
+				<br>
+			</li>
+			<li>Assertions can remain turned on during execution,
+				triggering an exception if violated. Given the performance
+				constraints on such a mission, however, this would probably not
+				have been the case.<br>
+				<br>
+			</li>
+			<li>But most importantly the assertions are a prime component
+				of the software and its documentation ("short form", produced
+				automatically by tools). In an environment such as that of
+				Ariane where there is so much emphasis on quality control and
+				thorough validation of everything, they would be the QA team's
+				primary focus of attention. Any team worth its salt would have
+				checked systematically that every call satisfies the
+				precondition. That would have immediately revealed that the
+				Ariane 5 calling software did not meet the expectation of the
+				Ariane 4 routines that it called.
+			</li>
+		</ul>
+		<h3><font color="#008000">The lesson for every software
+				developer
+			</font>
+		</h3>
+		<p>The Inquiry Board makes a number of recommendations with
+			respect to improving the software process of the European Space
+			Agency. Many are justified; some may be overkill; some may be
+			very, very expensive to put in place. There is a more simple
+			lesson to be learned from this unfortunate event:
+		</p>
+		<center>
+			<table border="7" cellspacing="0" cellpadding="0" bgcolor=
+    "#FFEB66">
+				<tr>
+					<td>
+						<center>
+							<p><b><font color="#008000"><font size="+1">Reuse
+											without a contract is sheer
+											folly.
+										</font>
+									</font>
+								</b>
+							</p>
+						</center>
+					</td>
+				</tr>
+			</table>
+		</center>
+		<p>&gt;From CORBA to C++ to Visual Basic to ActiveX to Java, the
+			hype is on software components. The Ariane 5 blunder shows
+			clearly that na&iuml;ve hopes are doomed to produce results
+			<i>far worse</i> than a traditional, reuse-less software process.
+			To attempt to reuse software without Eiffel-like assertions is to
+			invite failures of potentially disastrous consequences. The next
+			time around, will it only be an empty payload, however expensive,
+			or will it be human lives?
+		</p>
+		<p>It is regrettable that this lesson has not been heeded by such
+			recent designs as Java (which added insult to injury by
+			<i>removing</i> the modest <b><font color=
+  "#0000FF">assert</font>
+			</b> instruction of C!), IDL (the
+			Interface Definition Language of CORBA, which is intended to
+			foster large-scale reuse across networks, but fails to provide
+			any semantic specification mechanism), Ada 95 and ActiveX.
+		</p>
+		<p>For reuse to be effective, Design by Contract is a
+			requirement. Without a precise specification attached to each
+			reusable component -- precondition, postcondition, invariant --
+			no one can trust a supposedly reusable component. <a name=
+  "comments" id="comments"></a>
+		</p>
+		<h2><font color="#008000">Reader reactions</font></h2>
+		<p>The February 1997 issue of <i>IEEE Computer</i> contained two
+			letters from readers commenting on the article. Here are some
+			extracts from these letters and from the response by one of the
+			authors:
+		</p>
+		<div style="margin-left: 2em">
+			<p><b>Tom Demarco, The Atlantic Systems Guild (co-author of
+					<i>PeopleWare</i>):
+				</b><br>
+				<br>
+			</p>
+			<div style="margin-left: 2em">
+				<p><i>Jean-Marc J&eacute;z&eacute;quel and Bertrand Meyer are
+						precisely on-target in their assessment of the Ariane-5
+						failure. This was the kind of problem that a reasonable
+						contracting mechanism almost certainly would have caught; the
+						kind of problem that almost no other defense would have been
+						likely to catch.
+					</i>
+				</p>
+				<p><i>I believe that the use of Eiffel-like module contracts
+						is the most important non-practice in software today.
+					</i>
+				</p>
+			</div>
+			<p><br>
+				<br>
+				<b>Roy D. North, Falls Church, Va.:</b><br>
+				<br>
+			</p>
+			<div style="margin-left: 2em">
+				<p><i>Our designs must incorporate safety factors, and we
+						must freeze the design before we produce the product (the
+						software).
+					</i>
+				</p>
+			</div>
+			<p><br>
+				<br>
+				<b>Bertrand Meyer:</b><br>
+				<br>
+			</p>
+			<div style="margin-left: 2em">
+				<p><i>What software managers must understand is that Design
+						by Contract is not a pie-in-the-sky approach for special,
+						expensive projects. It is a pragmatic set of techniques
+						available from several commercial and public-domain Eiffel
+						sources and applicable to any project, large or small.<br>
+						<br>
+						It is not an exaggeration to say that applying Eiffel's
+						assertion-based O-O development will completely change your
+						view of software construction... It puts the whole issue of
+						errors, the unsung part of the software developer's saga, in
+						a completely different light.
+					</i>
+				</p>
+			</div>
+		</div>
+		<h2><font color="#008000">Other documentation</font></h2>
+		<p>The book <i><a href=
+  "http://www.eiffel.com/doc/oosc.html">Object-Oriented Software
+					Construction, 2nd edition
+				</a>
+			</i> contains an extensive
+			discussion of the notion of Design by Contract and its
+			consequences on the process of software development.
+		</p>
+		<p>ISE's Web pages contain an <a href=
+  "http://www.eiffel.com/doc/manuals/technology/contract/index.html">
+				introduction to the concepts
+			</a> of Design by Contract.
+		</p>
+		<hr>
+		<br>
+		<br>
+		<address>
+			jezequel@irisa.fr March 1997 <a href=
+    "http://www.irisa.fr/EXTERNE/copyright-e.html">Copyright
+				&copy;1997 Irisa
+			</a>
+		</address>
+	</body>
+</html>
